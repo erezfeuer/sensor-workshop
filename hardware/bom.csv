@@ -1,0 +1,14 @@
+group,item,manufacturer,manufacturer_part_number,quantity_per_device,supplier,supplier_part_number,unit_price_usd,extended_price_usd,stock_observed,checked_date,product_url,notes
+base,ESP32-S3 Feather 8MB flash no PSRAM,Adafruit,5323,1,Digi-Key,1528-5323-ND,17.50,17.50,800,2026-11-12,https://www.digikey.com/en/products/detail/adafruit-industries-llc/5323/16376065,Adafruit own board; onboard antenna; Arduino/C++ assumption
+base,SCD30 CO2 temperature humidity QT breakout,Adafruit,4867,1,Adafruit,4867,58.95,58.95,86,2026-11-12,https://www.adafruit.com/product/4867,Assembled QT breakout; validate clock stretching and 50kHz shared bus
+base,VEML7700 lux QT breakout,Adafruit,4162,1,Adafruit,4162,4.95,4.95,In stock - quantity not displayed,2026-11-12,https://www.adafruit.com/product/4162,Require STEMMA QT revision
+base,1.3 inch 128x64 OLED QT display,Adafruit,938,1,Adafruit,938,19.95,19.95,In stock - quantity not displayed,2026-11-12,https://www.adafruit.com/product/938,Require current QT revision; default I2C and automatic reset
+base,100mm QT to QT cable,Adafruit,4210,3,Digi-Key,1528-4210-ND,0.95,2.85,27853,2026-11-12,https://www.digikey.com/en/products/detail/adafruit-industries-llc/4210/10230021,Out of stock at Adafruit on retrieved product page
+base,JST-PH inline battery switch cable,Adafruit,3064,1,Digi-Key,1528-1679-ND,2.95,2.95,167,2026-11-12,https://www.digikey.com/en/products/detail/adafruit-industries-llc/3064/6022074,Prewired; approx 20 inch cable; battery charging requires switch closed
+laptop,USB-C to USB-C data cable 1m,Adafruit,4199,1,Adafruit,4199,9.95,9.95,In stock - quantity not displayed,2026-11-12,https://www.adafruit.com/product/4199,For USB-C laptops
+laptop,USB-A to USB-C data cable approx 1m,Adafruit,4474,1,Adafruit,4474,4.95,4.95,In stock - quantity not displayed,2026-11-12,https://www.adafruit.com/product/4474,For USB-A laptops; may instead hold shared spare stock
+local,Protected 1S 2000-2500mAh battery,TBD,TBD,1,Local Israel,TBD,,,Not checked,,,3.7V nominal 4.2V full; prewired JST-PH 2-pin 2mm; correct polarity; request >=1A discharge and >=500mA charge capability; dimensions TBD
+optional_rtc,DS3231 precision RTC QT breakout,Adafruit,5188,1,Adafruit,5188,13.95,13.95,In stock - quantity not displayed,2026-11-12,https://www.adafruit.com/product/5188,CR1220 backup battery not included
+optional_rtc,Additional 100mm QT cable for RTC,Adafruit,4210,1,Digi-Key,1528-4210-ND,0.95,0.95,27853,2026-11-12,https://www.digikey.com/en/products/detail/adafruit-industries-llc/4210/10230021,Four QT cables total when RTC fitted
+optional_rtc_local,CR1220 3V coin cell,TBD,CR1220,1,Local Israel,TBD,,,Not checked,,,Non-rechargeable RTC backup cell
+mechanical,Printed enclosure and mounting hardware,TBD,TBD,1,Local fabrication,TBD,,,Not designed,,,CAD and fastener quantities follow component confirmation and local battery selection
