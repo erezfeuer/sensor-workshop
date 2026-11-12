@@ -1,90 +1,97 @@
 # Proposed bill of materials
 
-Supplier pages checked **12 November 2026**. Quantities below are per device. Stock and prices are the listings returned during research, not reserved inventory or a quotation; some supplier pages may be cached. Confirm the required class quantity before ordering. Prices are single-unit USD, excluding shipping and taxes.
+Supplier listings researched **12 November 2026**. These are retrieved product-page and search-index snapshots, some cached, rather than reserved inventory or live quotations. Prices are single-unit USD before shipping and taxes. Delivery eligibility and the final price for Israel must be checked in the distributor cart.
 
-This proposal uses **Adafruit-manufactured boards**, following the preference for a mainstream Adafruit product. Batteries will be purchased locally in Israel. No purchases have been made.
+The selected controller is the **Adafruit ESP32-S3 Reverse TFT Feather, product 5691**. It combines the microcontroller, colour screen, and three buttons. The **DS3231 RTC is included in every device**. Adafruit and SparkFun are both acceptable manufacturers. Both batteries will be purchased locally in Israel. No purchases have been made.
 
-## Recommended components
+## Components and supplier links
 
-| Item | Qty/device | Exact part | Supplier and listed stock | Unit USD | Extended USD |
-| --- | ---: | --- | --- | ---: | ---: |
-| Microcontroller | 1 | Adafruit **5323**, ESP32-S3 Feather, **8 MB flash / no PSRAM**, onboard antenna | [Digi-Key 1528-5323-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5323/16376065): 800; [Adafruit](https://www.adafruit.com/product/5323): 72 | 17.50 | 17.50 |
-| CO₂, temperature, humidity | 1 | Adafruit **4867**, assembled SCD30 STEMMA QT breakout | [Adafruit](https://www.adafruit.com/product/4867): 86 | 58.95 | 58.95 |
-| Ambient light | 1 | Adafruit **4162**, VEML7700 **STEMMA QT revision** | [Adafruit](https://www.adafruit.com/product/4162): in stock; quantity not displayed | 4.95 | 4.95 |
-| Display | 1 | Adafruit **938**, 1.3-inch 128 × 64 monochrome OLED, **STEMMA QT revision** | [Adafruit](https://www.adafruit.com/product/938): in stock; quantity not displayed | 19.95 | 19.95 |
-| Sensor/display interconnects | 3 | Adafruit **4210**, 100 mm JST-SH 4-pin to JST-SH 4-pin STEMMA QT / Qwiic cable | [Digi-Key 1528-4210-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4210/10230021): 27,853 | 0.95 | 2.85 |
-| Battery power switch | 1 | Adafruit **3064**, prewired JST-PH 2-pin extension with on/off switch | [Digi-Key 1528-1679-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3064/6022074): 167 | 2.95 | 2.95 |
-| USB-C laptop cable | 1 | Adafruit **4199**, USB-C to USB-C data cable, 1 m | [Adafruit](https://www.adafruit.com/product/4199): in stock; quantity not displayed | 9.95 | 9.95 |
-| USB-A laptop cable | 1 | Adafruit **4474**, USB-A to USB-C data cable, approximately 1 m | [Adafruit](https://www.adafruit.com/product/4474): in stock; quantity not displayed | 4.95 | 4.95 |
-| Rechargeable battery | 1 | Local protected 1S pack meeting the specification below; exact model TBD | **Local purchase in Israel**; availability and price not checked | TBD | TBD |
+Each distributor link identifies the same manufacturer part, not a bare sensor or a substitute. Quantities are for one device except the shared cable assortment. The price column is a reference unit price; distributor-specific observations are in [bom.csv](bom.csv).
 
-The electronics, QT cables, and switch subtotal is **$107.15**. Including both laptop cable types gives **$122.05 per kit**, before the battery, enclosure, shipping, and taxes. Providing both cable types avoids depending on students' adapters; alternatively, distribute one appropriate data cable per laptop and keep the other type in a shared supply.
+| Component | Qty | Reference USD | Adafruit | Digi-Key | Mouser |
+| --- | ---: | ---: | --- | --- | --- |
+| ESP32-S3 Reverse TFT Feather; 1.14-inch 240 × 135 colour display; 4 MB flash / 2 MB PSRAM; PCB antenna | 1 | 24.95 | [5691](https://www.adafruit.com/product/5691) | [1528-5691-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5691/18627502) | [485-5691](https://www.mouser.com/en/ProductDetail/Adafruit/5691?qs=mELouGlnn3eeALy2e3r3sw%3D%3D) |
+| SCD30 CO₂, temperature, and humidity breakout; assembled STEMMA QT board | 1 | 58.95 | [4867](https://www.adafruit.com/product/4867) | [1528-4867-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4867/13627674) | [485-4867](https://www.mouser.com/en/ProductDetail/Adafruit/4867?qs=pBJMDPsKWf0ru2aWSWVb%2FA%3D%3D) |
+| VEML7700 ambient light sensor; STEMMA QT revision | 1 | 4.95 | [4162](https://www.adafruit.com/product/4162) | [1528-2891-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4162/9997696) | [485-4162](https://www.mouser.com/en/ProductDetail/Adafruit/4162?qs=unwgFEO1A6urZiNnCPSvkw%3D%3D) |
+| DS3231 Precision RTC; STEMMA QT breakout | 1 | 13.95 | [5188](https://www.adafruit.com/product/5188) | [1528-5188-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5188/15189155) | [485-5188](https://www.mouser.com/en/ProductDetail/Adafruit/5188?qs=TCDPyi3sCW0TSTr1Xi7pUg%3D%3D) |
+| Prewired JST-PH 2-pin battery extension with on/off switch | 1 | 2.95 | [3064](https://www.adafruit.com/product/3064) | [1528-1679-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3064/6022074) | [485-3064](https://www.mouser.com/en/ProductDetail/Adafruit/3064?qs=PqFvFmEiOr7sEj9KUBUBhw%3D%3D) |
+| [SparkFun Qwiic Cable Kit, KIT-15081](https://www.sparkfun.com/sparkfun-qwiic-cable-kit.html), 10 assorted cables for prototyping | 1 shared kit | 12.95 | Exact kit not found | [1568-15081-ND](https://www.digikey.com/en/products/detail/sparkfun-electronics/15081/9770723) | [474-KIT-15081](https://www.mouser.com/en/ProductDetail/SparkFun/KIT-15081?qs=0lSvoLzn4L8uNN%252B5TDrwLw%3D%3D) |
+| Final QT-to-QT cables, lengths selected after enclosure layout | 3/device | TBD | See cable options below | Bulk order after layout | Bulk order after layout |
+| Protected 1S rechargeable battery, approximately 2,000–2,500 mAh | 1 | TBD | Local purchase in Israel | Local purchase in Israel | Local purchase in Israel |
+| CR1220, 3 V, non-rechargeable RTC backup coin cell | 1 | TBD | Local purchase in Israel | Local purchase in Israel | Local purchase in Israel |
+| Printed enclosure and mounting hardware | 1 set | TBD | Local fabrication | Local fabrication | Local fabrication |
 
-The 100 mm QT cable and switched battery lead were **out of stock at Adafruit** on the retrieved product pages, so the BOM specifies Digi-Key for those two items. Search snippets showed older availability; the product-page results take precedence. The remaining electronics can be ordered directly from Adafruit. All quantities require reconfirmation when the headcount is known.
+The five per-device priced items total **$105.75**, including the RTC and switch, before QT cables, batteries, and enclosure. USB cables are excluded from procurement as requested; programming uses an existing USB data cable.
 
-## Optional clock
+For the requested **one-device comparison**, each distributor list includes those five items plus **one SparkFun cable assortment**, for a reference subtotal of **$118.70**. The assortment supplies the prototype's three QT connections, so the comparison does not also buy three individual cables. It is a shared prototyping expense, not a recommendation to buy an assortment for every student. See [ordering files and cart status](ordering/README.md).
 
-| Item | Qty/device | Exact part | Supplier and listed stock | Unit USD |
-| --- | ---: | --- | --- | ---: |
-| RTC | 1 | Adafruit **5188**, DS3231 Precision RTC **STEMMA QT** breakout | [Adafruit](https://www.adafruit.com/product/5188): in stock; quantity not displayed | 13.95 |
-| Additional QT cable | 1 | Adafruit **4210**, 100 mm | [Digi-Key](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4210/10230021): 27,853 | 0.95 |
-| RTC backup battery | 1 | **CR1220, 3 V**, non-rechargeable coin cell | Local purchase in Israel; exact supplier TBD | TBD |
+All six comparison items were listed in stock at Digi-Key and Mouser in the retrieved listings. For the four boards, the observed Digi-Key / Mouser counts were: Feather **1,730 / 214**, SCD30 **139 / 16**, VEML7700 **536 / 324**, RTC **748 / 158**. These counts may be stale; Mouser's SCD30 listing in particular should be rechecked before a class order. Adafruit listed the Feather at **34** and SCD30 at **86**, with the light sensor and RTC also in stock. The switched battery lead was out of stock directly at Adafruit, with stock listed at both distributors.
 
-The RTC adds **$14.90 plus the coin cell**. It retains calendar time when the main battery is disconnected. It is useful for independent logging, but can be omitted for an initial exercise that sets the device's clock from the phone browser after each restart. A hotspot alone does not supply internet time. If included, use the same RTC configuration in every student kit. The [DS3231 product page](https://www.adafruit.com/product/5188) specifies the separate CR1220 requirement.
+## Cable procurement
 
-## Why this Feather
+SparkFun's **KIT-15081** is the remembered assortment: ten cables of mixed lengths, including jumper-ended styles. It is not ten identical QT-to-QT leads. Use only the QT-to-QT leads in the student device. Digi-Key currently identifies this kit as manufacturer part **15081**, with ordering code **1568-15081-ND**; Mouser retains **KIT-15081**.
 
-The [Adafruit 5323 product page](https://www.adafruit.com/product/5323) documents native USB-C, a battery connector and charger, STEMMA QT, 8 MB flash, Wi-Fi, and an onboard battery monitor. No GPIO headers need to be soldered for this project. Select the onboard-antenna version, avoiding an extra antenna assembly.
+Use one assortment to try the component arrangement. Then buy the selected lengths in bulk: **three cables per device plus approximately 10% spares**, rounded up. The final lengths remain open until enclosure layout. Likely candidates are 50 mm and 100 mm, with 200 mm available for routing experiments:
 
-Native USB avoids a separate CH340/CH9102/CP210x USB-to-UART bridge. Espressif documents USB CDC support without a separately installed driver on most modern Windows, macOS, and Linux systems. This is a good match for mixed student laptops, but is not a guarantee that every laptop, USB hub, cable, or firmware configuration will work without setup. Keep BOOT and RESET accessible for recovery. [Espressif USB documentation](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-guides/usb-otg-console.html)
+| Cable option | Manufacturer link | Reference USD | Observation |
+| --- | --- | ---: | --- |
+| Flexible Qwiic, 50 mm | [SparkFun PRT-17260](https://www.sparkfun.com/flexible-qwiic-cable-50mm.html) | 1.50 | Listed in stock |
+| Flexible Qwiic, 100 mm | [SparkFun PRT-17259](https://www.sparkfun.com/flexible-qwiic-cable-100mm.html) | 1.95 | Listed in stock |
+| Flexible Qwiic, 200 mm | [SparkFun PRT-17258](https://www.sparkfun.com/flexible-qwiic-cable-200mm.html) | 1.95 | Listed in stock |
+| Standard STEMMA QT / Qwiic, 100 mm | [Adafruit 4210](https://www.adafruit.com/product/4210), [Digi-Key 1528-4210-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4210/10230021) | 0.95 | Digi-Key listed stock; Adafruit direct out of stock |
 
-**Software assumption: Arduino/C++ for the reference firmware.** This board has no PSRAM; Adafruit discourages it for substantial CircuitPython applications. If teaching Python becomes a requirement, revisit the board before ordering. The Adafruit **5477** version has 4 MB flash and 2 MB PSRAM, but was out of stock at both [Adafruit](https://www.adafruit.com/product/5477) and [Digi-Key](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5477/16583982). It is not the current procurement recommendation.
+These are alternatives for the later bulk order, excluded from the comparison imports. Purchase preassembled **4-pin JST-SH, 1 mm-pitch, QT-to-QT cables**, not loose connectors requiring crimping or soldering.
 
-The 8 MB flash is shared by firmware, boot/partition data, and the logging filesystem. The eventual firmware must choose an appropriate partition layout; 8 MB is not all available for CSV files. Validate logging capacity once the record format and sampling interval are defined.
+## Controller and firmware implications
+
+The chosen Feather provides native **USB-C**, Wi-Fi, a battery connector and charger, a MAX17048 battery monitor, STEMMA QT, and a factory-connected SPI colour display. It needs no soldered headers or display wiring. Board plus screen costs **$24.95**, saving **$12.50** against the previous $17.50 Feather plus $19.95 separate OLED. The reverse layout places the screen and three buttons opposite the connectors, which suits an enclosure front panel. [Product](https://www.adafruit.com/product/5691), [overview](https://learn.adafruit.com/esp32-s3-reverse-tft-feather/overview)
+
+Native USB avoids a separate USB-to-UART bridge. Most modern Windows, macOS, and Linux systems support USB CDC without a separate driver, but the workshop setup still needs testing with representative laptops, cables, and hubs. Keep BOOT and RESET accessible. [Espressif USB documentation](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-guides/usb-otg-console.html)
+
+The board has **4 MB flash and 2 MB PSRAM** and supports Arduino and CircuitPython. The teaching environment remains to be chosen. Flash is shared by firmware, partitions, and the logging filesystem; it is not all available for CSV files. Define the record format, sampling interval, and partition layout before estimating log duration. No SD card is planned.
+
+The DS3231 keeps calendar time when the main battery is disconnected. Its separate **CR1220** is not included with the board and will be sourced locally. The firmware must provide initial clock setting, for example from the phone browser; the hotspot alone does not supply internet time. [RTC product](https://www.adafruit.com/product/5188)
 
 ## Solderless connections
 
 ```mermaid
 flowchart LR
-    F[ESP32-S3 Feather] ---|QT cable 1| C[SCD30]
+    F[ESP32-S3 Reverse TFT Feather] ---|QT cable 1| C[SCD30]
     C ---|QT cable 2| L[VEML7700]
-    L ---|QT cable 3| D[OLED display]
+    L ---|QT cable 3| R[DS3231 RTC]
+    F ---|Factory SPI connection| D[Built-in colour display]
     B[Local 1S battery] ---|JST-PH| S[Prewired switch]
     S ---|JST-PH| F
-    U[Laptop] ---|USB data cable| F
+    U[Laptop] ---|Existing USB data cable| F
+    K[Local CR1220] ---|Onboard holder| R
 ```
 
-For the RTC configuration, insert the RTC between the light sensor and OLED: four QT cables total. Keep the OLED at the end of the chain. A hub is unnecessary for this layout. QT cables carry power, ground, SDA, and SCL; the battery uses its separate **2-pin JST-PH** connection, not a Qwiic cable.
+Three QT cables connect the three external modules. A hub is unnecessary. QT cables carry 3.3 V power, ground, SDA, and SCL. The main battery uses a separate **2-pin JST-PH** connector; the display is already connected on the Feather.
 
-| Device | I²C address | Notes |
+| Device | I²C address | Source |
 | --- | --- | --- |
-| SCD30 | `0x61` | Fixed; [Sensirion interface specification](https://sensirion.com/media/documents/D7CEEF4A/6165372F/Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf) |
-| VEML7700 | `0x10` | Fixed; [Adafruit driver](https://github.com/adafruit/Adafruit_CircuitPython_VEML7700/blob/main/adafruit_veml7700.py) |
-| SSD1306 OLED | `0x3C` or `0x3D` | Scan the delivered board and configure the library; [product details](https://www.adafruit.com/product/938) |
-| Feather MAX17048 | `0x36` | Built in on current revisions; older revisions used LC709203 at `0x0B`; [Feather pinouts](https://learn.adafruit.com/adafruit-esp32-s3-feather/pinouts) |
-| Optional DS3231 | `0x68` | [RTC guide](https://learn.adafruit.com/adafruit-ds3231-precision-rtc-breakout?view=all) |
+| SCD30 | `0x61` | [Sensirion interface specification](https://sensirion.com/media/documents/D7CEEF4A/6165372F/Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf) |
+| VEML7700 | `0x10` | [Adafruit driver](https://github.com/adafruit/Adafruit_CircuitPython_VEML7700/blob/main/adafruit_veml7700.py) |
+| Feather MAX17048 | `0x36` | [Reverse TFT Feather pinouts](https://learn.adafruit.com/esp32-s3-reverse-tft-feather/pinouts) |
+| DS3231 | `0x68` | [RTC guide](https://learn.adafruit.com/adafruit-ds3231-precision-rtc-breakout?view=all) |
 
-These addresses do not conflict. The breakouts support the Feather's 3.3 V I²C connection. Purchase the assembled QT breakouts, not bare sensor ICs or old header-only revisions. The current OLED ships in I²C mode with automatic reset, so it needs neither solder-jumper changes nor a separate reset wire. [OLED wiring guide](https://learn.adafruit.com/monochrome-oled-breakouts/wiring-128x64-oleds)
+These addresses do not conflict. Purchase the assembled QT breakouts, including the current QT revision of the VEML7700. The TFT uses SPI and has no I²C address.
 
-**SCD30 integration detail:** Sensirion recommends an I²C clock of 50 kHz or less and specifies clock stretching up to 150 ms. The reference firmware must accommodate this, including display-library calls that might otherwise change the shared bus speed. Test the selected ESP32 core, sensor library, and display together before committing to the class order. This is a documentation-based compatibility assessment, not a completed hardware test. [SCD30 interface specification](https://sensirion.com/media/documents/D7CEEF4A/6165372F/Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf)
+**SCD30 integration:** Sensirion recommends I²C at 50 kHz or less and specifies clock stretching up to 150 ms. Validate the selected ESP32 core and sensor library with the entire chain. TFT updates do not use this bus. This is a documentation-based compatibility assessment, not a hardware test. [SCD30 specification](https://sensirion.com/media/documents/D7CEEF4A/6165372F/Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf)
 
-The Feather's QT supply is switchable. Ensure the board's I²C power control is enabled before accessing the modules; the supported board setup normally does this. Use the correct Adafruit Feather ESP32-S3 No PSRAM board definition. [Feather guide](https://learn.adafruit.com/adafruit-esp32-s3-feather?view=all)
+Use the **Adafruit Feather ESP32-S3 Reverse TFT** board definition. The shared display/QT power control, `TFT_I2C_POWER`, must be high before using the external modules or screen; supported board startup normally enables it. [Pinouts and power control](https://learn.adafruit.com/esp32-s3-reverse-tft-feather/pinouts)
 
-## Battery specification for the local order
+## Local batteries and enclosure inputs
 
-- One **protected single-cell Li-ion/LiPo pack**, approximately **2,000–2,500 mAh**, **3.7 V nominal / 4.2 V full charge**.
-- A pre-attached **JST-PH 2-pin, 2.0 mm-pitch** plug with polarity matching the Feather's BAT and GND connections. The connector shape alone does not establish polarity.
-- For procurement, request a pack rated for at least **1 A continuous discharge** and **500 mA charging**, providing margin for the proposed device. These are requested pack capabilities, not a claim about measured device consumption or the Feather's charge current.
-- Obtain the actual pack drawing, lead length, and connector orientation before enclosure CAD. Do not substitute a bare cell requiring soldered tabs or a student-wired holder.
+- Main pack: protected **1S Li-ion/LiPo**, approximately **2,000–2,500 mAh**, **3.7 V nominal / 4.2 V full charge**, with a pre-attached **JST-PH 2-pin, 2.0 mm-pitch** plug matching the Feather's polarity. Connector shape alone does not establish polarity.
+- Request pack capabilities of at least **1 A continuous discharge** and **500 mA charging** for margin. These are procurement requirements, not measured consumption or a claim about the Feather's charging current.
+- RTC cell: one **CR1220, 3 V, non-rechargeable** per device, bought locally in Israel.
+- Obtain the main pack's dimensions, lead length, and connector orientation before CAD. Use an assembled pack rather than a bare cell needing soldered tabs or a student-wired holder.
 
-The Feather provides USB charging, so a separate charger is unnecessary. With the inline switch open, the battery is disconnected: USB can still run the device, but charging requires the switch to be closed. The switch cable is approximately 20 inches long; allow space for the excess cable or choose a verified shorter prewired equivalent before CAD. [Feather power connections](https://learn.adafruit.com/adafruit-esp32-s3-feather/pinouts), [switched lead](https://www.adafruit.com/product/3064)
+The Feather supplies USB charging. With the inline switch open, USB can still power the board, but the battery cannot charge until the switch is closed. The proposed switched lead is approximately **508 mm / 20 inches** long; accommodate its slack or select a verified shorter prewired equivalent before final CAD. [Power connections](https://learn.adafruit.com/esp32-s3-reverse-tft-feather/pinouts), [switch](https://www.adafruit.com/product/3064)
 
-## Enclosure inputs and pilot validation
+Use the manufacturer's PCB files and actual received parts for mounting holes and clearances: [Reverse TFT Feather drawings and 3D model](https://learn.adafruit.com/esp32-s3-reverse-tft-feather/downloads), [SCD30 breakout](https://www.adafruit.com/product/4867). The SCD30 board is approximately **51.0 × 25.4 × 8.8 mm**.
 
-The SCD30 breakout is approximately **51.0 × 25.4 × 8.8 mm**, and the OLED board approximately **35.6 × 33 × 6.2 mm**. Use the current PCB drawings and actual received parts for mounting-hole positions and clearances, rather than these overall dimensions alone. [SCD30 dimensions](https://www.adafruit.com/product/4867), [OLED dimensions](https://www.adafruit.com/product/938)
+Provide CO₂ sensor airflow, a clear opening for the light sensor, a display window, access to the three front buttons and USB-C, BOOT/RESET access, and battery/switch strain relief. Shield the light sensor from the screen and LEDs and separate the environmental sensor from ESP32/charging heat. Fasteners and printed retainers remain TBD until CAD.
 
-The enclosure should provide airflow around the CO₂ sensor, a clear optical opening for the light sensor, a display window, USB-C access, accessible BOOT/RESET buttons, and strain relief for the battery and switch. Keep the light sensor shielded from the OLED and board LEDs. Keep heat from the ESP32 and charging circuitry away from the environmental sensor. Printed retainers and/or screws can secure the assembled boards; the screw sizes, quantities, and enclosure material remain TBD until CAD.
-
-Before a class-sized purchase, assemble two pilot kits and check upload/recovery on macOS (including Apple Silicon), Windows, and Linux; the complete I²C chain; Wi-Fi hotspot operation during logging and CSV downloads; battery-to-USB transitions; current draw and charging; and the local battery's fit. Runtime and laptop compatibility remain unmeasured. Pin the software versions that pass this check for the workshop.
-
-An alternative CO₂ option, if enclosure size later becomes a priority, is [Adafruit SCD41, product 5190](https://www.adafruit.com/product/5190), listed in stock at $49.95. It is smaller and supports low-power single-shot operation, but requires different firmware and has approximately 200 mA measurement peaks. Its published accuracy specification also differs from SCD30. It is **not included** in this BOM or its totals. [SCD41 power notes](https://learn.adafruit.com/adafruit-scd-40-and-scd-41/pinouts), [Sensirion low-power guide](https://sensirion.com/media/documents/077BC86F/62BF01B9/CD_AN_SCD4x_Low_Power_Operation_D1.pdf)
+Before ordering for the class, assemble pilot hardware and check upload/recovery on macOS including Apple Silicon, Windows, and Linux; the complete sensor chain; hotspot operation while logging and downloading CSV; battery/USB transitions; charging and current draw; and enclosure fit. Runtime and laptop compatibility remain unmeasured. Pin the software versions that pass these checks.
