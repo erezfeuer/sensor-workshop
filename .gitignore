@@ -1,1 +1,9 @@
 .DS_Store
+
+hardware/reference/vendor/
+enclosure/generated/scene/
+enclosure/generated/collision*.stl
+enclosure/**/*.log
+**/__pycache__/
+*.pyc
+.venv-cad/

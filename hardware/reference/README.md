@@ -1,0 +1,48 @@
+# Manufacturer references
+
+Retrieved on **12 November 2026**. All 34 files listed below have been downloaded to `vendor/` in the working repository. Large vendor PDFs, CAD models and board sources are cached locally and excluded from Git. The tracked manifest records their original URLs, SHA-256 hashes, byte counts and pinned GitHub commits.
+
+Run `python3 enclosure/scripts/fetch_sources.py` from the repository root to reproduce the cache. Existing files are hash-checked; changed upstream content causes a failure for review instead of silently replacing the reference. Live Adafruit guide PDFs or HTML can change, so a future fresh download may require reviewing and updating that specific manifest entry.
+
+The exact Eagle PCB files, rather than generic mounting diagrams or product descriptions, are the source of the mounting coordinates. Official STEP/STL files were also obtained for the Feather, SCD30 and RTC to inspect connector positions and component heights. The VEML7700 uses its exact current flat QT PCB plus Vishay's package drawing. Electronics in the working enclosure are simplified envelopes; no enclosure dimension should be interpreted as a supplier production tolerance.
+
+The battery document is a **reference pack**, not the yet-to-be-selected Israeli pack. The switch supplier publishes its overall cable length but no body drawing; that fit remains provisional. [Attribution and preserved notices](ATTRIBUTION.md).
+
+## Download index
+
+| Cached file | Original source | Purpose |
+| --- | --- | --- |
+| [vendor/datasheets/18650-reference-pack.pdf](vendor/datasheets/18650-reference-pack.pdf) | [Download](https://cdn-shop.adafruit.com/product-files/1781/C2253_-_ICR18650_2200mAh_3.7V_with_PCM_20140728_APPROVED_8.18.pdf) | manufacturer reference |
+| [vendor/datasheets/ds3231-datasheet.pdf](vendor/datasheets/ds3231-datasheet.pdf) | [Download](https://cdn-shop.adafruit.com/product-files/3081/DS3231.pdf) | manufacturer reference |
+| [vendor/datasheets/esp32-s3-datasheet.pdf](vendor/datasheets/esp32-s3-datasheet.pdf) | [Download](https://cdn-learn.adafruit.com/assets/assets/000/119/042/original/esp32-s3_datasheet_en.pdf) | manufacturer reference |
+| [vendor/datasheets/feather-guide.pdf](vendor/datasheets/feather-guide.pdf) | [Download](https://cdn-learn.adafruit.com/downloads/pdf/esp32-s3-reverse-tft-feather.pdf) | Adafruit board guide |
+| [vendor/datasheets/rtc-guide.pdf](vendor/datasheets/rtc-guide.pdf) | [Download](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-ds3231-precision-rtc-breakout.pdf) | Adafruit board guide |
+| [vendor/datasheets/scd30-datasheet.pdf](vendor/datasheets/scd30-datasheet.pdf) | [Download](https://sensirion.com/media/documents/4EAF6AF8/61652C3C/Sensirion_CO2_Sensors_SCD30_Datasheet.pdf) | manufacturer reference |
+| [vendor/datasheets/scd30-design-in.pdf](vendor/datasheets/scd30-design-in.pdf) | [Download](https://sensirion.com/media/documents/84D49268/616536CB/Sensirion_CO2_Sensors_SCD30_Design-In_Guidelines_D1.pdf) | manufacturer reference |
+| [vendor/datasheets/scd30-guide.pdf](vendor/datasheets/scd30-guide.pdf) | [Download](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-scd30.pdf) | Adafruit board guide |
+| [vendor/datasheets/scd30-interface.pdf](vendor/datasheets/scd30-interface.pdf) | [Download](https://sensirion.com/media/documents/D7CEEF4A/6165372F/Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf) | manufacturer reference |
+| [vendor/datasheets/switch-3064-product.html](vendor/datasheets/switch-3064-product.html) | [Download](https://www.adafruit.com/product/3064) | Manufacturer switch specification; body dimensions not published |
+| [vendor/datasheets/veml7700-datasheet.pdf](vendor/datasheets/veml7700-datasheet.pdf) | [Download](https://www.vishay.com/docs/84286/veml7700.pdf) | manufacturer reference |
+| [vendor/datasheets/veml7700-guide.pdf](vendor/datasheets/veml7700-guide.pdf) | [Download](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-veml7700.pdf) | Adafruit board guide |
+| [vendor/feather/README.md](vendor/feather/README.md) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-ESP32-S3-Reverse-TFT-Feather-PCB/633459d74623227a18f7c4b1594db0840ba5592d/README.md) | feather official PCB and attribution |
+| [vendor/feather/board.brd](vendor/feather/board.brd) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-ESP32-S3-Reverse-TFT-Feather-PCB/633459d74623227a18f7c4b1594db0840ba5592d/Adafruit%20ESP32-S3%20Reverse%20TFT%20Feather.brd) | feather official PCB and attribution |
+| [vendor/feather/license.txt](vendor/feather/license.txt) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-ESP32-S3-Reverse-TFT-Feather-PCB/633459d74623227a18f7c4b1594db0840ba5592d/license.txt) | feather official PCB and attribution |
+| [vendor/feather/model.step](vendor/feather/model.step) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/5691%20Feather%20ESP32%20S3%20Reverse%20TFT/5691%20ESP32%20S3%20Reverse%20TFT%20Feather.step) | Adafruit official 3D component model |
+| [vendor/feather/model.stl](vendor/feather/model.stl) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/5691%20Feather%20ESP32%20S3%20Reverse%20TFT/5691%20ESP32%20S3%20Reverse%20TFT%20Feather.stl) | Adafruit official 3D component model |
+| [vendor/feather/schematic.sch](vendor/feather/schematic.sch) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-ESP32-S3-Reverse-TFT-Feather-PCB/633459d74623227a18f7c4b1594db0840ba5592d/Adafruit%20ESP32-S3%20Reverse%20TFT%20Feather.sch) | feather official PCB and attribution |
+| [vendor/rtc/README.md](vendor/rtc/README.md) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-DS3231-Precision-RTC-Breakout-PCB/1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1/README.md) | rtc official PCB and attribution |
+| [vendor/rtc/board.brd](vendor/rtc/board.brd) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-DS3231-Precision-RTC-Breakout-PCB/1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1/Adafruit%20DS3231%20STEMMA%20QT.brd) | rtc official PCB and attribution |
+| [vendor/rtc/license.txt](vendor/rtc/license.txt) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-DS3231-Precision-RTC-Breakout-PCB/1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1/license.txt) | rtc official PCB and attribution |
+| [vendor/rtc/model.step](vendor/rtc/model.step) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/5188%20DS3231%20RTC/5188%20DS3231%20RTC.step) | Adafruit official 3D component model |
+| [vendor/rtc/model.stl](vendor/rtc/model.stl) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/5188%20DS3231%20RTC/5188%20DS3231%20RTC.stl) | Adafruit official 3D component model |
+| [vendor/rtc/schematic.sch](vendor/rtc/schematic.sch) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-DS3231-Precision-RTC-Breakout-PCB/1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1/Adafruit%20DS3231%20STEMMA%20QT.sch) | rtc official PCB and attribution |
+| [vendor/scd30/README.md](vendor/scd30/README.md) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-SCD-30-PCB/54178bea411a7661007c529d41ed45fce767d155/README.md) | scd30 official PCB and attribution |
+| [vendor/scd30/board.brd](vendor/scd30/board.brd) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-SCD-30-PCB/54178bea411a7661007c529d41ed45fce767d155/Adafruit%20SCD30.brd) | scd30 official PCB and attribution |
+| [vendor/scd30/license.txt](vendor/scd30/license.txt) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-SCD-30-PCB/54178bea411a7661007c529d41ed45fce767d155/license.txt) | scd30 official PCB and attribution |
+| [vendor/scd30/model.step](vendor/scd30/model.step) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/4867%20SCD-30%20C02%20Sensor/4867%20Adafruit%20SCD30.step) | Adafruit official 3D component model |
+| [vendor/scd30/model.stl](vendor/scd30/model.stl) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/4867%20SCD-30%20C02%20Sensor/4867%20Adafruit%20SCD30.stl) | Adafruit official 3D component model |
+| [vendor/scd30/schematic.sch](vendor/scd30/schematic.sch) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-SCD-30-PCB/54178bea411a7661007c529d41ed45fce767d155/Adafruit%20SCD30.sch) | scd30 official PCB and attribution |
+| [vendor/veml7700/README.md](vendor/veml7700/README.md) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-VEML7700-PCB/ab489f03c957f681ed0161fc6d2b786956556e23/README.md) | veml7700 official PCB and attribution |
+| [vendor/veml7700/board.brd](vendor/veml7700/board.brd) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-VEML7700-PCB/ab489f03c957f681ed0161fc6d2b786956556e23/Adafruit%20VEML7700%20STEMMA%20QT.brd) | veml7700 official PCB and attribution |
+| [vendor/veml7700/license.txt](vendor/veml7700/license.txt) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-VEML7700-PCB/ab489f03c957f681ed0161fc6d2b786956556e23/license.txt) | veml7700 official PCB and attribution |
+| [vendor/veml7700/schematic.sch](vendor/veml7700/schematic.sch) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-VEML7700-PCB/ab489f03c957f681ed0161fc6d2b786956556e23/Adafruit%20VEML7700%20STEMMA%20QT.sch) | veml7700 official PCB and attribution |

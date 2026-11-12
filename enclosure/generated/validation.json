@@ -1,0 +1,163 @@
+{
+  "status": "passed",
+  "units": "mm",
+  "print_parts": {
+    "base": {
+      "watertight": true,
+      "bodies": 1,
+      "size_mm": [
+        112.0,
+        84.0,
+        42.0
+      ],
+      "solid_volume_mm3": 71013.02,
+      "sha256": "cf56ce496aeddcabb1ffe362457dec337c39ab87a4ba2f4848129624e679d411"
+    },
+    "lid": {
+      "watertight": true,
+      "bodies": 1,
+      "size_mm": [
+        112.0,
+        84.0,
+        5.9
+      ],
+      "solid_volume_mm3": 22554.68,
+      "sha256": "c00bcffb2f742e06fb602cfcca1d5fe465b9969037b9799b851834f6e285ca25"
+    },
+    "pod": {
+      "watertight": true,
+      "bodies": 1,
+      "size_mm": [
+        78.0,
+        48.0,
+        18.0
+      ],
+      "solid_volume_mm3": 21576.46,
+      "sha256": "9289099fe13974202b5f1a805887d8ff5998f339ad43309a067fedc58240460b"
+    },
+    "shade": {
+      "watertight": true,
+      "bodies": 1,
+      "size_mm": [
+        84.0,
+        54.0,
+        6.0
+      ],
+      "solid_volume_mm3": 11209.23,
+      "sha256": "0eaf04c925a98159820ae4ff94835aceae47fb2fa7cdc673d3be177a970c0266"
+    },
+    "foot_front": {
+      "watertight": true,
+      "bodies": 1,
+      "size_mm": [
+        16.0,
+        26.0,
+        35.2
+      ],
+      "solid_volume_mm3": 5419.07,
+      "sha256": "c4a74095df0b96f762e27a2032bd8654587b4a19be3bce9bf7ee46530fde8037"
+    },
+    "foot_rear": {
+      "watertight": true,
+      "bodies": 1,
+      "size_mm": [
+        16.0,
+        26.0,
+        35.2
+      ],
+      "solid_volume_mm3": 5419.07,
+      "sha256": "d94a0312386c8e3e0963546a63297f5f3be8dc2f7a350fabf27692b87aecde21"
+    },
+    "button": {
+      "watertight": true,
+      "bodies": 1,
+      "size_mm": [
+        6.0,
+        6.0,
+        5.5
+      ],
+      "solid_volume_mm3": 82.95,
+      "sha256": "689715d1a2876b99fe2e9a5ce62a53ce4e407431aee9a6756190d1c2ab844ccb"
+    },
+    "coupon": {
+      "watertight": true,
+      "bodies": 8,
+      "size_mm": [
+        136.0,
+        89.0,
+        12.0
+      ],
+      "solid_volume_mm3": 15809.78,
+      "sha256": "5980b27cad691f2e0145034fd3fee441989eba3f444afb10f5d19a4f030ddee7"
+    }
+  },
+  "clearances": {
+    "SCD30 underside pins to tray floor": {
+      "nominal_mm": 1.065,
+      "required_greater_than_mm": 0
+    },
+    "SCD30 top to shade roof": {
+      "nominal_mm": 3.03,
+      "required_greater_than_mm": 0
+    },
+    "Shade roof to main housing air gap": {
+      "nominal_mm": 3.6,
+      "required_greater_than_mm": 0
+    },
+    "RTC underside holder to main floor": {
+      "nominal_mm": 4.4,
+      "required_greater_than_mm": 0
+    },
+    "Light board QT sockets to lid": {
+      "nominal_mm": 0.5,
+      "required_greater_than_mm": 0
+    },
+    "Light sensor top to lid underside": {
+      "nominal_mm": 1.15,
+      "required_greater_than_mm": 0
+    },
+    "Light board underside to battery top": {
+      "nominal_mm": 10.9,
+      "required_greater_than_mm": 0
+    },
+    "Button plunger free gap": {
+      "nominal_mm": 0.2,
+      "required_greater_than_mm": 0
+    },
+    "Main pack length to end stops": {
+      "nominal_mm": 4,
+      "required_greater_than_mm": 0
+    },
+    "Switch provisional body to retention plate": {
+      "nominal_mm": 1.7,
+      "required_greater_than_mm": 0
+    }
+  },
+  "references": 34,
+  "fastener_stacks": {
+    "M3 x 50 case bolts": {
+      "tip_z_mm": 28.4,
+      "nut_z_mm": [
+        31.4,
+        33.8
+      ],
+      "fully_traverses_nut": true
+    },
+    "M3 x 25 tray bolts": {
+      "tip_z_mm": 11.4,
+      "nut_z_mm": [
+        12,
+        14.4
+      ],
+      "fully_traverses_nut": true
+    }
+  },
+  "review_pdf_pages": 7,
+  "limitations": [
+    "No physical parts or printed samples tested.",
+    "Simplified board envelopes do not represent every SMD component or cable plug.",
+    "STL checks do not prove printer tolerances, assembly accessibility or sensor accuracy.",
+    "Local battery, inline switch body, cable slack and button stroke require physical checks.",
+    "Vendor component STLs contain open surfaces and are unsuitable as a watertight collision proof."
+  ]
+}

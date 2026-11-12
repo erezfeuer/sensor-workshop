@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "browser": "157.0.8103.51",
+  "offline": true,
+  "selectable_components": 53,
+  "checks": [
+    "all 53 visibility toggles",
+    "explosion 0/64/100 percent and transforms",
+    "cut controls",
+    "hide/show all",
+    "look inside",
+    "orbit and zoom",
+    "mobile layout",
+    "no external network requests",
+    "no JavaScript/WebGL errors"
+  ],
+  "limitations": [
+    "Chrome only; Safari and Firefox not exercised",
+    "hardware fit is not a browser test"
+  ]
+}

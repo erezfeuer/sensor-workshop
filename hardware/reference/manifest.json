@@ -1,0 +1,296 @@
+[
+  {
+    "path": "vendor/datasheets/18650-reference-pack.pdf",
+    "url": "https://cdn-shop.adafruit.com/product-files/1781/C2253_-_ICR18650_2200mAh_3.7V_with_PCM_20140728_APPROVED_8.18.pdf",
+    "purpose": "manufacturer reference",
+    "sha256": "1c5df4d30c5d292c726998b24eb66e39d02924e0e8c00ae47e7872bf92bb84c2",
+    "bytes": 319645,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/datasheets/ds3231-datasheet.pdf",
+    "url": "https://cdn-shop.adafruit.com/product-files/3081/DS3231.pdf",
+    "purpose": "manufacturer reference",
+    "sha256": "dc81cd89bee82d0c57b654d6315e03dec913fb8fe753cc80b2a3f1cca71cbb34",
+    "bytes": 843828,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/datasheets/esp32-s3-datasheet.pdf",
+    "url": "https://cdn-learn.adafruit.com/assets/assets/000/119/042/original/esp32-s3_datasheet_en.pdf",
+    "purpose": "manufacturer reference",
+    "sha256": "b79310e52e90599920fb067c9365263a18943c2efc4b9788edffc2b2d6cdefa1",
+    "bytes": 1186331,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/datasheets/feather-guide.pdf",
+    "url": "https://cdn-learn.adafruit.com/downloads/pdf/esp32-s3-reverse-tft-feather.pdf",
+    "purpose": "Adafruit board guide",
+    "sha256": "0900ecc6bc9c768dbf36334e6b78492b00c96dff6995012dd0efc41b7a199362",
+    "bytes": 22746273,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/datasheets/rtc-guide.pdf",
+    "url": "https://cdn-learn.adafruit.com/downloads/pdf/adafruit-ds3231-precision-rtc-breakout.pdf",
+    "purpose": "Adafruit board guide",
+    "sha256": "2522f341408753b1fc949f71b33589a2385c2a58eaf26bdbb5eb185cd96aeb3c",
+    "bytes": 6722643,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/datasheets/scd30-datasheet.pdf",
+    "url": "https://sensirion.com/media/documents/4EAF6AF8/61652C3C/Sensirion_CO2_Sensors_SCD30_Datasheet.pdf",
+    "purpose": "manufacturer reference",
+    "sha256": "8c47d6e4ca180ec893d8f47e24e175d9e81df42a2d26c16a6e9770c48f962a22",
+    "bytes": 584579,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/datasheets/scd30-design-in.pdf",
+    "url": "https://sensirion.com/media/documents/84D49268/616536CB/Sensirion_CO2_Sensors_SCD30_Design-In_Guidelines_D1.pdf",
+    "purpose": "manufacturer reference",
+    "sha256": "9d6dda4ac08843766c244c7e2a104680c25dfbdf151c447c24cf82356cb8532c",
+    "bytes": 331168,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/datasheets/scd30-guide.pdf",
+    "url": "https://cdn-learn.adafruit.com/downloads/pdf/adafruit-scd30.pdf",
+    "purpose": "Adafruit board guide",
+    "sha256": "6695d163224d02e1394efe36e4dda07433f7701dd429fb9fba4d6ccf2b7ef1ac",
+    "bytes": 4184360,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/datasheets/scd30-interface.pdf",
+    "url": "https://sensirion.com/media/documents/D7CEEF4A/6165372F/Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf",
+    "purpose": "manufacturer reference",
+    "sha256": "4c487bfb8b5770fce2ab67a3a0790aa2ee825c1309bb4ed65fab450dffe49409",
+    "bytes": 1154736,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/datasheets/switch-3064-product.html",
+    "url": "https://www.adafruit.com/product/3064",
+    "purpose": "Manufacturer switch specification; body dimensions not published",
+    "sha256": "ecd662215e478d034558eff02a8ec60d8870da0f4efcdae0c5e719d936e26862",
+    "bytes": 87779,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/datasheets/veml7700-datasheet.pdf",
+    "url": "https://www.vishay.com/docs/84286/veml7700.pdf",
+    "purpose": "manufacturer reference",
+    "sha256": "f338cf7d5911828a2f2ac8ae8324049380c852e34aa5afa43ac92c98ffe827d1",
+    "bytes": 295562,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/datasheets/veml7700-guide.pdf",
+    "url": "https://cdn-learn.adafruit.com/downloads/pdf/adafruit-veml7700.pdf",
+    "purpose": "Adafruit board guide",
+    "sha256": "9b45c3a83fa7c2229fde7b10b9ba15b2ee7f33fc30a32cc4bc624e1b0289b8d3",
+    "bytes": 6765743,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/feather/README.md",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-ESP32-S3-Reverse-TFT-Feather-PCB/633459d74623227a18f7c4b1594db0840ba5592d/README.md",
+    "upstream_commit": "633459d74623227a18f7c4b1594db0840ba5592d",
+    "purpose": "feather official PCB and attribution",
+    "sha256": "d8bf4b5537e69e46c9b3bd091e18041b4a2ab34c402d8363da7a9ce17c4c4d14",
+    "bytes": 4899,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/feather/board.brd",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-ESP32-S3-Reverse-TFT-Feather-PCB/633459d74623227a18f7c4b1594db0840ba5592d/Adafruit%20ESP32-S3%20Reverse%20TFT%20Feather.brd",
+    "upstream_commit": "633459d74623227a18f7c4b1594db0840ba5592d",
+    "purpose": "feather official PCB and attribution",
+    "sha256": "af760d002fb4a645a7e40f48b2b1b82fc0b280c41e40fdbfc90ce77b189775ef",
+    "bytes": 729339,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/feather/license.txt",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-ESP32-S3-Reverse-TFT-Feather-PCB/633459d74623227a18f7c4b1594db0840ba5592d/license.txt",
+    "upstream_commit": "633459d74623227a18f7c4b1594db0840ba5592d",
+    "purpose": "feather official PCB and attribution",
+    "sha256": "075dad5e5fc96c27014fabc269f4f5732909cffd178a486f546d982b6cf86b74",
+    "bytes": 22239,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/feather/model.step",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/5691%20Feather%20ESP32%20S3%20Reverse%20TFT/5691%20ESP32%20S3%20Reverse%20TFT%20Feather.step",
+    "upstream_commit": "9f2a89f3d5c3491886d58cb7fe83385417563cf4",
+    "purpose": "Adafruit official 3D component model",
+    "sha256": "e112dae4bd06b1cbfb3ff11d49df02f8e4a21ad6c886cbfccaeb7c8a9b5626b1",
+    "bytes": 3946964,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/feather/model.stl",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/5691%20Feather%20ESP32%20S3%20Reverse%20TFT/5691%20ESP32%20S3%20Reverse%20TFT%20Feather.stl",
+    "upstream_commit": "9f2a89f3d5c3491886d58cb7fe83385417563cf4",
+    "purpose": "Adafruit official 3D component model",
+    "sha256": "1ac8bc4a456451c1314e0e101e73e53eef2431b391937ebdb07040cafe8b4e48",
+    "bytes": 2092984,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/feather/schematic.sch",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-ESP32-S3-Reverse-TFT-Feather-PCB/633459d74623227a18f7c4b1594db0840ba5592d/Adafruit%20ESP32-S3%20Reverse%20TFT%20Feather.sch",
+    "upstream_commit": "633459d74623227a18f7c4b1594db0840ba5592d",
+    "purpose": "feather official PCB and attribution",
+    "sha256": "dc2fe163aa731c9a055ad2cbf974b035f8131d5cd5db96a418b6aaf3db72dfc6",
+    "bytes": 636487,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/rtc/README.md",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-DS3231-Precision-RTC-Breakout-PCB/1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1/README.md",
+    "upstream_commit": "1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1",
+    "purpose": "rtc official PCB and attribution",
+    "sha256": "0472b51ef95f1dc9b9d9b56a0f07c321d8dfce0bf90e87c3f59b24b2cabedfff",
+    "bytes": 2096,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/rtc/board.brd",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-DS3231-Precision-RTC-Breakout-PCB/1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1/Adafruit%20DS3231%20STEMMA%20QT.brd",
+    "upstream_commit": "1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1",
+    "purpose": "rtc official PCB and attribution",
+    "sha256": "01c08bf96b77df0f2d026300c720540c41a7fdcb7ada94f49740bf9476c94a7d",
+    "bytes": 260613,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/rtc/license.txt",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-DS3231-Precision-RTC-Breakout-PCB/1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1/license.txt",
+    "upstream_commit": "1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1",
+    "purpose": "rtc official PCB and attribution",
+    "sha256": "1f63e1f4676a433423b2c2ff1ccd9e80093f341f10b81f0ac0106342bc7bbe89",
+    "bytes": 22597,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/rtc/model.step",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/5188%20DS3231%20RTC/5188%20DS3231%20RTC.step",
+    "upstream_commit": "9f2a89f3d5c3491886d58cb7fe83385417563cf4",
+    "purpose": "Adafruit official 3D component model",
+    "sha256": "3bf6b49cea0171cbd743afded56fe676264ffbb57b9ed16d59fd8c668fb2fe3a",
+    "bytes": 851518,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/rtc/model.stl",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/5188%20DS3231%20RTC/5188%20DS3231%20RTC.stl",
+    "upstream_commit": "9f2a89f3d5c3491886d58cb7fe83385417563cf4",
+    "purpose": "Adafruit official 3D component model",
+    "sha256": "cff4cb0451d0342d1c607908e713c9f91e9a6f8bded3511f39259315f09196c0",
+    "bytes": 456084,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/rtc/schematic.sch",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-DS3231-Precision-RTC-Breakout-PCB/1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1/Adafruit%20DS3231%20STEMMA%20QT.sch",
+    "upstream_commit": "1d60495b54bd6ff8fa4d5acca7a6e1c1a317cfe1",
+    "purpose": "rtc official PCB and attribution",
+    "sha256": "3f50e15a671cd79f667e0c9636669f27069dd6fbec4dd9cbcb92ddbc2a2c8a7e",
+    "bytes": 400733,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/scd30/README.md",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-SCD-30-PCB/54178bea411a7661007c529d41ed45fce767d155/README.md",
+    "upstream_commit": "54178bea411a7661007c529d41ed45fce767d155",
+    "purpose": "scd30 official PCB and attribution",
+    "sha256": "759c4622856baa4afc0ae657710524edc9e35ea0df2f12d47f23d8cabb378501",
+    "bytes": 828,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/scd30/board.brd",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-SCD-30-PCB/54178bea411a7661007c529d41ed45fce767d155/Adafruit%20SCD30.brd",
+    "upstream_commit": "54178bea411a7661007c529d41ed45fce767d155",
+    "purpose": "scd30 official PCB and attribution",
+    "sha256": "0b55346d46f6413a7a41913e75a0a980c3b62fff00667b5345b1194239c78bdc",
+    "bytes": 253785,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/scd30/license.txt",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-SCD-30-PCB/54178bea411a7661007c529d41ed45fce767d155/license.txt",
+    "upstream_commit": "54178bea411a7661007c529d41ed45fce767d155",
+    "purpose": "scd30 official PCB and attribution",
+    "sha256": "075dad5e5fc96c27014fabc269f4f5732909cffd178a486f546d982b6cf86b74",
+    "bytes": 22239,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/scd30/model.step",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/4867%20SCD-30%20C02%20Sensor/4867%20Adafruit%20SCD30.step",
+    "upstream_commit": "9f2a89f3d5c3491886d58cb7fe83385417563cf4",
+    "purpose": "Adafruit official 3D component model",
+    "sha256": "af9ecdaeca6308b0af9ff2a6576b6b43eed80058bf9e7006808b16511d446d3b",
+    "bytes": 2466732,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/scd30/model.stl",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit_CAD_Parts/9f2a89f3d5c3491886d58cb7fe83385417563cf4/4867%20SCD-30%20C02%20Sensor/4867%20Adafruit%20SCD30.stl",
+    "upstream_commit": "9f2a89f3d5c3491886d58cb7fe83385417563cf4",
+    "purpose": "Adafruit official 3D component model",
+    "sha256": "0e16bc6483ef3c047d530482535f03e17551f081eeedf248484d6d9a4f549b21",
+    "bytes": 1866434,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/scd30/schematic.sch",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-SCD-30-PCB/54178bea411a7661007c529d41ed45fce767d155/Adafruit%20SCD30.sch",
+    "upstream_commit": "54178bea411a7661007c529d41ed45fce767d155",
+    "purpose": "scd30 official PCB and attribution",
+    "sha256": "9bc9e9d2dc4397cce6a5faca860b81eef1ebeb44ee420c6046cf278ea0981f53",
+    "bytes": 390601,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/veml7700/README.md",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-VEML7700-PCB/ab489f03c957f681ed0161fc6d2b786956556e23/README.md",
+    "upstream_commit": "ab489f03c957f681ed0161fc6d2b786956556e23",
+    "purpose": "veml7700 official PCB and attribution",
+    "sha256": "100e30b21a1476540f02dca8c5c902ea9c1883b9be509cecefa81af3e82d1201",
+    "bytes": 2863,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/veml7700/board.brd",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-VEML7700-PCB/ab489f03c957f681ed0161fc6d2b786956556e23/Adafruit%20VEML7700%20STEMMA%20QT.brd",
+    "upstream_commit": "ab489f03c957f681ed0161fc6d2b786956556e23",
+    "purpose": "veml7700 official PCB and attribution",
+    "sha256": "f0532da9153b4f03c503f11ee45e7aed5bac59d63889db30cec4acafd13211f9",
+    "bytes": 347178,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/veml7700/license.txt",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-VEML7700-PCB/ab489f03c957f681ed0161fc6d2b786956556e23/license.txt",
+    "upstream_commit": "ab489f03c957f681ed0161fc6d2b786956556e23",
+    "purpose": "veml7700 official PCB and attribution",
+    "sha256": "075dad5e5fc96c27014fabc269f4f5732909cffd178a486f546d982b6cf86b74",
+    "bytes": 22239,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/veml7700/schematic.sch",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-VEML7700-PCB/ab489f03c957f681ed0161fc6d2b786956556e23/Adafruit%20VEML7700%20STEMMA%20QT.sch",
+    "upstream_commit": "ab489f03c957f681ed0161fc6d2b786956556e23",
+    "purpose": "veml7700 official PCB and attribution",
+    "sha256": "4028c7a6c7297eabceed690e8255fbd492f20a7443143668928aa9022324d9ea",
+    "bytes": 386561,
+    "retrieved_date": "2026-11-12"
+  }
+]
