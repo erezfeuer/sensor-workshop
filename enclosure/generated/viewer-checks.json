@@ -2,9 +2,10 @@
   "status": "passed",
   "browser": "157.0.8103.51",
   "offline": true,
-  "selectable_components": 53,
+  "selectable_components": 26,
   "checks": [
-    "all 53 visibility toggles",
+    "two printed components; obsolete parts absent",
+    "all 26 visibility toggles",
     "explosion 0/64/100 percent and transforms",
     "cut controls",
     "hide/show all",

@@ -14,24 +14,23 @@ Each distributor link identifies the same manufacturer part, not a bare sensor o
 | SCD30 CO₂, temperature, and humidity breakout; assembled STEMMA QT board | 1 | 58.95 | [4867](https://www.adafruit.com/product/4867) | [1528-4867-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4867/13627674) | [485-4867](https://www.mouser.com/en/ProductDetail/Adafruit/4867?qs=pBJMDPsKWf0ru2aWSWVb%2FA%3D%3D) |
 | VEML7700 ambient light sensor; STEMMA QT revision | 1 | 4.95 | [4162](https://www.adafruit.com/product/4162) | [1528-2891-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4162/9997696) | [485-4162](https://www.mouser.com/en/ProductDetail/Adafruit/4162?qs=unwgFEO1A6urZiNnCPSvkw%3D%3D) |
 | DS3231 Precision RTC; STEMMA QT breakout | 1 | 13.95 | [5188](https://www.adafruit.com/product/5188) | [1528-5188-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5188/15189155) | [485-5188](https://www.mouser.com/en/ProductDetail/Adafruit/5188?qs=TCDPyi3sCW0TSTr1Xi7pUg%3D%3D) |
-| Prewired JST-PH 2-pin battery extension with on/off switch | 1 | 2.95 | [3064](https://www.adafruit.com/product/3064) | [1528-1679-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3064/6022074) | [485-3064](https://www.mouser.com/en/ProductDetail/Adafruit/3064?qs=PqFvFmEiOr7sEj9KUBUBhw%3D%3D) |
 | [SparkFun Qwiic Cable Kit, KIT-15081](https://www.sparkfun.com/sparkfun-qwiic-cable-kit.html), 10 assorted cables for prototyping | 1 shared kit | 12.95 | Exact kit not found | [1568-15081-ND](https://www.digikey.com/en/products/detail/sparkfun-electronics/15081/9770723) | [474-KIT-15081](https://www.mouser.com/en/ProductDetail/SparkFun/KIT-15081?qs=0lSvoLzn4L8uNN%252B5TDrwLw%3D%3D) |
-| Final QT-to-QT cables; trial lengths 100 + 100 + 200 mm | 3/device | TBD | See cable options below | Bulk order after pilot fit | Bulk order after pilot fit |
+| Final QT-to-QT cables; trial lengths 100 + 50 + 100 mm | 3/device | TBD | See cable options below | Bulk order after pilot fit | Bulk order after pilot fit |
 | Protected prewired 1S 18650 battery, approximately 2,200 mAh; Ø20 × 72 mm design envelope | 1 | TBD | Local purchase in Israel | Local purchase in Israel | Local purchase in Israel |
 | CR1220, 3 V, non-rechargeable RTC backup coin cell | 1 | TBD | Local purchase in Israel | Local purchase in Israel | Local purchase in Israel |
 | Printed enclosure and mounting hardware | 1 set | TBD | Local fabrication | Local fabrication | Local fabrication |
 
-The five per-device priced items total **$105.75**, including the RTC and switch, before QT cables, batteries, and enclosure. USB cables are excluded from procurement as requested; programming uses an existing USB data cable.
+The four per-device priced items total **$102.80**, including the RTC, before QT cables, batteries, and enclosure. USB cables are excluded from procurement as requested; programming uses an existing USB data cable.
 
-For the requested **one-device comparison**, each distributor list includes those five items plus **one SparkFun cable assortment**, for a reference subtotal of **$118.70**. The assortment supplies the prototype's three QT connections, so the comparison does not also buy three individual cables. It is a shared prototyping expense, not a recommendation to buy an assortment for every student. See [ordering files and cart status](ordering/README.md).
+For the requested **one-device comparison**, each distributor list includes those four boards plus **one SparkFun cable assortment**, for a reference subtotal of **$115.75**. The assortment supplies the prototype's three QT connections, so the comparison does not also buy three individual cables. It is a shared prototyping expense, not a recommendation to buy an assortment for every student. See [ordering files and cart status](ordering/README.md).
 
-All six comparison items were listed in stock at Digi-Key and Mouser in the retrieved listings. For the four boards, the observed Digi-Key / Mouser counts were: Feather **1,730 / 214**, SCD30 **139 / 16**, VEML7700 **536 / 324**, RTC **748 / 158**. These counts may be stale; Mouser's SCD30 listing in particular should be rechecked before a class order. Adafruit listed the Feather at **34** and SCD30 at **86**, with the light sensor and RTC also in stock. The switched battery lead was out of stock directly at Adafruit, with stock listed at both distributors.
+All five comparison items were listed in stock at Digi-Key and Mouser in the retrieved listings. For the four boards, the observed Digi-Key / Mouser counts were: Feather **1,730 / 214**, SCD30 **139 / 16**, VEML7700 **536 / 324**, RTC **748 / 158**. These counts may be stale; Mouser's SCD30 listing in particular should be rechecked before a class order. Adafruit listed the Feather at **34** and SCD30 at **86**, with the light sensor and RTC also in stock. The battery switch was removed in enclosure revision v0.2 at the workshop organizer’s request.
 
 ## Cable procurement
 
 SparkFun's **KIT-15081** is the remembered assortment: ten cables of mixed lengths, including jumper-ended styles. It is not ten identical QT-to-QT leads. Use only the QT-to-QT leads in the student device. Digi-Key currently identifies this kit as manufacturer part **15081**, with ordering code **1568-15081-ND**; Mouser retains **KIT-15081**.
 
-Use one assortment to try the component arrangement. Then buy the selected lengths in bulk: **three cables per device plus approximately 10% spares**, rounded up. The [v0.1 enclosure](../enclosure/README.md) proposes **100 mm Feather→RTC, 100 mm RTC→VEML7700, and 200 mm VEML7700→SCD30**. Confirm plug clearance, bend radius and lid-removal slack with the pilot hardware before freezing the lengths:
+Use one assortment to try the component arrangement. Then buy the selected lengths in bulk: **three cables per device plus approximately 10% spares**, rounded up. The [v0.2 enclosure](../enclosure/README.md) proposes **100 mm Feather→RTC, 50 mm RTC→VEML7700, and 100 mm VEML7700→SCD30**. Confirm plug clearance, bend radius and carrier-removal slack with the pilot hardware before freezing the lengths:
 
 | Cable option | Manufacturer link | Reference USD | Observation |
 | --- | --- | ---: | --- |
@@ -57,11 +56,10 @@ The DS3231 keeps calendar time when the main battery is disconnected. Its separa
 ```mermaid
 flowchart LR
     F[ESP32-S3 Reverse TFT Feather] ---|QT 100 mm trial| R[DS3231 RTC]
-    R ---|QT 100 mm trial| L[VEML7700]
-    L ---|QT 200 mm trial| C[SCD30]
+    R ---|QT 50 mm trial| L[VEML7700]
+    L ---|QT 100 mm trial| C[SCD30]
     F ---|Factory SPI connection| D[Built-in colour display]
-    B[Local 1S battery] ---|JST-PH| S[Prewired switch]
-    S ---|JST-PH| F
+    B[Local protected 18650 pack] ---|Prewired JST-PH| F
     U[Laptop] ---|Existing USB data cable| F
     K[Local CR1220] ---|Onboard holder| R
 ```
@@ -88,10 +86,10 @@ Use the **Adafruit Feather ESP32-S3 Reverse TFT** board definition. The shared d
 - RTC cell: one **CR1220, 3 V, non-rechargeable** per device, bought locally in Israel.
 - Measure the chosen pack's dimensions, lead length, protection-board projection and connector orientation against the CAD envelope before the final print. Use an assembled pack rather than a bare cell needing soldered tabs or a student-wired holder.
 
-The Feather supplies USB charging. With the inline switch open, USB can still power the board, but the battery cannot charge until the switch is closed. The proposed switched lead is approximately **508 mm / 20 inches** long; accommodate its slack or select a verified shorter prewired equivalent before final CAD. [Power connections](https://learn.adafruit.com/esp32-s3-reverse-tft-feather/pinouts), [switch](https://www.adafruit.com/product/3064)
+The battery connects directly to the Feather, which supplies USB charging. There is no inline power switch. Firmware can provide a sleep control; full battery disconnection requires opening the carrier and unplugging the pack. Use a locally prewired pack with a suitable lead (target roughly 70–100 mm, to be checked on the pilot). [Power connections](https://learn.adafruit.com/esp32-s3-reverse-tft-feather/pinouts)
 
 The [downloaded reference set](reference/README.md) includes the four exact PCB files, schematics, guides, sensor datasheets and available official STEP/STL models. The SCD30 PCB is **50.8 × 25.4 mm**; its official model extends from **2.934 mm below** the PCB bottom to **8.57 mm above**, about **11.50 mm overall**. The enclosure accounts for the underside pins; the older 8.8 mm product height alone is insufficient for clearance design.
 
-The [enclosure prototype](../enclosure/README.md) provides a top light aperture and opaque well, front display/buttons, USB-C and RESET access, a strapped battery, and a lower shaded sensor tray with offset vents. Its [mechanical BOM](../enclosure/hardware.csv) specifies the screws, nuts, straps and printed parts. The switch body, cable slack and real hardware fit still need a pilot check. These mechanical items are not yet added to distributor imports.
+The [v0.2 enclosure](../enclosure/README.md) uses **two printed parts**, an integrated top light aperture, direct access to the PCB buttons, USB-C and RESET access, a battery retained by zip ties, and a downward-facing SCD30 under a simple open-bottom skirt. The [mechanical BOM](../enclosure/hardware.csv) contains eight M2×5 board screws, two M3×8 closure screws, two washers and two ties. No nuts, separate feet, button plungers or switch are used. These mechanical items remain separate from distributor imports. Physical fit and thermal performance require a pilot build.
 
 Before ordering for the class, assemble pilot hardware and check upload/recovery on macOS including Apple Silicon, Windows, and Linux; the complete sensor chain; hotspot operation while logging and downloading CSV; battery/USB transitions; charging and current draw; and enclosure fit. Runtime and laptop compatibility remain unmeasured. Pin the software versions that pass these checks.

@@ -6,8 +6,8 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
 CAD = ROOT / "enclosure"
-PRINT_PARTS = ("base", "lid", "pod", "shade", "foot_front", "foot_rear", "button", "coupon")
-SCENE_PARTS = ("base", "lid", "pod", "shade", "feet", "buttons", "feather", "scd30", "rtc", "light", "battery", "switch", "wires")
+PRINT_PARTS = ("shell", "carrier", "coupon")
+SCENE_PARTS = ("shell", "carrier", "feather", "scd30", "rtc", "light", "battery")
 
 
 def export(job):

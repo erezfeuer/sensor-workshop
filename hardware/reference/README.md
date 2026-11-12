@@ -6,7 +6,7 @@ Run `python3 enclosure/scripts/fetch_sources.py` from the repository root to rep
 
 The exact Eagle PCB files, rather than generic mounting diagrams or product descriptions, are the source of the mounting coordinates. Official STEP/STL files were also obtained for the Feather, SCD30 and RTC to inspect connector positions and component heights. The VEML7700 uses its exact current flat QT PCB plus Vishay's package drawing. Electronics in the working enclosure are simplified envelopes; no enclosure dimension should be interpreted as a supplier production tolerance.
 
-The battery document is a **reference pack**, not the yet-to-be-selected Israeli pack. The switch supplier publishes its overall cable length but no body drawing; that fit remains provisional. [Attribution and preserved notices](ATTRIBUTION.md).
+The battery document is a **reference pack**, not the yet-to-be-selected Israeli pack. The switch page is retained as a historical v0.1 reference; the switch is removed from v0.2. [Attribution and preserved notices](ATTRIBUTION.md).
 
 ## Download index
 

@@ -1,17 +1,9 @@
 item,quantity_per_device,specification,purpose,procurement_note
-M2 screw,14,M2 x 6 mm pan head,Feather 4; SCD30 4; VEML7700 4; RTC 2,Verify pilot diameter on coupon; instructor pre-threading recommended
-M2 washer,2,Approximately 0.5 mm thick; 5 mm OD; 2.2 mm ID,RTC mounting holes,Check against received board
-M3 long screw,4,M3 x 50 mm pan head,Lid through main body into foot captive nuts,Length excludes head; no countersunk screws
-M3 tray screw,4,M3 x 25 mm pan head,Main floor through shade into lower tray,Length excludes head
-M3 nut,8,Standard hex; approximately 5.5 mm AF and 2.4 mm thick,Four feet and four tray mounts,Coupon has 5.5 to 5.8 mm pockets; model defaults to 5.7 mm
-Battery strap,2,8 mm wide hook-and-loop strap; approximately 150 mm long,Protected 18650 pack retention,Measure wrapped pack before bulk purchase
-Small cable tie,4,Approximately 2.5 mm wide nylon,Two for switch and two for cable slack,Pre-thread in instructor preparation; shown only schematically in design
-Thin soft padding,1 small piece,Nonconductive removable foam,Take up clearance around locally sourced pack if needed,Do not compress the pack or obstruct vents
-Printed housing,1,base.stl,Main electronics compartment,PLA fit prototype or opaque light-coloured PETG
-Printed lid,1,lid.stl,Light sensor and optical opening,Print flat outer face on build plate
-Printed lower tray,1,pod.stl,Shaded SCD30 bay,Opaque material
-Printed shade,1,shade.stl,Lower tray roof and air-gap spacers,Opaque material
-Printed front foot,2,foot_front.stl,Front legs,Keep captive-nut pocket facing upward
-Printed rear foot,2,foot_rear.stl,Rear legs,Keep captive-nut pocket facing upward
-Printed button,3,button.stl,Front button plungers,Print one spare if convenient
-Fit coupon,1 shared,coupon.stl,Hole patterns; pilots; nuts; bridge; battery gauge,Print before committing to full enclosure
+M2 board screw,8,M2 x 5 mm pan head,Two each for Feather; SCD30; VEML7700; RTC,Do not use the previous 6 mm screws at the shallow front mounts
+M2 washer,2,Approximately 0.5 mm thick; 5 mm OD; 2.2 mm ID,RTC mounting holes,Check received board and screw head
+M3 closure screw,2,M3 x 8 mm pan head,Bottom carrier into printed pilots,No nuts or heat-set inserts; pre-thread the selected pilot
+Battery zip tie,2,2.5 mm wide soft nylon; approximately 150 mm long,Protected pack held in integral cradles,Tighten gently without compressing the pack; heads below battery
+Thin soft padding,1 small piece if needed,Nonconductive removable foam,Take up clearance around smaller local pack,Do not obstruct connectors or vents
+Printed main shell,1,shell.stl,Roof; straight feet; skirt; mounts; battery cradles,Print roof exterior down; opaque light-coloured material
+Printed bottom carrier,1,carrier.stl,Downward SCD30 mount and closure,Print upper face down; bosses up
+Fit coupon,1 shared,coupon.stl,Hole patterns; locating pins; pilots; bridge; battery gauge,Shared printer setup; not a per-device assembly part

@@ -27,7 +27,10 @@ for line in (CAD / "parameters.scad").read_text().splitlines():
     match = re.match(r"(\w+)\s*=\s*(.*?);", line)
     if match:
         PARAMS[match[1]] = json.loads(match[2])
-COLORS = {"base":"#dedfd8", "lid":"#eceee7", "pod":"#4f7777", "shade":"#bbc9c4", "feet":"#4f7777", "buttons":"#e5b14d", "feather":"#2e6054", "scd30":"#bb975b", "rtc":"#817ba6", "light":"#527b95", "battery":"#5b91bd", "switch":"#454b51", "wires":"#d4a247", "display":"#41c1bf"}
+COLORS = {"shell":"#dedfd8", "carrier":"#4f7777", "feather":"#2e6054", "scd30":"#bb975b", "rtc":"#817ba6", "light":"#527b95", "battery":"#5b91bd", "display":"#41c1bf"}
+if (CAD/"generated/cable-metadata.json").exists():
+    COLORS.update({c["mesh"]:c["color"] for c in json.loads((CAD/"generated/cable-metadata.json").read_text())})
+
 BG = np.array([247,248,245], dtype=np.uint8)
 FONT = font_manager.findfont("DejaVu Sans")
 
@@ -44,18 +47,15 @@ def load_scene():
 
 def variant(source, kind):
     meshes={k:v.copy() for k,v in source.items()}
-    if kind=="open":
-        for key in ("lid","light"):
-            del meshes[key]
+    if kind=="open":meshes.pop("shell")
     if kind=="exploded":
-        for key,delta in {"lid":[0,0,36],"light":[0,0,36],"shade":[0,0,-8],"pod":[0,0,-38],"scd30":[0,0,-38],"feet":[0,0,-20],"buttons":[0,-14,0]}.items():
+        for key,delta in {"carrier":[0,0,-46],"scd30":[0,0,-65],"feather":[0,-28,-5],"display":[0,-28,-5],"light":[0,0,-18],"rtc":[25,0,-18],"battery":[0,22,-22]}.items():
             meshes[key].apply_translation(delta)
-        meshes.pop("wires",None)
+        meshes={k:v for k,v in meshes.items() if not k.startswith("cable_")}
     if kind.startswith("section"):
-        axis,cut = (1,42) if kind=="section_front" else (0,48)
+        axis,cut = (1,33) if kind=="section_front" else (0,43)
         normal=np.eye(3)[axis]
-        origin=normal*cut
-        meshes={k:trimesh.intersections.slice_mesh_plane(m,normal,origin) for k,m in meshes.items()}
+        meshes={k:trimesh.intersections.slice_mesh_plane(m,normal,normal*cut) for k,m in meshes.items()}
         meshes={k:m for k,m in meshes.items() if len(m.faces)}
     return meshes
 
@@ -105,14 +105,14 @@ def rasterize(meshes, title, subtitle, out, eye=(-1,-1,0.85)):
     draw.text((65,40),title,font=ImageFont.truetype(FONT,38),fill="#253f44")
     draw.text((66,96),subtitle,font=ImageFont.truetype(FONT,21),fill="#526568")
     draw.line((65,1125,1535,1125),fill="#c8d1cc",width=2)
-    draw.text((65,1145),"Sensor Workshop  |  v0.1  |  CAD prototype — physical fit and measurement tests pending",font=ImageFont.truetype(FONT,19),fill="#526568")
+    draw.text((65,1145),"Sensor Workshop  |  v0.2  |  CAD prototype — physical fit and measurement tests pending",font=ImageFont.truetype(FONT,19),fill="#526568")
     result.save(out)
     print("RENDER",out.name,flush=True)
 
 
 def section_plot(ax, meshes, cut, title):
     ax.set_title(title,fontsize=12,loc="left",pad=12)
-    for key in ("base","lid","feet","pod","shade","feather","display","scd30","rtc","light","battery","switch"):
+    for key in ("shell","carrier","feather","display","scd30","rtc","light","battery"):
         mesh=meshes.get(key)
         if mesh is None:continue
         section=mesh.section(plane_origin=[cut,0,0],plane_normal=[1,0,0])
@@ -124,29 +124,29 @@ def section_plot(ax, meshes, cut, title):
             depth=sum(PlotPath(p).contains_point(poly[0]) for p in previous)
             color="white" if depth%2 else COLORS[key]
             ax.fill(poly[:,0],poly[:,1],color=color,edgecolor="#334c50",linewidth=0.55,
-                    hatch="///" if key in ("base","lid","pod","shade","feet") and depth%2==0 else None)
+                    hatch="///" if key in ("shell","carrier") and depth%2==0 else None)
             previous.append(poly)
-    ax.set_aspect("equal");ax.set_xlim(-9,99);ax.set_ylim(-8,91)
+    ax.set_aspect("equal");ax.set_xlim(-7,82);ax.set_ylim(-7,75)
     ax.set_xlabel("Front ← Y (mm) → Rear");ax.set_ylabel("Z above desk (mm)")
     ax.grid(alpha=0.12);ax.set_axisbelow(True)
-    for z,label in [(34,"Main floor"),(28,"Sensor shade"),(10,"Tray bottom")]:
-        ax.annotate(label,xy=(86 if z==34 else 69,z),xytext=(90,z+3),fontsize=7,
-                    arrowprops=dict(arrowstyle="-",lw=0.6,color="#526568"),color="#526568")
-    ax.annotate("78.4 mm",xy=(94,0),xytext=(94,78.4),ha="center",va="center",rotation=90,
+    for z,label in [(24,"Carrier"),(8,"Skirt edge")]:
+        ax.annotate(label,xy=(66,z),xytext=(70,z+3),fontsize=7,
+                    arrowprops=dict(arrowstyle="-",lw=.6,color="#526568"),color="#526568")
+    ax.annotate("60.8 mm",xy=(77,0),xytext=(77,60.8),ha="center",va="center",rotation=90,
                 fontsize=8,arrowprops=dict(arrowstyle="<->",lw=.8))
 
 
 def drawings(scene):
     plt.rcParams.update({"font.size":9,"font.family":"DejaVu Sans"})
     fig,axes=plt.subplots(1,2,figsize=(13.5,8.8))
-    section_plot(axes[0],scene,48,"SECTION A–A  ·  X = 48 mm")
-    section_plot(axes[1],scene,85.7,"SECTION B–B  ·  X = 85.7 mm")
-    axes[0].annotate("18650 envelope\nØ20 × 72",xy=(66,50),xytext=(48,84),fontsize=9,arrowprops=dict(arrowstyle="->",lw=0.8))
-    axes[0].annotate("SCD30 below electronics",xy=(42,21),xytext=(1,5),fontsize=8,arrowprops=dict(arrowstyle="->",lw=0.8))
-    axes[1].annotate("Light sensor + flared opening",xy=(57.716,76),xytext=(0,85),fontsize=8,arrowprops=dict(arrowstyle="->",lw=.8))
-    axes[1].annotate("RTC / CR1220 clearance",xy=(40,44),xytext=(0,58),fontsize=8,arrowprops=dict(arrowstyle="->",lw=.8))
+    section_plot(axes[0],scene,42.7,"SECTION A–A  ·  X = 42.7 mm")
+    section_plot(axes[1],scene,68.205,"SECTION B–B  ·  X = 68.205 mm")
+    axes[0].annotate("18650 envelope\nØ20 × 72",xy=(50,41),xytext=(48,69),fontsize=9,arrowprops=dict(arrowstyle="->",lw=.8))
+    axes[0].annotate("SCD30 faces down\nOpen below",xy=(30,14),xytext=(3,2),fontsize=8,arrowprops=dict(arrowstyle="->",lw=.8))
+    axes[0].annotate("Top light aperture",xy=(30.716,58.4),xytext=(0,68),fontsize=8,arrowprops=dict(arrowstyle="->",lw=.8))
+    axes[1].annotate("RTC / CR1220",xy=(PARAMS["rtc_origin"][1]+12.7,51),xytext=(1,67),fontsize=8,arrowprops=dict(arrowstyle="->",lw=.8))
     fig.suptitle("True CAD cross-sections",fontsize=20,x=.055,ha="left")
-    fig.text(.055,.055,"The cuts are taken from the exported solids. Parts outside each cut plane are not projected into it.\nPrinted plastic is pale grey/teal. Pack dimensions are a design envelope; local battery and switch fit remain to be checked.",fontsize=9,color="#526568")
+    fig.text(.055,.055,"The cuts are taken from the exported solids. Parts outside each cut plane are not projected into it.\nPrinted plastic is pale grey/teal. Pack dimensions are a design envelope; local battery, connector and finger access require a pilot check.",fontsize=9,color="#526568")
     fig.subplots_adjust(top=.86,bottom=.14,wspace=.27)
     fig.savefig(RENDERS/"sections.png",dpi=170)
     fig.savefig(CAD/"sections.pdf")
@@ -178,13 +178,15 @@ def drawings(scene):
 if __name__ == "__main__":
     RENDERS.mkdir(exist_ok=True)
     scene=load_scene()
-    variants=[("assembled","Assembled enclosure","112 × 84 mm body · 78.4 mm printed height · four splayed feet"),
-              ("open","Inside the upper housing","Top cover and its light sensor removed · protected 18650 at the rear"),
-              ("exploded","Assembly order and separate parts","Top cover / light sensor · electronics housing · shade roof · sensor tray · feet"),
-              ("section_front","Cutaway from the front","Material in front of Y = 42 mm removed; rear components remain visible"),
-              ("section_side","Cutaway from the left","Material left of X = 48 mm removed; lower sensing bay is separated from electronics")]
+    variants=[("assembled","Two-piece enclosure · v0.2","92 × 66 × 60.8 mm · integral straight feet · real button access"),
+              ("underside","Downward-facing sensor","Open underside · shallow skirt · one removable carrier plate"),
+              ("open","Component layout with shell hidden","Top-mounted boards and tied battery · SCD30 on the bottom plate"),
+              ("exploded","Simplified assembly","Only two printed parts · eight M2 board screws and two M3 closure screws"),
+              ("section_front","Cutaway from the front","Material in front of Y = 33 mm removed; battery cradles remain visible"),
+              ("section_side","Cutaway from the left","Material left of X = 43 mm removed; sensor body faces the open bottom")]
     for kind,title,subtitle in variants:
-        rasterize(variant(scene,kind),title,subtitle,RENDERS/(kind+".png"))
+        eye=(-1,-1,-.85) if kind=="underside" else (-1,-1,.85)
+        rasterize(variant(scene,kind),title,subtitle,RENDERS/(kind+".png"),eye=eye)
     drawings(scene)
     with PdfPages(CAD/"design-review.pdf") as pdf:
         for name in [x[0] for x in variants]+["sections","mounting-drawings"]:

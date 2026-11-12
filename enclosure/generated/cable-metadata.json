@@ -1,0 +1,191 @@
+[
+  {
+    "mesh": "cable_qt1_0",
+    "id": "qt1",
+    "parent": null,
+    "label": "QT \u00b7 Feather \u2192 RTC",
+    "color": "#30383b",
+    "cable": true,
+    "note": "Smooth routing illustration; 100 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt1_1",
+    "id": "cable_qt1_1",
+    "parent": "qt1",
+    "label": "QT \u00b7 Feather \u2192 RTC",
+    "color": "#c55349",
+    "cable": true,
+    "note": "Smooth routing illustration; 100 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt1_2",
+    "id": "cable_qt1_2",
+    "parent": "qt1",
+    "label": "QT \u00b7 Feather \u2192 RTC",
+    "color": "#4986ad",
+    "cable": true,
+    "note": "Smooth routing illustration; 100 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt1_3",
+    "id": "cable_qt1_3",
+    "parent": "qt1",
+    "label": "QT \u00b7 Feather \u2192 RTC",
+    "color": "#d4ad4a",
+    "cable": true,
+    "note": "Smooth routing illustration; 100 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt1_plug0",
+    "id": "cable_qt1_plug0",
+    "parent": "qt1",
+    "label": "QT \u00b7 Feather \u2192 RTC",
+    "color": "#ece8d9",
+    "cable": true,
+    "note": "Nominal connector plug envelope."
+  },
+  {
+    "mesh": "cable_qt1_plug1",
+    "id": "cable_qt1_plug1",
+    "parent": "qt1",
+    "label": "QT \u00b7 Feather \u2192 RTC",
+    "color": "#ece8d9",
+    "cable": true,
+    "note": "Nominal connector plug envelope."
+  },
+  {
+    "mesh": "cable_qt2_0",
+    "id": "qt2",
+    "parent": null,
+    "label": "QT \u00b7 RTC \u2192 light sensor",
+    "color": "#30383b",
+    "cable": true,
+    "note": "Smooth routing illustration; 50 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt2_1",
+    "id": "cable_qt2_1",
+    "parent": "qt2",
+    "label": "QT \u00b7 RTC \u2192 light sensor",
+    "color": "#c55349",
+    "cable": true,
+    "note": "Smooth routing illustration; 50 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt2_2",
+    "id": "cable_qt2_2",
+    "parent": "qt2",
+    "label": "QT \u00b7 RTC \u2192 light sensor",
+    "color": "#4986ad",
+    "cable": true,
+    "note": "Smooth routing illustration; 50 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt2_3",
+    "id": "cable_qt2_3",
+    "parent": "qt2",
+    "label": "QT \u00b7 RTC \u2192 light sensor",
+    "color": "#d4ad4a",
+    "cable": true,
+    "note": "Smooth routing illustration; 50 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt2_plug0",
+    "id": "cable_qt2_plug0",
+    "parent": "qt2",
+    "label": "QT \u00b7 RTC \u2192 light sensor",
+    "color": "#ece8d9",
+    "cable": true,
+    "note": "Nominal connector plug envelope."
+  },
+  {
+    "mesh": "cable_qt2_plug1",
+    "id": "cable_qt2_plug1",
+    "parent": "qt2",
+    "label": "QT \u00b7 RTC \u2192 light sensor",
+    "color": "#ece8d9",
+    "cable": true,
+    "note": "Nominal connector plug envelope."
+  },
+  {
+    "mesh": "cable_qt3_0",
+    "id": "qt3",
+    "parent": null,
+    "label": "QT \u00b7 Light sensor \u2192 SCD30",
+    "color": "#30383b",
+    "cable": true,
+    "note": "Smooth routing illustration; 100 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt3_1",
+    "id": "cable_qt3_1",
+    "parent": "qt3",
+    "label": "QT \u00b7 Light sensor \u2192 SCD30",
+    "color": "#c55349",
+    "cable": true,
+    "note": "Smooth routing illustration; 100 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt3_2",
+    "id": "cable_qt3_2",
+    "parent": "qt3",
+    "label": "QT \u00b7 Light sensor \u2192 SCD30",
+    "color": "#4986ad",
+    "cable": true,
+    "note": "Smooth routing illustration; 100 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt3_3",
+    "id": "cable_qt3_3",
+    "parent": "qt3",
+    "label": "QT \u00b7 Light sensor \u2192 SCD30",
+    "color": "#d4ad4a",
+    "cable": true,
+    "note": "Smooth routing illustration; 100 mm trial lead. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_qt3_plug0",
+    "id": "cable_qt3_plug0",
+    "parent": "qt3",
+    "label": "QT \u00b7 Light sensor \u2192 SCD30",
+    "color": "#ece8d9",
+    "cable": true,
+    "note": "Nominal connector plug envelope."
+  },
+  {
+    "mesh": "cable_qt3_plug1",
+    "id": "cable_qt3_plug1",
+    "parent": "qt3",
+    "label": "QT \u00b7 Light sensor \u2192 SCD30",
+    "color": "#ece8d9",
+    "cable": true,
+    "note": "Nominal connector plug envelope."
+  },
+  {
+    "mesh": "cable_battery_lead_0",
+    "id": "battery_lead",
+    "parent": null,
+    "label": "Battery lead \u00b7 direct to Feather",
+    "color": "#c55349",
+    "cable": true,
+    "note": "Smooth routing illustration; Local prewired pack. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_battery_lead_1",
+    "id": "cable_battery_lead_1",
+    "parent": "battery_lead",
+    "label": "Battery lead \u00b7 direct to Feather",
+    "color": "#30383b",
+    "cable": true,
+    "note": "Smooth routing illustration; Local prewired pack. Check bend radius and slack on the pilot."
+  },
+  {
+    "mesh": "cable_battery_lead_plug0",
+    "id": "cable_battery_lead_plug0",
+    "parent": "battery_lead",
+    "label": "Battery lead \u00b7 direct to Feather",
+    "color": "#ece8d9",
+    "cable": true,
+    "note": "Nominal connector plug envelope."
+  }
+]

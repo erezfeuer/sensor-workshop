@@ -1,163 +1,990 @@
 {
+  "version": "0.2",
   "status": "passed",
   "units": "mm",
   "print_parts": {
-    "base": {
+    "shell": {
       "watertight": true,
       "bodies": 1,
       "size_mm": [
-        112.0,
-        84.0,
-        42.0
+        92.0,
+        66.0,
+        60.8
       ],
-      "solid_volume_mm3": 71013.02,
-      "sha256": "cf56ce496aeddcabb1ffe362457dec337c39ab87a4ba2f4848129624e679d411"
+      "solid_volume_mm3": 57047.81,
+      "sha256": "5b7979f0d2917edf6317472e8fb2712477266f8d8dcea3717d8a19407a15cf9a"
     },
-    "lid": {
+    "carrier": {
       "watertight": true,
       "bodies": 1,
       "size_mm": [
-        112.0,
-        84.0,
-        5.9
+        86.6,
+        60.6,
+        7.6
       ],
-      "solid_volume_mm3": 22554.68,
-      "sha256": "c00bcffb2f742e06fb602cfcca1d5fe465b9969037b9799b851834f6e285ca25"
-    },
-    "pod": {
-      "watertight": true,
-      "bodies": 1,
-      "size_mm": [
-        78.0,
-        48.0,
-        18.0
-      ],
-      "solid_volume_mm3": 21576.46,
-      "sha256": "9289099fe13974202b5f1a805887d8ff5998f339ad43309a067fedc58240460b"
-    },
-    "shade": {
-      "watertight": true,
-      "bodies": 1,
-      "size_mm": [
-        84.0,
-        54.0,
-        6.0
-      ],
-      "solid_volume_mm3": 11209.23,
-      "sha256": "0eaf04c925a98159820ae4ff94835aceae47fb2fa7cdc673d3be177a970c0266"
-    },
-    "foot_front": {
-      "watertight": true,
-      "bodies": 1,
-      "size_mm": [
-        16.0,
-        26.0,
-        35.2
-      ],
-      "solid_volume_mm3": 5419.07,
-      "sha256": "c4a74095df0b96f762e27a2032bd8654587b4a19be3bce9bf7ee46530fde8037"
-    },
-    "foot_rear": {
-      "watertight": true,
-      "bodies": 1,
-      "size_mm": [
-        16.0,
-        26.0,
-        35.2
-      ],
-      "solid_volume_mm3": 5419.07,
-      "sha256": "d94a0312386c8e3e0963546a63297f5f3be8dc2f7a350fabf27692b87aecde21"
-    },
-    "button": {
-      "watertight": true,
-      "bodies": 1,
-      "size_mm": [
-        6.0,
-        6.0,
-        5.5
-      ],
-      "solid_volume_mm3": 82.95,
-      "sha256": "689715d1a2876b99fe2e9a5ce62a53ce4e407431aee9a6756190d1c2ab844ccb"
+      "solid_volume_mm3": 12641.21,
+      "sha256": "adb4a64a526a4ada9cafa341a03b7c55a877d39599fb35cf152247100d34ca58"
     },
     "coupon": {
       "watertight": true,
       "bodies": 8,
       "size_mm": [
-        136.0,
+        133.0,
         89.0,
         12.0
       ],
-      "solid_volume_mm3": 15809.78,
-      "sha256": "5980b27cad691f2e0145034fd3fee441989eba3f444afb10f5d19a4f030ddee7"
+      "solid_volume_mm3": 18973.04,
+      "sha256": "9a25b7acf9eb5b9455e93128284163fc868382e1b4af0dd83c5d283b11f7fbc3"
     }
   },
   "clearances": {
-    "SCD30 underside pins to tray floor": {
-      "nominal_mm": 1.065,
-      "required_greater_than_mm": 0
-    },
-    "SCD30 top to shade roof": {
-      "nominal_mm": 3.03,
-      "required_greater_than_mm": 0
-    },
-    "Shade roof to main housing air gap": {
-      "nominal_mm": 3.6,
-      "required_greater_than_mm": 0
-    },
-    "RTC underside holder to main floor": {
-      "nominal_mm": 4.4,
-      "required_greater_than_mm": 0
-    },
-    "Light board QT sockets to lid": {
-      "nominal_mm": 0.5,
-      "required_greater_than_mm": 0
-    },
-    "Light sensor top to lid underside": {
-      "nominal_mm": 1.15,
-      "required_greater_than_mm": 0
-    },
-    "Light board underside to battery top": {
-      "nominal_mm": 10.9,
-      "required_greater_than_mm": 0
-    },
-    "Button plunger free gap": {
-      "nominal_mm": 0.2,
-      "required_greater_than_mm": 0
-    },
-    "Main pack length to end stops": {
-      "nominal_mm": 4,
-      "required_greater_than_mm": 0
-    },
-    "Switch provisional body to retention plate": {
-      "nominal_mm": 1.7,
-      "required_greater_than_mm": 0
-    }
+    "SCD30 upward pins to carrier": 1.065,
+    "SCD30 body to table": 11.43,
+    "SCD30 body above skirt lower edge": 3.43,
+    "Light QT to roof": 0.5,
+    "Light package to roof": 1.15,
+    "RTC QT to roof": 1.8,
+    "Feather PCB top to roof": 1.4,
+    "TFT glass to recessed inside rim": 0.75,
+    "Battery to carrier top": 4.6,
+    "Axial battery tolerance": 4
   },
   "references": 34,
-  "fastener_stacks": {
-    "M3 x 50 case bolts": {
-      "tip_z_mm": 28.4,
-      "nut_z_mm": [
-        31.4,
-        33.8
-      ],
-      "fully_traverses_nut": true
-    },
-    "M3 x 25 tray bolts": {
-      "tip_z_mm": 11.4,
-      "nut_z_mm": [
-        12,
-        14.4
-      ],
-      "fully_traverses_nut": true
-    }
+  "printed_pieces_per_device": 2,
+  "fasteners": {
+    "M2x5": 8,
+    "M3x8": 2,
+    "M2_washers": 2,
+    "nuts": 0,
+    "battery_ties": 2
   },
-  "review_pdf_pages": 7,
+  "footprint_reduction_percent": 35.46,
+  "button_access_recess_mm": 2.4,
+  "screw_engagement_mm": {
+    "Feather M2x5": 3.4,
+    "Light M2x5": 3.4,
+    "RTC M2x5 with washer": 2.9,
+    "SCD30 M2x5": 3.4,
+    "Carrier M3x8": 5.6
+  },
+  "mesh_intersections": [
+    {
+      "a": "shell",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "shell",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "shell",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "shell",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "shell",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "shell",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "carrier",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "carrier",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "carrier",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "carrier",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "carrier",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "feather",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "feather",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "feather",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "feather",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "light",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "light",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "light",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "rtc",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "rtc",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_0",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_0",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_0",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_0",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_0",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_0",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_0",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_1",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_1",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_1",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_1",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_1",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_1",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_1",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_plug0",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_plug0",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_plug0",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_plug0",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_plug0",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_plug0",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_plug0",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_0",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_0",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_0",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_0",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_0",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_0",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_0",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_1",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_1",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_1",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_1",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_1",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_1",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_1",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_2",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_2",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_2",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_2",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_2",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_2",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_2",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_3",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_3",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_3",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_3",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_3",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_3",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_3",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug0",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug0",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug0",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug0",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug0",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug0",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug0",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug1",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug1",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug1",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug1",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug1",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug1",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug1",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_0",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_0",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_0",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_0",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_0",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_0",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_0",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_1",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_1",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_1",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_1",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_1",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_1",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_1",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_2",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_2",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_2",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_2",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_2",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_2",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_2",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_3",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_3",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_3",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_3",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_3",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_3",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_3",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug0",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug0",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug0",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug0",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug0",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug0",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug0",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug1",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug1",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug1",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug1",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug1",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug1",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug1",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_0",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_0",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_0",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_0",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_0",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_0",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_0",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_1",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_1",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_1",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_1",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_1",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_1",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_1",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_2",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_2",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_2",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_2",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_2",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_2",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_2",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_3",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_3",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_3",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_3",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_3",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_3",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_3",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug0",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug0",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug0",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug0",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug0",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug0",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug0",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug1",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug1",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug1",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug1",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug1",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug1",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug1",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_0",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_0",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_0",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_0",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_0",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_0",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_0",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_1",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_1",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_1",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_1",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_1",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_1",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_1",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    }
+  ],
+  "review_pdf_pages": 8,
   "limitations": [
-    "No physical parts or printed samples tested.",
-    "Simplified board envelopes do not represent every SMD component or cable plug.",
-    "STL checks do not prove printer tolerances, assembly accessibility or sensor accuracy.",
-    "Local battery, inline switch body, cable slack and button stroke require physical checks.",
-    "Vendor component STLs contain open surfaces and are unsuitable as a watertight collision proof."
+    "No real parts or printed samples tested.",
+    "Simplified PCB/connector envelopes omit some small components and manufacturing tolerances.",
+    "Cable curves are illustrative; trial lead lengths include unmodelled slack.",
+    "Threads intentionally engage printed pilot walls; fasteners are not a collision-free fit claim.",
+    "Physical button access, screwdriver access, battery fit and sensor thermal performance require a pilot."
   ]
 }

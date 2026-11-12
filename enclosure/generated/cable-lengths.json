@@ -1,0 +1,22 @@
+[
+  {
+    "id": "qt1",
+    "illustrated_centerline_mm": 89.7,
+    "trial_lead_mm": 100
+  },
+  {
+    "id": "qt2",
+    "illustrated_centerline_mm": 34.5,
+    "trial_lead_mm": 50
+  },
+  {
+    "id": "qt3",
+    "illustrated_centerline_mm": 56.4,
+    "trial_lead_mm": 100
+  },
+  {
+    "id": "battery_lead",
+    "illustrated_centerline_mm": 50.1,
+    "trial_lead_mm": null
+  }
+]
