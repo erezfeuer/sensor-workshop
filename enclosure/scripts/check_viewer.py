@@ -17,9 +17,9 @@ with sync_playwright() as p:
     page.wait_for_selector('canvas[data-rendered="true"]')
     assert page.locator('#error').is_hidden()
     initial=page.evaluate('sensorWorkshop.state()')
-    assert len(initial['components'])==26 and initial['glError']==0
-    assert initial['version']=='0.2'
-    assert len([c for c in initial['components'] if c['group']=='Printed enclosure'])==2
+    assert len(initial['components'])==27 and initial['glError']==0
+    assert initial['version']=='0.3'
+    assert len([c for c in initial['components'] if c['group']=='Printed enclosure'])==3
     assert not any(c['id'] in ['switch','buttons','pod','shade','feet','lid','base'] for c in initial['components'])
     page.screenshot(path=str(CAD/'renders/viewer-assembled.png'))
     # Check a physical component, including its attached screen, actually toggles.
@@ -34,6 +34,20 @@ with sync_playwright() as p:
     page.locator('#explode-all').click()
     page.wait_for_function('sensorWorkshop.state().explosion === 1')
     page.screenshot(path=str(CAD/'renders/viewer-exploded.png'))
+    page.locator('#motion').select_option('feather')
+    state=page.evaluate('sensorWorkshop.state()')
+    assert state['motion']=='feather'
+    for ident in ['feather','feather_frame','feather-screw-0','feather-screw-3']:
+        assert next(x for x in state['components'] if x['id']==ident)['offset']==[0,0,-80]
+    assert not next(x for x in state['components'] if x['id']=='carrier')['visible']
+    assert next(x for x in state['components'] if x['id']=='battery')['offset']==[0,0,0]
+    page.screenshot(path=str(CAD/'renders/viewer-feather-install.png'))
+    page.locator('#explode').fill('40')
+    assert next(x for x in page.evaluate('sensorWorkshop.state().components') if x['id']=='feather_frame')['offset']==[0,0,-32]
+    page.locator('#assemble').click()
+    assert next(x for x in page.evaluate('sensorWorkshop.state().components') if x['id']=='feather_frame')['offset']==[0,0,0]
+    page.locator('#reset').click()
+    assert page.evaluate('sensorWorkshop.state().motion')=='explode'
     page.locator('#cut').select_option('x')
     page.locator('#cut-position').fill('60')
     assert page.evaluate('sensorWorkshop.state().cutPosition')==60
@@ -71,8 +85,8 @@ with sync_playwright() as p:
     assert page.evaluate('sensorWorkshop.state().glError')==0
     assert not errors,errors
     assert not any(u.startswith(('http:','https:')) for u in requests),requests
-    report=dict(status='passed',browser=browser.version,offline=True,selectable_components=26,
-                checks=['two printed components; obsolete parts absent','all 26 visibility toggles','explosion 0/64/100 percent and transforms','cut controls','hide/show all','look inside','orbit and zoom','mobile layout','no external network requests','no JavaScript/WebGL errors'],
+    report=dict(status='passed',browser=browser.version,offline=True,selectable_components=27,
+                checks=['three printed components; obsolete parts absent','all 27 visibility toggles','explosion 0/64/100 percent and transforms','Feather insertion mode: paired movement, carrier hidden, other parts stationary, reset','cut controls','hide/show all','look inside','orbit and zoom','mobile layout','no external network requests','no JavaScript/WebGL errors'],
                 limitations=['Chrome only; Safari and Firefox not exercised','hardware fit is not a browser test'])
     (CAD/'generated/viewer-checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))

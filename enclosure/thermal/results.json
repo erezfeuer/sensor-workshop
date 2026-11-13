@@ -1,0 +1,93 @@
+{
+  "model": "unvalidated five-node steady-state engineering screen",
+  "CAD_version": "0.3",
+  "scenario_count": 192,
+  "metric": "Enclosure-induced sensor/module temperature rise above identical self-heating-only baseline; NOT calibrated sensor readout error",
+  "units": "W, K (temperature differences also C)",
+  "nominal_plate_conductance_W_K": {
+    "v02": 0.042504,
+    "v03": 0.0031679999999999994
+  },
+  "geometry": {
+    "thermal_island": [
+      20.5,
+      16.5,
+      73,
+      44.5
+    ],
+    "thermal_slot_width": 2,
+    "thermal_bridge_count": 4,
+    "thermal_bridge_width": 3,
+    "carrier_thickness": 2.4
+  },
+  "checks": [
+    "zero added heat gives zero enclosure rise",
+    "energy balance and equation residual < 1e-10 W",
+    "positive temperatures and conductances",
+    "linear response to added power"
+  ],
+  "cases": [
+    {
+      "case": "Low power, shade",
+      "electronics_W": 0.4,
+      "absorbed_top_solar_W": 0.0,
+      "v02_nominal_rise_C": 1.0437,
+      "v03_nominal_rise_C": 0.9297,
+      "v03_scenario_min_C": 0.4146,
+      "v03_scenario_max_C": 2.4043,
+      "paired_improvement_min_C": -0.0512,
+      "paired_improvement_max_C": 0.4595
+    },
+    {
+      "case": "Working example, shade",
+      "electronics_W": 0.8,
+      "absorbed_top_solar_W": 0.0,
+      "v02_nominal_rise_C": 2.0873,
+      "v03_nominal_rise_C": 1.8594,
+      "v03_scenario_min_C": 0.8291,
+      "v03_scenario_max_C": 4.8085,
+      "paired_improvement_min_C": -0.1024,
+      "paired_improvement_max_C": 0.9189
+    },
+    {
+      "case": "Higher load / charging allowance, shade",
+      "electronics_W": 1.5,
+      "absorbed_top_solar_W": 0.0,
+      "v02_nominal_rise_C": 3.9137,
+      "v03_nominal_rise_C": 3.4863,
+      "v03_scenario_min_C": 1.5546,
+      "v03_scenario_max_C": 9.016,
+      "paired_improvement_min_C": -0.192,
+      "paired_improvement_max_C": 1.7229
+    },
+    {
+      "case": "Light-surface sun stress",
+      "electronics_W": 0.8,
+      "absorbed_top_solar_W": 1.2144,
+      "v02_nominal_rise_C": 5.2559,
+      "v03_nominal_rise_C": 4.6819,
+      "v03_scenario_min_C": 2.0877,
+      "v03_scenario_max_C": 12.1079,
+      "paired_improvement_min_C": -0.2579,
+      "paired_improvement_max_C": 2.3138
+    },
+    {
+      "case": "Dark-surface sun stress",
+      "electronics_W": 0.8,
+      "absorbed_top_solar_W": 3.8861,
+      "v02_nominal_rise_C": 12.2267,
+      "v03_nominal_rise_C": 10.8914,
+      "v03_scenario_min_C": 4.8566,
+      "v03_scenario_max_C": 28.1664,
+      "paired_improvement_min_C": -0.5999,
+      "paired_improvement_max_C": 5.3826
+    }
+  ],
+  "limitations": [
+    "No physical thermal measurements or CFD.",
+    "Scenario extrema are not confidence intervals or guaranteed bounds.",
+    "Sensor node omits package gradients and firmware compensation.",
+    "No sun-heated table, side solar load, gusts, transient warm-up or rain model.",
+    "Slot leakage and all heat-transfer coefficients are unmeasured; geometry improvement is not guaranteed in practice."
+  ]
+}

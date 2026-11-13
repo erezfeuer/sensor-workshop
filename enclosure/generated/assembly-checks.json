@@ -1,0 +1,118 @@
+{
+  "status": "passed",
+  "sampled_path": {
+    "axis": "+Z into shell",
+    "start_offset_mm": -80,
+    "end_offset_mm": 0,
+    "step_mm": 0.5,
+    "poses": 161,
+    "checks": 644,
+    "max_intersection_mm3": 0,
+    "moving_parts": [
+      "Feather",
+      "mounting frame",
+      "two installed M2x5 screws"
+    ],
+    "obstacles": [
+      "shell including rails",
+      "light sensor",
+      "RTC",
+      "battery"
+    ],
+    "removed": [
+      "carrier and attached SCD30",
+      "closure screws",
+      "unplugged battery and QT leads"
+    ]
+  },
+  "screwdriver_checks": [
+    {
+      "screw": "light-0",
+      "shaft_diameter_mm": 3,
+      "shaft_length_mm": 100,
+      "approach": "straight from open bottom; battery and carrier absent"
+    },
+    {
+      "screw": "light-3",
+      "shaft_diameter_mm": 3,
+      "shaft_length_mm": 100,
+      "approach": "straight from open bottom; battery and carrier absent"
+    },
+    {
+      "screw": "rtc-0",
+      "shaft_diameter_mm": 3,
+      "shaft_length_mm": 100,
+      "approach": "straight from open bottom; battery and carrier absent"
+    },
+    {
+      "screw": "rtc-1",
+      "shaft_diameter_mm": 3,
+      "shaft_length_mm": 100,
+      "approach": "straight from open bottom; battery and carrier absent"
+    },
+    {
+      "screw": "closure-0",
+      "shaft_diameter_mm": 4,
+      "shaft_length_mm": 100,
+      "approach": "straight from below, assembled device"
+    },
+    {
+      "screw": "closure-1",
+      "shaft_diameter_mm": 4,
+      "shaft_length_mm": 100,
+      "approach": "straight from below, assembled device"
+    },
+    {
+      "screw": "feather-0",
+      "shaft_diameter_mm": 3,
+      "shaft_length_mm": 100,
+      "approach": "from display face, frame and board outside case"
+    },
+    {
+      "screw": "feather-3",
+      "shaft_diameter_mm": 3,
+      "shaft_length_mm": 100,
+      "approach": "from display face, frame and board outside case"
+    }
+  ],
+  "sliding_margin_check": {
+    "xy_offsets_mm": [
+      -0.1,
+      0.1
+    ],
+    "z_offsets_mm": [
+      -40,
+      -20,
+      -5,
+      0
+    ],
+    "checks": 64,
+    "note": "Small rigid offsets, not a model of print tolerances or deformation."
+  },
+  "other_insertion_paths": [
+    {
+      "assembly": "Carrier with SCD30",
+      "axis": "+Z",
+      "poses": 81,
+      "step_mm": 0.5,
+      "checks": 486,
+      "max_intersection_mm3": 0,
+      "note": "Loose wires/ties are moved aside by the assembler and are not swept."
+    },
+    {
+      "assembly": "Battery before carrier closure",
+      "axis": "+Z",
+      "poses": 81,
+      "step_mm": 0.5,
+      "checks": 405,
+      "max_intersection_mm3": 0,
+      "note": "Loose wires/ties are moved aside by the assembler and are not swept."
+    }
+  ],
+  "limitations": [
+    "Sampled nominal rigid-motion check, not a continuous clearance proof.",
+    "Print tolerance, flex, omitted small components, real screw heads, hands and driver handles need a physical pilot.",
+    "Both Feather leads must be unplugged before withdrawal; cable deformation is not simulated.",
+    "SCD30 is screwed to its carrier outside the housing."
+  ]
+}

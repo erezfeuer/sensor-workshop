@@ -1,0 +1,58 @@
+{
+  "description": "Engineering screening assumptions, not measured material properties, heat-transfer coefficients or device power. All conductances are W/K. Ambient is 25 C; temperatures are rises above ambient.",
+  "sensor_self_heat_W": 0.0627,
+  "sensor_self_heat_basis": "3.3 V times 19 mA average at one measurement per 2 s, SCD30 datasheet p1/p2. Breakout overhead is omitted. The same self-heat is retained in both comparison solves.",
+  "plastic_k_W_mK": [0.15, 0.22, 0.30],
+  "nominal": {
+    "H_ambient": 0.16,
+    "H_C": 0.06,
+    "H_M": 0.012,
+    "C_ambient": 0.008,
+    "C_A": 0.012,
+    "M_A": 0.005,
+    "M_S": 0.025,
+    "S_A": 0.012,
+    "S_ambient": 0.006,
+    "A_ambient": 0.05,
+    "H_A": 0.001,
+    "H_S_wire": 0.00125,
+    "slot_extra_H_A": 0.001
+  },
+  "sweep": {
+    "H_ambient": [0.08, 0.24],
+    "H_C": [0.035, 0.10],
+    "H_M": [0.008, 0.020],
+    "S_A": [0.006, 0.020],
+    "A_ambient": [0.02, 0.10],
+    "slot_extra_H_A": [0, 0.003]
+  },
+  "rationale": {
+    "H_ambient": "Exterior area about 0.017 m2 times an assumed combined natural-convection/radiation coefficient, plus unmeasured ventilation. No calculated airflow is claimed.",
+    "H_C": "Effective upper-bay air/radiation and wall/screw conduction to the outer carrier; not just plastic conduction.",
+    "H_M": "Warm bay air and radiation directly heat the central mounting region. This bypass remains even with perimeter slots: about 0.00147 m2 times an effective 8 W/m2K nominally.",
+    "C_ambient": "Effective radiation from exposed outer-carrier underside, including restricted view to the table/room.",
+    "C_A_and_M_A": "Natural convection from carrier surfaces to under-skirt air; allocated separately from effective radiative areas.",
+    "M_S": "Four printed bosses plus two M2 steel screw paths, PCB contact/spreading and inter-surface radiation, lumped. Not a measured contact resistance.",
+    "S_A": "Effective sensor/PCB exposed area about 0.003 m2 times 2 to 6.7 W/m2K natural convection.",
+    "S_ambient": "Effective linearized sensor radiation, with restricted view factor. At 25 C, 4 epsilon sigma T^3 is about 5 W/m2K for epsilon about 0.85.",
+    "A_ambient": "Unmeasured under-skirt air exchange; about 0.017 to 0.083 L/s equivalent at rho cp about 1200 J/m3K. Sweep does not establish real airflow.",
+    "H_A": "Small existing leakage from upper bay around carrier/through cable aperture.",
+    "slot_extra_H_A": "Added allowance for warm-air leakage through new slots, 0 to 0.003 W/K. Prevents silently assuming slots only help; larger leakage can erase the gain.",
+    "H_S_wire": "Four assumed 0.08 mm2 copper wires, 100 mm long, k=390 W/mK: kA/L approximately 0.00125 W/K. Wire gauge is unverified; this is an assumed bypass path.",
+    "plastic_k": "Broad assumed effective printed-plastic conductivity range. Actual PLA/PETG filament, infill, print direction and contacts are unmeasured. The comparison does not select one material as thermally validated."
+  },
+  "cases": [
+    {"name": "Low power, shade", "electronics_W": 0.4, "solar_W_m2": 0, "absorptance": 0},
+    {"name": "Working example, shade", "electronics_W": 0.8, "solar_W_m2": 0, "absorptance": 0},
+    {"name": "Higher load / charging allowance, shade", "electronics_W": 1.5, "solar_W_m2": 0, "absorptance": 0},
+    {"name": "Light-surface sun stress", "electronics_W": 0.8, "solar_W_m2": 800, "absorptance": 0.25},
+    {"name": "Dark-surface sun stress", "electronics_W": 0.8, "solar_W_m2": 800, "absorptance": 0.8}
+  ],
+  "case_notes": "Power is an assumed total upper-bay heat load, excluding the SCD30. 1.5 W is a stress allowance, NOT a measured charging load or board current rating. Solar absorptance is hypothetical, not certified by colour; only horizontal top-area absorption is included. Side sunlight, table heating and direct sensor irradiation are omitted.",
+  "proposed_enclosure_bias_target_C": 0.5,
+  "sources": [
+    {"url": "https://sensirion.com/media/documents/4EAF6AF8/61652C3C/Sensirion_CO2_Sensors_SCD30_Datasheet.pdf", "supports": "19 mA average at 2 s, 3.3 V default test conditions; does not supply enclosure coefficients."},
+    {"url": "https://sensirion.com/media/documents/84D49268/616536CB/Sensirion_CO2_Sensors_SCD30_Design-In_Guidelines_D1.pdf", "supports": "Separation from heat sources, below-source placement, ambient coupling, shade, residual temperature compensation."},
+    {"url": "https://learn.adafruit.com/esp32-s3-reverse-tft-feather/power-management", "supports": "USB operation can also charge the connected battery; regulator heat matters. No measured full-device heat load is supplied here."}
+  ]
+}

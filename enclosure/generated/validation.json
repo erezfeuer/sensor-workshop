@@ -1,5 +1,5 @@
 {
-  "version": "0.2",
+  "version": "0.3",
   "status": "passed",
   "units": "mm",
   "print_parts": {
@@ -11,8 +11,8 @@
         66.0,
         60.8
       ],
-      "solid_volume_mm3": 57047.81,
-      "sha256": "5b7979f0d2917edf6317472e8fb2712477266f8d8dcea3717d8a19407a15cf9a"
+      "solid_volume_mm3": 56702.34,
+      "sha256": "4c703234d48a502313bd9c01dc798a5dbcb8a8772d547cf067db65c24d6f1ed3"
     },
     "carrier": {
       "watertight": true,
@@ -22,8 +22,19 @@
         60.6,
         7.6
       ],
-      "solid_volume_mm3": 12641.21,
-      "sha256": "adb4a64a526a4ada9cafa341a03b7c55a877d39599fb35cf152247100d34ca58"
+      "solid_volume_mm3": 11930.56,
+      "sha256": "a6f3046358a60a117af3f3cbcbe5bc5d9da3c87db58226534f8107aaa41c76d2"
+    },
+    "feather_frame": {
+      "watertight": true,
+      "bodies": 1,
+      "size_mm": [
+        54.9,
+        31.2,
+        11.8
+      ],
+      "solid_volume_mm3": 2469.31,
+      "sha256": "01126572127a528b9ad63513a91e6e53deeef018afef16ae239a5081f259c9de"
     },
     "coupon": {
       "watertight": true,
@@ -34,7 +45,7 @@
         12.0
       ],
       "solid_volume_mm3": 18973.04,
-      "sha256": "9a25b7acf9eb5b9455e93128284163fc868382e1b4af0dd83c5d283b11f7fbc3"
+      "sha256": "58f705691f6519f0926832ebf6dbfaa3ba62736e248b4dd101451078d99b381d"
     }
   },
   "clearances": {
@@ -50,7 +61,7 @@
     "Axial battery tolerance": 4
   },
   "references": 34,
-  "printed_pieces_per_device": 2,
+  "printed_pieces_per_device": 3,
   "fasteners": {
     "M2x5": 8,
     "M3x8": 2,
@@ -71,6 +82,11 @@
     {
       "a": "shell",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "shell",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -100,6 +116,11 @@
     },
     {
       "a": "carrier",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "carrier",
       "b": "feather",
       "intersection_mm3": 0.0
     },
@@ -120,6 +141,31 @@
     },
     {
       "a": "carrier",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "feather_frame",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "feather_frame",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "feather_frame",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "feather_frame",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "feather_frame",
       "b": "battery",
       "intersection_mm3": 0.0
     },
@@ -185,6 +231,11 @@
     },
     {
       "a": "cable_battery_lead_0",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_0",
       "b": "feather",
       "intersection_mm3": 0.0
     },
@@ -220,6 +271,11 @@
     },
     {
       "a": "cable_battery_lead_1",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_1",
       "b": "feather",
       "intersection_mm3": 0.0
     },
@@ -251,6 +307,11 @@
     {
       "a": "cable_battery_lead_plug0",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_battery_lead_plug0",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -286,6 +347,11 @@
     {
       "a": "cable_qt1_0",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_0",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -321,6 +387,11 @@
     {
       "a": "cable_qt1_1",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_1",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -356,6 +427,11 @@
     {
       "a": "cable_qt1_2",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_2",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -391,6 +467,11 @@
     {
       "a": "cable_qt1_3",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_3",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -426,6 +507,11 @@
     {
       "a": "cable_qt1_plug0",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug0",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -461,6 +547,11 @@
     {
       "a": "cable_qt1_plug1",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt1_plug1",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -496,6 +587,11 @@
     {
       "a": "cable_qt2_0",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_0",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -531,6 +627,11 @@
     {
       "a": "cable_qt2_1",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_1",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -566,6 +667,11 @@
     {
       "a": "cable_qt2_2",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_2",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -601,6 +707,11 @@
     {
       "a": "cable_qt2_3",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_3",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -636,6 +747,11 @@
     {
       "a": "cable_qt2_plug0",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug0",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -671,6 +787,11 @@
     {
       "a": "cable_qt2_plug1",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt2_plug1",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -706,6 +827,11 @@
     {
       "a": "cable_qt3_0",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_0",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -741,6 +867,11 @@
     {
       "a": "cable_qt3_1",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_1",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -776,6 +907,11 @@
     {
       "a": "cable_qt3_2",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_2",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -811,6 +947,11 @@
     {
       "a": "cable_qt3_3",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_3",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -846,6 +987,11 @@
     {
       "a": "cable_qt3_plug0",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug0",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -881,6 +1027,11 @@
     {
       "a": "cable_qt3_plug1",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "cable_qt3_plug1",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -916,6 +1067,11 @@
     {
       "a": "battery_tie_0",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_0",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -951,6 +1107,11 @@
     {
       "a": "battery_tie_1",
       "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "battery_tie_1",
+      "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
@@ -979,7 +1140,7 @@
       "intersection_mm3": 0.0
     }
   ],
-  "review_pdf_pages": 8,
+  "review_pdf_pages": 9,
   "limitations": [
     "No real parts or printed samples tested.",
     "Simplified PCB/connector envelopes omit some small components and manufacturing tolerances.",

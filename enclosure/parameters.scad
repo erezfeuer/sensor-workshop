@@ -1,4 +1,4 @@
-// Sensor Workshop v0.2 — millimetres. Two printed parts per device.
+// Sensor Workshop v0.3 — millimetres. Two case parts + one Feather frame.
 case_width = 92;
 case_depth = 66;
 case_top = 58.4;
@@ -35,3 +35,11 @@ tie_tunnel_z = 54.2;
 board_screw_indices = [0,3];
 board_pin_indices = [1,2];
 board_screw_length = 5;
+
+// Central carrier region stays attached by four broad, short printed bridges.
+// Thermal model reads the same dimensions; no separate sensor-box parts.
+thermal_island = [20.5,16.5,73,44.5];
+thermal_slot_width = 2;
+thermal_bridge_count = 4;
+thermal_bridge_width = 3;
+thermal_bridge_x = [30,63];

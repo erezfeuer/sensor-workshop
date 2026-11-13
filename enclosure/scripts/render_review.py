@@ -27,7 +27,7 @@ for line in (CAD / "parameters.scad").read_text().splitlines():
     match = re.match(r"(\w+)\s*=\s*(.*?);", line)
     if match:
         PARAMS[match[1]] = json.loads(match[2])
-COLORS = {"shell":"#dedfd8", "carrier":"#4f7777", "feather":"#2e6054", "scd30":"#bb975b", "rtc":"#817ba6", "light":"#527b95", "battery":"#5b91bd", "display":"#41c1bf"}
+COLORS = {"shell":"#dedfd8", "carrier":"#4f7777", "feather_frame":"#d39b59", "feather":"#2e6054", "scd30":"#bb975b", "rtc":"#817ba6", "light":"#527b95", "battery":"#5b91bd", "display":"#41c1bf"}
 if (CAD/"generated/cable-metadata.json").exists():
     COLORS.update({c["mesh"]:c["color"] for c in json.loads((CAD/"generated/cable-metadata.json").read_text())})
 
@@ -49,9 +49,12 @@ def variant(source, kind):
     meshes={k:v.copy() for k,v in source.items()}
     if kind=="open":meshes.pop("shell")
     if kind=="exploded":
-        for key,delta in {"carrier":[0,0,-46],"scd30":[0,0,-65],"feather":[0,-28,-5],"display":[0,-28,-5],"light":[0,0,-18],"rtc":[25,0,-18],"battery":[0,22,-22]}.items():
+        for key,delta in {"carrier":[0,0,-46],"scd30":[0,0,-65],"feather":[0,0,-80],"feather_frame":[0,0,-80],"display":[0,0,-80],"light":[0,0,-18],"rtc":[25,0,-18],"battery":[0,22,-22]}.items():
             meshes[key].apply_translation(delta)
         meshes={k:v for k,v in meshes.items() if not k.startswith("cable_")}
+    if kind=="feather_install":
+        meshes={k:v for k,v in meshes.items() if k not in ("carrier","scd30") and not k.startswith("cable_")}
+        for key in ("feather","feather_frame","display"):meshes[key].apply_translation([0,0,-65])
     if kind.startswith("section"):
         axis,cut = (1,33) if kind=="section_front" else (0,43)
         normal=np.eye(3)[axis]
@@ -105,14 +108,14 @@ def rasterize(meshes, title, subtitle, out, eye=(-1,-1,0.85)):
     draw.text((65,40),title,font=ImageFont.truetype(FONT,38),fill="#253f44")
     draw.text((66,96),subtitle,font=ImageFont.truetype(FONT,21),fill="#526568")
     draw.line((65,1125,1535,1125),fill="#c8d1cc",width=2)
-    draw.text((65,1145),"Sensor Workshop  |  v0.2  |  CAD prototype — physical fit and measurement tests pending",font=ImageFont.truetype(FONT,19),fill="#526568")
+    draw.text((65,1145),"Sensor Workshop  |  v0.3  |  CAD prototype — physical fit and measurement tests pending",font=ImageFont.truetype(FONT,19),fill="#526568")
     result.save(out)
     print("RENDER",out.name,flush=True)
 
 
 def section_plot(ax, meshes, cut, title):
     ax.set_title(title,fontsize=12,loc="left",pad=12)
-    for key in ("shell","carrier","feather","display","scd30","rtc","light","battery"):
+    for key in ("shell","carrier","feather_frame","feather","display","scd30","rtc","light","battery"):
         mesh=meshes.get(key)
         if mesh is None:continue
         section=mesh.section(plane_origin=[cut,0,0],plane_normal=[1,0,0])
@@ -124,7 +127,7 @@ def section_plot(ax, meshes, cut, title):
             depth=sum(PlotPath(p).contains_point(poly[0]) for p in previous)
             color="white" if depth%2 else COLORS[key]
             ax.fill(poly[:,0],poly[:,1],color=color,edgecolor="#334c50",linewidth=0.55,
-                    hatch="///" if key in ("shell","carrier") and depth%2==0 else None)
+                    hatch="///" if key in ("shell","carrier","feather_frame") and depth%2==0 else None)
             previous.append(poly)
     ax.set_aspect("equal");ax.set_xlim(-7,82);ax.set_ylim(-7,75)
     ax.set_xlabel("Front ← Y (mm) → Rear");ax.set_ylabel("Z above desk (mm)")
@@ -178,10 +181,11 @@ def drawings(scene):
 if __name__ == "__main__":
     RENDERS.mkdir(exist_ok=True)
     scene=load_scene()
-    variants=[("assembled","Two-piece enclosure · v0.2","92 × 66 × 60.8 mm · integral straight feet · real button access"),
+    variants=[("assembled","Assembly-access revision · v0.3","92 × 66 × 60.8 mm · integral straight feet · real button access"),
               ("underside","Downward-facing sensor","Open underside · shallow skirt · one removable carrier plate"),
               ("open","Component layout with shell hidden","Top-mounted boards and tied battery · SCD30 on the bottom plate"),
-              ("exploded","Simplified assembly","Only two printed parts · eight M2 board screws and two M3 closure screws"),
+              ("exploded","Simplified assembly","Two case parts + removable Feather frame · eight M2 board screws and two M3 closure screws"),
+              ("feather_install","Feather installs through the bottom","Attach two screws on the table, then slide the frame up; the carrier retains it"),
               ("section_front","Cutaway from the front","Material in front of Y = 33 mm removed; battery cradles remain visible"),
               ("section_side","Cutaway from the left","Material left of X = 43 mm removed; sensor body faces the open bottom")]
     for kind,title,subtitle in variants:

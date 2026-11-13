@@ -74,12 +74,13 @@ def main():
         packed=np.concatenate([mesh.triangles,np.repeat(mesh.face_normals[:,None,:],3,axis=1)],axis=2).astype('<f4')
         items.append(dict(id=key,label=label,group=group,color=color,delta=delta,note=note,parent=parent,cable=cable,
                           bounds=mesh.bounds.tolist(),count=len(mesh.faces)*3,data=base64.b64encode(packed.tobytes()).decode('ascii')))
-    deltas={'shell':[0,0,0],'carrier':[0,0,-46],'feather':[0,-28,-5],'light':[0,0,-18],
+    deltas={'shell':[0,0,0],'carrier':[0,0,-46],'feather':[0,0,-80],'feather_frame':[0,0,-80],'light':[0,0,-18],
             'rtc':[25,0,-18],'scd30':[0,0,-65],'battery':[0,22,-22]}
     defs=[
         ('shell','Shell + straight feet + skirt','Printed enclosure','One print: roof, straight feet, open-bottom skirt, mounts and battery cradles. Print roof-down.'),
-        ('carrier','Bottom carrier plate','Printed enclosure','Second and final printed part. Carries the downward-facing SCD30; closes with two screws.'),
-        ('feather','ESP32-S3 Reverse TFT Feather','Electronics','Real buttons accessible through one front slot. Two screws and two locating pins.'),
+        ('carrier','Bottom carrier plate','Printed enclosure','One carrier with four thermal bridges around the SCD30 mounting island. Two closure screws retain this plate and the Feather frame.'),
+        ('feather_frame','Removable Feather mounting frame','Printed enclosure','Attach the Feather with two front-access screws on the table. Slide upward through the open bottom; the carrier captures its lower ends. Print flat rear face down.'),
+        ('feather','ESP32-S3 Reverse TFT Feather','Electronics','Real buttons accessible through the front slot. Two screws fasten to the removable frame OUTSIDE the housing; no sideways driver inside the box.'),
         ('light','VEML7700 light sensor','Electronics','Faces upward through the roof aperture. Two screws and two locating pins.'),
         ('rtc','DS3231 RTC + holder','Electronics','Rotated 90° so QT sockets face front/rear. Two screws, two washers.'),
         ('scd30','SCD30 · facing downward','Electronics','Mounted under the carrier. The underside is open; the shallow skirt gives shade.'),
@@ -93,7 +94,7 @@ def main():
         indices=range(2) if key=='rtc' else PARAMS['board_screw_indices']
         for i in indices:
             x,y,_=boards[board]['holes'][i]
-            if key=='feather':point=origin+[x,1.6,-y];direction=[0,-1,0]
+            if key=='feather':point=origin+[x,0,-y];direction=[0,1,0]
             elif key=='scd30':point=origin+[x,-y,-1.6];direction=[0,0,1]
             elif key=='rtc':point=origin+[-y,x,-.5];direction=[0,0,1]
             else:point=origin+[x,y,0];direction=[0,0,1]
@@ -108,12 +109,12 @@ def main():
     for c in json.loads((CAD/'generated/cable-metadata.json').read_text()):
         add(c['id'],c['label'],'_attached' if c['parent'] else 'Wiring',scene[c['mesh']],c['color'],[0,0,0],c['note'],parent=c['parent'],cable=True)
     count=sum(x['group']!='_attached' for x in items)
-    meta=dict(version='0.2',units='mm',size=[92,66,60.8],parts=items,
+    meta=dict(version='0.3',units='mm',size=[92,66,60.8],parts=items,
               source_sha256=hashlib.sha256((CAD/'sensor-workshop.scad').read_bytes()+(CAD/'parameters.scad').read_bytes()).hexdigest())
     template=(CAD/'viewer/template.html').read_text()
     result=template.replace('__MODEL_JSON__',json.dumps(meta,separators=(',',':'))).replace('__VIEWER_JS__',(CAD/'viewer/viewer.js').read_text())
     (CAD/'model.html').write_text(result)
-    print(f'model.html: {count} selectable components, two printed parts, {len(result)/1024/1024:.1f} MB offline')
+    print(f'model.html: {count} selectable components, three printed parts, {len(result)/1024/1024:.1f} MB offline')
 
 
 if __name__=='__main__':main()

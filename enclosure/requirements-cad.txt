@@ -1,4 +1,4 @@
-# Versions used to generate and check enclosure v0.2.
+# Versions used to generate and check enclosure v0.3.
 numpy==2.5.4
 Pillow==13.0.0
 trimesh==5.2.0

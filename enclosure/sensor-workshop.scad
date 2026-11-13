@@ -1,4 +1,4 @@
-// Sensor Workshop v0.2. Two printed parts; source-based prototype.
+// Sensor Workshop v0.3. Two case parts and a removable Feather frame.
 // Board-derived geometry: Adafruit CC BY-SA 3.0; see reference/ATTRIBUTION.md.
 include <parameters.scad>
 include <generated/boards.scad>
@@ -6,7 +6,7 @@ include <generated/cables.scad>
 
 /* [View] */
 view = "assembled"; // [assembled, exploded, open, underside, section_front, section_side, print, coupon, collision]
-part = "all"; // [all, shell, carrier, coupon]
+part = "all"; // [all, shell, carrier, feather_frame, coupon]
 show_components = true;
 show_wires = true;
 use_vendor_models = false;
@@ -17,6 +17,7 @@ eps = 0.02;
 assert(battery_diameter <= 20 && battery_length <= 72,"Revise the bay for a larger local pack.");
 assert(scd30_origin[2]+2.935 < carrier_z,"SCD30 underside pins intersect carrier.");
 assert(scd30_origin[2]-8.57 > skirt_bottom,"Keep the sensing body above the skirt edge.");
+assert(thermal_bridge_count == 2*len(thermal_bridge_x),"Keep the thermal model bridge count aligned with CAD.");
 
 module rounded_box(size,r=3) {
     linear_extrude(size[2]) offset(r=r)
@@ -42,17 +43,33 @@ module boss(xy,z0,z1,d=4.8,pilot=m2_pilot) {
         if(pilot>0) translate([0,0,-eps]) cylinder(h=z1-z0+2*eps,d=pilot);
     }
 }
-module front_mount(p,pinned=false) {
-    x=feather_origin[0]+p[0]; z=feather_origin[2]-p[1];
+module feather_frame() {
+    // Screw the PCB to this frame OUTSIDE the shell, from its display side.
+    // The complete frame slides upward through the open bottom. No side tools.
     difference() {
-        hull() {
-            translate([x,wall-eps,z]) y_cylinder(feather_origin[1]-wall+eps,4.3);
-            // Gusset grows from the roof side when shell is printed upside-down.
-            translate([x-2.15,wall-eps,z]) cube([4.3,.4,4]);
+        union() {
+            for(x=[5.9,52]) translate([x,11.3,26.6]) cube([5.1,5.2,31.2]);
+            // Guide tongues are outside the PCB and its USB connector envelope.
+            translate([4,12.5,26.6]) cube([2.1,4,23]);
+            translate([57,12.5,26.6]) cube([1.9,4,23]);
+            translate([5.9,13.5,26.6]) cube([51.2,3,2]);
+            for(i=[0:3]) let(p=feather_holes[i],x=feather_origin[0]+p[0],z=feather_origin[2]-p[1]) {
+                // Small right pads clear the antenna keep-out envelope.
+                translate([x,feather_origin[1]+pcb_thickness,z]) y_cylinder(16.5-feather_origin[1]-pcb_thickness,i<2?4.3:3.2);
+                if(i==1 || i==2) translate([x,feather_origin[1]+pcb_thickness-locating_height,z]) y_cylinder(locating_height+eps,locating_pin);
+            }
         }
-        if(!pinned) translate([x,.75,z]) y_cylinder(feather_origin[1]+.1,m2_pilot);
+        for(i=board_screw_indices) let(p=feather_holes[i])
+            translate([feather_origin[0]+p[0],feather_origin[1]+pcb_thickness-eps,feather_origin[2]-p[1]]) y_cylinder(4.3,m2_pilot);
     }
-    if(pinned) translate([x,feather_origin[1]-eps,z]) y_cylinder(locating_height+eps,locating_pin);
+}
+module feather_guides() {
+    // 0.3 mm nominal tongue clearance. Both rails grow from the roof in print.
+    for(y=[10.5,16.8]) translate([wall-eps,y,26.6]) cube([5.6-wall+eps,1.7,31.85]);
+    translate([59.2,wall-eps,26.6]) cube([1.6,18.5-wall+eps,31.85]);
+    for(y=[10.5,16.8]) translate([57.4,y,26.6]) cube([3.4,1.7,31.85]);
+    // Upper stops; the carrier captures the lower ends with 0.2 mm clearance.
+    for(x=[6,52]) translate([x,11.3,58]) cube([5,5.2,.45]);
 }
 module roof_mount(p,origin,pinned=false) {
     xy=[origin[0]+p[0],origin[1]+p[1]];
@@ -95,7 +112,7 @@ module shell() {
                 ring([case_width-2*wall+.2,case_depth-2*wall+.2],1.4,corner_radius-wall+.1,1.4);
             for(p=case_mounts) translate([p[0],p[1],carrier_z+carrier_thickness])
                 cylinder(h=case_top-carrier_z-carrier_thickness+.05,d=7.6);
-            for(i=[0:3]) front_mount(feather_holes[i],i==1 || i==2);
+            feather_guides();
             for(i=[0:3]) roof_mount(veml7700_holes[i],light_origin,i==1 || i==2);
             for(p=rtc_holes) boss(rtc_xy(p),rtc_origin[2]+pcb_thickness,case_top+.05,5.2);
             // Internal light well; sensing package remains clear on every side.
@@ -106,8 +123,9 @@ module shell() {
             for(x=[6.5,84]) translate([x,46,45]) cube([1.5,8,case_top-45+.05]);
         }
         optic_opening();
-        // Recess the inside of the front rim, leaving 0.25 mm in front of the TFT glass.
-        translate([feather_origin[0]+11.05,1.65,feather_origin[2]-20.35]) cube([31.6,3,18.1]);
+        // Continuous insertion relief: screen, buttons and screw heads slide past
+        // the front wall AND the carrier shoulder without catching either.
+        translate([5,1.65,-eps]) cube([53,2.5,57.5]);
         translate([feather_origin[0]+12.6,-eps,feather_origin[2]-19.3]) cube([27,wall+2*eps,16]);
         // A single slot provides finger/nail access to all three real PCB buttons.
         translate([feather_origin[0]+7.62-3.5,-eps,feather_origin[2]-22.43]) cube([7,wall+2*eps,22]);
@@ -120,6 +138,16 @@ module shell() {
             translate([light_origin[0]+p[0],light_origin[1]+p[1],case_top-1]) cylinder(h=1.9,d=m2_pilot);
         for(p=rtc_holes) let(xy=rtc_xy(p)) translate([xy[0],xy[1],case_top-1]) cylinder(h=1.9,d=m2_pilot);
     }
+}
+module thermal_slots() {
+    a=thermal_island; s=thermal_slot_width;
+    translate([0,0,carrier_z-eps]) linear_extrude(carrier_thickness+2*eps)
+        difference() {
+            translate([a[0]-s,a[1]-s]) square([a[2]-a[0]+2*s,a[3]-a[1]+2*s]);
+            translate([a[0],a[1]]) square([a[2]-a[0],a[3]-a[1]]);
+            for(x=thermal_bridge_x) translate([x-thermal_bridge_width/2,a[1]-s-eps])
+                square([thermal_bridge_width,a[3]-a[1]+2*s+2*eps]);
+        }
 }
 module carrier() {
     margin=wall+fit_clearance;
@@ -135,6 +163,7 @@ module carrier() {
         for(p=case_mounts) translate([p[0],p[1],carrier_z-eps]) cylinder(h=carrier_thickness+2*eps,d=3.4);
         for(i=board_screw_indices) let(p=scd30_holes[i]) translate([scd30_origin[0]+p[0],scd30_origin[1]-p[1],carrier_z-eps]) cylinder(h=.8,d=m2_pilot);
         translate([13.5,29,carrier_z-eps]) rounded_box([7.5,9,carrier_thickness+2*eps],1.2);
+        thermal_slots();
     }
 }
 module pcb(size,holes) {
@@ -197,6 +226,7 @@ module components() {
 module assembly() {
     if(view!="open") color("#e5e8e3") shell();
     color("#4f7777") carrier();
+    color("#d39b59") feather_frame();
     if(show_components) components();
     if(show_wires) cables();
 }
@@ -204,7 +234,7 @@ module exploded() {
     color("#e5e8e3") shell();
     translate([0,0,-46]) color("#4f7777") carrier();
     translate([0,0,-65]) board_transform("scd30") scd30_model();
-    translate([0,-28,-5]) board_transform("feather") feather_model();
+    translate([0,0,-80]) { color("#d39b59") feather_frame(); board_transform("feather") feather_model(); }
     translate([0,0,-18]) board_transform("light") light_model();
     translate([25,0,-18]) board_transform("rtc") rtc_model();
     translate([0,22,-22]) battery_model();
@@ -238,11 +268,13 @@ module coupon() {
 module single_part(name) {
     if(name=="shell") translate([0,case_depth,case_top+roof_thickness]) rotate([180,0,0]) shell();
     if(name=="carrier") translate([0,case_depth,carrier_z+carrier_thickness]) rotate([180,0,0]) carrier();
+    if(name=="feather_frame") translate([0,0,16.5]) rotate([-90,0,0]) feather_frame();
     if(name=="coupon") coupon();
 }
 module positioned_part(name) {
     if(name=="shell") shell();
     if(name=="carrier") carrier();
+    if(name=="feather_frame") feather_frame();
     if(name=="feather") board_transform("feather") feather_model();
     if(name=="rtc") board_transform("rtc") rtc_model();
     if(name=="light") board_transform("light") light_model();
@@ -255,7 +287,7 @@ else if(view=="exploded") exploded();
 else if(view=="coupon") coupon();
 else if(view=="section_front") intersection(){assembly();translate([-10,33,-80]) cube([150,80,200]);}
 else if(view=="section_side") intersection(){assembly();translate([43,-10,-80]) cube([100,100,200]);}
-else if(view=="collision") intersection(){union(){shell();carrier();}components();}
-else if(view=="print"){single_part("shell");translate([100,0,0]) single_part("carrier");}
+else if(view=="collision") intersection(){union(){shell();carrier();feather_frame();}components();}
+else if(view=="print"){single_part("shell");translate([100,0,0]) single_part("carrier");translate([100,105,0]) single_part("feather_frame");}
 else if(view=="underside") rotate([180,0,0]) assembly();
 else assembly();
