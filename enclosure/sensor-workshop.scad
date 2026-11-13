@@ -18,6 +18,7 @@ assert(battery_diameter <= 20 && battery_length <= 72,"Revise the bay for a larg
 assert(scd30_origin[2]+2.935 < carrier_z,"SCD30 underside pins intersect carrier.");
 assert(scd30_origin[2]-8.57 > skirt_bottom,"Keep the sensing body above the skirt edge.");
 assert(thermal_bridge_count == 2*len(thermal_bridge_x),"Keep the thermal model bridge count aligned with CAD.");
+assert(optic_flare <= roof_thickness,"Keep the light-aperture flare at or below 45 degrees in print orientation.");
 
 module rounded_box(size,r=3) {
     linear_extrude(size[2]) offset(r=r)
@@ -92,7 +93,22 @@ module optic_opening() {
     xy=[light_origin[0]+light_optic[0],light_origin[1]+light_optic[1]];
     hull() {
         translate([xy[0]-6,xy[1]-3,case_top-eps]) cube([12,6,.04]);
-        translate([xy[0]-8.5,xy[1]-6,case_top+roof_thickness]) cube([17,12,.04]);
+        translate([xy[0]-6-optic_flare,xy[1]-3-optic_flare,case_top+roof_thickness])
+            cube([12+2*optic_flare,6+2*optic_flare,.04]);
+    }
+}
+module carrier_seat() {
+    m=wall-.1; w=case_width-2*m; d=case_depth-2*m; r=corner_radius-m;
+    z=carrier_z+carrier_thickness; lip=1.4;
+    // One solid keeps the flat bearing face and original carrier clearance.
+    // In roof-down printing the upper ramp grows BEFORE the seating ledge.
+    translate([m,m,z]) difference() {
+        rounded_box([w,d,2*lip],r);
+        translate([lip,lip,-eps]) rounded_box([w-2*lip,d-2*lip,lip+2*eps],r-lip);
+        hull() {
+            translate([lip,lip,lip]) rounded_box([w-2*lip,d-2*lip,eps],r-lip);
+            translate([0,0,2*lip]) rounded_box([w,d,eps],r);
+        }
     }
 }
 module shell() {
@@ -107,9 +123,7 @@ module shell() {
                 for(x=[0,case_width-foot_span]) for(y=[0,case_depth-foot_span])
                     translate([x,y,0]) cube([foot_span,foot_span,skirt_bottom+.1]);
             }
-            // Carrier seats against this narrow continuous shoulder.
-            translate([wall-.1,wall-.1,carrier_z+carrier_thickness])
-                ring([case_width-2*wall+.2,case_depth-2*wall+.2],1.4,corner_radius-wall+.1,1.4);
+            carrier_seat();
             for(p=case_mounts) translate([p[0],p[1],carrier_z+carrier_thickness])
                 cylinder(h=case_top-carrier_z-carrier_thickness+.05,d=7.6);
             feather_guides();

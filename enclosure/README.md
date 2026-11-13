@@ -66,6 +66,8 @@ The HTML and OpenSCAD show four individually coloured conductors and nominal whi
 | `feather_frame.stl` | **1** | Flat rear face down; pads and locating pins grow upward. |
 | `coupon.stl` | One shared setup print | Eight small gauges; not part of each student device. |
 
+The [printability review](PRINTING.md) identifies the remaining bridge spans and support-removal access. The carrier ledge now has a 45° backing ramp, and the top light opening uses a nominal 45° flare. The carrier and Feather frame print from flat faces; their crossbars/thermal bridges are supported by the bed. Use small local supports at the shell openings if the pilot needs them.
+
 The STL orientations are already set. Use light-coloured opaque PETG for the working prototype, or PLA for indoor fit trials. Start with a 0.4 mm nozzle, 0.2 mm layers, four perimeters, five top/bottom layers and 15–20% infill, then inspect the slicer. The shell has a **27 mm display-window bridge**, a 7 mm button-slot bridge, smaller vent/USB bridges and a flared optical aperture. Test bridging on the coupon; add local supports if the printer/material requires them. No large floor bridge is needed. [Prusa PETG](https://help.prusa3d.com/article/petg_2059), [PLA](https://help.prusa3d.com/article/pla_2062)
 
 The coupon checks all four received board patterns, the locating pins, M2 pilot diameters 1.6–1.9 mm, M3 pilots 2.4–2.7 mm, the 27 mm bridge, and the battery diameter. The current pilots are 1.8 and 2.6 mm; pre-thread them with gentle hand torque before class. The locating pins are 1.9 mm diameter and 1.2 mm tall. No heat-set inserts are used.

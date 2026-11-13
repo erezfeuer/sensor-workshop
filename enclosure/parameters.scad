@@ -3,6 +3,7 @@ case_width = 92;
 case_depth = 66;
 case_top = 58.4;
 roof_thickness = 2.4;
+optic_flare = 2.4; // Per side; at most roof thickness for a 45-degree roof-down slope.
 wall = 2.4;
 corner_radius = 6;
 carrier_z = 24;
