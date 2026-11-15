@@ -8,7 +8,7 @@ import warnings
 import numpy as np
 import trimesh
 from render_review import CAD, PARAMS as p
-from build_viewer import screw
+from build_viewer import screw, box
 warnings.filterwarnings('ignore',category=RuntimeWarning,module='trimesh.triangles')
 
 def overlap(a,b):
@@ -46,6 +46,25 @@ for dz in [-40,-20,-5,0]:
             assert overlap(candidate,meshes[name])<.001,('Feather sliding margin',dx,dy,dz,name)
 report['sliding_margin_check']={'xy_offsets_mm':[-.1,.1],'z_offsets_mm':[-40,-20,-5,0],
     'checks':64,'note':'Small rigid offsets, not a model of print tolerances or deformation.'}
+
+# Pre-thread ties in the empty shell. Check both the short feed and a direct
+# path from the open bottom to the emerging tail, not merely a finished loop.
+front=p['battery_center'][1]-12.5
+tie_z=p['tie_tunnel_z']+p['tie_slot_height']/2
+reach_start=front+p['tie_eyelet_length']+1
+reach_end=front+24
+base=p['carrier_z']+p['carrier_thickness']
+report['battery_tie_access']=[]
+for x in p['battery_saddles']:
+    feed_start=front-10;feed_end=reach_start+3
+    feed=box([2.5,feed_end-feed_start,.8],[x,(feed_start+feed_end)/2,tie_z])
+    reach=box([2.5,reach_end-reach_start,tie_z+.4-base],[x,(reach_start+reach_end)/2,(base+tie_z+.4)/2])
+    for name,envelope in [('front feed',feed),('tail access from below',reach)]:
+        assert overlap(envelope,meshes['shell'])<.001,('battery tie',x,name)
+    report['battery_tie_access'].append({'cradle_x_mm':x,'closed_feed_length_mm':p['tie_eyelet_length'],
+        'slot_mm':[p['tie_slot_width'],p['tie_slot_height']],
+        'checks':['2.5 x 0.8 mm straight tie feed','open vertical access to tail behind eyelet'],
+        'stage':'Empty shell, before boards and battery; rigid envelopes, not a finger or flexible-tie simulation.'})
 
 report['other_insertion_paths']=[]
 for label,parts,obstacles in [

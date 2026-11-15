@@ -4,16 +4,17 @@ The design keeps **three printed pieces** and uses their assembly layout to give
 
 | Part | Face on the bed | Overhang/support assessment |
 | --- | --- | --- |
-| Shell | Exterior roof | Feet, slide guides, board bosses, light well and battery cradles grow from the roof/walls. The display window is the main local-support candidate. |
+| Shell | Exterior roof | Feet, slide guides, board bosses, light well and battery cradles grow from the roof/walls. The display window and wider light flare are local-support candidates. |
 | Carrier | Flat upper face | Plate, central sensor region and all four thermal bridges start on the bed. Bosses and pins grow vertically; no deliberate support is needed for this orientation. |
 | Feather frame | Flat rear face | Uprights, crossbar and tongues start on the bed. Mounting pads and locating pins grow vertically; the crossbar is not an elevated bridge. |
 
 ## Geometry refinements
 
 - **Carrier seating ledge:** a 1.4 mm rise/run ramp backs the ledge. With the shell roof down, the ramp grows from the wall before reaching the seating ledge, replacing a sudden unsupported projection. The flat carrier contact face and insertion clearance remain unchanged.
-- **Light opening:** the inner opening remains **12 × 6 mm**, with a nominal **45° flare** through the 2.4 mm roof to an outer opening of **16.8 × 10.8 mm**. Previously the 17 × 12 mm mouth made the steeper pair of faces about 51° from vertical in print orientation. `optic_flare` is limited to `roof_thickness` in the CAD.
+- **Light opening:** the inner opening remains **12 × 6 mm**; the outer mouth is now **17 × 16 mm** through the 2.4 mm roof. The nominal flare faces are about **46° / 64° from vertical**. This deliberately opens the view beyond the earlier 45° flare; small removable supports are acceptable here. Actual sensor angular response still needs a pilot comparison.
+- **Battery ties:** each 8 mm cradle now has a **5 mm enclosed eyelet** and **20 mm open-bottom channel**. The 3.6 mm passage has a 4.8 mm flared entrance; the channel's side cheeks are 2.2 mm thick. The tail can be reached from below, and any cleanup is accessible before assembly.
 
-The 45° slopes are a design target, not a promise for every printer or filament. Orientation, cooling, layer height and extrusion width affect the result. Chamfers are preferable to rounding an underside into a steep overhang; supported surfaces can also need cleanup. [Prusa's design guidance](https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135)
+The carrier ledge retains its 45° slope; the light flare prioritizes a wider opening. Neither geometry is a print-quality guarantee for every printer or filament. Orientation, cooling, layer height and extrusion width affect the result. Chamfers are preferable to rounding an underside into a steep overhang; supported surfaces can also need cleanup. [Prusa's design guidance](https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135)
 
 ## Where to allow local supports
 
@@ -23,7 +24,8 @@ The 45° slopes are a design target, not a promise for every printer or filament
 | USB opening | 10.8 mm | Inspect the first bridge in the pilot; local support is acceptable if needed. |
 | Three-button slot | 7 mm | Short bridge; inspect for droop that could restrict button access. |
 | Rear vents | 4 mm | Short bridges; keep the slots clear. |
-| Battery-tie tunnels | 3.2 mm across X | Short bridges in the roof-mounted saddles. Avoid filling the tunnels with support that is difficult to remove. |
+| Battery-tie eyelets | 3.6 mm across X; 4.8 mm at the entrance | Short bridges over a 5 mm feed length. Keep the open-bottom channel clear; inspect both eyelets before fitting boards. |
+| Light flare | 17 × 16 mm outer mouth, 12 × 6 mm throat | Allow local support under the steeper flare faces; remove it through the roof opening before fitting the light board. |
 | RESET hole | 2 mm | Small horizontal hole; check that the blunt reset tool can pass after printing. |
 
 For the roof-down shell, the display bridge is the **lower edge of the window when the device is standing upright**, at assembly Z = 37.7 mm. This becomes print Z = 23.1 mm. Support there must generally start on the earlier printed front wall inside the window: **build-plate-only supports may not reach it through the intervening wall**. Use local paint/enforcers that permit support on the model, inspect their removal path, and remove them through the window before assembly. A small central support can shorten the free bridge span without filling the whole opening. [Prusa support controls](https://help.prusa3d.com/article/support-material_1698)

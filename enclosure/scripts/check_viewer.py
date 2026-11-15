@@ -71,6 +71,13 @@ with sync_playwright() as p:
     page.locator('[data-view="bottom"]').click()
     page.screenshot(path=str(CAD/'renders/viewer-underside.png'))
     page.locator('#reset').click()
+    page.locator('#tie-access').click()
+    state=page.evaluate('sensorWorkshop.state()')
+    assert {x['id'] for x in state['components'] if x['visible']}=={'shell','tie-0','tie-1'}
+    assert state['explosion']==0 and state['cut']=='none' and state['pitch']<0
+    page.screenshot(path=str(CAD/'renders/viewer-tie-access.png'))
+    page.locator('#reset').click()
+    assert all(x['visible'] for x in page.evaluate('sensorWorkshop.state().components'))
     canvas=page.locator('#model').bounding_box()
     x,y=canvas['x']+canvas['width']/2,canvas['y']+canvas['height']/2
     old=page.evaluate('sensorWorkshop.state()')
@@ -86,7 +93,7 @@ with sync_playwright() as p:
     assert not errors,errors
     assert not any(u.startswith(('http:','https:')) for u in requests),requests
     report=dict(status='passed',browser=browser.version,offline=True,selectable_components=27,
-                checks=['three printed components; obsolete parts absent','all 27 visibility toggles','explosion 0/64/100 percent and transforms','Feather insertion mode: paired movement, carrier hidden, other parts stationary, reset','cut controls','hide/show all','look inside','orbit and zoom','mobile layout','no external network requests','no JavaScript/WebGL errors'],
+                checks=['three printed components; obsolete parts absent','all 27 visibility toggles','explosion 0/64/100 percent and transforms','Feather insertion mode: paired movement, carrier hidden, other parts stationary, reset','empty-shell tie-access preset and reset','cut controls','hide/show all','look inside','orbit and zoom','mobile layout','no external network requests','no JavaScript/WebGL errors'],
                 limitations=['Chrome only; Safari and Firefox not exercised','hardware fit is not a browser test'])
     (CAD/'generated/viewer-checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))

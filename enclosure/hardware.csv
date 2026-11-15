@@ -2,7 +2,7 @@ item,quantity_per_device,specification,purpose,procurement_note
 M2 board screw,8,M2 x 5 mm pan head,Two each for Feather; SCD30; VEML7700; RTC,Feather screws enter from the display face with its frame OUTSIDE the shell
 M2 washer,2,Approximately 0.5 mm thick; 5 mm OD; 2.2 mm ID,RTC mounting holes,Check received board and screw head
 M3 closure screw,2,M3 x 8 mm pan head,Bottom carrier into printed pilots,No nuts or heat-set inserts; pre-thread the selected pilot
-Battery zip tie,2,2.5 mm wide soft nylon; approximately 150 mm long,Protected pack held in integral cradles,Tighten gently without compressing the pack; heads below battery
+Battery zip tie,2,2.5 mm wide soft nylon; approximately 150 mm long,Protected pack held in integral cradles,Pre-thread short eyelets in the empty shell; reach tails from below; tighten gently; heads below battery
 Thin soft padding,1 small piece if needed,Nonconductive removable foam,Take up clearance around smaller local pack,Do not obstruct connectors or vents
 Printed main shell,1,shell.stl,Roof; straight feet; skirt; mounts; battery cradles,Print roof exterior down; opaque light-coloured material
 Printed bottom carrier,1,carrier.stl,Downward SCD30 mount with four thermal bridges and closure,Print upper face down; bosses up

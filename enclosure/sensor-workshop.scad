@@ -18,7 +18,8 @@ assert(battery_diameter <= 20 && battery_length <= 72,"Revise the bay for a larg
 assert(scd30_origin[2]+2.935 < carrier_z,"SCD30 underside pins intersect carrier.");
 assert(scd30_origin[2]-8.57 > skirt_bottom,"Keep the sensing body above the skirt edge.");
 assert(thermal_bridge_count == 2*len(thermal_bridge_x),"Keep the thermal model bridge count aligned with CAD.");
-assert(optic_flare <= roof_thickness,"Keep the light-aperture flare at or below 45 degrees in print orientation.");
+assert(min(optic_flare) > 0,"Light flare is a positive X/Y pair.");
+assert((battery_saddle_width-tie_slot_width)/2 >= 2,"Keep substantial cradle cheeks beside the open tie channel.");
 
 module rounded_box(size,r=3) {
     linear_extrude(size[2]) offset(r=r)
@@ -79,22 +80,32 @@ module roof_mount(p,origin,pinned=false) {
         cylinder(h=locating_height+.05,d=locating_pin);
 }
 module battery_saddle(x) {
+    front=battery_center[1]-12.5; bottom=battery_center[2]-1;
     difference() {
-        translate([x-3,battery_center[1]-12.5,battery_center[2]-1])
-            cube([6,25,case_top-battery_center[2]+1+.05]);
-        translate([x-4,battery_center[1],battery_center[2]]) rotate([0,90,0])
-            cylinder(h=8,d=battery_diameter+.8);
-        // One short bridge across X, rather than holes through the exterior roof.
-        translate([x-tie_slot_width/2,battery_center[1]-13,tie_tunnel_z])
-            cube([tie_slot_width,26,1.8]);
+        translate([x-battery_saddle_width/2,front,bottom])
+            cube([battery_saddle_width,25,case_top-bottom+.05]);
+        translate([x-battery_saddle_width/2-1,battery_center[1],battery_center[2]]) rotate([0,90,0])
+            cylinder(h=battery_saddle_width+2,d=battery_diameter+.8);
+        // Only 5 mm of enclosed feed: the rear 20 mm is accessible from below.
+        translate([x-tie_slot_width/2,front-eps,tie_tunnel_z])
+            cube([tie_slot_width,tie_eyelet_length+2*eps,tie_slot_height]);
+        translate([x-tie_slot_width/2,front+tie_eyelet_length,bottom-eps])
+            cube([tie_slot_width,25-tie_eyelet_length+eps,tie_tunnel_z+tie_slot_height-bottom+eps]);
+        // Wider entry mouth; no fishing for a tail against the rear wall.
+        hull() {
+            translate([x-tie_slot_width/2-.6,front-eps,tie_tunnel_z])
+                cube([tie_slot_width+1.2,eps,tie_slot_height]);
+            translate([x-tie_slot_width/2,front+1.2,tie_tunnel_z])
+                cube([tie_slot_width,eps,tie_slot_height]);
+        }
     }
 }
 module optic_opening() {
     xy=[light_origin[0]+light_optic[0],light_origin[1]+light_optic[1]];
     hull() {
         translate([xy[0]-6,xy[1]-3,case_top-eps]) cube([12,6,.04]);
-        translate([xy[0]-6-optic_flare,xy[1]-3-optic_flare,case_top+roof_thickness])
-            cube([12+2*optic_flare,6+2*optic_flare,.04]);
+        translate([xy[0]-6-optic_flare[0],xy[1]-3-optic_flare[1],case_top+roof_thickness])
+            cube([12+2*optic_flare[0],6+2*optic_flare[1],.04]);
     }
 }
 module carrier_seat() {

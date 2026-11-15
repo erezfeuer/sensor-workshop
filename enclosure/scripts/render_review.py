@@ -178,6 +178,28 @@ def drawings(scene):
     plt.close(fig)
 
 
+def battery_tie_drawing(scene):
+    """Actual CAD sections: open access at the centre, battery support beside it."""
+    fig,axes=plt.subplots(1,2,figsize=(12,6.8))
+    x=PARAMS['battery_saddles'][0]
+    section_plot(axes[0],{'shell':scene['shell']},x,f"THROUGH CHANNEL · X = {x:g} mm · empty shell")
+    section_plot(axes[1],{k:scene[k] for k in ['shell','battery']},x+3,f"THROUGH CRADLE CHEEK · X = {x+3:g} mm")
+    for ax in axes:
+        ax.set_xlim(30,66);ax.set_ylim(35,63)
+    top=PARAMS['tie_tunnel_z']+PARAMS['tie_slot_height']/2
+    axes[0].annotate('',xy=(47,top),xytext=(31.5,top),arrowprops=dict(arrowstyle='->',color='#287a77',lw=2))
+    axes[0].text(31.5,top+1.5,'Feed tie',fontsize=9,color='#287a77')
+    axes[0].annotate('5 mm eyelet',xy=(40,53.8),xytext=(31,48.5),fontsize=9,arrowprops=dict(arrowstyle='->',lw=.8))
+    axes[0].annotate('Reach tail\nfrom open bottom',xy=(53,54.2),xytext=(53,40),ha='center',fontsize=9,color='#287a77',arrowprops=dict(arrowstyle='->',color='#287a77',lw=2))
+    axes[1].text(50,40,'Battery envelope',ha='center',fontsize=9,color='white')
+    fig.suptitle('Battery ties: short eyelets, accessible tails',x=.055,ha='left',fontsize=18)
+    fig.text(.055,.035,'Sections from exported shell geometry. Centre channel is open below; 2.2 mm cheeks remain on either side.\nThread both ties before fitting boards or battery. Arrows show access, not a simulated bend path or a physical assembly test.',fontsize=9,color='#526568')
+    fig.subplots_adjust(left=.075,right=.97,top=.86,bottom=.17,wspace=.24)
+    fig.savefig(RENDERS/'battery-tie-access.png',dpi=170)
+    fig.savefig(CAD/'battery-tie-access.pdf')
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     RENDERS.mkdir(exist_ok=True)
     scene=load_scene()
@@ -192,6 +214,7 @@ if __name__ == "__main__":
         eye=(-1,-1,-.85) if kind=="underside" else (-1,-1,.85)
         rasterize(variant(scene,kind),title,subtitle,RENDERS/(kind+".png"),eye=eye)
     drawings(scene)
+    battery_tie_drawing(scene)
     with PdfPages(CAD/"design-review.pdf") as pdf:
         for name in [x[0] for x in variants]+["sections","mounting-drawings"]:
             fig=plt.figure(figsize=(13.5,10.1))

@@ -36,8 +36,9 @@ def screw(point, length, diameter, direction=(0, 0, -1)):
 
 
 def tie_mesh(x):
-    # Rectangular 2.5 × 0.5 mm ribbon with rounded bends, through each cradle tunnel.
-    yz=np.array([[37,55.1],[63,55.1],[63,38],[59,32],[54,30],[46,30],[41,32],[37,38]],float)
+    # Nominal 2.5 × 0.8 mm tie, through the short eyelet and open-bottom channel.
+    top=PARAMS['tie_tunnel_z']+PARAMS['tie_slot_height']/2
+    yz=np.array([[37,top],[63,top],[63,38],[59,32],[54,30],[46,30],[41,32],[37,38]],float)
     points=[]
     for i,b in enumerate(yz):
         a=yz[(i-1)%len(yz)];c=yz[(i+1)%len(yz)]
@@ -48,7 +49,7 @@ def tie_mesh(x):
     n=np.c_[-tangent[:,1],tangent[:,0]]
     vertices=[]
     for p,v in zip(points,n):
-        for dx,dn in [(-1.25,-.25),(1.25,-.25),(1.25,.25),(-1.25,.25)]:vertices.append([x+dx,*(p+v*dn)])
+        for dx,dn in [(-1.25,-.4),(1.25,-.4),(1.25,.4),(-1.25,.4)]:vertices.append([x+dx,*(p+v*dn)])
     faces=[]
     for i in range(len(points)):
         for j in range(4):
@@ -105,7 +106,7 @@ def main():
     for i,p in enumerate(PARAMS['case_mounts']):
         add(f'case-screw-{i}',f'Closure screw {i+1} · M3 × 8','Fasteners',screw([*p,PARAMS['carrier_z']],8,3,[0,0,1]),'#a3adb4',[0,0,-58],'Threads into a printed pilot. No nuts or heat-set inserts.')
     for i,x in enumerate(PARAMS['battery_saddles']):
-        add(f'tie-{i}',f'Battery zip tie {i+1}','Wiring',tie_mesh(x),'#717b78',deltas['battery'],'2.5 mm soft nylon tie; secure gently around the protected pack, without compression.')
+        add(f'tie-{i}',f'Battery zip tie {i+1}','Wiring',tie_mesh(x),'#717b78',deltas['battery'],'Thread through the 5 mm front eyelet while the shell is empty; reach the tail through the open-bottom channel. Fit the battery afterward and tighten gently.')
     for c in json.loads((CAD/'generated/cable-metadata.json').read_text()):
         add(c['id'],c['label'],'_attached' if c['parent'] else 'Wiring',scene[c['mesh']],c['color'],[0,0,0],c['note'],parent=c['parent'],cable=True)
     count=sum(x['group']!='_attached' for x in items)

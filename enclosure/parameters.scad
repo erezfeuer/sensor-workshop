@@ -3,7 +3,7 @@ case_width = 92;
 case_depth = 66;
 case_top = 58.4;
 roof_thickness = 2.4;
-optic_flare = 2.4; // Per side; at most roof thickness for a 45-degree roof-down slope.
+optic_flare = [2.5,5]; // Per side in X/Y; wider light acceptance, local supports allowed.
 wall = 2.4;
 corner_radius = 6;
 carrier_z = 24;
@@ -28,9 +28,12 @@ battery_diameter = 20;
 battery_length = 72;
 battery_center = [46,50,41];
 battery_saddles = [23,79];
+battery_saddle_width = 8;
 tie_width = 2.5;
-tie_slot_width = 3.2;
+tie_slot_width = 3.6;
 tie_tunnel_z = 54.2;
+tie_slot_height = 2.4;
+tie_eyelet_length = 5;
 
 // Select two diagonal screws; the other two holes use printed locating pins.
 board_screw_indices = [0,3];

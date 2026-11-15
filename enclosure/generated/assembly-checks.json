@@ -89,6 +89,34 @@
     "checks": 64,
     "note": "Small rigid offsets, not a model of print tolerances or deformation."
   },
+  "battery_tie_access": [
+    {
+      "cradle_x_mm": 23,
+      "closed_feed_length_mm": 5,
+      "slot_mm": [
+        3.6,
+        2.4
+      ],
+      "checks": [
+        "2.5 x 0.8 mm straight tie feed",
+        "open vertical access to tail behind eyelet"
+      ],
+      "stage": "Empty shell, before boards and battery; rigid envelopes, not a finger or flexible-tie simulation."
+    },
+    {
+      "cradle_x_mm": 79,
+      "closed_feed_length_mm": 5,
+      "slot_mm": [
+        3.6,
+        2.4
+      ],
+      "checks": [
+        "2.5 x 0.8 mm straight tie feed",
+        "open vertical access to tail behind eyelet"
+      ],
+      "stage": "Empty shell, before boards and battery; rigid envelopes, not a finger or flexible-tie simulation."
+    }
+  ],
   "other_insertion_paths": [
     {
       "assembly": "Carrier with SCD30",
