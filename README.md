@@ -22,6 +22,7 @@ For the first test, print the shell separately and the two smaller parts togethe
 
 - [Proposed bill of materials and compatibility notes](hardware/BOM.md)
 - [BOM as CSV](hardware/bom.csv)
+- **[Mechanical shopping list — screw sizes, washers, zip ties and quantities](enclosure/MECHANICAL-BOM.md)** ([CSV](enclosure/hardware.csv))
 - [One-device distributor comparison and cart imports](hardware/ordering/README.md)
 - [Enclosure design, printing and assembly](enclosure/README.md)
 - [Interactive 3D model — open the downloaded HTML in a browser](enclosure/model.html)

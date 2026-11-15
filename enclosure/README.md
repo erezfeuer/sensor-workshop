@@ -10,7 +10,8 @@ The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the o
 
 - **[Interactive HTML model](model.html)** — one offline file with 30 component checkboxes (including three optional mounting-example items), an explosion slider, movable cutaways, an **Underside** camera, a **Remove / install Feather** movement mode, a **Tie access** view of the empty shell, a **Tie section** through the two-guide route, and a **Pole mount** example. “Look inside” hides the shell. Download the file and open it in a browser; GitHub's file page displays source.
 - [Nine-page design review](design-review.pdf), [measured cross-sections](sections.pdf), [mounting drawings](mounting-drawings.pdf), and [battery-tie access sections](battery-tie-access.pdf), and [corner-guide details](mounting-guide-details.pdf).
-- [Three STL files to print](../production-stls/), [OpenSCAD source](sensor-workshop.scad), [editable dimensions](parameters.scad), [mechanical BOM](hardware.csv).
+- **[Mechanical shopping list — screw sizes, washers, zip ties and quantities](MECHANICAL-BOM.md)** ([CSV](hardware.csv)).
+- [Three STL files to print](../production-stls/), [OpenSCAD source](sensor-workshop.scad), [editable dimensions](parameters.scad).
 - [Previous v0.2 viewer](archive/v0.2/model.html), [v0.2 archive](archive/v0.2/README.md), and [thermal review PDF](thermal/thermal-review.pdf).
 - [Previous v0.1 viewer](archive/v0.1/model.html) and [archived design](archive/v0.1/README.md) for comparison.
 - [Pole/rail mounting option and tradeoffs](MOUNTING.md).
