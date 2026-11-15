@@ -18,7 +18,7 @@ with sync_playwright() as p:
     assert page.locator('#error').is_hidden()
     initial=page.evaluate('sensorWorkshop.state()')
     assert len(initial['components'])==30 and initial['glError']==0
-    assert initial['version']=='0.3'
+    assert initial['version']=='0.4'
     assert all(x['visible']==x['defaultVisible'] for x in initial['components'])
     assert len([x for x in initial['components'] if not x['visible']])==3
     assert len([c for c in initial['components'] if c['group']=='Printed enclosure'])==3
@@ -80,6 +80,12 @@ with sync_playwright() as p:
     page.screenshot(path=str(CAD/'renders/viewer-tie-access.png'))
     page.locator('#reset').click()
     assert all(x['visible']==x['defaultVisible'] for x in page.evaluate('sensorWorkshop.state().components'))
+    page.locator('#tie-section').click()
+    state=page.evaluate('sensorWorkshop.state()')
+    assert {x['id'] for x in state['components'] if x['visible']}=={'shell','battery','tie-0'}
+    assert state['cut']=='x' and state['cutPosition']==23 and state['explosion']==0 and state['tieSection']
+    page.screenshot(path=str(CAD/'renders/viewer-tie-section.png'))
+    page.locator('#reset').click()
     page.locator('#pole-mount').click()
     state=page.evaluate('sensorWorkshop.state()')
     assert all(x['visible'] for x in state['components'])
@@ -102,7 +108,7 @@ with sync_playwright() as p:
     assert not errors,errors
     assert not any(u.startswith(('http:','https:')) for u in requests),requests
     report=dict(status='passed',browser=browser.version,offline=True,selectable_components=30,
-                checks=['three printed components; obsolete parts absent','all 30 visibility toggles','explosion 0/64/100 percent and transforms','Feather insertion mode: paired movement, carrier hidden, other parts stationary, reset','empty-shell tie-access preset and reset','pole mounting example, optional parts initially hidden, reset restores defaults','cut controls','hide/show all','look inside','orbit and zoom','mobile layout','no external network requests','no JavaScript/WebGL errors'],
+                checks=['three printed components; obsolete parts absent','all 30 visibility toggles','explosion 0/64/100 percent and transforms','Feather insertion mode: paired movement, carrier hidden, other parts stationary, reset','empty-shell tie-access preset and reset','battery tie section at X=23 with battery and one tie','pole mounting example, optional parts initially hidden, reset restores defaults','cut controls','hide/show all','look inside','orbit and zoom','mobile layout','no external network requests','no JavaScript/WebGL errors'],
                 limitations=['Chrome only; Safari and Firefox not exercised','hardware fit is not a browser test'])
     (CAD/'generated/viewer-checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))

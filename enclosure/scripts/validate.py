@@ -12,7 +12,7 @@ from build_viewer import tie_mesh
 from mounting import mounting_example
 
 warnings.filterwarnings('ignore',category=RuntimeWarning,module='trimesh.triangles')
-report={'version':'0.3','status':'passed','units':'mm','print_parts':{},'clearances':{},'references':0}
+report={'version':'0.4','status':'passed','units':'mm','print_parts':{},'clearances':{},'references':0}
 assert {x.stem for x in (CAD/'stl').glob('*.stl')}=={'shell','carrier','feather_frame','coupon'}
 for name in ['shell','carrier','feather_frame','coupon']:
     path=CAD/'stl'/f'{name}.stl';m=trimesh.load_mesh(path);bodies=len(m.split())
@@ -76,7 +76,22 @@ report['mounting_example']=route
 gap('Mount band to front button opening',p['feather_origin'][2]-22.43-p['mount_band_z']-p['mount_band_width']/2)
 gap('Mount band to USB opening',38.5-p['mount_band_z']-p['mount_band_width']/2)
 gap('Mount band above carrier',p['mount_band_z']-p['mount_band_width']/2-p['carrier_z']-p['carrier_thickness'])
-report['mounting_example']['side_wall_after_groove_mm']=p['wall']-p['mount_groove_depth']
+report['mounting_example']['side_wall_behind_guides_mm']=p['wall']
+gap('Corner shoulder to USB opening',38.5-(p['mount_band_z']+p['mount_groove_width']/2+2*p['mount_groove_bevel']+p['mount_guide_land']))
+gap('Front corner guide to button opening',p['feather_origin'][0]+7.62-3.5-p['corner_radius']-p['mount_corner_run'])
+report['corner_guide_checks']=[]
+for sx,sy in itertools.product([0,1],repeat=2):
+    radius=p['corner_radius']+p['mount_groove_depth']/2
+    v=p['corner_radius']-radius/np.sqrt(2)
+    xy=[p['case_width']-v if sx else v,p['case_depth']-v if sy else v]
+    for sign in [-1,1]:
+        z=p['mount_band_z']+sign*(p['mount_groove_width']/2+p['mount_groove_bevel']+p['mount_guide_land']/2)
+        gauge=trimesh.creation.box(extents=[.3,.3,.3]);gauge.apply_translation([*xy,z])
+        solid=trimesh.boolean.intersection([gauge,meshes['shell']],engine='manifold')
+        assert abs(solid.volume-gauge.volume)<.001,('Missing corner shoulder',sx,sy,sign)
+    groove=trimesh.creation.box(extents=[.3,.3,.3]);groove.apply_translation([*xy,p['mount_band_z']])
+    check_pair(f'corner_channel_{sx}_{sy}','shell',groove,meshes['shell'])
+    report['corner_guide_checks'].append({'corner':[sx,sy],'upper_and_lower_shoulders':True,'channel_clear':True})
 report['mesh_intersections']=checks
 for e in json.loads((ROOT/'hardware/reference/manifest.json').read_text()):
     assert hashlib.sha256((ROOT/'hardware/reference'/e['path']).read_bytes()).hexdigest()==e['sha256']
@@ -84,7 +99,7 @@ for e in json.loads((ROOT/'hardware/reference/manifest.json').read_text()):
 with pymupdf.open(CAD/'design-review.pdf') as pdf:
     assert len(pdf)==9
     report['review_pdf_pages']=len(pdf)
-report['limitations']=['No real parts or printed samples tested.',
+report['limitations']=['User reports previous shell printed well in PLA on an X1 Carbon; this revised tie-guide shell is not physically tested.',
     'Simplified PCB/connector envelopes omit some small components and manufacturing tolerances.',
     'Cable curves are illustrative; trial lead lengths include unmodelled slack.',
     'Threads intentionally engage printed pilot walls; fasteners are not a collision-free fit claim.',

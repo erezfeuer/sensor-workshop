@@ -1,4 +1,4 @@
-// Sensor Workshop v0.3 — millimetres. Two case parts + one Feather frame.
+// Sensor Workshop v0.4 — millimetres. Two case parts + one Feather frame.
 case_width = 92;
 case_depth = 66;
 case_top = 58.4;
@@ -22,8 +22,10 @@ case_mounts = [[86,6],[6,60]];
 mount_band_z = 31;
 mount_band_width = 4.8;
 mount_groove_width = 6;
-mount_groove_depth = 0.5;
-mount_groove_bevel = 0.5;
+mount_groove_depth = 1.6; // Raised corner shoulders; no wall material removed.
+mount_groove_bevel = 1.6;
+mount_guide_land = 0.6;
+mount_corner_run = 2.5;
 mount_example_pole_diameter = 32;
 mount_example_pad_thickness = 2;
 
@@ -43,6 +45,10 @@ tie_slot_width = 3.6;
 tie_tunnel_z = 54.2;
 tie_slot_height = 2.4;
 tie_eyelet_length = 5;
+tie_turn_radius = 4;
+tie_turn_start_y = 57;
+tie_exit_z = 48.5;
+tie_rear_outer_y = 64.2;
 
 // Select two diagonal screws; the other two holes use printed locating pins.
 board_screw_indices = [0,3];

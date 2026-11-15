@@ -109,12 +109,12 @@ def rasterize(meshes, title, subtitle, out, eye=(-1,-1,0.85)):
     draw.text((65,40),title,font=ImageFont.truetype(FONT,38),fill="#253f44")
     draw.text((66,96),subtitle,font=ImageFont.truetype(FONT,21),fill="#526568")
     draw.line((65,1125,1535,1125),fill="#c8d1cc",width=2)
-    draw.text((65,1145),"Sensor Workshop  |  v0.3  |  CAD prototype — physical fit and measurement tests pending",font=ImageFont.truetype(FONT,19),fill="#526568")
+    draw.text((65,1145),"Sensor Workshop  |  v0.4  |  CAD prototype — physical fit and measurement tests pending",font=ImageFont.truetype(FONT,19),fill="#526568")
     result.save(out)
     print("RENDER",out.name,flush=True)
 
 
-def section_plot(ax, meshes, cut, title):
+def section_plot(ax, meshes, cut, title, dimensions=True):
     ax.set_title(title,fontsize=12,loc="left",pad=12)
     for key in ("shell","carrier","feather_frame","feather","display","scd30","rtc","light","battery"):
         mesh=meshes.get(key)
@@ -133,6 +133,7 @@ def section_plot(ax, meshes, cut, title):
     ax.set_aspect("equal");ax.set_xlim(-7,82);ax.set_ylim(-7,75)
     ax.set_xlabel("Front ← Y (mm) → Rear");ax.set_ylabel("Z above desk (mm)")
     ax.grid(alpha=0.12);ax.set_axisbelow(True)
+    if not dimensions:return
     for z,label in [(24,"Carrier"),(8,"Skirt edge")]:
         ax.annotate(label,xy=(66,z),xytext=(70,z+3),fontsize=7,
                     arrowprops=dict(arrowstyle="-",lw=.6,color="#526568"),color="#526568")
@@ -180,31 +181,75 @@ def drawings(scene):
 
 
 def battery_tie_drawing(scene):
-    """Actual CAD sections: open access at the centre, battery support beside it."""
+    """True sections, oriented roof-down as held while threading the ties."""
+    from battery_ties import feed_centerline, installed_centerline
     fig,axes=plt.subplots(1,2,figsize=(12,6.8))
     x=PARAMS['battery_saddles'][0]
-    section_plot(axes[0],{'shell':scene['shell']},x,f"THROUGH CHANNEL · X = {x:g} mm · empty shell")
-    section_plot(axes[1],{k:scene[k] for k in ['shell','battery']},x+3,f"THROUGH CRADLE CHEEK · X = {x+3:g} mm")
+    section_plot(axes[0],{'shell':scene['shell']},x,'1 · FEED THROUGH THE EMPTY SHELL',dimensions=False)
+    section_plot(axes[1],{k:scene[k] for k in ['shell','battery']},x,'2 · FIT BATTERY, THEN CLOSE THE TIE',dimensions=False)
     for ax in axes:
-        ax.set_xlim(30,66);ax.set_ylim(35,63)
+        ax.set_xlim(30,67);ax.set_ylim(27,63);ax.invert_yaxis()
+        ax.set_ylabel('Assembly Z (mm) · roof down')
     top=PARAMS['tie_tunnel_z']+PARAMS['tie_slot_height']/2
-    axes[0].annotate('',xy=(47,top),xytext=(31.5,top),arrowprops=dict(arrowstyle='->',color='#287a77',lw=2))
-    axes[0].text(31.5,top+1.5,'Feed tie',fontsize=9,color='#287a77')
-    axes[0].annotate('5 mm eyelet',xy=(40,53.8),xytext=(31,48.5),fontsize=9,arrowprops=dict(arrowstyle='->',lw=.8))
-    axes[0].annotate('Reach tail\nfrom open bottom',xy=(53,54.2),xytext=(53,40),ha='center',fontsize=9,color='#287a77',arrowprops=dict(arrowstyle='->',color='#287a77',lw=2))
-    axes[1].text(50,40,'Battery envelope',ha='center',fontsize=9,color='white')
-    fig.suptitle('Battery ties: short eyelets, accessible tails',x=.055,ha='left',fontsize=18)
-    fig.text(.055,.035,'Sections from exported shell geometry. Centre channel is open below; 2.2 mm cheeks remain on either side.\nThread both ties before fitting boards or battery. Arrows show access, not a simulated bend path or a physical assembly test.',fontsize=9,color='#526568')
+    route=feed_centerline(PARAMS)
+    axes[0].plot(route[:,0],route[:,1],color='#287a77',lw=2.5)
+    axes[0].annotate('',xy=(45,top),xytext=(32,top),arrowprops=dict(arrowstyle='->',color='#287a77',lw=2))
+    axes[0].annotate('Front eyelet',xy=(40,top),xytext=(31,48),fontsize=9,arrowprops=dict(arrowstyle='->',lw=.8))
+    axes[0].annotate('4 mm-radius\ncurved return',xy=(60.5,53.3),xytext=(47,60),fontsize=9,arrowprops=dict(arrowstyle='->',lw=.8))
+    axes[0].annotate('Tail emerges toward\nthe open underside',xy=(61,43.5),xytext=(39,34),fontsize=9,color='#287a77',arrowprops=dict(arrowstyle='->',color='#287a77',lw=1.4))
+    route=installed_centerline(PARAMS);route=np.vstack([route,route[0]])
+    axes[1].plot(route[:,0],route[:,1],color='#394749',lw=2)
+    axes[1].text(50,40,'Battery',ha='center',fontsize=10,color='white')
+    axes[1].annotate('Second guide',xy=(61,49),xytext=(48,60),fontsize=9,arrowprops=dict(arrowstyle='->',lw=.8))
+    axes[1].annotate('',xy=(50,46),xytext=(50,33),arrowprops=dict(arrowstyle='->',color='#a8583d',lw=2))
+    axes[1].text(31,29,'Tie presses pack toward the cradle',fontsize=8,color='#a8583d')
+    fig.suptitle('Battery ties: guided return and two anchoring points',x=.055,ha='left',fontsize=18)
+    fig.text(.055,.035,'Roof-down sections at X = 23 mm. The guide bridges join the roof through side cheeks outside this cut.\nRoutes are nominal illustrations, not a friction or flexible-tie simulation. Test feeding before installing electronics.',fontsize=9,color='#526568')
     fig.subplots_adjust(left=.075,right=.97,top=.86,bottom=.17,wspace=.24)
     fig.savefig(RENDERS/'battery-tie-access.png',dpi=170)
     fig.savefig(CAD/'battery-tie-access.pdf')
     plt.close(fig)
 
 
+def mounting_guide_drawing(scene):
+    fig,axes=plt.subplots(1,2,figsize=(12,6.8))
+    p=PARAMS;high=p['mount_band_z']+p['mount_groove_width']/2
+    lip=high+p['mount_groove_bevel']+p['mount_guide_land']/2
+    for z,color,label in [(p['mount_band_z'],'#287a77','Groove floor'),(lip,'#a8583d','Raised shoulder')]:
+        section=scene['shell'].section(plane_origin=[0,0,z],plane_normal=[0,0,1])
+        for i,points in enumerate(section.discrete):
+            axes[0].plot(points[:,0],points[:,1],color=color,lw=2,label=label if i==0 else None)
+    axes[0].set_xlim(-3,12);axes[0].set_ylim(-3,12);axes[0].set_aspect('equal')
+    axes[0].set_title('FULL CORNER ARC + 2.5 mm RETURNS',loc='left',fontsize=12)
+    axes[0].set_xlabel('X (mm)');axes[0].set_ylabel('Y (mm)');axes[0].legend(loc='upper right',fontsize=8)
+    section=scene['shell'].section(plane_origin=[0,p['corner_radius'],0],plane_normal=[0,1,0])
+    polys=[points[:,[0,2]] for points in section.discrete if len(points)>3]
+    polys.sort(key=lambda poly:abs(np.sum(poly[:,0]*np.roll(poly[:,1],1)-poly[:,1]*np.roll(poly[:,0],1))),reverse=True)
+    previous=[]
+    for poly in polys:
+        depth=sum(PlotPath(old).contains_point(poly[0]) for old in previous)
+        axes[1].fill(poly[:,0],poly[:,1],color='white' if depth%2 else COLORS['shell'],edgecolor='#334c50',lw=.7)
+        previous.append(poly)
+    axes[1].set_xlim(-5,5);axes[1].set_ylim(23,39);axes[1].set_aspect('equal')
+    axes[1].set_title('RAISED SHOULDERS · WALL KEPT INTACT',loc='left',fontsize=12)
+    axes[1].set_xlabel('X (mm) · outside at left');axes[1].set_ylabel('Assembly Z (mm)')
+    axes[1].annotate('',xy=(-3.3,high),xytext=(-3.3,high-p['mount_groove_width']),arrowprops=dict(arrowstyle='<->',lw=1))
+    axes[1].text(-3.6,p['mount_band_z'],'6 mm',rotation=90,va='center',ha='right')
+    axes[1].annotate('',xy=(-p['mount_groove_depth'],lip),xytext=(0,lip),arrowprops=dict(arrowstyle='<->',lw=1))
+    axes[1].text(-2.6,lip+1.3,'1.6 mm',fontsize=9)
+    for ax in axes:ax.grid(alpha=.12);ax.set_axisbelow(True)
+    fig.suptitle('External tie: four identical corner guides',x=.055,ha='left',fontsize=18)
+    fig.text(.055,.035,'Sections taken from the exported shell. Both shoulders follow the complete 90-degree corner and short straight returns.\nThe nominal 2.4 mm wall is not cut thinner. Guide flanks are 45 degrees; overall width/depth including shoulders is 95.2 × 69.2 mm.',fontsize=9,color='#526568')
+    fig.subplots_adjust(left=.075,right=.97,top=.86,bottom=.17,wspace=.45)
+    fig.savefig(RENDERS/'mounting-guide-details.png',dpi=170)
+    fig.savefig(CAD/'mounting-guide-details.pdf')
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     RENDERS.mkdir(exist_ok=True)
     scene=load_scene()
-    variants=[("assembled","Assembly-access revision · v0.3","92 × 66 × 60.8 mm · integral straight feet · real button access"),
+    variants=[("assembled","Post-print tie-guide revision · v0.4","95.2 × 69.2 × 60.8 mm including corner guides · three printed pieces"),
               ("underside","Downward-facing sensor","Open underside · shallow skirt · one removable carrier plate"),
               ("open","Component layout with shell hidden","Top-mounted boards and tied battery · SCD30 on the bottom plate"),
               ("exploded","Simplified assembly","Two case parts + removable Feather frame · eight M2 board screws and two M3 closure screws"),
@@ -216,10 +261,11 @@ if __name__ == "__main__":
         rasterize(variant(scene,kind),title,subtitle,RENDERS/(kind+".png"),eye=eye)
     drawings(scene)
     battery_tie_drawing(scene)
+    mounting_guide_drawing(scene)
     from mounting import mounting_example
     mounting,_=mounting_example(PARAMS)
     rasterize({**scene,**mounting},'One tie around the body and support',
-        'Shallow side guides · clear controls and underside · Ø32 mm example pole and small non-slip pad',
+        'Four corner guides · clear controls and underside · Ø32 mm example pole and small non-slip pad',
         RENDERS/'pole-mount.png',eye=(-1,-1,.65))
     with PdfPages(CAD/"design-review.pdf") as pdf:
         for name in [x[0] for x in variants]+["sections","mounting-drawings"]:

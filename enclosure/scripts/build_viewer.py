@@ -12,6 +12,7 @@ import numpy as np
 import trimesh
 from render_review import CAD, PARAMS, COLORS, load_scene
 from mounting import mounting_example
+from battery_ties import battery_tie_mesh
 
 
 def box(size, center):
@@ -37,29 +38,7 @@ def screw(point, length, diameter, direction=(0, 0, -1)):
 
 
 def tie_mesh(x):
-    # Nominal 2.5 × 0.8 mm tie, through the short eyelet and open-bottom channel.
-    top=PARAMS['tie_tunnel_z']+PARAMS['tie_slot_height']/2
-    yz=np.array([[37,top],[63,top],[63,38],[59,32],[54,30],[46,30],[41,32],[37,38]],float)
-    points=[]
-    for i,b in enumerate(yz):
-        a=yz[(i-1)%len(yz)];c=yz[(i+1)%len(yz)]
-        d=min(1.,np.linalg.norm(a-b)/3,np.linalg.norm(c-b)/3)
-        start=b+(a-b)/np.linalg.norm(a-b)*d;end=b+(c-b)/np.linalg.norm(c-b)*d
-        for t in np.linspace(0,1,8):points.append((1-t)**2*start+2*(1-t)*t*b+t*t*end)
-    points=np.array(points);tangent=np.roll(points,-1,axis=0)-np.roll(points,1,axis=0);tangent/=np.linalg.norm(tangent,axis=1)[:,None]
-    n=np.c_[-tangent[:,1],tangent[:,0]]
-    vertices=[]
-    for p,v in zip(points,n):
-        for dx,dn in [(-1.25,-.4),(1.25,-.4),(1.25,.4),(-1.25,.4)]:vertices.append([x+dx,*(p+v*dn)])
-    faces=[]
-    for i in range(len(points)):
-        for j in range(4):
-            a=i*4+j;b=i*4+(j+1)%4;c=((i+1)%len(points))*4+(j+1)%4;d=((i+1)%len(points))*4+j
-            faces.extend([[a,b,c],[a,c,d]])
-    ribbon=trimesh.Trimesh(vertices=vertices,faces=faces)
-    ribbon.fix_normals()
-    head=box([4.5,4,3],[x,50,29.5])
-    return trimesh.util.concatenate([ribbon,head])
+    return battery_tie_mesh(x,PARAMS)
 
 
 def main():
@@ -72,9 +51,9 @@ def main():
     holder.apply_translation([coin_center[0],coin_center[1],z-1.6])
     scene['rtc']=trimesh.util.concatenate([top,holder])
     items=[]
-    def add(key,label,group,mesh,color,delta,note,parent=None,cable=False,default_visible=True):
+    def add(key,label,group,mesh,color,delta,note,parent=None,cable=False,default_visible=True,cap_x=None):
         packed=np.concatenate([mesh.triangles,np.repeat(mesh.face_normals[:,None,:],3,axis=1)],axis=2).astype('<f4')
-        items.append(dict(id=key,label=label,group=group,color=color,delta=delta,note=note,parent=parent,cable=cable,defaultVisible=default_visible,
+        items.append(dict(id=key,label=label,group=group,color=color,delta=delta,note=note,parent=parent,cable=cable,defaultVisible=default_visible,capX=cap_x,
                           bounds=mesh.bounds.tolist(),count=len(mesh.faces)*3,data=base64.b64encode(packed.tobytes()).decode('ascii')))
     deltas={'shell':[0,0,0],'carrier':[0,0,-46],'feather':[0,0,-80],'feather_frame':[0,0,-80],'light':[0,0,-18],
             'rtc':[25,0,-18],'scd30':[0,0,-65],'battery':[0,22,-22]}
@@ -86,7 +65,7 @@ def main():
         ('light','VEML7700 light sensor','Electronics','Faces upward through the roof aperture. Two screws and two locating pins.'),
         ('rtc','DS3231 RTC + holder','Electronics','Rotated 90° so QT sockets face front/rear. Two screws, two washers.'),
         ('scd30','SCD30 · facing downward','Electronics','Mounted under the carrier. The underside is open; the shallow skirt gives shade.'),
-        ('battery','Protected 18650 pack','Electronics','Local pack envelope Ø20 × 72 mm; two soft zip ties in printed cradles. Direct battery connection.')]
+        ('battery','Protected 18650 pack','Electronics','Local pack envelope Ø20 × 72 mm; two ties through front and rear cradle guides. Direct battery connection.')]
     for key,label,group,note in defs:add(key,label,group,scene[key],COLORS[key],deltas[key],note)
     add('display','Display face','_attached',scene['display'],COLORS['display'],deltas['feather'],'',parent='feather')
     add('coin','CR1220 backup cell','Electronics',cylinder(6,2,coin_center),'#c1c7cb',[25,0,-26],'Local non-rechargeable backup cell.')
@@ -107,18 +86,28 @@ def main():
     for i,p in enumerate(PARAMS['case_mounts']):
         add(f'case-screw-{i}',f'Closure screw {i+1} · M3 × 8','Fasteners',screw([*p,PARAMS['carrier_z']],8,3,[0,0,1]),'#a3adb4',[0,0,-58],'Threads into a printed pilot. No nuts or heat-set inserts.')
     for i,x in enumerate(PARAMS['battery_saddles']):
-        add(f'tie-{i}',f'Battery zip tie {i+1}','Wiring',tie_mesh(x),'#717b78',deltas['battery'],'Thread through the 5 mm front eyelet while the shell is empty; reach the tail through the open-bottom channel. Fit the battery afterward and tighten gently.')
+        add(f'tie-{i}',f'Battery zip tie {i+1}','Wiring',tie_mesh(x),'#717b78',deltas['battery'],'Feed through the front eyelet in the empty shell. The curved return turns the tail toward the opening through a second guide. Fit the battery between the tails and tighten gently into its cradle.')
     for c in json.loads((CAD/'generated/cable-metadata.json').read_text()):
         add(c['id'],c['label'],'_attached' if c['parent'] else 'Wiring',scene[c['mesh']],c['color'],[0,0,0],c['note'],parent=c['parent'],cable=True)
     mounting,route=mounting_example(PARAMS)
     for key,label,note in [
-        ('mount_tie','Optional full-wrap mounting tie','One external 4.8 mm tie wraps the body and support, in the shallow side grooves below the controls. Head stays on the right side. Snug only; check grip on the pilot.'),
+        ('mount_tie','Optional full-wrap mounting tie','One external 4.8 mm tie wraps the body and support, between raised shoulders around all four corners below the controls. Head stays on the right side. Snug only; check grip on the pilot.'),
         ('mount_pole','Example pole · Ø32 mm','Illustrative support, not a kit component. Keep the device upright with the light opening above and the CO₂ sensor below.'),
         ('mount_pad','Example non-slip pad · 2 mm','A small rubber pad improves grip and spaces the case from the support. Keep it below the rear vents. Nominal undeformed illustration.')]:
         add(key,label,'Mounting example',mounting[key],COLORS[key],[0,0,0],note,default_visible=False)
     (CAD/'generated/mounting-route.json').write_text(json.dumps(route,indent=2)+'\n')
+    # Filled faces at the battery-tie inspection plane make the guide section
+    # readable; the normal interactive cutaway remains available at other X/Y.
+    cut_x=PARAMS['battery_saddles'][0]
+    halfspace=box([200,200,200],[cut_x+100,PARAMS['case_depth']/2,PARAMS['case_top']/2])
+    for parent,mesh,color in [('shell',scene['shell'],COLORS['shell']),('battery',scene['battery'],COLORS['battery']),('tie-0',tie_mesh(cut_x),'#717b78')]:
+        clipped=trimesh.boolean.intersection([mesh,halfspace],engine='manifold')
+        mask=np.all(np.abs(clipped.triangles[:,:,0]-cut_x)<1e-5,axis=1)
+        cap=clipped.submesh([mask],append=True)
+        assert len(cap.faces)>0,parent
+        add('section-cap-'+parent,'','_attached',cap,color,[0,0,0],'',parent=parent,cap_x=cut_x)
     count=sum(x['group']!='_attached' for x in items)
-    meta=dict(version='0.3',units='mm',size=[92,66,60.8],parts=items,
+    meta=dict(version='0.4',units='mm',size=[PARAMS["case_width"],PARAMS["case_depth"],PARAMS["case_top"]+PARAMS["roof_thickness"]],overall_size=scene["shell"].extents.round(3).tolist(),parts=items,
               source_sha256=hashlib.sha256((CAD/'sensor-workshop.scad').read_bytes()+(CAD/'parameters.scad').read_bytes()).hexdigest())
     template=(CAD/'viewer/template.html').read_text()
     result=template.replace('__MODEL_JSON__',json.dumps(meta,separators=(',',':'))).replace('__VIEWER_JS__',(CAD/'viewer/viewer.js').read_text())

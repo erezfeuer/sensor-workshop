@@ -12,8 +12,8 @@ varying vec3 vNormal,vPosition;
 void main(){vec3 p=aPosition+uOffset;vec3 q=p-uTarget;vPosition=p;vNormal=aNormal;
 gl_Position=vec4(dot(q,uRight)/uHalf.x,dot(q,uUp)/uHalf.y,-dot(q,uEye)/1000.0,1.0);}`;
 const fragment = `precision mediump float; varying vec3 vNormal,vPosition;
-uniform vec3 uColor; uniform int uCut; uniform float uCutPosition;
-void main(){if(uCut==1 && vPosition.x<uCutPosition)discard;if(uCut==2 && vPosition.y<uCutPosition)discard;
+uniform vec3 uColor; uniform int uCut; uniform float uCutPosition,uSectionMaxX;
+void main(){if(uSectionMaxX>0.0 && vPosition.x>uSectionMaxX)discard;if(uCut==1 && vPosition.x<uCutPosition)discard;if(uCut==2 && vPosition.y<uCutPosition)discard;
 vec3 n=normalize(vNormal);if(!gl_FrontFacing)n=-n;
 float light=0.53+0.35*max(0.0,dot(n,normalize(vec3(-0.6,-0.8,1.5))))+0.12*max(0.0,dot(n,normalize(vec3(1.0,0.5,0.3))));
 gl_FragColor=vec4(uColor*light,1.0);}`;
@@ -22,7 +22,7 @@ let program;
 try { program=gl.createProgram();gl.attachShader(program,shader(gl.VERTEX_SHADER,vertex));gl.attachShader(program,shader(gl.FRAGMENT_SHADER,fragment));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program)); }
 catch(e){$('error').hidden=false;$('error').textContent='The 3D renderer could not start: '+e.message;return;}
 gl.useProgram(program);gl.enable(gl.DEPTH_TEST);gl.clearColor(245/255,246/255,242/255,1);
-const uniforms={};for(const name of ['Offset','Target','Right','Up','Eye','Half','Color','Cut','CutPosition'])uniforms[name]=gl.getUniformLocation(program,'u'+name);
+const uniforms={};for(const name of ['Offset','Target','Right','Up','Eye','Half','Color','Cut','CutPosition','SectionMaxX'])uniforms[name]=gl.getUniformLocation(program,'u'+name);
 const position=gl.getAttribLocation(program,'aPosition'),normal=gl.getAttribLocation(program,'aNormal');
 gl.enableVertexAttribArray(position);gl.enableVertexAttribArray(normal);
 const parts=data.parts.map(p=>{
@@ -31,20 +31,20 @@ const parts=data.parts.map(p=>{
  p.rgb=p.color.match(/\w\w/g).map(c=>parseInt(c,16)/255);p.visible=p.defaultVisible!==false;delete p.data;return p;
 });
 const selectable=parts.filter(p=>p.group!=='_attached'), byId=Object.fromEntries(parts.map(p=>[p.id,p]));
-let motion='explode',explosion=0,yaw=-Math.PI*.73,pitch=.55,target=[46,33,30],halfHeight=72,cut='none',cutPosition=48,highlight=null,framePending=false;
+let motion='explode',explosion=0,yaw=-Math.PI*.73,pitch=.55,target=[46,33,30],halfHeight=72,cut='none',cutPosition=48,tieSection=false,highlight=null,framePending=false;
 const clamp=(x,lo,hi)=>Math.max(lo,Math.min(hi,x));
 const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
 function axes(){const cp=Math.cos(pitch),sp=Math.sin(pitch),cy=Math.cos(yaw),sy=Math.sin(yaw);return {eye:[cp*cy,cp*sy,sp],right:[-sy,cy,0],up:[-sp*cy,-sp*sy,cp]};}
 function offset(p){if(motion==='feather')return [0,0,featherPart(p)?-80*explosion:0];return p.delta.map(x=>x*explosion);}
 function featherPart(p){return p.id==='feather'||p.id==='feather_frame'||p.id==='display'||p.id.startsWith('feather-screw');}
 function removedForAccess(p){return motion==='feather'&&(p.cable||p.id==='carrier'||p.id.startsWith('scd30')||p.id.startsWith('case-screw'));}
-function visible(p){if(p.parent)return visible(byId[p.parent]);return p.visible && !removedForAccess(p) && !(p.cable&&explosion>0);}
+function visible(p){if(p.capX!=null&&(cut!=='x'||Math.abs(cutPosition-p.capX)>.001||explosion>0))return false;if(p.parent)return visible(byId[p.parent]);return p.visible && !removedForAccess(p) && !(p.cable&&explosion>0);}
 function schedule(){if(!framePending){framePending=true;requestAnimationFrame(render);}}
 function render(){
  framePending=false;const dpr=Math.min(window.devicePixelRatio||1,2),w=Math.round(canvas.clientWidth*dpr),h=Math.round(canvas.clientHeight*dpr);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
  gl.viewport(0,0,w,h);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);const a=axes();
  for(const k of ['eye','right','up'])gl.uniform3fv(uniforms[k[0].toUpperCase()+k.slice(1)],a[k]);
- gl.uniform3fv(uniforms.Target,target);gl.uniform2f(uniforms.Half,halfHeight*w/h,halfHeight);gl.uniform1i(uniforms.Cut,cut==='x'?1:cut==='y'?2:0);gl.uniform1f(uniforms.CutPosition,cutPosition);
+ gl.uniform3fv(uniforms.Target,target);gl.uniform2f(uniforms.Half,halfHeight*w/h,halfHeight);gl.uniform1i(uniforms.Cut,cut==='x'?1:cut==='y'?2:0);gl.uniform1f(uniforms.CutPosition,cutPosition);gl.uniform1f(uniforms.SectionMaxX,tieSection?23.1:-1);
  for(const p of parts){if(!visible(p))continue;gl.bindBuffer(gl.ARRAY_BUFFER,p.buffer);gl.vertexAttribPointer(position,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(normal,3,gl.FLOAT,false,24,12);gl.uniform3fv(uniforms.Offset,offset(p));gl.uniform3fv(uniforms.Color,p.id===highlight?p.rgb.map(v=>v*.65+.35):p.rgb);gl.drawArrays(gl.TRIANGLES,0,p.count);}
  $('scale-label').textContent=`View height ${(halfHeight*2).toFixed(0)} mm · ${Math.round(explosion*100)}% ${motion==='feather'?'withdrawn':'exploded'}`;
  canvas.dataset.rendered='true';canvas.dataset.explosion=String(explosion);canvas.dataset.visible=String(selectable.filter(visible).length);
@@ -64,12 +64,13 @@ $('motion').onchange=()=>{motion=$('motion').value;$('motion-title').textContent
 $('explode').addEventListener('input',e=>setExplosion(e.target.value));$('assemble').onclick=()=>setExplosion(0);$('explode-all').onclick=()=>setExplosion(100);
 $('show-all').onclick=()=>{selectable.forEach(p=>p.visible=true);sync();};$('hide-all').onclick=()=>{selectable.forEach(p=>p.visible=false);sync();};
 $('inside').onclick=()=>{selectable.forEach(p=>p.visible=p.defaultVisible!==false);byId.shell.visible=false;sync();};
-function updateCut(){cut=$('cut').value;$('cut-position').style.display=cut==='none'?'none':'block';$('cut-position').max=cut==='y'?data.size[1]:data.size[0];cutPosition=Number($('cut-position').value);$('cut-note').textContent=cut==='none'?'Explore the complete housing or slice through it.':`${cut.toUpperCase()} = ${cutPosition} mm · uncapped cutaway; see sections.pdf for filled engineering sections.`;schedule();}
+function updateCut(){tieSection=false;cut=$('cut').value;$('cut-position').style.display=cut==='none'?'none':'block';$('cut-position').max=cut==='y'?data.size[1]:data.size[0];cutPosition=Number($('cut-position').value);$('cut-note').textContent=cut==='none'?'Explore the complete housing or slice through it.':`${cut.toUpperCase()} = ${cutPosition} mm · ${cut==='x'&&cutPosition===23?'filled section of shell, battery and first tie':'uncapped cutaway; see sections.pdf for filled engineering sections'}.`;schedule();}
 $('cut').onchange=()=>{$('cut-position').value=$('cut').value==='y'?33:43;updateCut();};$('cut-position').oninput=updateCut;
 for(const btn of document.querySelectorAll('[data-view]'))btn.onclick=()=>{const v=btn.dataset.view;[yaw,pitch]=v==='front'?[-Math.PI/2,0]:v==='left'?[Math.PI,0]:v==='bottom'?[-Math.PI/2,-1.15]:v==='top'?[-Math.PI/2,Math.PI/2-.0001]:[-Math.PI*.73,.55];fit();};
 $('fit').onclick=fit;$('reset').onclick=()=>{motion='explode';$('motion').value='explode';$('motion-title').textContent='Explode assembly';selectable.forEach(p=>p.visible=p.defaultVisible!==false);highlight=null;showInfo({label:'Ready to explore',note:'Untick the shell to inspect the electronics, or choose Underside to see the sensor.'});yaw=-Math.PI*.73;pitch=.55;$('cut').value='none';updateCut();setExplosion(0);};
-$('tie-access').onclick=()=>{$('reset').click();selectable.forEach(p=>p.visible=p.id==='shell'||p.id.startsWith('tie-'));yaw=-Math.PI/2;pitch=-1.15;showInfo({label:'Thread ties before fitting the battery',note:'Feed each tie through its short front eyelet. The channel behind it is open from below, so the tail can be reached directly. Boards and battery are hidden for access.'});sync();fit();};
-$('pole-mount').onclick=()=>{$('reset').click();selectable.forEach(p=>p.visible=true);yaw=-Math.PI*.78;pitch=.35;showInfo({label:'One tie around the body and support',note:'The band follows shallow side grooves below the controls. A small pad improves grip and leaves space behind the vents. Example: Ø32 mm pole; check the actual tie length and grip before hanging the device.'});sync();fit();};
+$('tie-access').onclick=()=>{$('reset').click();selectable.forEach(p=>p.visible=p.id==='shell'||p.id.startsWith('tie-'));yaw=-Math.PI/2;pitch=-1.15;showInfo({label:'Thread ties before fitting the battery',note:'Feed each tie through the front eyelet. A curved return redirects the tail through the rear guide toward the open underside. Thread before fitting boards or battery; use Tie section to inspect the path.'});sync();fit();};
+$('tie-section').onclick=()=>{$('reset').click();selectable.forEach(p=>p.visible=['shell','battery','tie-0'].includes(p.id));$('cut').value='x';$('cut-position').value=23;updateCut();tieSection=true;yaw=Math.PI;pitch=0;showInfo({label:'Two guides clamp the battery into its cradle',note:'Filled section through the first tie: the front eyelet feeds a curved rear return, whose outlet faces the open underside. Side cheeks outside this cut join both guides to the roof. Thread while empty, then fit the battery.'});sync();target=[23,49,44];halfHeight=23;schedule();};
+$('pole-mount').onclick=()=>{$('reset').click();selectable.forEach(p=>p.visible=true);yaw=-Math.PI*.78;pitch=.35;showInfo({label:'One tie around the body and support',note:'The band sits between raised shoulders around all four corners, below the controls. A small pad improves grip and leaves space behind the vents. Example: Ø32 mm pole; check the actual tie length and grip before hanging the device.'});sync();fit();};
 function pan(dx,dy){const a=axes(),factor=2*halfHeight/canvas.clientHeight;target=target.map((v,i)=>v-a.right[i]*dx*factor+a.up[i]*dy*factor);}
 let pointers=new Map(),gesture=null;
 function snapshot(){const p=[...pointers.values()];return {x:p.reduce((s,v)=>s+v.x,0)/p.length,y:p.reduce((s,v)=>s+v.y,0)/p.length,d:p.length===2?Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y):0,n:p.length};}
@@ -83,5 +84,5 @@ canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('error').hid
 new ResizeObserver(()=>schedule()).observe(canvas);
 sync();fit();
 // Small read-only state surface for reproducible offline browser checks.
-window.sensorWorkshop={state:()=>({motion,explosion,cut,cutPosition,target:[...target],yaw,pitch,halfHeight,components:selectable.map(p=>({id:p.id,visible:visible(p),defaultVisible:p.defaultVisible!==false,offset:offset(p),group:p.group,cable:!!p.cable})),version:data.version,glError:gl.getError()})};
+window.sensorWorkshop={state:()=>({motion,explosion,cut,cutPosition,tieSection,target:[...target],yaw,pitch,halfHeight,components:selectable.map(p=>({id:p.id,visible:visible(p),defaultVisible:p.defaultVisible!==false,offset:offset(p),group:p.group,cable:!!p.cable})),version:data.version,glError:gl.getError()})};
 })();

@@ -1,6 +1,6 @@
-# Printability review — v0.3
+# Printability review — v0.4
 
-The design keeps **three printed pieces** and uses their assembly layout to give each a flat printing face. This is a geometry review; no slicing or physical printing has been performed. The **[production-stls/](../production-stls/)** folder contains exactly the three separate files to print, one of each per device. Import at **100% scale in millimetres** and keep the supplied orientations.
+The design keeps **three printed pieces** and uses their assembly layout to give each a flat printing face. The previous shell printed well in Erez’s PLA/X1 Carbon trial. The revised tie guides have been reviewed geometrically but have not yet been printed or sliced here. The **[production-stls/](../production-stls/)** folder contains exactly the three separate files to print, one of each per device. Import at **100% scale in millimetres** and keep the supplied orientations.
 
 For the first test, **print the shell separately**, then print the **carrier and Feather frame together**. The shell has the openings and flare that may need support tuning; the smaller parts have straightforward flat printing faces. After the fit and settings are confirmed, all three can share a plate using normal layer-by-layer printing, with local support settings applied to the shell as needed.
 
@@ -14,8 +14,8 @@ For the first test, **print the shell separately**, then print the **carrier and
 
 - **Carrier seating ledge:** a 1.4 mm rise/run ramp backs the ledge. With the shell roof down, the ramp grows from the wall before reaching the seating ledge, replacing a sudden unsupported projection. The flat carrier contact face and insertion clearance remain unchanged.
 - **Light opening:** the inner opening remains **12 × 6 mm**; the outer mouth is now **17 × 16 mm** through the 2.4 mm roof. The nominal flare faces are about **46° / 64° from vertical**. This deliberately opens the view beyond the earlier 45° flare; small removable supports are acceptable here. Actual sensor angular response still needs a pilot comparison.
-- **Battery ties:** each 8 mm cradle now has a **5 mm enclosed eyelet** and **20 mm open-bottom channel**. The 3.6 mm passage has a 4.8 mm flared entrance; the channel's side cheeks are 2.2 mm thick. The tail can be reached from below, and any cleanup is accessible before assembly.
-- **Mounting guides:** shallow side grooves locate a full-wrap external tie. Their 0.5 mm transitions are chamfered, and there are no projecting mounting ears to support.
+- **Battery ties:** each 8 mm cradle has a **5 mm front eyelet**, a **14.5 mm accessible middle channel**, and a **4 mm-radius return into a second eyelet**. The turn redirects the tail toward the open underside. The nominal passage remains 3.6 × 2.4 mm, with flared mouths and 2.2 mm side cheeks. Small roofs across this passage bridge 3.6 mm; inspect for droop or roughness that could catch the tip.
+- **Mounting guides:** paired shoulders wrap all four corner arcs and short tangent returns. They form **1.6 mm-deep grooves without thinning the 2.4 mm wall**. Both flanks have 1.6 mm rise/run chamfers, so the lower shoulder grows gradually in roof-down printing. There are no separate ears or extra printed pieces.
 - **Battery end stops:** the two thin end flaps have been removed; the existing cradles and ties retain the pack.
 
 The carrier ledge retains its 45° slope; the light flare prioritizes a wider opening. Neither geometry is a print-quality guarantee for every printer or filament. Orientation, cooling, layer height and extrusion width affect the result. Chamfers are preferable to rounding an underside into a steep overhang; supported surfaces can also need cleanup. [Prusa's design guidance](https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135)
@@ -28,7 +28,7 @@ The carrier ledge retains its 45° slope; the light flare prioritizes a wider op
 | USB opening | 10.8 mm | Inspect the first bridge in the pilot; local support is acceptable if needed. |
 | Three-button slot | 7 mm | Short bridge; inspect for droop that could restrict button access. |
 | Rear vents | 4 mm | Short bridges; keep the slots clear. |
-| Battery-tie eyelets | 3.6 mm across X; 4.8 mm at the entrance | Short bridges over a 5 mm feed length. Keep the open-bottom channel clear; inspect both eyelets before fitting boards. |
+| Battery-tie guides | 3.6 mm across X; 4.8 mm at the mouths | Inspect the front eyelet, curved return and rear exit. Clear roughness from the accessible middle/ends, then feed a real tie before fitting boards. |
 | Light flare | 17 × 16 mm outer mouth, 12 × 6 mm throat | Allow local support under the steeper flare faces; remove it through the roof opening before fitting the light board. |
 | RESET hole | 2 mm | Small horizontal hole; check that the blunt reset tool can pass after printing. |
 
@@ -37,6 +37,12 @@ For the roof-down shell, the display bridge is the **lower edge of the window wh
 Keep supports off the Feather's sliding faces, small locating pins, screw pilots and carrier mating edge wherever possible. Do not fill the case with broad automatic supports. If a small opening really requires support, choose a placement that can be reached with a tool afterward.
 
 The rounded battery cradle is not an unsupported arch in this orientation: its solid back prints first, then the open saddle forms as the print grows away from the roof. The thermal carrier's four connecting strips are also **in the bed plane**, not unsupported extrusion bridges.
+
+## First-print feedback — 15 November 2026
+
+The user reports that the previous shell printed well in PLA on a Bambu Lab X1 Carbon. The observed problems were tie retention on the flat exterior faces and battery-tie tails running into the rear/roof corner. v0.4 addresses those two points. **Reprint only `01-shell.stl`**; the carrier and Feather frame STLs are byte-for-byte unchanged. M2 pilots remain **1.8 mm** and M3 pilots **2.6 mm**, pending the user’s screw-fit test.
+
+For the revised shell, test the two curved feeds while empty, then the battery clamping action and the external tie’s seating at the corners. The existing geometric checks cannot prove how a real nylon tip bends or slides.
 
 ## Before printing many units
 

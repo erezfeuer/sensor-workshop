@@ -11,7 +11,7 @@ from shapely.ops import unary_union
 def mounting_example(p):
     w,d,r=p['case_width'],p['case_depth'],p['corner_radius']
     body=box(r,r,w-r,d-r).buffer(r,quad_segs=12)
-    body=body.intersection(box(p['mount_groove_depth'],-1,w-p['mount_groove_depth'],d+1))
+    # The strap bears on the original rounded corners, between raised shoulders.
     radius=p['mount_example_pole_diameter']/2
     pole_xy=[w/2,d+p['mount_example_pad_thickness']+radius]
     pole_outline=Point(pole_xy).buffer(radius,quad_segs=24)
@@ -32,5 +32,7 @@ def mounting_example(p):
         'pole_diameter_mm':p['mount_example_pole_diameter'],
         'pad_thickness_mm':p['mount_example_pad_thickness'],
         'tie_width_mm':p['mount_band_width'],
+        'corner_guides':4,
+        'guide_depth_mm':p['mount_groove_depth'],
         'illustrated_loop_length_mm':round(hull.buffer(.8,quad_segs=12).exterior.length,1),
         'note':'Loop length excludes locking-head allowance and the free tail needed to thread and tighten. This is not a load rating.'}

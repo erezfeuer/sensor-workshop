@@ -9,6 +9,7 @@ import numpy as np
 import trimesh
 from render_review import CAD, PARAMS as p
 from build_viewer import screw, box
+from battery_ties import feed_centerline, ribbon_mesh
 warnings.filterwarnings('ignore',category=RuntimeWarning,module='trimesh.triangles')
 
 def overlap(a,b):
@@ -47,24 +48,26 @@ for dz in [-40,-20,-5,0]:
 report['sliding_margin_check']={'xy_offsets_mm':[-.1,.1],'z_offsets_mm':[-40,-20,-5,0],
     'checks':64,'note':'Small rigid offsets, not a model of print tolerances or deformation.'}
 
-# Pre-thread ties in the empty shell. Check both the short feed and a direct
-# path from the open bottom to the emerging tail, not merely a finished loop.
-front=p['battery_center'][1]-12.5
-tie_z=p['tie_tunnel_z']+p['tie_slot_height']/2
-reach_start=front+p['tie_eyelet_length']+1
-reach_end=front+24
+# The first physical print exposed a feed problem despite clear rigid paths.
+# Check the NEW nominal curved route and exposed tail, without claiming that
+# these rigid checks establish flexible-tip feeding, friction or tightening.
+feed_points=feed_centerline(p)
+exit_y=p['tie_turn_start_y']+p['tie_turn_radius']
 base=p['carrier_z']+p['carrier_thickness']
 report['battery_tie_access']=[]
 for x in p['battery_saddles']:
-    feed_start=front-10;feed_end=reach_start+3
-    feed=box([2.5,feed_end-feed_start,.8],[x,(feed_start+feed_end)/2,tie_z])
-    reach=box([2.5,reach_end-reach_start,tie_z+.4-base],[x,(reach_start+reach_end)/2,(base+tie_z+.4)/2])
-    for name,envelope in [('front feed',feed),('tail access from below',reach)]:
+    feed=ribbon_mesh(x,feed_points)
+    end=p['tie_exit_z']-.6
+    reach=box([2.5,1.6,end-base],[x,exit_y,(base+end)/2])
+    assert feed.is_watertight
+    for name,envelope in [('feed through curved return',feed),('tail access below rear guide',reach)]:
         assert overlap(envelope,meshes['shell'])<.001,('battery tie',x,name)
     report['battery_tie_access'].append({'cradle_x_mm':x,'closed_feed_length_mm':p['tie_eyelet_length'],
         'slot_mm':[p['tie_slot_width'],p['tie_slot_height']],
-        'checks':['2.5 x 0.8 mm straight tie feed','open vertical access to tail behind eyelet'],
-        'stage':'Empty shell, before boards and battery; rigid envelopes, not a finger or flexible-tie simulation.'})
+        'turn_centerline_radius_mm':p['tie_turn_radius'],'guides_per_tie':2,
+        'rear_exit_yz_mm':[exit_y,p['tie_exit_z']],
+        'checks':['2.5 x 0.8 mm ribbon through front eyelet and 90-degree return','open vertical access to tail below second guide'],
+        'stage':'Empty shell, before boards and battery. Nominal curved path; real tie-tip feeding still needs the revised print.'})
 
 report['other_insertion_paths']=[]
 for label,parts,obstacles in [
@@ -111,6 +114,7 @@ for i in p['board_screw_indices']:
 report['limitations']=['Sampled nominal rigid-motion check, not a continuous clearance proof.',
     'Print tolerance, flex, omitted small components, real screw heads, hands and driver handles need a physical pilot.',
     'Both Feather leads must be unplugged before withdrawal; cable deformation is not simulated.',
-    'SCD30 is screwed to its carrier outside the housing.']
+    'SCD30 is screwed to its carrier outside the housing.',
+    'The curved battery-tie route is prescribed; tip bending, friction and feeding reliability require a physical trial.']
 (CAD/'generated/assembly-checks.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))

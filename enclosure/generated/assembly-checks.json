@@ -97,11 +97,17 @@
         3.6,
         2.4
       ],
-      "checks": [
-        "2.5 x 0.8 mm straight tie feed",
-        "open vertical access to tail behind eyelet"
+      "turn_centerline_radius_mm": 4,
+      "guides_per_tie": 2,
+      "rear_exit_yz_mm": [
+        61,
+        48.5
       ],
-      "stage": "Empty shell, before boards and battery; rigid envelopes, not a finger or flexible-tie simulation."
+      "checks": [
+        "2.5 x 0.8 mm ribbon through front eyelet and 90-degree return",
+        "open vertical access to tail below second guide"
+      ],
+      "stage": "Empty shell, before boards and battery. Nominal curved path; real tie-tip feeding still needs the revised print."
     },
     {
       "cradle_x_mm": 79,
@@ -110,11 +116,17 @@
         3.6,
         2.4
       ],
-      "checks": [
-        "2.5 x 0.8 mm straight tie feed",
-        "open vertical access to tail behind eyelet"
+      "turn_centerline_radius_mm": 4,
+      "guides_per_tie": 2,
+      "rear_exit_yz_mm": [
+        61,
+        48.5
       ],
-      "stage": "Empty shell, before boards and battery; rigid envelopes, not a finger or flexible-tie simulation."
+      "checks": [
+        "2.5 x 0.8 mm ribbon through front eyelet and 90-degree return",
+        "open vertical access to tail below second guide"
+      ],
+      "stage": "Empty shell, before boards and battery. Nominal curved path; real tie-tip feeding still needs the revised print."
     }
   ],
   "other_insertion_paths": [
@@ -141,6 +153,7 @@
     "Sampled nominal rigid-motion check, not a continuous clearance proof.",
     "Print tolerance, flex, omitted small components, real screw heads, hands and driver handles need a physical pilot.",
     "Both Feather leads must be unplugged before withdrawal; cable deformation is not simulated.",
-    "SCD30 is screwed to its carrier outside the housing."
+    "SCD30 is screwed to its carrier outside the housing.",
+    "The curved battery-tie route is prescribed; tip bending, friction and feeding reliability require a physical trial."
   ]
 }

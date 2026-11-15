@@ -1,17 +1,19 @@
 # Mounting away from a tabletop
 
-Use **one external zip tie around the whole enclosure and its support**, guided by shallow grooves in the two side walls. The band sits below the controls. The case keeps its straight feet and three printed pieces; there are no projecting mounting ears.
+Use **one external zip tie around the whole enclosure and its support**, guided by grooves around all four corners. The band sits below the controls. The case keeps its straight feet and three printed pieces; there are no projecting mounting ears.
 
 | Approach considered | Advantage | Tradeoff |
 | --- | --- | --- |
 | Rear printed anchors | Front remains clear of a strap | Strap force is concentrated at the printed anchors and their roots; threading also needs access behind the case. |
-| **Full-body wrap with side guides — selected** | Load is carried around the case walls; no projecting tabs or additional printed part | A band is visible across the lower front. Holding force still depends on tie tension and friction against the support. |
+| **Full-body wrap with corner guides — selected** | Tie bears on rounded case corners; no separate tabs or additional printed part | A band is visible across the lower front. Holding force still depends on tie tension and friction against the support. |
 
 This is a mechanical design rationale, not a tested strength comparison or load rating.
 
 ## Route and appearance
 
-The **4.8 mm band** is centred **31 mm above the feet**. Each side groove is **6 mm high and 0.5 mm deep**, with **0.5 mm chamfered transitions**. The grooves extend to the rounded corners so the taut band can seat in them, rather than bridging over a small isolated recess. Side-wall material remains **1.9 mm thick** at the groove.
+The **4.8 mm band** is centred **31 mm above the feet**. Each corner has a **6 mm-wide channel between two raised shoulders**, **1.6 mm deep relative to the shoulder crests**. Each pair follows the complete 90° corner arc and returns **2.5 mm onto both adjoining faces**. This puts the guides where a tensioned strap contacts the case, including when it bows away from a flat face. All four corners use the same geometry.
+
+The channel floor is the original case surface: the **nominal 2.4 mm wall is not cut thinner**. Both shoulder flanks are 45° chamfers for roof-down printing. The small projections increase overall width/depth to **95.2 × 69.2 mm**; the main body and straight feet remain 92 × 66 mm. See [actual corner cross-sections](mounting-guide-details.pdf).
 
 The band has **1.17 mm nominal vertical clearance below the button opening**, **5.1 mm below the USB opening**, and sits above the carrier joint. Its locking head goes on the **right side**. The light opening, rear vents and downward-facing sensor remain clear of the strap. Keep the device upright with the light sensor on top.
 
@@ -25,10 +27,10 @@ The illustration uses a **Ø32 mm pole** and a small **2 mm non-slip pad** betwe
 
 1. Finish assembling and checking the device before attaching it to the support.
 2. If needed for grip, place a small non-slip rubber pad behind the band, below the rear vents. The example pad is 18 × 16 mm; its 2 mm thickness also leaves space between the support and the case. Actual compression and grip are not simulated.
-3. Run the long tie around both the enclosure and support, seated in both side grooves. Put the head on the right side and tighten only until the device is held firmly; do not deform the case.
+3. Run the long tie around both the enclosure and support, seated between the corner shoulders. Put the head on the right side and tighten only until the device is held firmly; do not deform the case.
 4. While supporting the device by hand, check that it does not slide down, twist around the pole or tip forward. Confirm the buttons, USB access and bottom carrier are still usable. Adjust the pad/attachment if the grip is insufficient rather than crushing the shell tighter.
 
-The same principle works with a rail or wire-mesh support. A **bare wall needs a suitable wall-mounted eye or bracket** through which the tie can pass; there is no dedicated screw/keyhole mounting interface in the case. Site-specific anchors, tie suitability and long-term retention still need a pilot check.
+The four-corner layout also lets the wrap approach a support behind or beside the case; keep the light sensor upward and the CO₂ sensor downward. The same principle works with a rail or wire-mesh support. A **bare wall needs a suitable wall-mounted eye or bracket** through which the tie can pass; there is no dedicated screw/keyhole mounting interface in the case. Site-specific anchors, tie suitability and long-term retention still need a pilot check.
 
 The pole example is a nominal geometric route. It does not simulate tie tension, friction, printed-plastic creep or mounting loads. Mounting may also change airflow and temperature bias; include the intended mounted arrangement in the existing thermal pilot test.
 

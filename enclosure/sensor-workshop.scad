@@ -1,4 +1,4 @@
-// Sensor Workshop v0.3. Two case parts and a removable Feather frame.
+// Sensor Workshop v0.4. Two case parts and a removable Feather frame.
 // Board-derived geometry: Adafruit CC BY-SA 3.0; see reference/ATTRIBUTION.md.
 include <parameters.scad>
 include <generated/boards.scad>
@@ -20,8 +20,9 @@ assert(scd30_origin[2]-8.57 > skirt_bottom,"Keep the sensing body above the skir
 assert(thermal_bridge_count == 2*len(thermal_bridge_x),"Keep the thermal model bridge count aligned with CAD.");
 assert(min(optic_flare) > 0,"Light flare is a positive X/Y pair.");
 assert((battery_saddle_width-tie_slot_width)/2 >= 2,"Keep substantial cradle cheeks beside the open tie channel.");
-assert(wall-mount_groove_depth >= 1.8,"Keep sufficient side-wall material behind the mounting guides.");
+assert(mount_groove_bevel >= mount_groove_depth,"Corner guide ramps must be 45 degrees or shallower.");
 assert(mount_band_z+mount_band_width/2 < feather_origin[2]-22.43,"Mounting band must clear the front buttons.");
+assert(tie_rear_outer_y-(tie_turn_start_y+tie_turn_radius+tie_slot_height/2) >= 2,"Keep 2 mm behind the return guide.");
 
 module rounded_box(size,r=3) {
     linear_extrude(size[2]) offset(r=r)
@@ -81,24 +82,47 @@ module roof_mount(p,origin,pinned=false) {
     if(pinned) translate([xy[0],xy[1],origin[2]+pcb_thickness-locating_height])
         cylinder(h=locating_height+.05,d=locating_pin);
 }
+module yz_extrude(x,width) {
+    translate([x-width/2,0,0]) rotate([90,0,90]) linear_extrude(width) children();
+}
+module battery_tie_passage(x) {
+    front=battery_center[1]-12.5;
+    z=tie_tunnel_z+tie_slot_height/2;
+    cy=tie_turn_start_y; cz=z-tie_turn_radius; h=tie_slot_height/2;
+    // A smooth quarter-turn redirects the tip away from the roof/rear corner.
+    yz_extrude(x,tie_slot_width) polygon(concat(
+        [[front-eps,z-h]],
+        [for(a=[90:-5:0]) [cy+(tie_turn_radius-h)*cos(a),cz+(tie_turn_radius-h)*sin(a)]],
+        [[cy+tie_turn_radius-h,tie_exit_z-eps],[cy+tie_turn_radius+h,tie_exit_z-eps]],
+        [for(a=[0:5:90]) [cy+(tie_turn_radius+h)*cos(a),cz+(tie_turn_radius+h)*sin(a)]],
+        [[front-eps,z+h]]));
+}
 module battery_saddle(x) {
     front=battery_center[1]-12.5; bottom=battery_center[2]-1;
     difference() {
         translate([x-battery_saddle_width/2,front,bottom])
-            cube([battery_saddle_width,25,case_top-bottom+.05]);
+            cube([battery_saddle_width,tie_rear_outer_y-front,case_top-bottom+.05]);
         translate([x-battery_saddle_width/2-1,battery_center[1],battery_center[2]]) rotate([0,90,0])
             cylinder(h=battery_saddle_width+2,d=battery_diameter+.8);
-        // Only 5 mm of enclosed feed: the rear 20 mm is accessible from below.
-        translate([x-tie_slot_width/2,front-eps,tie_tunnel_z])
-            cube([tie_slot_width,tie_eyelet_length+2*eps,tie_slot_height]);
+        battery_tie_passage(x);
+        // Keep the middle accessible, but retain the curved return and its
+        // second eyelet. The two roof-connected guides react the strap load.
         translate([x-tie_slot_width/2,front+tie_eyelet_length,bottom-eps])
-            cube([tie_slot_width,25-tie_eyelet_length+eps,tie_tunnel_z+tie_slot_height-bottom+eps]);
-        // Wider entry mouth; no fishing for a tail against the rear wall.
+            cube([tie_slot_width,tie_turn_start_y-front-tie_eyelet_length,tie_tunnel_z+tie_slot_height-bottom+eps]);
+        translate([x-tie_slot_width/2,tie_turn_start_y,bottom-eps])
+            cube([tie_slot_width,tie_rear_outer_y-tie_turn_start_y+eps,tie_exit_z-bottom]);
+        // Flared entry and downward-facing exit; no tail trapped at the roof.
         hull() {
             translate([x-tie_slot_width/2-.6,front-eps,tie_tunnel_z])
                 cube([tie_slot_width+1.2,eps,tie_slot_height]);
             translate([x-tie_slot_width/2,front+1.2,tie_tunnel_z])
                 cube([tie_slot_width,eps,tie_slot_height]);
+        }
+        hull() {
+            translate([x-tie_slot_width/2-.6,tie_turn_start_y+tie_turn_radius-tie_slot_height/2-.4,tie_exit_z-eps])
+                cube([tie_slot_width+1.2,tie_slot_height+.8,eps]);
+            translate([x-tie_slot_width/2,tie_turn_start_y+tie_turn_radius-tie_slot_height/2,tie_exit_z+1.2])
+                cube([tie_slot_width,tie_slot_height,eps]);
         }
     }
 }
@@ -124,17 +148,26 @@ module carrier_seat() {
         }
     }
 }
-module mounting_grooves() {
+module mounting_guides() {
     low=mount_band_z-mount_groove_width/2;
     high=mount_band_z+mount_groove_width/2;
-    // The grooves run right to the rounded corners so a taut wrap can sit in
-    // them; a small isolated recess would simply be bridged by the strap.
-    for(side=[0,1]) translate([side*case_width,0,0]) scale([1-2*side,1,1])
-        translate([0,case_depth+eps,0]) rotate([90,0,0])
-            linear_extrude(case_depth+2*eps)
-                polygon([[-eps,low-mount_groove_bevel],[0,low-mount_groove_bevel],
-                    [mount_groove_depth,low],[mount_groove_depth,high],
-                    [0,high+mount_groove_bevel],[-eps,high+mount_groove_bevel]]);
+    b=mount_groove_bevel; land=mount_guide_land; depth=mount_groove_depth;
+    // Paired raised shoulders follow each complete corner arc and its tangent
+    // returns. Both flanks are chamfered for roof-down printing.
+    intersection() {
+        difference() {
+            union() for(z=[low-2*b-land,high])
+                let(levels=[z,z+b,z+b+land,z+2*b+land],out=[0,depth,depth,0])
+                for(i=[0:2]) hull() for(j=[i,i+1])
+                    translate([-out[j],-out[j],levels[j]])
+                        rounded_box([case_width+2*out[j],case_depth+2*out[j],eps],corner_radius+out[j]);
+            translate([.2,.2,0]) rounded_box([case_width-.4,case_depth-.4,case_top],corner_radius-.2);
+        }
+        union() for(sx=[0,1]) for(sy=[0,1])
+            translate([sx*case_width,sy*case_depth,0]) scale([1-2*sx,1-2*sy,1])
+                translate([-depth-eps,-depth-eps,0])
+                    cube([corner_radius+mount_corner_run+depth+eps,corner_radius+mount_corner_run+depth+eps,case_top]);
+    }
 }
 module shell() {
     difference() {
@@ -149,6 +182,7 @@ module shell() {
                     translate([x,y,0]) cube([foot_span,foot_span,skirt_bottom+.1]);
             }
             carrier_seat();
+            mounting_guides();
             for(p=case_mounts) translate([p[0],p[1],carrier_z+carrier_thickness])
                 cylinder(h=case_top-carrier_z-carrier_thickness+.05,d=7.6);
             feather_guides();
@@ -161,7 +195,6 @@ module shell() {
             // Battery end stops removed: the two cradle ties retain the pack.
         }
         optic_opening();
-        mounting_grooves();
         // Continuous insertion relief: screen, buttons and screw heads slide past
         // the front wall AND the carrier shoulder without catching either.
         translate([5,1.65,-eps]) cube([53,2.5,57.5]);

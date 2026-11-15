@@ -1,5 +1,5 @@
 {
-  "version": "0.3",
+  "version": "0.4",
   "status": "passed",
   "units": "mm",
   "print_parts": {
@@ -7,12 +7,12 @@
       "watertight": true,
       "bodies": 1,
       "size_mm": [
-        92.0,
-        66.0,
+        95.2,
+        69.2,
         60.8
       ],
-      "solid_volume_mm3": 56247.34,
-      "sha256": "0b9a2c7fc599624f62213abec6c5027e1e732046d01e27de6d7ec8aa764e41d4"
+      "solid_volume_mm3": 57465.74,
+      "sha256": "a4bc3212d8435f358ad42ca267c327784aea4d7f29741bf13b0f0a0dd72568fd"
     },
     "carrier": {
       "watertight": true,
@@ -62,7 +62,9 @@
     "Nominal battery right end to side wall": 7.6,
     "Mount band to front button opening": 1.17,
     "Mount band to USB opening": 5.1,
-    "Mount band above carrier": 2.2
+    "Mount band above carrier": 2.2,
+    "Corner shoulder to USB opening": 0.7,
+    "Front corner guide to button opening": 1.62
   },
   "references": 34,
   "printed_pieces_per_device": 3,
@@ -87,10 +89,46 @@
     "pole_diameter_mm": 32,
     "pad_thickness_mm": 2,
     "tie_width_mm": 4.8,
-    "illustrated_loop_length_mm": 336.7,
+    "corner_guides": 4,
+    "guide_depth_mm": 1.6,
+    "illustrated_loop_length_mm": 337.0,
     "note": "Loop length excludes locking-head allowance and the free tail needed to thread and tighten. This is not a load rating.",
-    "side_wall_after_groove_mm": 1.9
+    "side_wall_behind_guides_mm": 2.4
   },
+  "corner_guide_checks": [
+    {
+      "corner": [
+        0,
+        0
+      ],
+      "upper_and_lower_shoulders": true,
+      "channel_clear": true
+    },
+    {
+      "corner": [
+        0,
+        1
+      ],
+      "upper_and_lower_shoulders": true,
+      "channel_clear": true
+    },
+    {
+      "corner": [
+        1,
+        0
+      ],
+      "upper_and_lower_shoulders": true,
+      "channel_clear": true
+    },
+    {
+      "corner": [
+        1,
+        1
+      ],
+      "upper_and_lower_shoulders": true,
+      "channel_clear": true
+    }
+  ],
   "mesh_intersections": [
     {
       "a": "shell",
@@ -1286,11 +1324,31 @@
       "a": "mount_pole",
       "b": "mount_pad",
       "intersection_mm3": 0.0
+    },
+    {
+      "a": "corner_channel_0_0",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "corner_channel_0_1",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "corner_channel_1_0",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "corner_channel_1_1",
+      "b": "shell",
+      "intersection_mm3": 0.0
     }
   ],
   "review_pdf_pages": 9,
   "limitations": [
-    "No real parts or printed samples tested.",
+    "User reports previous shell printed well in PLA on an X1 Carbon; this revised tie-guide shell is not physically tested.",
     "Simplified PCB/connector envelopes omit some small components and manufacturing tolerances.",
     "Cable curves are illustrative; trial lead lengths include unmodelled slack.",
     "Threads intentionally engage printed pilot walls; fasteners are not a collision-free fit claim.",
