@@ -1,6 +1,6 @@
 # Sensor Workshop
 
-A three-day, hands-on microcontroller workshop with Erez Feuer, Yair Mau, and Elad Levintal. Yair and Elad are from Ben-Gurion University.
+A three-day, hands-on microcontroller workshop by Erez Feuer, with Yair Mau and Elad Levintal.
 
 Students assemble the same battery-powered environmental monitor without soldering, then develop their own software. The intended device measures CO₂, temperature, humidity, and ambient light, displays readings, creates a Wi-Fi hotspot, and offers a browser interface for controls, data logging, and CSV downloads.
 
