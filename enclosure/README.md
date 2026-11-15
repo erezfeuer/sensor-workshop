@@ -8,11 +8,12 @@ The assembly is **92 × 66 × 60.8 mm**. Its body footprint is **35.5% smaller**
 
 ## Open and compare
 
-- **[Interactive HTML model](model.html)** — one offline file with 27 component checkboxes, an explosion slider, movable cutaways, an **Underside** camera, a **Remove / install Feather** movement mode, and a **Tie access** view of the empty shell. “Look inside” hides the shell. Download the file and open it in a browser; GitHub's file page displays source.
+- **[Interactive HTML model](model.html)** — one offline file with 30 component checkboxes (including three optional mounting-example items), an explosion slider, movable cutaways, an **Underside** camera, a **Remove / install Feather** movement mode, a **Tie access** view of the empty shell, and a **Pole mount** example. “Look inside” hides the shell. Download the file and open it in a browser; GitHub's file page displays source.
 - [Nine-page design review](design-review.pdf), [measured cross-sections](sections.pdf), [mounting drawings](mounting-drawings.pdf), and [battery-tie access sections](battery-tie-access.pdf).
 - [OpenSCAD source](sensor-workshop.scad), [editable dimensions](parameters.scad), [current STL set](stl/), [mechanical BOM](hardware.csv).
 - [Previous v0.2 viewer](archive/v0.2/model.html), [v0.2 archive](archive/v0.2/README.md), and [thermal review PDF](thermal/thermal-review.pdf).
 - [Previous v0.1 viewer](archive/v0.1/model.html) and [archived design](archive/v0.1/README.md) for comparison.
+- [Pole/rail mounting option and tradeoffs](MOUNTING.md).
 - [Manufacturer references](../hardware/reference/README.md) and [hole-coordinate CSV](generated/mounting-holes.csv).
 
 ![Accessible enclosure assembly](renders/assembled.png)
@@ -41,11 +42,15 @@ The central carrier region shades the sensor from above, and the perimeter skirt
 
 The three real Feather buttons are behind one **7 × 22 mm slot**, about **2.4 mm recessed**. No little printed buttons are required. Finger/nail access and BOOT/RESET recovery must be checked on the pilot. The separate reset hole accepts a small blunt tool. A recessed internal pocket clears the display glass and reset switch body.
 
+## Optional pole or rail mounting
+
+A single external tie wraps around the whole body and its support. Shallow side grooves position the 4.8 mm band below the controls; the front shows a narrow band only when mounted. The tabletop footprint and three-piece print count stay the same. See the [mounting guide](MOUNTING.md) for the rear-anchor comparison, tie length, grip pad and wall-anchor limitations. The HTML **Pole mount** view shows a Ø32 mm example pole; the three example items are hidden by default.
+
 ## Battery and cables
 
-Buy the protected, prewired **1S 18650 pack locally in Israel**, around 2,200 mAh, within the **Ø20 × 72 mm** design envelope. Its JST-PH polarity must match the Feather. The bay provides 76 mm between upper end stops. It is based on the [Adafruit reference pack](https://www.adafruit.com/product/1781); the wrapped local pack, protection board and lead exit still need measuring.
+Buy the protected, prewired **1S 18650 pack locally in Israel**, around 2,200 mAh, within the **Ø20 × 72 mm** design envelope. Its JST-PH polarity must match the Feather. The small printed end stops have been removed. A centred 72 mm pack has 7.6 mm nominal clearance to each side wall; the cradle ties provide retention. It is based on the [Adafruit reference pack](https://www.adafruit.com/product/1781); the wrapped local pack, protection board and lead exit still need measuring.
 
-Two **2.5 mm nylon zip ties**, approximately 150 mm long, pass through **5 mm front eyelets**, with **3.6 × 2.4 mm** passages and flared entrances. Behind each eyelet, a **20 mm channel is open from below**, so the tail can be reached directly. The cradles are 8 mm wide, leaving 2.2 mm cheeks beside the open channel. The old 25 mm tunnels ended only 1.1 mm from the rear wall; that was awkward even with the battery removed. Thread the ties while the shell is empty, before installing the boards. Their heads sit below the pack once secured. Tighten only enough to retain the protected pack; do not compress it. Thin soft padding can take up clearance for a smaller pack. This avoids depending on a tight snap fit across varying batteries and PLA/PETG flexibility. Battery replacement requires cutting the ties.
+Two **2.5 mm nylon zip ties**, approximately 150 mm long, pass through **5 mm front eyelets**, with **3.6 × 2.4 mm** passages and flared entrances. Behind each eyelet, a **20 mm channel is open from below**, so the tail can be reached directly. The cradles are 8 mm wide, leaving 2.2 mm cheeks beside the open channel. The old 25 mm tunnels ended only 1.1 mm from the rear wall; that was awkward even with the battery removed. Thread the ties while the shell is empty, before installing the boards. Their heads sit below the pack once secured. Tighten only enough to retain the protected pack; do not compress it. Thin soft padding can take up clearance for a smaller pack. This avoids depending on a tight snap fit across varying batteries and PLA/PETG flexibility. Battery replacement requires cutting the ties. Check axial sliding and lead pull in the pilot; use thin soft padding if needed to improve grip.
 
 There is **no inline switch or extension**. The battery lead goes directly to the Feather, removing the previous 508 mm coil. Target roughly 70–100 mm of prewired battery lead and check it in the pilot. Full power disconnection requires unplugging the battery through the opened carrier; software sleep remains a firmware option.
 
@@ -88,7 +93,7 @@ Check physical finger and screwdriver access, real connector envelopes, received
 
 Compare CO₂ response and temperature/RH with the housing fitted/removed, under Wi-Fi activity, charging and display on/off. Then compare controlled sunlight/shade transitions against a shaded reference thermometer. Check light readings with the shell fitted/removed and with display/LEDs on/off; the optical well changes angular response. Adjust the mechanical layout based on measurements rather than assuming the skirt eliminates thermal bias.
 
-[Validation results](generated/validation.json) check all three print solids and the shared coupon, source hashes, nominal gaps, screw engagement and Boolean intersections of the simplified mechanical/electronic/plug/cable envelopes. [Browser checks](generated/viewer-checks.json) exercise all 27 visibility controls, explosion, Feather withdrawal, the empty-shell tie-access view, cutaways, views and mobile layout offline. [Assembly checks](generated/assembly-checks.json) sample the Feather/frame/screws at 161 poses along an 80 mm vertical path, the carrier and battery at 81 poses each, eight straight screwdriver shafts, and clear feed/reach envelopes for both battery ties. These nominal-envelope checks do not establish manufacturing tolerances, physical fit or sensor accuracy. The official vendor STLs are reference models; their open surfaces are not used as a collision proof.
+[Validation results](generated/validation.json) check all three print solids and the shared coupon, source hashes, nominal gaps, screw engagement and Boolean intersections of the simplified mechanical/electronic/plug/cable envelopes and optional mounting route. [Browser checks](generated/viewer-checks.json) exercise all 30 visibility controls, explosion, Feather withdrawal, the empty-shell tie-access and pole-mount views, cutaways, views and mobile layout offline. [Assembly checks](generated/assembly-checks.json) sample the Feather/frame/screws at 161 poses along an 80 mm vertical path, the carrier and battery at 81 poses each, eight straight screwdriver shafts, and clear feed/reach envelopes for both battery ties. These nominal-envelope checks do not establish manufacturing tolerances, physical fit or sensor accuracy. The official vendor STLs are reference models; their open surfaces are not used as a collision proof.
 
 ## Rebuild
 

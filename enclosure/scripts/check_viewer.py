@@ -17,8 +17,10 @@ with sync_playwright() as p:
     page.wait_for_selector('canvas[data-rendered="true"]')
     assert page.locator('#error').is_hidden()
     initial=page.evaluate('sensorWorkshop.state()')
-    assert len(initial['components'])==27 and initial['glError']==0
+    assert len(initial['components'])==30 and initial['glError']==0
     assert initial['version']=='0.3'
+    assert all(x['visible']==x['defaultVisible'] for x in initial['components'])
+    assert len([x for x in initial['components'] if not x['visible']])==3
     assert len([c for c in initial['components'] if c['group']=='Printed enclosure'])==3
     assert not any(c['id'] in ['switch','buttons','pod','shade','feet','lid','base'] for c in initial['components'])
     page.screenshot(path=str(CAD/'renders/viewer-assembled.png'))
@@ -77,7 +79,14 @@ with sync_playwright() as p:
     assert state['explosion']==0 and state['cut']=='none' and state['pitch']<0
     page.screenshot(path=str(CAD/'renders/viewer-tie-access.png'))
     page.locator('#reset').click()
-    assert all(x['visible'] for x in page.evaluate('sensorWorkshop.state().components'))
+    assert all(x['visible']==x['defaultVisible'] for x in page.evaluate('sensorWorkshop.state().components'))
+    page.locator('#pole-mount').click()
+    state=page.evaluate('sensorWorkshop.state()')
+    assert all(x['visible'] for x in state['components'])
+    assert state['explosion']==0 and state['cut']=='none'
+    page.screenshot(path=str(CAD/'renders/viewer-pole-mount.png'))
+    page.locator('#reset').click()
+    assert all(x['visible']==x['defaultVisible'] for x in page.evaluate('sensorWorkshop.state().components'))
     canvas=page.locator('#model').bounding_box()
     x,y=canvas['x']+canvas['width']/2,canvas['y']+canvas['height']/2
     old=page.evaluate('sensorWorkshop.state()')
@@ -92,8 +101,8 @@ with sync_playwright() as p:
     assert page.evaluate('sensorWorkshop.state().glError')==0
     assert not errors,errors
     assert not any(u.startswith(('http:','https:')) for u in requests),requests
-    report=dict(status='passed',browser=browser.version,offline=True,selectable_components=27,
-                checks=['three printed components; obsolete parts absent','all 27 visibility toggles','explosion 0/64/100 percent and transforms','Feather insertion mode: paired movement, carrier hidden, other parts stationary, reset','empty-shell tie-access preset and reset','cut controls','hide/show all','look inside','orbit and zoom','mobile layout','no external network requests','no JavaScript/WebGL errors'],
+    report=dict(status='passed',browser=browser.version,offline=True,selectable_components=30,
+                checks=['three printed components; obsolete parts absent','all 30 visibility toggles','explosion 0/64/100 percent and transforms','Feather insertion mode: paired movement, carrier hidden, other parts stationary, reset','empty-shell tie-access preset and reset','pole mounting example, optional parts initially hidden, reset restores defaults','cut controls','hide/show all','look inside','orbit and zoom','mobile layout','no external network requests','no JavaScript/WebGL errors'],
                 limitations=['Chrome only; Safari and Firefox not exercised','hardware fit is not a browser test'])
     (CAD/'generated/viewer-checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))

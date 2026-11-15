@@ -11,6 +11,7 @@ from pathlib import Path
 import numpy as np
 import trimesh
 from render_review import CAD, PARAMS, COLORS, load_scene
+from mounting import mounting_example
 
 
 def box(size, center):
@@ -71,9 +72,9 @@ def main():
     holder.apply_translation([coin_center[0],coin_center[1],z-1.6])
     scene['rtc']=trimesh.util.concatenate([top,holder])
     items=[]
-    def add(key,label,group,mesh,color,delta,note,parent=None,cable=False):
+    def add(key,label,group,mesh,color,delta,note,parent=None,cable=False,default_visible=True):
         packed=np.concatenate([mesh.triangles,np.repeat(mesh.face_normals[:,None,:],3,axis=1)],axis=2).astype('<f4')
-        items.append(dict(id=key,label=label,group=group,color=color,delta=delta,note=note,parent=parent,cable=cable,
+        items.append(dict(id=key,label=label,group=group,color=color,delta=delta,note=note,parent=parent,cable=cable,defaultVisible=default_visible,
                           bounds=mesh.bounds.tolist(),count=len(mesh.faces)*3,data=base64.b64encode(packed.tobytes()).decode('ascii')))
     deltas={'shell':[0,0,0],'carrier':[0,0,-46],'feather':[0,0,-80],'feather_frame':[0,0,-80],'light':[0,0,-18],
             'rtc':[25,0,-18],'scd30':[0,0,-65],'battery':[0,22,-22]}
@@ -109,6 +110,13 @@ def main():
         add(f'tie-{i}',f'Battery zip tie {i+1}','Wiring',tie_mesh(x),'#717b78',deltas['battery'],'Thread through the 5 mm front eyelet while the shell is empty; reach the tail through the open-bottom channel. Fit the battery afterward and tighten gently.')
     for c in json.loads((CAD/'generated/cable-metadata.json').read_text()):
         add(c['id'],c['label'],'_attached' if c['parent'] else 'Wiring',scene[c['mesh']],c['color'],[0,0,0],c['note'],parent=c['parent'],cable=True)
+    mounting,route=mounting_example(PARAMS)
+    for key,label,note in [
+        ('mount_tie','Optional full-wrap mounting tie','One external 4.8 mm tie wraps the body and support, in the shallow side grooves below the controls. Head stays on the right side. Snug only; check grip on the pilot.'),
+        ('mount_pole','Example pole · Ø32 mm','Illustrative support, not a kit component. Keep the device upright with the light opening above and the CO₂ sensor below.'),
+        ('mount_pad','Example non-slip pad · 2 mm','A small rubber pad improves grip and spaces the case from the support. Keep it below the rear vents. Nominal undeformed illustration.')]:
+        add(key,label,'Mounting example',mounting[key],COLORS[key],[0,0,0],note,default_visible=False)
+    (CAD/'generated/mounting-route.json').write_text(json.dumps(route,indent=2)+'\n')
     count=sum(x['group']!='_attached' for x in items)
     meta=dict(version='0.3',units='mm',size=[92,66,60.8],parts=items,
               source_sha256=hashlib.sha256((CAD/'sensor-workshop.scad').read_bytes()+(CAD/'parameters.scad').read_bytes()).hexdigest())

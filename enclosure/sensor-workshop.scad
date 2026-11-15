@@ -20,6 +20,8 @@ assert(scd30_origin[2]-8.57 > skirt_bottom,"Keep the sensing body above the skir
 assert(thermal_bridge_count == 2*len(thermal_bridge_x),"Keep the thermal model bridge count aligned with CAD.");
 assert(min(optic_flare) > 0,"Light flare is a positive X/Y pair.");
 assert((battery_saddle_width-tie_slot_width)/2 >= 2,"Keep substantial cradle cheeks beside the open tie channel.");
+assert(wall-mount_groove_depth >= 1.8,"Keep sufficient side-wall material behind the mounting guides.");
+assert(mount_band_z+mount_band_width/2 < feather_origin[2]-22.43,"Mounting band must clear the front buttons.");
 
 module rounded_box(size,r=3) {
     linear_extrude(size[2]) offset(r=r)
@@ -122,6 +124,18 @@ module carrier_seat() {
         }
     }
 }
+module mounting_grooves() {
+    low=mount_band_z-mount_groove_width/2;
+    high=mount_band_z+mount_groove_width/2;
+    // The grooves run right to the rounded corners so a taut wrap can sit in
+    // them; a small isolated recess would simply be bridged by the strap.
+    for(side=[0,1]) translate([side*case_width,0,0]) scale([1-2*side,1,1])
+        translate([0,case_depth+eps,0]) rotate([90,0,0])
+            linear_extrude(case_depth+2*eps)
+                polygon([[-eps,low-mount_groove_bevel],[0,low-mount_groove_bevel],
+                    [mount_groove_depth,low],[mount_groove_depth,high],
+                    [0,high+mount_groove_bevel],[-eps,high+mount_groove_bevel]]);
+}
 module shell() {
     difference() {
         union() {
@@ -144,10 +158,10 @@ module shell() {
             translate([light_origin[0]+light_optic[0]-7.5,light_origin[1]+light_optic[1]-4,light_origin[2]+pcb_thickness+.15])
                 ring([15,8],1.2,1,case_top-light_origin[2]-pcb_thickness-.15+.05);
             for(x=battery_saddles) battery_saddle(x);
-            // 76 mm axial bay; lead exits below these short upper end stops.
-            for(x=[6.5,84]) translate([x,46,45]) cube([1.5,8,case_top-45+.05]);
+            // Battery end stops removed: the two cradle ties retain the pack.
         }
         optic_opening();
+        mounting_grooves();
         // Continuous insertion relief: screen, buttons and screw heads slide past
         // the front wall AND the carrier shoulder without catching either.
         translate([5,1.65,-eps]) cube([53,2.5,57.5]);

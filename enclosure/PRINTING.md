@@ -13,6 +13,8 @@ The design keeps **three printed pieces** and uses their assembly layout to give
 - **Carrier seating ledge:** a 1.4 mm rise/run ramp backs the ledge. With the shell roof down, the ramp grows from the wall before reaching the seating ledge, replacing a sudden unsupported projection. The flat carrier contact face and insertion clearance remain unchanged.
 - **Light opening:** the inner opening remains **12 × 6 mm**; the outer mouth is now **17 × 16 mm** through the 2.4 mm roof. The nominal flare faces are about **46° / 64° from vertical**. This deliberately opens the view beyond the earlier 45° flare; small removable supports are acceptable here. Actual sensor angular response still needs a pilot comparison.
 - **Battery ties:** each 8 mm cradle now has a **5 mm enclosed eyelet** and **20 mm open-bottom channel**. The 3.6 mm passage has a 4.8 mm flared entrance; the channel's side cheeks are 2.2 mm thick. The tail can be reached from below, and any cleanup is accessible before assembly.
+- **Mounting guides:** shallow side grooves locate a full-wrap external tie. Their 0.5 mm transitions are chamfered, and there are no projecting mounting ears to support.
+- **Battery end stops:** the two thin end flaps have been removed; the existing cradles and ties retain the pack.
 
 The carrier ledge retains its 45° slope; the light flare prioritizes a wider opening. Neither geometry is a print-quality guarantee for every printer or filament. Orientation, cooling, layer height and extrusion width affect the result. Chamfers are preferable to rounding an underside into a steep overhang; supported surfaces can also need cleanup. [Prusa's design guidance](https://help.prusa3d.com/article/modeling-with-3d-printing-in-mind_164135)
 

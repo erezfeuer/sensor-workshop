@@ -1,0 +1,7 @@
+{
+  "pole_diameter_mm": 32,
+  "pad_thickness_mm": 2,
+  "tie_width_mm": 4.8,
+  "illustrated_loop_length_mm": 336.7,
+  "note": "Loop length excludes locking-head allowance and the free tail needed to thread and tighten. This is not a load rating."
+}

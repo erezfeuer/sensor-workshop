@@ -18,6 +18,15 @@ locating_pin = 1.9;
 locating_height = 1.2;
 case_mounts = [[86,6],[6,60]];
 
+// Optional mounting: a single external tie wraps the case and its support.
+mount_band_z = 31;
+mount_band_width = 4.8;
+mount_groove_width = 6;
+mount_groove_depth = 0.5;
+mount_groove_bevel = 0.5;
+mount_example_pole_diameter = 32;
+mount_example_pad_thickness = 2;
+
 // Eagle PCB bottom-plane origins. Rotations are defined in board_transform().
 feather_origin = [6,4.3,57];
 light_origin = [30,17,53.3];

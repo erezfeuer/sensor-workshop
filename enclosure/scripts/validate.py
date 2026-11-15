@@ -9,6 +9,7 @@ import trimesh
 import pymupdf
 from render_review import ROOT,CAD,PARAMS as p
 from build_viewer import tie_mesh
+from mounting import mounting_example
 
 warnings.filterwarnings('ignore',category=RuntimeWarning,module='trimesh.triangles')
 report={'version':'0.3','status':'passed','units':'mm','print_parts':{},'clearances':{},'references':0}
@@ -37,7 +38,9 @@ gap('RTC QT to roof',p['case_top']-p['rtc_origin'][2]-4.6)
 gap('Feather PCB top to roof',p['case_top']-p['feather_origin'][2])
 gap('TFT glass to recessed inside rim',p['feather_origin'][1]-1.9-1.65)
 gap('Battery to carrier top',p['battery_center'][2]-p['battery_diameter']/2-p['carrier_z']-p['carrier_thickness'])
-gap('Axial battery tolerance',76-p['battery_length'])
+gap('Nominal battery left end to side wall',p['battery_center'][0]-p['battery_length']/2-p['wall'])
+gap('Nominal battery right end to side wall',p['case_width']-p['wall']-p['battery_center'][0]-p['battery_length']/2)
+report['battery_retention']='Two cradle ties; no end stops. Axial slip and lead strain must be checked on the pilot.'
 report['button_access_recess_mm']=round(p['feather_origin'][1]-1.9,2)
 report['screw_engagement_mm']={
     'Feather M2x5':round(5-p['pcb_thickness'],2),
@@ -65,6 +68,15 @@ for path in sorted(scene.glob('cable_*.stl')):
 for i,x in enumerate(p['battery_saddles']):
     tie=tie_mesh(x)
     for name,other in meshes.items():check_pair(f'battery_tie_{i}',name,tie,other)
+mounts,route=mounting_example(p)
+for name,m in mounts.items():
+    for other,mesh in meshes.items():check_pair(name,other,m,mesh)
+for a,b in itertools.combinations(mounts,2):check_pair(a,b,mounts[a],mounts[b])
+report['mounting_example']=route
+gap('Mount band to front button opening',p['feather_origin'][2]-22.43-p['mount_band_z']-p['mount_band_width']/2)
+gap('Mount band to USB opening',38.5-p['mount_band_z']-p['mount_band_width']/2)
+gap('Mount band above carrier',p['mount_band_z']-p['mount_band_width']/2-p['carrier_z']-p['carrier_thickness'])
+report['mounting_example']['side_wall_after_groove_mm']=p['wall']-p['mount_groove_depth']
 report['mesh_intersections']=checks
 for e in json.loads((ROOT/'hardware/reference/manifest.json').read_text()):
     assert hashlib.sha256((ROOT/'hardware/reference'/e['path']).read_bytes()).hexdigest()==e['sha256']

@@ -11,8 +11,8 @@
         66.0,
         60.8
       ],
-      "solid_volume_mm3": 56940.03,
-      "sha256": "a0c1fa392fe8c9bd5abcd593357642420384049623c92c991307072a3f16d17a"
+      "solid_volume_mm3": 56247.34,
+      "sha256": "0b9a2c7fc599624f62213abec6c5027e1e732046d01e27de6d7ec8aa764e41d4"
     },
     "carrier": {
       "watertight": true,
@@ -58,7 +58,11 @@
     "Feather PCB top to roof": 1.4,
     "TFT glass to recessed inside rim": 0.75,
     "Battery to carrier top": 4.6,
-    "Axial battery tolerance": 4
+    "Nominal battery left end to side wall": 7.6,
+    "Nominal battery right end to side wall": 7.6,
+    "Mount band to front button opening": 1.17,
+    "Mount band to USB opening": 5.1,
+    "Mount band above carrier": 2.2
   },
   "references": 34,
   "printed_pieces_per_device": 3,
@@ -70,6 +74,7 @@
     "battery_ties": 2
   },
   "footprint_reduction_percent": 35.46,
+  "battery_retention": "Two cradle ties; no end stops. Axial slip and lead strain must be checked on the pilot.",
   "button_access_recess_mm": 2.4,
   "screw_engagement_mm": {
     "Feather M2x5": 3.4,
@@ -77,6 +82,14 @@
     "RTC M2x5 with washer": 2.9,
     "SCD30 M2x5": 3.4,
     "Carrier M3x8": 5.6
+  },
+  "mounting_example": {
+    "pole_diameter_mm": 32,
+    "pad_thickness_mm": 2,
+    "tie_width_mm": 4.8,
+    "illustrated_loop_length_mm": 336.7,
+    "note": "Loop length excludes locking-head allowance and the free tail needed to thread and tighten. This is not a load rating.",
+    "side_wall_after_groove_mm": 1.9
   },
   "mesh_intersections": [
     {
@@ -1137,6 +1150,141 @@
     {
       "a": "battery_tie_1",
       "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_tie",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_tie",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_tie",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_tie",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_tie",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_tie",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_tie",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_tie",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pole",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pole",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pole",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pole",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pole",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pole",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pole",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pole",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pad",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pad",
+      "b": "carrier",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pad",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pad",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pad",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pad",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pad",
+      "b": "scd30",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pad",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_tie",
+      "b": "mount_pole",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_tie",
+      "b": "mount_pad",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "mount_pole",
+      "b": "mount_pad",
       "intersection_mm3": 0.0
     }
   ],

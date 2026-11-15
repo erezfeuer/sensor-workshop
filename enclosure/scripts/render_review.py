@@ -28,6 +28,7 @@ for line in (CAD / "parameters.scad").read_text().splitlines():
     if match:
         PARAMS[match[1]] = json.loads(match[2])
 COLORS = {"shell":"#dedfd8", "carrier":"#4f7777", "feather_frame":"#d39b59", "feather":"#2e6054", "scd30":"#bb975b", "rtc":"#817ba6", "light":"#527b95", "battery":"#5b91bd", "display":"#41c1bf"}
+COLORS.update({'mount_tie':'#394749','mount_pole':'#9aa7a0','mount_pad':'#4e5458'})
 if (CAD/"generated/cable-metadata.json").exists():
     COLORS.update({c["mesh"]:c["color"] for c in json.loads((CAD/"generated/cable-metadata.json").read_text())})
 
@@ -215,6 +216,11 @@ if __name__ == "__main__":
         rasterize(variant(scene,kind),title,subtitle,RENDERS/(kind+".png"),eye=eye)
     drawings(scene)
     battery_tie_drawing(scene)
+    from mounting import mounting_example
+    mounting,_=mounting_example(PARAMS)
+    rasterize({**scene,**mounting},'One tie around the body and support',
+        'Shallow side guides · clear controls and underside · Ø32 mm example pole and small non-slip pad',
+        RENDERS/'pole-mount.png',eye=(-1,-1,.65))
     with PdfPages(CAD/"design-review.pdf") as pdf:
         for name in [x[0] for x in variants]+["sections","mounting-drawings"]:
             fig=plt.figure(figsize=(13.5,10.1))

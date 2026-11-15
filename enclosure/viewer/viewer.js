@@ -28,7 +28,7 @@ gl.enableVertexAttribArray(position);gl.enableVertexAttribArray(normal);
 const parts=data.parts.map(p=>{
  const raw=atob(p.data),bytes=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
  p.buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,p.buffer);gl.bufferData(gl.ARRAY_BUFFER,bytes,gl.STATIC_DRAW);
- p.rgb=p.color.match(/\w\w/g).map(c=>parseInt(c,16)/255);p.visible=true;delete p.data;return p;
+ p.rgb=p.color.match(/\w\w/g).map(c=>parseInt(c,16)/255);p.visible=p.defaultVisible!==false;delete p.data;return p;
 });
 const selectable=parts.filter(p=>p.group!=='_attached'), byId=Object.fromEntries(parts.map(p=>[p.id,p]));
 let motion='explode',explosion=0,yaw=-Math.PI*.73,pitch=.55,target=[46,33,30],halfHeight=72,cut='none',cutPosition=48,highlight=null,framePending=false;
@@ -53,7 +53,7 @@ function corners(p){const d=offset(p),out=[];for(let mask=0;mask<8;mask++)out.pu
 function fit(){const active=parts.filter(visible);if(!active.length){schedule();return;}const a=axes(),pts=active.flatMap(corners);const lo=[0,1,2].map(i=>Math.min(...pts.map(p=>p[i]))),hi=[0,1,2].map(i=>Math.max(...pts.map(p=>p[i])));target=lo.map((v,i)=>(v+hi[i])/2);let mx=0,my=0;for(const p of pts){const q=p.map((v,i)=>v-target[i]);mx=Math.max(mx,Math.abs(dot(q,a.right)));my=Math.max(my,Math.abs(dot(q,a.up)));}halfHeight=Math.max(20,my*1.25,mx*canvas.clientHeight/canvas.clientWidth*1.25);schedule();}
 function showInfo(p){$('info').replaceChildren();const strong=document.createElement('strong');strong.textContent=p.label;$('info').append(strong,document.createTextNode(p.note));}
 function sync(){for(const p of selectable){p.checkbox.checked=p.visible;p.checkbox.disabled=removedForAccess(p)||(p.cable&&explosion>0);p.row.style.opacity=p.checkbox.disabled?'.45':'1';}$('visible-count').textContent=selectable.filter(visible).length+'/'+selectable.length; schedule();}
-const groupOrder=['Printed enclosure','Electronics','Wiring','Fasteners'];
+const groupOrder=['Printed enclosure','Electronics','Wiring','Fasteners','Mounting example'];
 for(const group of groupOrder){const section=document.createElement('details');section.open=group==='Printed enclosure'||group==='Electronics';const members=selectable.filter(p=>p.group===group);const summary=document.createElement('summary');summary.textContent=group;const count=document.createElement('span');count.className='count';count.textContent=String(members.length);summary.append(count);section.append(summary);
  for(const p of members){const label=document.createElement('label');label.className='part';label.title=p.note;const input=document.createElement('input');input.type='checkbox';input.checked=true;input.dataset.part=p.id;input.setAttribute('aria-label',p.label);const swatch=document.createElement('span');swatch.className='swatch';swatch.style.background=p.color;const name=document.createElement('span');name.textContent=p.label;label.append(input,swatch,name);section.append(label);p.checkbox=input;p.row=label;
  input.addEventListener('change',()=>{p.visible=input.checked;showInfo(p);sync();});label.addEventListener('pointerenter',()=>{highlight=p.id;showInfo(p);schedule();});label.addEventListener('pointerleave',()=>{highlight=null;schedule();});input.addEventListener('focus',()=>showInfo(p));
@@ -63,12 +63,13 @@ function setExplosion(value){const withdrawing=motion==='feather';$('motion-star
 $('motion').onchange=()=>{motion=$('motion').value;$('motion-title').textContent=motion==='feather'?'Feather withdrawal':'Explode assembly';setExplosion(motion==='feather'?100:0);};
 $('explode').addEventListener('input',e=>setExplosion(e.target.value));$('assemble').onclick=()=>setExplosion(0);$('explode-all').onclick=()=>setExplosion(100);
 $('show-all').onclick=()=>{selectable.forEach(p=>p.visible=true);sync();};$('hide-all').onclick=()=>{selectable.forEach(p=>p.visible=false);sync();};
-$('inside').onclick=()=>{selectable.forEach(p=>p.visible=true);byId.shell.visible=false;sync();};
+$('inside').onclick=()=>{selectable.forEach(p=>p.visible=p.defaultVisible!==false);byId.shell.visible=false;sync();};
 function updateCut(){cut=$('cut').value;$('cut-position').style.display=cut==='none'?'none':'block';$('cut-position').max=cut==='y'?data.size[1]:data.size[0];cutPosition=Number($('cut-position').value);$('cut-note').textContent=cut==='none'?'Explore the complete housing or slice through it.':`${cut.toUpperCase()} = ${cutPosition} mm · uncapped cutaway; see sections.pdf for filled engineering sections.`;schedule();}
 $('cut').onchange=()=>{$('cut-position').value=$('cut').value==='y'?33:43;updateCut();};$('cut-position').oninput=updateCut;
 for(const btn of document.querySelectorAll('[data-view]'))btn.onclick=()=>{const v=btn.dataset.view;[yaw,pitch]=v==='front'?[-Math.PI/2,0]:v==='left'?[Math.PI,0]:v==='bottom'?[-Math.PI/2,-1.15]:v==='top'?[-Math.PI/2,Math.PI/2-.0001]:[-Math.PI*.73,.55];fit();};
-$('fit').onclick=fit;$('reset').onclick=()=>{motion='explode';$('motion').value='explode';$('motion-title').textContent='Explode assembly';selectable.forEach(p=>p.visible=true);highlight=null;showInfo({label:'Ready to explore',note:'Untick the shell to inspect the electronics, or choose Underside to see the sensor.'});yaw=-Math.PI*.73;pitch=.55;$('cut').value='none';updateCut();setExplosion(0);};
+$('fit').onclick=fit;$('reset').onclick=()=>{motion='explode';$('motion').value='explode';$('motion-title').textContent='Explode assembly';selectable.forEach(p=>p.visible=p.defaultVisible!==false);highlight=null;showInfo({label:'Ready to explore',note:'Untick the shell to inspect the electronics, or choose Underside to see the sensor.'});yaw=-Math.PI*.73;pitch=.55;$('cut').value='none';updateCut();setExplosion(0);};
 $('tie-access').onclick=()=>{$('reset').click();selectable.forEach(p=>p.visible=p.id==='shell'||p.id.startsWith('tie-'));yaw=-Math.PI/2;pitch=-1.15;showInfo({label:'Thread ties before fitting the battery',note:'Feed each tie through its short front eyelet. The channel behind it is open from below, so the tail can be reached directly. Boards and battery are hidden for access.'});sync();fit();};
+$('pole-mount').onclick=()=>{$('reset').click();selectable.forEach(p=>p.visible=true);yaw=-Math.PI*.78;pitch=.35;showInfo({label:'One tie around the body and support',note:'The band follows shallow side grooves below the controls. A small pad improves grip and leaves space behind the vents. Example: Ø32 mm pole; check the actual tie length and grip before hanging the device.'});sync();fit();};
 function pan(dx,dy){const a=axes(),factor=2*halfHeight/canvas.clientHeight;target=target.map((v,i)=>v-a.right[i]*dx*factor+a.up[i]*dy*factor);}
 let pointers=new Map(),gesture=null;
 function snapshot(){const p=[...pointers.values()];return {x:p.reduce((s,v)=>s+v.x,0)/p.length,y:p.reduce((s,v)=>s+v.y,0)/p.length,d:p.length===2?Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y):0,n:p.length};}
@@ -82,5 +83,5 @@ canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('error').hid
 new ResizeObserver(()=>schedule()).observe(canvas);
 sync();fit();
 // Small read-only state surface for reproducible offline browser checks.
-window.sensorWorkshop={state:()=>({motion,explosion,cut,cutPosition,target:[...target],yaw,pitch,halfHeight,components:selectable.map(p=>({id:p.id,visible:visible(p),offset:offset(p),group:p.group,cable:!!p.cable})),version:data.version,glError:gl.getError()})};
+window.sensorWorkshop={state:()=>({motion,explosion,cut,cutPosition,target:[...target],yaw,pitch,halfHeight,components:selectable.map(p=>({id:p.id,visible:visible(p),defaultVisible:p.defaultVisible!==false,offset:offset(p),group:p.group,cable:!!p.cable})),version:data.version,glError:gl.getError()})};
 })();
