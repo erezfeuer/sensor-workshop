@@ -4,6 +4,18 @@ A three-day, hands-on microcontroller workshop with Erez Feuer, Yair Mau, and El
 
 Students assemble the same battery-powered environmental monitor without soldering, then develop their own software. The intended device measures CO₂, temperature, humidity, and ambient light, displays readings, creates a Wi-Fi hotspot, and offers a browser interface for controls, data logging, and CSV downloads.
 
+## Files to print
+
+**[production-stls/](production-stls/)** contains exactly the three separate STL files for one device. Print **one of each**, at **100% scale in millimetres**, keeping the supplied orientations:
+
+| File | Bed-facing surface |
+| --- | --- |
+| [01-shell.stl](production-stls/01-shell.stl) | Exterior roof |
+| [02-sensor-carrier.stl](production-stls/02-sensor-carrier.stl) | Flat upper face; sensor bosses point up |
+| [03-feather-frame.stl](production-stls/03-feather-frame.stl) | Flat rear face; mounting pads point up |
+
+For the first test, print the shell separately and the two smaller parts together. Once fit and settings are confirmed, all three can share a plate. See [printing guidance](enclosure/PRINTING.md) for support placement. The optional shared [fit coupon](enclosure/stl/coupon.stl) is outside the production folder. The CAD export script refreshes the three production files on every full export.
+
 ## Hardware planning
 
 - [Proposed bill of materials and compatibility notes](hardware/BOM.md)

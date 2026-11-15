@@ -10,7 +10,7 @@ The assembly is **92 × 66 × 60.8 mm**. Its body footprint is **35.5% smaller**
 
 - **[Interactive HTML model](model.html)** — one offline file with 30 component checkboxes (including three optional mounting-example items), an explosion slider, movable cutaways, an **Underside** camera, a **Remove / install Feather** movement mode, a **Tie access** view of the empty shell, and a **Pole mount** example. “Look inside” hides the shell. Download the file and open it in a browser; GitHub's file page displays source.
 - [Nine-page design review](design-review.pdf), [measured cross-sections](sections.pdf), [mounting drawings](mounting-drawings.pdf), and [battery-tie access sections](battery-tie-access.pdf).
-- [OpenSCAD source](sensor-workshop.scad), [editable dimensions](parameters.scad), [current STL set](stl/), [mechanical BOM](hardware.csv).
+- [Three STL files to print](../production-stls/), [OpenSCAD source](sensor-workshop.scad), [editable dimensions](parameters.scad), [mechanical BOM](hardware.csv).
 - [Previous v0.2 viewer](archive/v0.2/model.html), [v0.2 archive](archive/v0.2/README.md), and [thermal review PDF](thermal/thermal-review.pdf).
 - [Previous v0.1 viewer](archive/v0.1/model.html) and [archived design](archive/v0.1/README.md) for comparison.
 - [Pole/rail mounting option and tradeoffs](MOUNTING.md).
@@ -64,12 +64,14 @@ The HTML and OpenSCAD show four individually coloured conductors and nominal whi
 
 ## Print set and assembly
 
+Use **[production-stls/](../production-stls/)** for the three separate per-device files. Their print orientations are already set; import at **100% scale in millimetres**. The full CAD export refreshes this folder automatically.
+
 | File | Quantity | Print orientation |
 | --- | ---: | --- |
-| `shell.stl` | **1** | Roof exterior flat on the bed; feet finish at the top of the print. |
-| `carrier.stl` | **1** | Upper face on the bed; SCD30 bosses and locating pins point up. |
-| `feather_frame.stl` | **1** | Flat rear face down; pads and locating pins grow upward. |
-| `coupon.stl` | One shared setup print | Eight small gauges; not part of each student device. |
+| [01-shell.stl](../production-stls/01-shell.stl) | **1** | Roof exterior flat on the bed; feet finish at the top of the print. |
+| [02-sensor-carrier.stl](../production-stls/02-sensor-carrier.stl) | **1** | Upper face on the bed; SCD30 bosses and locating pins point up. |
+| [03-feather-frame.stl](../production-stls/03-feather-frame.stl) | **1** | Flat rear face down; pads and locating pins grow upward. |
+| [coupon.stl](stl/coupon.stl) | One shared setup print | Eight small gauges; kept outside the production folder. |
 
 The [printability review](PRINTING.md) identifies the remaining bridge spans and support-removal access. The carrier ledge now has a 45° backing ramp, and the top light opening now widens from 12 × 6 mm inside to **17 × 16 mm outside** for a wider view of incoming light. Local support at this steeper flare is acceptable. The carrier and Feather frame print from flat faces; their crossbars/thermal bridges are supported by the bed. Use small local supports at the shell openings if the pilot needs them.
 

@@ -1,6 +1,8 @@
 # Printability review — v0.3
 
-The design keeps **three printed pieces** and uses their assembly layout to give each a flat printing face. This is a geometry review; no slicing or physical printing has been performed. Use the orientations already exported in [stl/](stl/).
+The design keeps **three printed pieces** and uses their assembly layout to give each a flat printing face. This is a geometry review; no slicing or physical printing has been performed. The **[production-stls/](../production-stls/)** folder contains exactly the three separate files to print, one of each per device. Import at **100% scale in millimetres** and keep the supplied orientations.
+
+For the first test, **print the shell separately**, then print the **carrier and Feather frame together**. The shell has the openings and flare that may need support tuning; the smaller parts have straightforward flat printing faces. After the fit and settings are confirmed, all three can share a plate using normal layer-by-layer printing, with local support settings applied to the shell as needed.
 
 | Part | Face on the bed | Overhang/support assessment |
 | --- | --- | --- |
