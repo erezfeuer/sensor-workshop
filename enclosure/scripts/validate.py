@@ -54,7 +54,7 @@ report['screw_engagement_mm']={
     'RTC M2x5 with washer':round(5-p['pcb_thickness']-.5,2),
     'SCD30 M2x5':round(5-p['pcb_thickness'],2),
     'Carrier M3x8':round(8-p['carrier_thickness'],2)}
-assert p['feather_origin'][1]+5 < 16.5 # blind pilot in removable frame
+assert p['feather_origin'][1]+p['pcb_thickness']+p['feather_pilot_depth'] < 16.5
 assert p['light_origin'][2]+5 < p['case_top']+p['roof_thickness']-1.0
 assert p['scd30_origin'][2]-p['pcb_thickness']+5 < p['carrier_z']+p['carrier_thickness']-1.0
 
@@ -67,6 +67,32 @@ def check_pair(a,b,ma,mb):
     assert volume<.001,(a,b,volume,result.bounds.tolist())
     checks.append({'a':a,'b':b,'intersection_mm3':round(volume,6)})
 for a,b in itertools.combinations(meshes,2):check_pair(a,b,meshes[a],meshes[b])
+# Verify the deeper blind pilots and measure material through the reinforced
+# threaded section. Cross-sectional area is geometry, not a torque rating.
+report['feather_mounts']={'pilot_diameter_mm':p['m2_pilot'],'pilot_depth_mm':p['feather_pilot_depth'],
+    'root_diameter_mm':p['feather_root_diameter'],'contact_land_length_mm':p['feather_contact_length'],
+    'back_material_mm':round(16.5-p['feather_origin'][1]-p['pcb_thickness']-p['feather_pilot_depth'],3),
+    'assumed_5_5mm_under_head_screw_tip_clearance_mm':round(p['feather_pilot_depth']-(5.5-p['pcb_thickness']),3),
+    'sections':[],'removal_strength_tested':False}
+for i in p['board_screw_indices']:
+    x,y,_=boards['feather']['holes'][i]
+    center=np.array([p['feather_origin'][0]+x,p['feather_origin'][1]+p['pcb_thickness'],p['feather_origin'][2]-y])
+    bore=trimesh.creation.cylinder(radius=p['m2_pilot']/2-.05,height=p['feather_pilot_depth']-.04,sections=32)
+    bore.apply_transform(trimesh.geometry.align_vectors([0,0,1],[0,1,0]))
+    bore.apply_translation(center+[0,p['feather_pilot_depth']/2,0])
+    check_pair(f'feather_blind_pilot_{i}','feather_frame',bore,meshes['feather_frame'])
+    cap=trimesh.creation.box(extents=[1,.2,1]);cap.apply_translation(center+[0,p['feather_pilot_depth']+.12,0])
+    solid=trimesh.boolean.intersection([cap,meshes['feather_frame']],engine='manifold')
+    assert abs(solid.volume-cap.volume)<.001,('Blind pilot lacks end material',i)
+    slab=trimesh.creation.box(extents=[9,.02,9]);slab.apply_translation(center+[0,2,0])
+    section=trimesh.boolean.intersection([slab,meshes['feather_frame']],engine='manifold')
+    area=float(section.volume)/.02
+    old_diameter=4.3 if i<2 else 3.2
+    old_area=np.pi*(old_diameter**2-p['m2_pilot']**2)/4
+    assert area>old_area*1.8,('Insufficient reinforcement at threaded section',i,area,old_area)
+    report['feather_mounts']['sections'].append({'hole_index':i,'depth_from_pcb_back_mm':2,
+        'plastic_section_mm2':round(area,2),'v05_nominal_section_mm2':round(old_area,2),
+        'area_ratio':round(area/old_area,2)})
 # A vertical pencil of light over the whole TSL2591 array must reach the sky.
 # This catches a misplaced window even if the short sensor package fits below it.
 ox,oy=np.array(p['light_origin'][:2])+light['optic']
@@ -117,7 +143,7 @@ for e in json.loads((ROOT/'hardware/reference/manifest.json').read_text()):
 with pymupdf.open(CAD/'design-review.pdf') as pdf:
     assert len(pdf)==9
     report['review_pdf_pages']=len(pdf)
-report['limitations']=['User reports an earlier shell printed well in PLA on an X1 Carbon; this light-sensor revision is not physically tested.',
+report['limitations']=['User reports an earlier shell printed well in PLA; unidentified screws fitted the Feather pilots but a post broke during removal. Reinforced-frame durability is untested.',
     'Simplified PCB/connector envelopes omit some small components and manufacturing tolerances.',
     'Cable curves are illustrative; trial lead lengths include unmodelled slack.',
     'Threads intentionally engage printed pilot walls; fasteners are not a collision-free fit claim.',

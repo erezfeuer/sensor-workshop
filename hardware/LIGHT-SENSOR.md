@@ -1,6 +1,6 @@
 # Light sensor for the prototype
 
-**Use the TSL2591 already supplied by Elad.** Erez confirmed that it is the **Adafruit STEMMA QT board, product 1980**, with two QT sockets and four mounting holes. Enclosure **v0.5** and the current production STLs are prepared for that board. The older header-only board and other manufacturers' layouts are not covered.
+**Use the TSL2591 already supplied by Elad.** Erez confirmed that it is the **Adafruit STEMMA QT board, product 1980**, with two QT sockets and four mounting holes. Enclosure **v0.6** and the current production STLs are prepared for that board. The older header-only board and other manufacturers' layouts are not covered.
 
 For the class, my recommendation is to keep using TSL2591 if the prototype behaves well in the intended lighting and enough identical boards are available. There is little reason to replace working stock for a basic workshop. If the priority becomes bright outdoor daylight measurement, compare it against VEML7700 before selecting the class hardware.
 
@@ -26,7 +26,7 @@ The chip moves from PCB coordinates **(12.7, 13.716)** to **(12.7, 8.89) mm**. T
 
 The internal light well has lower-edge reliefs for nearby components, and the locating boss beside the power LED has a small edge relief. Hole centres and screw pilots stay unchanged. Their XY bounds come from the PCB pads/body outlines; their **2 mm height is a conservative modelling allowance**, with an extra **0.3 mm clearance** in the reliefs. These remain integral to the shell and are open-ended when printed roof-down. The roof opening retains its **12 × 6 mm throat / 17 × 16 mm outer flare**.
 
-**Reprint only [01-shell.stl](../production-stls/01-shell.stl).** Reuse the carrier and Feather frame. The v0.4 opening is not over the TSL2591 array even though its screw holes fit. See the updated [interactive model](../enclosure/model.html) and [light-sensor fit drawing](../enclosure/light-sensor-fit.pdf).
+**The sensor change requires [01-shell.stl](../production-stls/01-shell.stl).** Reuse the carrier. The separate v0.6 [Feather reinforcement](../enclosure/FEATHER-MOUNT.md) also requires the updated frame after a screw-post failure; an existing v0.5 TSL2591 shell can be reused. The v0.4 opening is not over the TSL2591 array even though its screw holes fit. See the updated [interactive model](../enclosure/model.html) and [light-sensor fit drawing](../enclosure/light-sensor-fit.pdf).
 
 The OpenSCAD source retains both choices through `light_sensor` in [parameters.scad](../enclosure/parameters.scad). Set it to `"veml7700"` and run the [full rebuild](../enclosure/README.md#rebuild) before exporting that alternative. The three-file production folder always contains the currently selected variant; do not mix shells between sensors.
 

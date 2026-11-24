@@ -1,18 +1,21 @@
-# Enclosure v0.5 — Adafruit TSL2591 QT prototype
+# Enclosure v0.6 — reinforced Feather mount / TSL2591 QT prototype
 
-This revision fits the **Adafruit TSL2591 STEMMA QT board supplied by Elad and confirmed by Erez**. The roof opening and internal light well move to its optical centre; lower-edge reliefs and a small locating-boss edge relief clear nearby components. **Reprint only the shell.** The carrier, removable Feather frame, cable routing and screw-hole sizes are unchanged. There are still **three printed pieces and ten screws**. [Sensor comparison and prototype checks](../hardware/LIGHT-SENSOR.md) · [Light-sensor fit drawing](light-sensor-fit.pdf).
+This revision reinforces the **removable Feather frame** after a printed post broke during unscrewing. The posts taper into wider roots tied into the uprights; the Ø1.8 mm pilots are retained and deepened to 6 mm. An engraved **UP** arrow helps orient the board before fitting screws. **From v0.5, reprint only `03-feather-frame.stl`.** The shell, carrier, cable routing and other pilot diameters are unchanged. There are still **three printed pieces and ten screws**. [Reinforcement, screw-fit feedback and orientation guide](FEATHER-MOUNT.md) · [Measured mounting drawing](feather-mounting.pdf).
+
+The shell retains the **Adafruit TSL2591 STEMMA QT** fit introduced in v0.5: the roof opening and notched light well align with its optical centre. An older VEML7700 shell still needs replacing when changing to TSL2591. [Sensor comparison and prototype checks](../hardware/LIGHT-SENSOR.md) · [Light-sensor fit drawing](light-sensor-fit.pdf).
 
 The four corner mounting grooves and curved battery-tie returns from v0.4 are retained.
 
 The sensor carrier remains a single part, with perimeter slots and four bridges around its central mounting region. A [thermal screening model](thermal/README.md) finds that heat below the enclosure remains a risk: the nominal 0.8 W shaded example gives about **1.9°C additional module warming**, with uncertain assumptions. This is not temperature validation; a measurement procedure is included.
 
-The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the overall envelope to **95.2 × 69.2 × 60.8 mm**. Its body footprint remains **35.5% smaller** than v0.1. Erez reports that the previous shell printed well in PLA on an X1 Carbon; screw fit has not yet been checked. The revised guides still need a physical feeding and retention trial. The TSL2591 fit and optical response also need checking on the supplied board.
+The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the overall envelope to **95.2 × 69.2 × 60.8 mm**. Its body footprint remains **35.5% smaller** than v0.1. Erez reports that the previous shell printed well in PLA on an X1 Carbon. His unidentified screws fitted the Feather pilots, but a post broke during removal; the reinforced frame needs a repeat assembly/removal trial. The specified BOM screws, revised tie guides and TSL2591 optical response also need physical checks.
 
 ## Open and compare
 
 - **[Interactive HTML model](model.html)** — one offline file with 30 component checkboxes (including three optional mounting-example items), an explosion slider, movable cutaways, an **Underside** camera, a **Remove / install Feather** movement mode, a **Tie access** view of the empty shell, a **Tie section** through the two-guide route, and a **Pole mount** example. “Look inside” hides the shell. Download the file and open it in a browser; GitHub's file page displays source.
 - [Nine-page design review](design-review.pdf), [measured cross-sections](sections.pdf), [mounting drawings](mounting-drawings.pdf), and [battery-tie access sections](battery-tie-access.pdf), and [corner-guide details](mounting-guide-details.pdf).
 - [TSL2591 board fit and roof cross-section](light-sensor-fit.pdf).
+- [Reinforced Feather mount and orientation](FEATHER-MOUNT.md), with [CAD section and assembly drawing](feather-mounting.pdf).
 - **[Mechanical shopping list — screw sizes, washers, zip ties and quantities](MECHANICAL-BOM.md)** ([CSV](hardware.csv)).
 - [Three STL files to print](../production-stls/), [OpenSCAD source](sensor-workshop.scad), [editable dimensions](parameters.scad).
 - [Previous v0.2 viewer](archive/v0.2/model.html), [v0.2 archive](archive/v0.2/README.md), and [thermal review PDF](thermal/thermal-review.pdf).
@@ -22,7 +25,7 @@ The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the o
 
 ![Accessible enclosure assembly](renders/assembled.png)
 
-| Per device | v0.2 | v0.5 |
+| Per device | v0.2 | v0.6 |
 | --- | ---: | ---: |
 | Printed pieces | 2 | **3: shell, carrier, Feather frame** |
 | Screws | 10 | **10** |
@@ -81,12 +84,12 @@ Use **[production-stls/](../production-stls/)** for the three separate per-devic
 
 The [printability review](PRINTING.md) identifies the remaining bridge spans and support-removal access. The carrier ledge now has a 45° backing ramp, and the top light opening now widens from 12 × 6 mm inside to **17 × 16 mm outside** for a wider view of incoming light. Local support at this steeper flare is acceptable. The carrier and Feather frame print from flat faces; their crossbars/thermal bridges are supported by the bed. Use small local supports at the shell openings if the pilot needs them.
 
-The STL orientations are already set. Use light-coloured opaque PETG for the working prototype, or PLA for indoor fit trials. Start with a 0.4 mm nozzle, 0.2 mm layers, four perimeters, five top/bottom layers and 15–20% infill, then inspect the slicer. The shell has a **27 mm display-window bridge**, a 7 mm button-slot bridge, smaller vent/USB bridges and a flared optical aperture. Test bridging on the coupon; add local supports if the printer/material requires them. No large floor bridge is needed. [Prusa PETG](https://help.prusa3d.com/article/petg_2059), [PLA](https://help.prusa3d.com/article/pla_2062)
+The STL orientations are already set. Use light-coloured opaque PETG for the working prototype, or PLA for indoor fit trials. Start with a 0.4 mm nozzle, 0.2 mm layers, four perimeters (**five for the reinforced Feather frame**), five top/bottom layers and 15–20% infill, then inspect the slicer. The shell has a **27 mm display-window bridge**, a 7 mm button-slot bridge, smaller vent/USB bridges and a flared optical aperture. Test bridging on the coupon; add local supports if the printer/material requires them. No large floor bridge is needed. [Prusa PETG](https://help.prusa3d.com/article/petg_2059), [PLA](https://help.prusa3d.com/article/pla_2062)
 
 The coupon checks all four received board patterns (TSL2591 and VEML7700 QT share a mounting pattern), the locating pins, M2 pilot diameters 1.6–1.9 mm, M3 pilots 2.4–2.7 mm, the 27 mm bridge, and the battery diameter. The current pilots are 1.8 and 2.6 mm; pre-thread them with gentle hand torque before class. The locating pins are 1.9 mm diameter and 1.2 mm tall. No heat-set inserts are used.
 
 1. Print/check the coupon and measure the local pack. Inspect all three parts in the slicer. Clean the slide rails, thermal slots, cable passage, tie eyelets and bridge edges. With the empty shell roof down, feed each tie tail through its front eyelet toward the rear. The curved return should turn the tip upward through the second eyelet. Leave enough length at both ends to reach around the battery, and move the ends aside while fitting the boards. Check that the carrier's four thermal bridges are sound; it is still one part, not a breakaway support.
-2. **On the table**, place the Feather on the frame's rear locating pins, screen facing out. Fit two M2×5 screws from the display face into the frame. Use a normal straight precision screwdriver; keep its tip off the glass. Do not overtighten the small printed pads.
+2. **On the table**, hold the frame with its mounting faces toward you and engraved **UP arrow pointing up**. Place the Feather with **USB on the left and screen/buttons facing you**; the components face the frame. Seat it on both locating pins without force before fitting the two M2×5 screws from the display face. Keep the driver off the glass, support the frame near the screw and tighten only until seated. [Orientation drawing and removal trial](FEATHER-MOUNT.md).
 3. With the shell roof down and bottom open, insert the CR1220 into the RTC. Install the RTC with two M2×5 screws and washers, then the light board with two M2×5 screws. Approach these four screws straight through the bottom. Fit the RTC–light lead.
 4. Slide the complete Feather/frame into its guides from the open bottom until it reaches the upper stops. The button and display faces point toward the front openings. Check the buttons, RESET and USB opening. Connect the Feather–RTC lead with the bottom still open. The frame remains loose in its guides until the carrier is fitted; keep it seated while handling the open device.
 5. With the ties already threaded, insert the battery from below with its lead toward the left. Bring the ends around the pack, close each tie with its head below the battery, secure gently, and route its lead to the Feather's downward-facing socket. Keep the lead above the small bottom frame crossbar and away from the closing edge. Confirm polarity before connecting.

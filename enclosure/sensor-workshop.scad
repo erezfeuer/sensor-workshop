@@ -1,4 +1,4 @@
-// Sensor Workshop v0.5. Two case parts and a removable Feather frame.
+// Sensor Workshop v0.6. Two case parts and a removable Feather frame.
 // Board-derived geometry: Adafruit CC BY-SA 3.0; see reference/ATTRIBUTION.md.
 include <parameters.scad>
 include <generated/boards.scad>
@@ -60,13 +60,38 @@ module feather_frame() {
             translate([57,12.5,26.6]) cube([1.9,4,23]);
             translate([5.9,13.5,26.6]) cube([51.2,3,2]);
             for(i=[0:3]) let(p=feather_holes[i],x=feather_origin[0]+p[0],z=feather_origin[2]-p[1]) {
-                // Small right pads clear the antenna keep-out envelope.
-                translate([x,feather_origin[1]+pcb_thickness,z]) y_cylinder(16.5-feather_origin[1]-pcb_thickness,i<2?4.3:3.2);
+                // Wider tapered posts merge into broad roots on each upright.
+                // Clip to the original rail/stop envelope so the frame still slides.
+                intersection() {
+                    translate([5.9,feather_origin[1]+pcb_thickness,26.6]) cube([51.2,16.5-feather_origin[1]-pcb_thickness,31.2]);
+                    union() {
+                        hull() {
+                            translate([x,feather_origin[1]+pcb_thickness,z]) y_cylinder(feather_contact_length,feather_contact_diameters[i<2?0:1]);
+                            translate([x,feather_root_y,z]) y_cylinder(eps,feather_root_diameter);
+                        }
+                        hull() {
+                            translate([x,feather_root_y,z]) y_cylinder(16.5-feather_root_y,feather_root_diameter);
+                            translate([i<2?5.9:52,11.3,z-feather_root_span/2]) cube([5.1,5.2,feather_root_span]);
+                        }
+                    }
+                }
                 if(i==1 || i==2) translate([x,feather_origin[1]+pcb_thickness-locating_height,z]) y_cylinder(locating_height+eps,locating_pin);
             }
         }
+        // Preserve clearance to the radio package and copper antenna face.
+        // These are mechanical component envelopes, not an RF-performance claim.
+        board_transform("feather") {
+            translate([28.1,3.3,pcb_thickness-eps]) cube([17.6,16.2,2.8+eps]);
+            translate([45.1,3.3,pcb_thickness-eps]) cube([6,16.2,.9+eps]);
+        }
         for(i=board_screw_indices) let(p=feather_holes[i])
-            translate([feather_origin[0]+p[0],feather_origin[1]+pcb_thickness-eps,feather_origin[2]-p[1]]) y_cylinder(4.3,m2_pilot);
+            translate([feather_origin[0]+p[0],feather_origin[1]+pcb_thickness-eps,feather_origin[2]-p[1]]) y_cylinder(feather_pilot_depth+eps,m2_pilot);
+        // Recessed orientation mark on the front of the right upright.
+        // It is away from the screw roots and opens upward in print orientation.
+        translate([54.55,11.8,42]) rotate([90,0,0]) linear_extrude(.6)
+            text("UP",size=2.6,halign="center",valign="bottom",font="Liberation Sans:style=Bold");
+        translate([54.55,11.8,46]) rotate([90,0,0]) linear_extrude(.6)
+            polygon([[-.5,0],[.5,0],[.5,2.7],[1.6,2.7],[0,4.5],[-1.6,2.7],[-.5,2.7]]);
     }
 }
 module feather_guides() {

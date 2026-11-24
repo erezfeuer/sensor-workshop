@@ -1,4 +1,4 @@
-# Printability review — v0.5
+# Printability review — v0.6
 
 The design keeps **three printed pieces** and uses their assembly layout to give each a flat printing face. The previous shell printed well in Erez’s PLA/X1 Carbon trial. The revised tie guides and TSL2591 light well have been reviewed geometrically but have not yet been printed or sliced here. The **[production-stls/](../production-stls/)** folder contains exactly the three separate files to print, one of each per device. Import at **100% scale in millimetres** and keep the supplied orientations.
 
@@ -8,11 +8,17 @@ For the first test, **print the shell separately**, then print the **carrier and
 | --- | --- | --- |
 | Shell | Exterior roof | Feet, slide guides, board bosses, light well and battery cradles grow from the roof/walls. The display window and wider light flare are local-support candidates. |
 | Carrier | Flat upper face | Plate, central sensor region and all four thermal bridges start on the bed. Bosses and pins grow vertically; no deliberate support is needed for this orientation. |
-| Feather frame | Flat rear face | Uprights, crossbar and tongues start on the bed. Mounting pads and locating pins grow vertically; the crossbar is not an elevated bridge. |
+| Feather frame | Flat rear face | Uprights, crossbar and tongues start on the bed. Broad post roots taper toward the pads and pins as layers rise; the engraved arrow opens upward. No new support is intended. |
+
+## Feather reinforcement — 24 November 2026
+
+Erez's screws fitted the previous pilots, but one post broke when he removed a wrongly oriented board. **From v0.5, reprint only [03-feather-frame.stl](../production-stls/03-feather-frame.stl).** The shell and carrier are unchanged. Four posts now widen into nominal Ø6.4 mm roots and broad connections to the uprights, with local relief for the Feather components. Pilot diameters stay Ø1.8 mm; the two blind screw holes are 6 mm deep. The UP arrow is recessed, so it needs no separate part.
+
+Keep the supplied flat-rear-face-down orientation. Start with **five perimeters, 0.2 mm layers and a 0.4 mm nozzle** for this small frame; retain five top/bottom layers. This puts more solid plastic around the screw bores. The tapered supports narrow as the print grows; component reliefs open toward the top. No slicing has been done here. Inspect the first print and repeat gentle fitting/removal before printing a batch. [Mounting guide, measured section and test limits](FEATHER-MOUNT.md).
 
 ## TSL2591 update — 24 November 2026
 
-The current shell is for the Adafruit TSL2591 QT board. The roof opening and well move 4.456 mm toward the front; the flare dimensions and roof-down orientation stay the same. Small clearance notches in the lower edge of the well and the edge of the boss beside the LED avoid neighbouring board components. They terminate toward the open underside and add no new bridge roof in the print orientation. Inspect and clean these notches before fitting the board. **Reprint only the shell**; reuse the two smaller parts. [Fit drawing](light-sensor-fit.pdf).
+The shell introduced in v0.5 is for the Adafruit TSL2591 QT board. Its roof opening and well moved 4.456 mm toward the front; the flare dimensions and roof-down orientation stayed the same. Small clearance notches in the lower edge of the well and the edge of the boss beside the LED avoid neighbouring board components. They terminate toward the open underside and add no new bridge roof in the print orientation. Inspect and clean these notches before fitting the board. Changing from the older VEML7700 shell requires a shell reprint; the v0.6 frame reinforcement above is a separate update. [Fit drawing](light-sensor-fit.pdf).
 
 ## Geometry refinements
 
@@ -44,7 +50,7 @@ The rounded battery cradle is not an unsupported arch in this orientation: its s
 
 ## First-print feedback — 15 November 2026
 
-The user reports that the previous shell printed well in PLA on a Bambu Lab X1 Carbon. The observed problems were tie retention on the flat exterior faces and battery-tie tails running into the rear/roof corner. v0.4 addresses those two points. **Reprint only `01-shell.stl`**; the carrier and Feather frame STLs are byte-for-byte unchanged. M2 pilots remain **1.8 mm** and M3 pilots **2.6 mm**, pending the user’s screw-fit test.
+The user reported that the previous shell printed well in PLA on a Bambu Lab X1 Carbon. The observed problems were tie retention on the flat exterior faces and battery-tie tails running into the rear/roof corner. v0.4 addressed those two points with a shell-only update. Pilot diameters remain **1.8 mm** and **2.6 mm**. The later Feather screw-fit/removal feedback is recorded above.
 
 For the revised shell, test the two curved feeds while empty, then the battery clamping action and the external tie’s seating at the corners. The existing geometric checks cannot prove how a real nylon tip bends or slides.
 

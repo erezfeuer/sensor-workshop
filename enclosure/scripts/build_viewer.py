@@ -60,7 +60,7 @@ def main():
     defs=[
         ('shell','Shell + straight feet + skirt','Printed enclosure','One print: roof, straight feet, open-bottom skirt, mounts and battery cradles. Print roof-down.'),
         ('carrier','Bottom carrier plate','Printed enclosure','One carrier with four thermal bridges around the SCD30 mounting island. Two closure screws retain this plate and the Feather frame.'),
-        ('feather_frame','Removable Feather mounting frame','Printed enclosure','Attach the Feather with two front-access screws on the table. Slide upward through the open bottom; the carrier captures its lower ends. Print flat rear face down.'),
+        ('feather_frame','Reinforced Feather mounting frame','Printed enclosure','Wider tapered posts, Ø1.8 × 6 mm blind pilots and an engraved UP arrow. On the table: arrow up, USB left, screen toward you. Attach two screws, then slide upward through the open bottom. Print flat rear face down; removal durability needs a pilot trial.'),
         ('feather','ESP32-S3 Reverse TFT Feather','Electronics','Real buttons accessible through the front slot. Two screws fasten to the removable frame OUTSIDE the housing; no sideways driver inside the box.'),
         ('light',PARAMS['light_sensor'].upper()+' light sensor · Adafruit QT','Electronics','Faces upward through the matching roof aperture. Two screws and two locating pins. The TSL2591 well has clearance notches for neighbouring components.'),
         ('rtc','DS3231 RTC + holder','Electronics','Rotated 90° so QT sockets face front/rear. Two screws, two washers.'),

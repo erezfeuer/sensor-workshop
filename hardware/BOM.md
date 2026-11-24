@@ -6,7 +6,7 @@ The selected controller is the **Adafruit ESP32-S3 Reverse TFT Feather, product 
 
 ## Supplied prototype — 24 November 2026
 
-Elad supplied the prototype electronics, with **Adafruit TSL2591 STEMMA QT (1980)** replacing the planned VEML7700. Erez confirmed the two-socket/four-hole QT version. **Use one light sensor, not both.** The current v0.5 production shell fits TSL2591. [Comparison, mechanical changes and prototype checks](LIGHT-SENSOR.md).
+Elad supplied the prototype electronics, with **Adafruit TSL2591 STEMMA QT (1980)** replacing the planned VEML7700. Erez confirmed the two-socket/four-hole QT version. **Use one light sensor, not both.** The current production shell (TSL2591 fit introduced in v0.5) fits TSL2591. [Comparison, mechanical changes and prototype checks](LIGHT-SENSOR.md).
 
 | Prototype substitution | Qty | Reference USD | Adafruit | Digi-Key | Mouser |
 | --- | ---: | ---: | --- | --- | --- |
@@ -40,7 +40,7 @@ All five comparison items were listed in stock at Digi-Key and Mouser in the ret
 
 SparkFun's **KIT-15081** is the remembered assortment: ten cables of mixed lengths, including jumper-ended styles. It is not ten identical QT-to-QT leads. Use only the QT-to-QT leads in the student device. Digi-Key currently identifies this kit as manufacturer part **15081**, with ordering code **1568-15081-ND**; Mouser retains **KIT-15081**.
 
-Use one assortment to try the component arrangement. Then buy the selected lengths in bulk: **three cables per device plus approximately 10% spares**, rounded up. The [v0.5 enclosure](../enclosure/README.md) proposes **100 mm Feather→RTC, 50 mm RTC→light sensor, and 100 mm light sensor→SCD30**. Confirm plug clearance, bend radius and carrier-removal slack with the pilot hardware before freezing the lengths:
+Use one assortment to try the component arrangement. Then buy the selected lengths in bulk: **three cables per device plus approximately 10% spares**, rounded up. The [v0.6 enclosure](../enclosure/README.md) proposes **100 mm Feather→RTC, 50 mm RTC→light sensor, and 100 mm light sensor→SCD30**. Confirm plug clearance, bend radius and carrier-removal slack with the pilot hardware before freezing the lengths:
 
 | Cable option | Manufacturer link | Reference USD | Observation |
 | --- | --- | ---: | --- |
@@ -101,6 +101,6 @@ The battery connects directly to the Feather, which supplies USB charging. There
 
 The [downloaded reference set](reference/README.md) includes the four exact PCB files, schematics, guides, sensor datasheets and available official STEP/STL models. The SCD30 PCB is **50.8 × 25.4 mm**; its official model extends from **2.934 mm below** the PCB bottom to **8.57 mm above**, about **11.50 mm overall**. The enclosure accounts for the underside pins; the older 8.8 mm product height alone is insufficient for clearance design.
 
-The [v0.5 enclosure](../enclosure/README.md) uses **two case parts and a removable Feather mounting frame**, an integrated top light aperture, direct access to the PCB buttons, USB-C and RESET access, a battery retained by zip ties, and a downward-facing SCD30 under a simple open-bottom skirt. The [mechanical shopping list](../enclosure/MECHANICAL-BOM.md) ([CSV](../enclosure/hardware.csv)) specifies eight M2×5 pan-head board screws, two M3×8 pan-head closure screws, two thin RTC washers and two battery ties, plus optional external mounting supplies. No nuts, separate feet, button plungers or switch are used. These mechanical items remain separate from distributor imports. The Feather screws onto its frame outside the housing and slides in through the bottom. [Thermal screening](../enclosure/thermal/README.md) flags possible warming despite the slotted carrier; physical fit and temperature performance require a pilot build.
+The [v0.6 enclosure](../enclosure/README.md) uses **two case parts and a removable Feather mounting frame**, an integrated top light aperture, direct access to the PCB buttons, USB-C and RESET access, a battery retained by zip ties, and a downward-facing SCD30 under a simple open-bottom skirt. The [mechanical shopping list](../enclosure/MECHANICAL-BOM.md) ([CSV](../enclosure/hardware.csv)) specifies eight M2×5 pan-head board screws, two M3×8 pan-head closure screws, two thin RTC washers and two battery ties, plus optional external mounting supplies. No nuts, separate feet, button plungers or switch are used. These mechanical items remain separate from distributor imports. The Feather screws onto its frame outside the housing and slides in through the bottom. [Thermal screening](../enclosure/thermal/README.md) flags possible warming despite the slotted carrier; physical fit and temperature performance require a pilot build.
 
 Before ordering for the class, assemble pilot hardware and check upload/recovery on macOS including Apple Silicon, Windows, and Linux; the complete sensor chain; hotspot operation while logging and downloading CSV; battery/USB transitions; charging and current draw; and enclosure fit. Runtime and laptop compatibility remain unmeasured. Pin the software versions that pass these checks.

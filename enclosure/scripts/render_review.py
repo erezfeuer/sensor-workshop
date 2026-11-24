@@ -183,6 +183,50 @@ def drawings(scene):
     plt.close(fig)
 
 
+def feather_mount_drawing(scene):
+    """Orientation reference and a true section through the antenna-end screw."""
+    rasterize({'feather_frame':scene['feather_frame']},
+        f"Reinforced Feather frame · v{PARAMS['enclosure_version']}",
+        'Board-contact faces toward you · UP arrow toward the roof · USB end on the left',
+        RENDERS/'feather-frame.png',eye=(-.4,-1,.6))
+    fig,axes=plt.subplots(1,2,figsize=(13.5,8.8),gridspec_kw={'width_ratios':[1.1,1]})
+    axes[0].imshow(np.asarray(Image.open(RENDERS/'feather-frame.png'))[145:1110,110:1510])
+    axes[0].axis('off')
+    axes[0].set_title('Mounting faces toward you · crossbar at the bottom',loc='left',fontsize=11,pad=12)
+    axes[0].text(.5,-.06,'UP arrow up. USB left. Screen and buttons face you.\nSeat both locating pins before fitting the two screws.',
+        transform=axes[0].transAxes,ha='center',va='top',fontsize=10,color='#334c50')
+    boards=json.loads((CAD/'generated/boards.json').read_text())
+    hole=boards['feather']['holes'][3]
+    cut=PARAMS['feather_origin'][0]+hole[0]
+    z=PARAMS['feather_origin'][2]-hole[1]
+    front=PARAMS['feather_origin'][1]+PARAMS['pcb_thickness']
+    ax=axes[1]
+    section_plot(ax,{k:scene[k] for k in ('feather_frame','feather')},cut,
+        f'True screw-axis section · X = {cut:g} mm',dimensions=False)
+    ax.set(xlim=(3.4,18.2),ylim=(30.5,43),xlabel='PCB / front ← Y (mm) → rear face',ylabel='Z above desk (mm)')
+    ax.add_patch(plt.Rectangle((front,z-1.6),16.5-front,3.2,fill=False,
+        edgecolor='#9e483a',linewidth=1.2,linestyle='--',label='Previous Ø3.2 mm post outline'))
+    ax.annotate('',xy=(front,32.2),xytext=(front+PARAMS['feather_pilot_depth'],32.2),
+        arrowprops=dict(arrowstyle='<->',lw=1,color='#334c50'))
+    ax.text(front+PARAMS['feather_pilot_depth']/2,31.4,'6 mm blind pilot · Ø1.8 unchanged',ha='center',fontsize=9)
+    ax.annotate('Taper and broad root\nmerge into the upright',xy=(10,39.2),xytext=(11,41.4),
+        ha='center',fontsize=9,arrowprops=dict(arrowstyle='->',lw=.8))
+    ax.annotate('PCB',xy=(5.1,39.2),xytext=(4.9,42),ha='center',fontsize=9,
+        arrowprops=dict(arrowstyle='->',lw=.8))
+    ax.annotate('4.6 mm solid\nbehind the pilot',xy=(14.1,z),xytext=(14.8,33),ha='center',fontsize=9,
+        arrowprops=dict(arrowstyle='->',lw=.8))
+    ax.legend(loc='lower center',bbox_to_anchor=(.5,-.26),frameon=False,fontsize=8)
+    fig.suptitle(f"Feather frame v{PARAMS['enclosure_version']} — reinforcement and orientation",fontsize=19,x=.05,ha='left')
+    fig.text(.05,.065,'Reprint only 03-feather-frame.stl from v0.5. Flat rear face on the bed; start with five perimeters at 0.4 mm nozzle / 0.2 mm layers.\n'
+        'Component reliefs trim the contact faces; nominal Ø6.4 mm roots are clipped to the original rail envelope.\n'
+        'The section shows actual CAD geometry, not a strength simulation. Gentle repeated fitting/removal still needs a physical trial.',
+        fontsize=9,color='#526568')
+    fig.subplots_adjust(left=.04,right=.97,top=.85,bottom=.23,wspace=.2)
+    fig.savefig(RENDERS/'feather-mounting.png',dpi=170)
+    fig.savefig(CAD/'feather-mounting.pdf')
+    plt.close(fig)
+
+
 def light_sensor_drawing(scene):
     """Board comparison and true roof section for the selected light sensor."""
     boards=json.loads((CAD/'generated/boards.json').read_text())
@@ -300,6 +344,7 @@ if __name__ == "__main__":
         eye=(-1,-1,-.85) if kind=="underside" else (-1,-1,.85)
         rasterize(variant(scene,kind),title,subtitle,RENDERS/(kind+".png"),eye=eye)
     drawings(scene)
+    feather_mount_drawing(scene)
     light_sensor_drawing(scene)
     battery_tie_drawing(scene)
     mounting_guide_drawing(scene)

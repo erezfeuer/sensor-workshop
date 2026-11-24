@@ -1,6 +1,6 @@
 # Mechanical bill of materials — one device
 
-For enclosure **v0.5, Adafruit TSL2591 QT prototype**; fastener quantities also apply to the VEML7700 alternative. Buy these generic items locally or from a fastener supplier; they are separate from the Digi-Key/Mouser electronics orders. Quantities below are the installed quantities, before spares. [CSV shopping list](hardware.csv) · [Electronics and batteries](../hardware/BOM.md) · [Assembly instructions](README.md#print-set-and-assembly)
+For enclosure **v0.6, reinforced Feather frame / Adafruit TSL2591 QT prototype**; fastener quantities also apply to the VEML7700 alternative. Buy these generic items locally or from a fastener supplier; they are separate from the Digi-Key/Mouser electronics orders. Quantities below are the installed quantities, before spares. [CSV shopping list](hardware.csv) · [Electronics and batteries](../hardware/BOM.md) · [Assembly instructions](README.md#print-set-and-assembly)
 
 ## Required purchased hardware
 
@@ -19,7 +19,9 @@ Use pan heads with a flat bearing surface. Phillips recesses are convenient for 
 
 The stated screw lengths exclude the heads. Use ordinary metric machine threads; the screws engage the printed pilot bores directly. The current **1.8 mm M2 pilots and 2.6 mm M3 pilots are hole sizes in the plastic**, not the screw diameters to purchase. Pre-thread gently by hand before class.
 
-The CAD uses **0.5 mm-thick RTC washers** when calculating screw engagement. Check washer dimensions rather than relying on an “M2 washer” label alone. Do not omit them or substitute longer screws without checking the available depth. The printed shell has been tried, but **screw fit has not yet been tested**; confirm these fasteners on one device before buying the classroom batch.
+The CAD uses **0.5 mm-thick RTC washers** when calculating screw engagement. Check washer dimensions rather than relying on an “M2 washer” label alone. Do not omit them or substitute longer screws without checking the available depth.
+
+**Physical feedback, 24 November 2026:** Erez's unidentified screws, measured at approximately **1.8 mm across the thread and 5.5 mm of threaded length**, fitted the Feather pilots. A printed post broke when unscrewed. This does not identify the screws as M2 or qualify the specified BOM fasteners. Keep the nominal shopping specification above until the thread/pitch and under-head length are confirmed. v0.6 reinforces the frame and deepens only its blind holes to **6 mm**; other mounts keep their original depths. Repeat assembly/removal on the new frame and trial the specified fasteners on the other mounts before a classroom order. [Details and orientation](FEATHER-MOUNT.md).
 
 | Assembly | Screws | Washers |
 | --- | --- | --- |
