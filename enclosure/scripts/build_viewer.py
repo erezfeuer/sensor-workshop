@@ -62,7 +62,7 @@ def main():
         ('carrier','Bottom carrier plate','Printed enclosure','One carrier with four thermal bridges around the SCD30 mounting island. Two closure screws retain this plate and the Feather frame.'),
         ('feather_frame','Removable Feather mounting frame','Printed enclosure','Attach the Feather with two front-access screws on the table. Slide upward through the open bottom; the carrier captures its lower ends. Print flat rear face down.'),
         ('feather','ESP32-S3 Reverse TFT Feather','Electronics','Real buttons accessible through the front slot. Two screws fasten to the removable frame OUTSIDE the housing; no sideways driver inside the box.'),
-        ('light','VEML7700 light sensor','Electronics','Faces upward through the roof aperture. Two screws and two locating pins.'),
+        ('light',PARAMS['light_sensor'].upper()+' light sensor · Adafruit QT','Electronics','Faces upward through the matching roof aperture. Two screws and two locating pins. The TSL2591 well has clearance notches for neighbouring components.'),
         ('rtc','DS3231 RTC + holder','Electronics','Rotated 90° so QT sockets face front/rear. Two screws, two washers.'),
         ('scd30','SCD30 · facing downward','Electronics','Mounted under the carrier. The underside is open; the shallow skirt gives shade.'),
         ('battery','Protected 18650 pack','Electronics','Local pack envelope Ø20 × 72 mm; two ties through front and rear cradle guides. Direct battery connection.')]
@@ -70,7 +70,7 @@ def main():
     add('display','Display face','_attached',scene['display'],COLORS['display'],deltas['feather'],'',parent='feather')
     add('coin','CR1220 backup cell','Electronics',cylinder(6,2,coin_center),'#c1c7cb',[25,0,-26],'Local non-rechargeable backup cell.')
     boards=json.loads((CAD/'generated/boards.json').read_text())
-    for board,key in [('feather','feather'),('scd30','scd30'),('rtc','rtc'),('veml7700','light')]:
+    for board,key in [('feather','feather'),('scd30','scd30'),('rtc','rtc'),(PARAMS['light_sensor'],'light')]:
         origin=np.array(PARAMS[key+'_origin'])
         indices=range(2) if key=='rtc' else PARAMS['board_screw_indices']
         for i in indices:
@@ -107,10 +107,10 @@ def main():
         assert len(cap.faces)>0,parent
         add('section-cap-'+parent,'','_attached',cap,color,[0,0,0],'',parent=parent,cap_x=cut_x)
     count=sum(x['group']!='_attached' for x in items)
-    meta=dict(version='0.4',units='mm',size=[PARAMS["case_width"],PARAMS["case_depth"],PARAMS["case_top"]+PARAMS["roof_thickness"]],overall_size=scene["shell"].extents.round(3).tolist(),parts=items,
+    meta=dict(version=PARAMS['enclosure_version'],light_sensor=PARAMS['light_sensor'],units='mm',size=[PARAMS["case_width"],PARAMS["case_depth"],PARAMS["case_top"]+PARAMS["roof_thickness"]],overall_size=scene["shell"].extents.round(3).tolist(),parts=items,
               source_sha256=hashlib.sha256((CAD/'sensor-workshop.scad').read_bytes()+(CAD/'parameters.scad').read_bytes()).hexdigest())
     template=(CAD/'viewer/template.html').read_text()
-    result=template.replace('__MODEL_JSON__',json.dumps(meta,separators=(',',':'))).replace('__VIEWER_JS__',(CAD/'viewer/viewer.js').read_text())
+    result=template.replace('__MODEL_JSON__',json.dumps(meta,separators=(',',':'))).replace('__VIEWER_JS__',(CAD/'viewer/viewer.js').read_text()).replace('__VERSION__',PARAMS['enclosure_version']).replace('__LIGHT_SENSOR__',PARAMS['light_sensor'].upper())
     (CAD/'model.html').write_text(result)
     print(f'model.html: {count} selectable components, three printed parts, {len(result)/1024/1024:.1f} MB offline')
 

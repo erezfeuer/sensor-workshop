@@ -1,4 +1,4 @@
-// Sensor Workshop v0.4. Two case parts and a removable Feather frame.
+// Sensor Workshop v0.5. Two case parts and a removable Feather frame.
 // Board-derived geometry: Adafruit CC BY-SA 3.0; see reference/ATTRIBUTION.md.
 include <parameters.scad>
 include <generated/boards.scad>
@@ -19,6 +19,7 @@ assert(scd30_origin[2]+2.935 < carrier_z,"SCD30 underside pins intersect carrier
 assert(scd30_origin[2]-8.57 > skirt_bottom,"Keep the sensing body above the skirt edge.");
 assert(thermal_bridge_count == 2*len(thermal_bridge_x),"Keep the thermal model bridge count aligned with CAD.");
 assert(min(optic_flare) > 0,"Light flare is a positive X/Y pair.");
+assert(light_sensor == "tsl2591" || light_sensor == "veml7700", "Select a supported Adafruit QT light board.");
 assert((battery_saddle_width-tie_slot_width)/2 >= 2,"Keep substantial cradle cheeks beside the open tie channel.");
 assert(mount_groove_bevel >= mount_groove_depth,"Corner guide ramps must be 45 degrees or shallower.");
 assert(mount_band_z+mount_band_width/2 < feather_origin[2]-22.43,"Mounting band must clear the front buttons.");
@@ -134,6 +135,17 @@ module optic_opening() {
             cube([12+2*optic_flare[0],6+2*optic_flare[1],.04]);
     }
 }
+module light_well() {
+    translate([light_origin[0]+light_optic[0]-7.5,light_origin[1]+light_optic[1]-4,light_origin[2]+pcb_thickness+.15])
+        ring([15,8],1.2,1,case_top-light_origin[2]-pcb_thickness-.15+.05);
+}
+module light_component_clearances() {
+    // Clear the well's lower edges and the locating boss beside the LED.
+    // Printed roof-down, these are open-ended notches, not bridge roofs.
+    if(light_sensor == "tsl2591") for(c=tsl2591_components)
+        translate([light_origin[0]+c[0]-.3,light_origin[1]+c[1]-.3,light_origin[2]+pcb_thickness-eps])
+            cube([c[2]+.6,c[3]+.6,c[4]+.3+eps]);
+}
 module carrier_seat() {
     m=wall-.1; w=case_width-2*m; d=case_depth-2*m; r=corner_radius-m;
     z=carrier_z+carrier_thickness; lip=1.4;
@@ -186,15 +198,15 @@ module shell() {
             for(p=case_mounts) translate([p[0],p[1],carrier_z+carrier_thickness])
                 cylinder(h=case_top-carrier_z-carrier_thickness+.05,d=7.6);
             feather_guides();
-            for(i=[0:3]) roof_mount(veml7700_holes[i],light_origin,i==1 || i==2);
+            for(i=[0:3]) roof_mount(light_holes[i],light_origin,i==1 || i==2);
             for(p=rtc_holes) boss(rtc_xy(p),rtc_origin[2]+pcb_thickness,case_top+.05,5.2);
             // Internal light well; sensing package remains clear on every side.
-            translate([light_origin[0]+light_optic[0]-7.5,light_origin[1]+light_optic[1]-4,light_origin[2]+pcb_thickness+.15])
-                ring([15,8],1.2,1,case_top-light_origin[2]-pcb_thickness-.15+.05);
+            light_well();
             for(x=battery_saddles) battery_saddle(x);
             // Battery end stops removed: the two cradle ties retain the pack.
         }
         optic_opening();
+        light_component_clearances();
         // Continuous insertion relief: screen, buttons and screw heads slide past
         // the front wall AND the carrier shoulder without catching either.
         translate([5,1.65,-eps]) cube([53,2.5,57.5]);
@@ -206,7 +218,7 @@ module shell() {
         translate([-eps,2.7,38.5]) cube([wall+2*eps,10.8,14]);
         for(x=[35,43,51,59]) translate([x,case_depth-wall-eps,48]) cube([4,wall+2*eps,8]);
         for(p=case_mounts) translate([p[0],p[1],carrier_z+carrier_thickness-eps]) cylinder(h=9,d=m3_pilot);
-        for(i=board_screw_indices) let(p=veml7700_holes[i])
+        for(i=board_screw_indices) let(p=light_holes[i])
             translate([light_origin[0]+p[0],light_origin[1]+p[1],case_top-1]) cylinder(h=1.9,d=m2_pilot);
         for(p=rtc_holes) let(xy=rtc_xy(p)) translate([xy[0],xy[1],case_top-1]) cylinder(h=1.9,d=m2_pilot);
     }
@@ -279,9 +291,12 @@ module rtc_model() {
     }
 }
 module light_model() {
-    color("#243e50") pcb(veml7700_size,veml7700_holes);
-    color("#303438") translate([light_optic[0]-3.4,light_optic[1]-1.5,pcb_thickness]) cube([6.8,3,2.35]);
-    color("#8ab3ca") translate([light_optic[0]-1.5,light_optic[1]-0.75,pcb_thickness+2.35]) cube([3,1.5,0.01]);
+    color("#243e50") pcb(light_size,light_holes);
+    color("#303438") translate([light_package_center[0]-light_package_size[0]/2,light_package_center[1]-light_package_size[1]/2,pcb_thickness]) cube(light_package_size);
+    spot = light_sensor == "tsl2591" ? [.802,.716] : [3,1.5];
+    color("#8ab3ca") translate([light_optic[0]-spot[0]/2,light_optic[1]-spot[1]/2,pcb_thickness+light_package_size[2]]) cube([spot[0],spot[1],0.01]);
+    if(light_sensor == "tsl2591") color("#55534d") for(c=tsl2591_components)
+        translate([c[0],c[1],pcb_thickness]) cube([c[2],c[3],c[4]]);
     color("ivory") for(x=[2.667,22.733]) qt_socket([x,8.89]);
 }
 
@@ -313,8 +328,8 @@ module exploded() {
 }
 module coupon() {
     // Shared setup gauges, not extra pieces per student device.
-    for(i=[0:3]) let(sizes=[feather_size,scd30_size,veml7700_size,rtc_size],
-        holes=[feather_holes,scd30_holes,veml7700_holes,rtc_holes],pos=[[0,0],[0,36],[64,0],[64,36]])
+    for(i=[0:3]) let(sizes=[feather_size,scd30_size,light_size,rtc_size],
+        holes=[feather_holes,scd30_holes,light_holes,rtc_holes],pos=[[0,0],[0,36],[64,0],[64,36]])
         translate([pos[i][0],pos[i][1],0]) difference() {
             union() {
                 rounded_box([sizes[i][0]+4,sizes[i][1]+4,1.6],2);

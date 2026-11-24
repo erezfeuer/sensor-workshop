@@ -2,10 +2,13 @@
 """Exercise the standalone HTML in an isolated Chrome session, offline."""
 import json
 import math
+import re
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 CAD=Path(__file__).resolve().parents[1]
+params={m[1]:json.loads(m[2]) for line in (CAD/'parameters.scad').read_text().splitlines()
+        if (m:=re.match(r'(\w+)\s*=\s*(.*?);',line))}
 with sync_playwright() as p:
     browser=p.chromium.launch(channel='chrome',headless=True,args=['--enable-unsafe-swiftshader'])
     context=browser.new_context(viewport={'width':1500,'height':1000},offline=True)
@@ -18,7 +21,8 @@ with sync_playwright() as p:
     assert page.locator('#error').is_hidden()
     initial=page.evaluate('sensorWorkshop.state()')
     assert len(initial['components'])==30 and initial['glError']==0
-    assert initial['version']=='0.4'
+    assert initial['version']==params['enclosure_version']
+    assert params['light_sensor'].upper() in page.locator('label').filter(has=page.locator('input[data-part="light"]')).inner_text()
     assert all(x['visible']==x['defaultVisible'] for x in initial['components'])
     assert len([x for x in initial['components'] if not x['visible']])==3
     assert len([c for c in initial['components'] if c['group']=='Printed enclosure'])==3
@@ -107,7 +111,7 @@ with sync_playwright() as p:
     assert page.evaluate('sensorWorkshop.state().glError')==0
     assert not errors,errors
     assert not any(u.startswith(('http:','https:')) for u in requests),requests
-    report=dict(status='passed',browser=browser.version,offline=True,selectable_components=30,
+    report=dict(status='passed',version=params['enclosure_version'],light_sensor=params['light_sensor'],browser=browser.version,offline=True,selectable_components=30,
                 checks=['three printed components; obsolete parts absent','all 30 visibility toggles','explosion 0/64/100 percent and transforms','Feather insertion mode: paired movement, carrier hidden, other parts stationary, reset','empty-shell tie-access preset and reset','battery tie section at X=23 with battery and one tie','pole mounting example, optional parts initially hidden, reset restores defaults','cut controls','hide/show all','look inside','orbit and zoom','mobile layout','no external network requests','no JavaScript/WebGL errors'],
                 limitations=['Chrome only; Safari and Firefox not exercised','hardware fit is not a browser test'])
     (CAD/'generated/viewer-checks.json').write_text(json.dumps(report,indent=2)+'\n')

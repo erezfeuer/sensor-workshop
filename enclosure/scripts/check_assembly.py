@@ -32,7 +32,7 @@ for dz in np.linspace(-80,0,161):
         volume=overlap(candidate,meshes[name]);checks+=1
         assert volume<.001,('Feather insertion',dz,name,volume)
         max_intersection=max(max_intersection,volume)
-report={'status':'passed','sampled_path':{'axis':'+Z into shell','start_offset_mm':-80,'end_offset_mm':0,
+report={'status':'passed','version':p['enclosure_version'],'light_sensor':p['light_sensor'],'sampled_path':{'axis':'+Z into shell','start_offset_mm':-80,'end_offset_mm':0,
     'step_mm':.5,'poses':161,'checks':checks,'max_intersection_mm3':round(max_intersection,6),
     'moving_parts':['Feather','mounting frame','two installed M2x5 screws'],
     'obstacles':['shell including rails','light sensor','RTC','battery'],
@@ -93,7 +93,7 @@ def shaft(point,direction,diameter=3,length=100):
     m.apply_translation(point)
     return m
 
-for key,board in [('light','veml7700'),('rtc','rtc')]:
+for key,board in [('light',p['light_sensor']),('rtc','rtc')]:
     for i in (range(2) if key=='rtc' else p['board_screw_indices']):
         x,y,_=boards[board]['holes'][i]
         point=np.array(p[key+'_origin'])+([-y,x,-.5] if key=='rtc' else [x,y,0])

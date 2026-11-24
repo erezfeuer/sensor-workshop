@@ -10,7 +10,7 @@
 </style>
 </head>
 <body>
-<header><div><h1>Sensor Workshop <span style="color:#7a8b83;font-weight:400">/ enclosure</span></h1><div class="muted">Light above. Shaded sensing below. A solderless workshop device.</div></div><span class="badge">Prototype v0.4 · 3 printed parts · millimetres</span></header>
+<header><div><h1>Sensor Workshop <span style="color:#7a8b83;font-weight:400">/ enclosure</span></h1><div class="muted">Light above. Shaded sensing below. A solderless workshop device.</div></div><span class="badge">Prototype v__VERSION__ · __LIGHT_SENSOR__ QT · 3 printed parts · millimetres</span></header>
 <div class="layout">
 <aside aria-label="Model controls">
 <section class="control"><label class="help" for="motion">Assembly movement</label><select id="motion" aria-label="Assembly movement" style="width:100%;margin:7px 0 14px"><option value="explode">Explode all parts</option><option value="feather">Remove / install Feather</option></select><div class="row"><h2 style="margin:0" id="motion-title">Explode assembly</h2><output id="explode-value" class="value">0%</output></div><input type="range" id="explode" min="0" max="100" value="0" aria-label="Explosion amount"><div class="row help"><span id="motion-start">Assembled</span><span id="motion-end">Separated</span></div><div id="explode-note" class="help"></div><div class="buttons"><button id="assemble">Assemble</button><button id="explode-all">Fully explode</button></div></section>

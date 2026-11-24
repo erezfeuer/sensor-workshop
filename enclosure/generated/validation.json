@@ -1,5 +1,6 @@
 {
-  "version": "0.4",
+  "version": "0.5",
+  "light_sensor": "tsl2591",
   "status": "passed",
   "units": "mm",
   "print_parts": {
@@ -11,8 +12,8 @@
         69.2,
         60.8
       ],
-      "solid_volume_mm3": 57465.74,
-      "sha256": "a4bc3212d8435f358ad42ca267c327784aea4d7f29741bf13b0f0a0dd72568fd"
+      "solid_volume_mm3": 57420.74,
+      "sha256": "6f5eb0a2d40e5909301e8ee95a7b153bd35888a0b430790250457b62406c469c"
     },
     "carrier": {
       "watertight": true,
@@ -53,7 +54,7 @@
     "SCD30 body to table": 11.43,
     "SCD30 body above skirt lower edge": 3.43,
     "Light QT to roof": 0.5,
-    "Light package to roof": 1.15,
+    "Light package to roof": 2.85,
     "RTC QT to roof": 1.8,
     "Feather PCB top to roof": 1.4,
     "TFT glass to recessed inside rim": 0.75,
@@ -66,7 +67,7 @@
     "Corner shoulder to USB opening": 0.7,
     "Front corner guide to button opening": 1.62
   },
-  "references": 34,
+  "references": 40,
   "printed_pieces_per_device": 3,
   "fasteners": {
     "M2x5": 8,
@@ -84,6 +85,51 @@
     "RTC M2x5 with washer": 2.9,
     "SCD30 M2x5": 3.4,
     "Carrier M3x8": 5.6
+  },
+  "light_board": {
+    "board_size_mm": [
+      25.4,
+      17.78
+    ],
+    "holes": [
+      [
+        2.54,
+        2.54,
+        2.5
+      ],
+      [
+        2.54,
+        15.24,
+        2.5
+      ],
+      [
+        22.86,
+        2.54,
+        2.5
+      ],
+      [
+        22.86,
+        15.24,
+        2.5
+      ]
+    ],
+    "qt_variants_share_outline_holes_and_sockets": true,
+    "optic_center_board_mm": [
+      12.7,
+      9.26
+    ],
+    "optic_center_case_mm": [
+      42.7,
+      26.259999999999998
+    ],
+    "package_size_mm": [
+      2,
+      2.4,
+      0.65
+    ],
+    "ancillary_envelope_height_mm": 2.0,
+    "vertical_optical_path_clear": true,
+    "photometric_response_validated": false
   },
   "mounting_example": {
     "pole_diameter_mm": 32,
@@ -268,6 +314,11 @@
     {
       "a": "scd30",
       "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "light_vertical_optical_path",
+      "b": "shell",
       "intersection_mm3": 0.0
     },
     {
@@ -1348,7 +1399,7 @@
   ],
   "review_pdf_pages": 9,
   "limitations": [
-    "User reports previous shell printed well in PLA on an X1 Carbon; this revised tie-guide shell is not physically tested.",
+    "User reports an earlier shell printed well in PLA on an X1 Carbon; this light-sensor revision is not physically tested.",
     "Simplified PCB/connector envelopes omit some small components and manufacturing tolerances.",
     "Cable curves are illustrative; trial lead lengths include unmodelled slack.",
     "Threads intentionally engage printed pilot walls; fasteners are not a collision-free fit claim.",

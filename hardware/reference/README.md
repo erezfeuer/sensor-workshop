@@ -1,10 +1,10 @@
 # Manufacturer references
 
-Retrieved on **12 November 2026**. All 34 files listed below have been downloaded to `vendor/` in the working repository. Large vendor PDFs, CAD models and board sources are cached locally and excluded from Git. The tracked manifest records their original URLs, SHA-256 hashes, byte counts and pinned GitHub commits.
+Original set retrieved **12 November 2026**; six TSL2591 references added **24 November 2026**. All 40 files listed below have been downloaded to `vendor/` in the working repository. Large vendor PDFs, CAD models and board sources are cached locally and excluded from Git. The tracked manifest records their original URLs, SHA-256 hashes, byte counts and pinned GitHub commits.
 
 Run `python3 enclosure/scripts/fetch_sources.py` from the repository root to reproduce the cache. Existing files are hash-checked; changed upstream content causes a failure for review instead of silently replacing the reference. Live Adafruit guide PDFs or HTML can change, so a future fresh download may require reviewing and updating that specific manifest entry.
 
-The exact Eagle PCB files, rather than generic mounting diagrams or product descriptions, are the source of the mounting coordinates. Official STEP/STL files were also obtained for the Feather, SCD30 and RTC to inspect connector positions and component heights. The VEML7700 uses its exact current flat QT PCB plus Vishay's package drawing. Electronics in the working enclosure are simplified envelopes; no enclosure dimension should be interpreted as a supplier production tolerance.
+The exact Eagle PCB files, rather than generic mounting diagrams or product descriptions, are the source of the mounting coordinates. Official STEP/STL files were also obtained for the Feather, SCD30 and RTC to inspect connector positions and component heights. The VEML7700 and TSL2591 use exact flat QT PCB files and their manufacturer package drawings. The selected prototype is the Adafruit TSL2591 QT; its ancillary component heights use a conservative 2 mm design envelope, not vendor-measured heights. Electronics in the working enclosure are simplified envelopes; no enclosure dimension should be interpreted as a supplier production tolerance.
 
 The battery document is a **reference pack**, not the yet-to-be-selected Israeli pack. The switch page is retained as a historical v0.1 reference; the switch is removed from v0.2. [Attribution and preserved notices](ATTRIBUTION.md).
 
@@ -46,3 +46,14 @@ The battery document is a **reference pack**, not the yet-to-be-selected Israeli
 | [vendor/veml7700/board.brd](vendor/veml7700/board.brd) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-VEML7700-PCB/ab489f03c957f681ed0161fc6d2b786956556e23/Adafruit%20VEML7700%20STEMMA%20QT.brd) | veml7700 official PCB and attribution |
 | [vendor/veml7700/license.txt](vendor/veml7700/license.txt) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-VEML7700-PCB/ab489f03c957f681ed0161fc6d2b786956556e23/license.txt) | veml7700 official PCB and attribution |
 | [vendor/veml7700/schematic.sch](vendor/veml7700/schematic.sch) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-VEML7700-PCB/ab489f03c957f681ed0161fc6d2b786956556e23/Adafruit%20VEML7700%20STEMMA%20QT.sch) | veml7700 official PCB and attribution |
+
+## TSL2591 prototype additions — 24 November 2026
+
+| Cached file | Original source | Purpose |
+| --- | --- | --- |
+| [vendor/tsl2591/board.brd](vendor/tsl2591/board.brd) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-TSL2591-Breakout-PCB/22be4c7b8d53155dacedc18f3373ba8dbf95dc23/Adafruit%20TSL2591.brd) | tsl2591 official STEMMA QT PCB and attribution |
+| [vendor/tsl2591/schematic.sch](vendor/tsl2591/schematic.sch) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-TSL2591-Breakout-PCB/22be4c7b8d53155dacedc18f3373ba8dbf95dc23/Adafruit%20TSL2591.sch) | tsl2591 official STEMMA QT PCB and attribution |
+| [vendor/tsl2591/README.md](vendor/tsl2591/README.md) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-TSL2591-Breakout-PCB/22be4c7b8d53155dacedc18f3373ba8dbf95dc23/README.md) | tsl2591 official STEMMA QT PCB and attribution |
+| [vendor/tsl2591/license.txt](vendor/tsl2591/license.txt) | [Download](https://raw.githubusercontent.com/adafruit/Adafruit-TSL2591-Breakout-PCB/22be4c7b8d53155dacedc18f3373ba8dbf95dc23/license.txt) | tsl2591 official STEMMA QT PCB and attribution |
+| [vendor/datasheets/tsl2591-datasheet.pdf](vendor/datasheets/tsl2591-datasheet.pdf) | [Download](https://cdn-learn.adafruit.com/assets/assets/000/078/658/original/TSL2591_DS000338_6-00.pdf) | TSL2591 manufacturer reference |
+| [vendor/datasheets/tsl2591-guide.pdf](vendor/datasheets/tsl2591-guide.pdf) | [Download](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-tsl2591.pdf) | TSL2591 manufacturer reference |

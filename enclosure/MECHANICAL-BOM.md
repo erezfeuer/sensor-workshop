@@ -1,12 +1,12 @@
 # Mechanical bill of materials — one device
 
-For enclosure **v0.4**. Buy these generic items locally or from a fastener supplier; they are separate from the Digi-Key/Mouser electronics orders. Quantities below are the installed quantities, before spares. [CSV shopping list](hardware.csv) · [Electronics and batteries](../hardware/BOM.md) · [Assembly instructions](README.md#print-set-and-assembly)
+For enclosure **v0.5, Adafruit TSL2591 QT prototype**; fastener quantities also apply to the VEML7700 alternative. Buy these generic items locally or from a fastener supplier; they are separate from the Digi-Key/Mouser electronics orders. Quantities below are the installed quantities, before spares. [CSV shopping list](hardware.csv) · [Electronics and batteries](../hardware/BOM.md) · [Assembly instructions](README.md#print-set-and-assembly)
 
 ## Required purchased hardware
 
 | Item | Quantity per device | Specification to buy | Where it goes |
 | --- | ---: | --- | --- |
-| Board mounting screws | **8** | **M2 × 5 mm metric machine screws, pan head**: 2 mm nominal thread diameter, 5 mm length under the head | Two each for the Feather, SCD30, VEML7700 and DS3231 RTC |
+| Board mounting screws | **8** | **M2 × 5 mm metric machine screws, pan head**: 2 mm nominal thread diameter, 5 mm length under the head | Two each for the Feather, SCD30, TSL2591 (or VEML7700) and DS3231 RTC |
 | RTC washers | **2** | **Flat M2 washers**, approximately **2.2 mm inside diameter × 5 mm outside diameter × 0.5 mm thick** | One under each RTC screw head, above the PCB; spans the board's 3 mm mounting hole |
 | Case closure screws | **2** | **M3 × 8 mm metric machine screws, pan head**: 3 mm nominal thread diameter, 8 mm length under the head | Bottom carrier into the main shell |
 | Battery zip ties | **2** | **2.5 mm wide × approximately 150 mm long**, flexible nylon, standard locking head | One through each battery cradle's front and rear guides |
@@ -24,7 +24,7 @@ The CAD uses **0.5 mm-thick RTC washers** when calculating screw engagement. Che
 | Assembly | Screws | Washers |
 | --- | --- | --- |
 | Feather → removable frame, assembled outside the case | 2 × M2 × 5 mm | None |
-| VEML7700 → shell roof | 2 × M2 × 5 mm | None |
+| TSL2591 / VEML7700 → shell roof | 2 × M2 × 5 mm | None |
 | DS3231 RTC → shell roof | 2 × M2 × 5 mm | 2 × thin M2 flat washers |
 | SCD30 → bottom carrier, assembled outside the case | 2 × M2 × 5 mm | None |
 | Bottom carrier → shell | 2 × M3 × 8 mm | None |

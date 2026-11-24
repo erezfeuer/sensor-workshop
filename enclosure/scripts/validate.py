@@ -12,7 +12,13 @@ from build_viewer import tie_mesh
 from mounting import mounting_example
 
 warnings.filterwarnings('ignore',category=RuntimeWarning,module='trimesh.triangles')
-report={'version':'0.4','status':'passed','units':'mm','print_parts':{},'clearances':{},'references':0}
+boards=json.loads((CAD/'generated/boards.json').read_text())
+light=boards[p['light_sensor']]
+assert boards['tsl2591']['holes']==boards['veml7700']['holes']
+assert boards['tsl2591']['size']==boards['veml7700']['size']
+for connector in ('CONN3','CONN4'):
+    assert boards['tsl2591']['elements'][connector]==boards['veml7700']['elements'][connector]
+report={'version':p['enclosure_version'],'light_sensor':p['light_sensor'],'status':'passed','units':'mm','print_parts':{},'clearances':{},'references':0}
 assert {x.stem for x in (CAD/'stl').glob('*.stl')}=={'shell','carrier','feather_frame','coupon'}
 for name in ['shell','carrier','feather_frame','coupon']:
     path=CAD/'stl'/f'{name}.stl';m=trimesh.load_mesh(path);bodies=len(m.split())
@@ -33,7 +39,7 @@ gap('SCD30 upward pins to carrier',p['carrier_z']-p['scd30_origin'][2]-2.935)
 gap('SCD30 body to table',p['scd30_origin'][2]-8.57)
 gap('SCD30 body above skirt lower edge',p['scd30_origin'][2]-8.57-p['skirt_bottom'])
 gap('Light QT to roof',p['case_top']-p['light_origin'][2]-4.6)
-gap('Light package to roof',p['case_top']-p['light_origin'][2]-3.95)
+gap('Light package to roof',p['case_top']-p['light_origin'][2]-p['pcb_thickness']-light['package_size'][2])
 gap('RTC QT to roof',p['case_top']-p['rtc_origin'][2]-4.6)
 gap('Feather PCB top to roof',p['case_top']-p['feather_origin'][2])
 gap('TFT glass to recessed inside rim',p['feather_origin'][1]-1.9-1.65)
@@ -61,6 +67,18 @@ def check_pair(a,b,ma,mb):
     assert volume<.001,(a,b,volume,result.bounds.tolist())
     checks.append({'a':a,'b':b,'intersection_mm3':round(volume,6)})
 for a,b in itertools.combinations(meshes,2):check_pair(a,b,meshes[a],meshes[b])
+# A vertical pencil of light over the whole TSL2591 array must reach the sky.
+# This catches a misplaced window even if the short sensor package fits below it.
+ox,oy=np.array(p['light_origin'][:2])+light['optic']
+z=p['light_origin'][2]+p['pcb_thickness']+light['package_size'][2]+.02
+height=p['case_top']+p['roof_thickness']+1-z
+aperture=trimesh.creation.box(extents=[1.0,1.0,height]);aperture.apply_translation([ox,oy,z+height/2])
+check_pair('light_vertical_optical_path','shell',aperture,meshes['shell'])
+report['light_board']={'board_size_mm':light['size'],'holes':light['holes'],
+    'qt_variants_share_outline_holes_and_sockets':True,
+    'optic_center_board_mm':light['optic'],'optic_center_case_mm':[ox,oy],
+    'package_size_mm':light['package_size'],'ancillary_envelope_height_mm':2.0 if p['light_sensor']=='tsl2591' else None,
+    'vertical_optical_path_clear':True,'photometric_response_validated':False}
 # All coloured wires and nominal plugs against solids, not just their centre lines.
 for path in sorted(scene.glob('cable_*.stl')):
     m=trimesh.load_mesh(path)
@@ -99,7 +117,7 @@ for e in json.loads((ROOT/'hardware/reference/manifest.json').read_text()):
 with pymupdf.open(CAD/'design-review.pdf') as pdf:
     assert len(pdf)==9
     report['review_pdf_pages']=len(pdf)
-report['limitations']=['User reports previous shell printed well in PLA on an X1 Carbon; this revised tie-guide shell is not physically tested.',
+report['limitations']=['User reports an earlier shell printed well in PLA on an X1 Carbon; this light-sensor revision is not physically tested.',
     'Simplified PCB/connector envelopes omit some small components and manufacturing tolerances.',
     'Cable curves are illustrative; trial lead lengths include unmodelled slack.',
     'Threads intentionally engage printed pilot walls; fasteners are not a collision-free fit claim.',

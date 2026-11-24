@@ -1,6 +1,8 @@
 {
   "status": "passed",
-  "browser": "157.0.8103.51",
+  "version": "0.5",
+  "light_sensor": "tsl2591",
+  "browser": "158.0.8127.37",
   "offline": true,
   "selectable_components": 30,
   "checks": [

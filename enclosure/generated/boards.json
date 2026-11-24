@@ -630,6 +630,7 @@
         "package": "PLABEL37"
       }
     },
+    "component_envelopes": [],
     "source": "hardware/reference/vendor/feather/board.brd"
   },
   "scd30": {
@@ -861,6 +862,7 @@
         "package": "SCD30"
       }
     },
+    "component_envelopes": [],
     "source": "hardware/reference/vendor/scd30/board.brd"
   },
   "veml7700": {
@@ -1116,7 +1118,17 @@
         "package": "ADAFRUIT_3.5MM"
       }
     },
-    "source": "hardware/reference/vendor/veml7700/board.brd"
+    "component_envelopes": [],
+    "source": "hardware/reference/vendor/veml7700/board.brd",
+    "optic": [
+      12.7,
+      13.716
+    ],
+    "package_size": [
+      6.8,
+      3,
+      2.35
+    ]
   },
   "rtc": {
     "size": [
@@ -1369,6 +1381,351 @@
         "package": "ADAFRUIT_2.5MM"
       }
     },
+    "component_envelopes": [],
     "source": "hardware/reference/vendor/rtc/board.brd"
+  },
+  "tsl2591": {
+    "size": [
+      25.4,
+      17.78
+    ],
+    "origin": [
+      0.0,
+      0.0
+    ],
+    "holes": [
+      [
+        2.54,
+        2.54,
+        2.5
+      ],
+      [
+        2.54,
+        15.24,
+        2.5
+      ],
+      [
+        22.86,
+        2.54,
+        2.5
+      ],
+      [
+        22.86,
+        15.24,
+        2.5
+      ]
+    ],
+    "outline": [
+      {
+        "x1": "0",
+        "y1": "15.24",
+        "x2": "0",
+        "y2": "2.54",
+        "width": "0",
+        "layer": "20"
+      },
+      {
+        "x1": "0",
+        "y1": "2.54",
+        "x2": "2.54",
+        "y2": "0",
+        "width": "0",
+        "layer": "20",
+        "curve": "90"
+      },
+      {
+        "x1": "2.54",
+        "y1": "0",
+        "x2": "22.86",
+        "y2": "0",
+        "width": "0",
+        "layer": "20"
+      },
+      {
+        "x1": "22.86",
+        "y1": "0",
+        "x2": "25.4",
+        "y2": "2.54",
+        "width": "0",
+        "layer": "20",
+        "curve": "90"
+      },
+      {
+        "x1": "25.4",
+        "y1": "2.54",
+        "x2": "25.4",
+        "y2": "15.24",
+        "width": "0",
+        "layer": "20"
+      },
+      {
+        "x1": "25.4",
+        "y1": "15.24",
+        "x2": "22.86",
+        "y2": "17.78",
+        "width": "0",
+        "layer": "20",
+        "curve": "90"
+      },
+      {
+        "x1": "22.86",
+        "y1": "17.78",
+        "x2": "2.54",
+        "y2": "17.78",
+        "width": "0",
+        "layer": "20"
+      },
+      {
+        "x1": "2.54",
+        "y1": "17.78",
+        "x2": "0",
+        "y2": "15.24",
+        "width": "0",
+        "layer": "20",
+        "curve": "90"
+      }
+    ],
+    "elements": {
+      "C2": {
+        "x": 7.874,
+        "y": 5.715,
+        "rotation": "R0",
+        "package": "0805-NO"
+      },
+      "U2": {
+        "x": 8.128,
+        "y": 8.763,
+        "rotation": "R0",
+        "package": "SOT23-5"
+      },
+      "C3": {
+        "x": 8.128,
+        "y": 12.192,
+        "rotation": "R0",
+        "package": "0805-NO"
+      },
+      "C1": {
+        "x": 11.811,
+        "y": 5.715,
+        "rotation": "R0",
+        "package": "0603-NO"
+      },
+      "R3": {
+        "x": 17.145,
+        "y": 11.43,
+        "rotation": "R180",
+        "package": "RESPACK_4X0603"
+      },
+      "Q2": {
+        "x": 16.891,
+        "y": 7.493,
+        "rotation": "R90",
+        "package": "SOT363"
+      },
+      "JP1": {
+        "x": 12.7,
+        "y": 2.54,
+        "rotation": "R0",
+        "package": "1X06_ROUND_70"
+      },
+      "U$1": {
+        "x": 2.54,
+        "y": 15.24,
+        "rotation": "R0",
+        "package": "MOUNTINGHOLE_2.5_PLATED"
+      },
+      "U$17": {
+        "x": 22.86,
+        "y": 15.24,
+        "rotation": "R0",
+        "package": "MOUNTINGHOLE_2.5_PLATED"
+      },
+      "CONN3": {
+        "x": 22.733,
+        "y": 8.89,
+        "rotation": "R90",
+        "package": "JST_SH4"
+      },
+      "CONN4": {
+        "x": 2.667,
+        "y": 8.89,
+        "rotation": "R270",
+        "package": "JST_SH4"
+      },
+      "FID3": {
+        "x": 5.207,
+        "y": 4.826,
+        "rotation": "R0",
+        "package": "FIDUCIAL_1MM"
+      },
+      "FID4": {
+        "x": 19.558,
+        "y": 16.51,
+        "rotation": "R0",
+        "package": "FIDUCIAL_1MM"
+      },
+      "U$19": {
+        "x": 2.54,
+        "y": 2.54,
+        "rotation": "R0",
+        "package": "MOUNTINGHOLE_2.5_PLATED"
+      },
+      "U$21": {
+        "x": 22.86,
+        "y": 2.54,
+        "rotation": "R0",
+        "package": "MOUNTINGHOLE_2.5_PLATED"
+      },
+      "U$22": {
+        "x": 4.572,
+        "y": 13.716,
+        "rotation": "R0",
+        "package": "ADAFRUIT_3.5MM"
+      },
+      "U$25": {
+        "x": 6.096,
+        "y": 16.51,
+        "rotation": "MR0",
+        "package": "PCBFEAT-REV-040"
+      },
+      "U$30": {
+        "x": 22.479,
+        "y": 4.445,
+        "rotation": "MR90",
+        "package": "STEMMAQT"
+      },
+      "U$31": {
+        "x": 2.921,
+        "y": 13.335,
+        "rotation": "MR270",
+        "package": "STEMMAQT"
+      },
+      "D1": {
+        "x": 3.556,
+        "y": 12.573,
+        "rotation": "R90",
+        "package": "CHIPLED_0603_NOOUTLINE"
+      },
+      "R1": {
+        "x": 5.588,
+        "y": 12.446,
+        "rotation": "R270",
+        "package": "0603-NO"
+      },
+      "U1": {
+        "x": 12.7,
+        "y": 8.89,
+        "rotation": "R180",
+        "package": "DFN6_TAOS"
+      }
+    },
+    "component_envelopes": [
+      {
+        "name": "C2",
+        "xy_min": [
+          6.304,
+          4.965
+        ],
+        "size": [
+          3.14,
+          1.5,
+          2.0
+        ]
+      },
+      {
+        "name": "U2",
+        "xy_min": [
+          6.7056,
+          6.8629
+        ],
+        "size": [
+          2.8448,
+          3.8002,
+          2.0
+        ]
+      },
+      {
+        "name": "C3",
+        "xy_min": [
+          6.558,
+          11.442
+        ],
+        "size": [
+          3.14,
+          1.5,
+          2.0
+        ]
+      },
+      {
+        "name": "C1",
+        "xy_min": [
+          10.4235,
+          5.215
+        ],
+        "size": [
+          2.775,
+          1.0,
+          2.0
+        ]
+      },
+      {
+        "name": "R3",
+        "xy_min": [
+          15.545,
+          10.13
+        ],
+        "size": [
+          3.2,
+          2.6,
+          2.0
+        ]
+      },
+      {
+        "name": "Q2",
+        "xy_min": [
+          15.741,
+          6.493
+        ],
+        "size": [
+          2.3,
+          2.0,
+          2.0
+        ]
+      },
+      {
+        "name": "D1",
+        "xy_min": [
+          2.406,
+          12.173
+        ],
+        "size": [
+          2.3,
+          0.8,
+          2.0
+        ]
+      },
+      {
+        "name": "R1",
+        "xy_min": [
+          5.088,
+          11.0585
+        ],
+        "size": [
+          1.0,
+          2.775,
+          2.0
+        ]
+      }
+    ],
+    "source": "hardware/reference/vendor/tsl2591/board.brd",
+    "optic": [
+      12.7,
+      9.26
+    ],
+    "package_size": [
+      2,
+      2.4,
+      0.65
+    ]
   }
 }

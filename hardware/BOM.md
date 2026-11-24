@@ -4,7 +4,17 @@ Supplier listings researched **12 November 2026**. These are retrieved product-p
 
 The selected controller is the **Adafruit ESP32-S3 Reverse TFT Feather, product 5691**. It combines the microcontroller, colour screen, and three buttons. The **DS3231 RTC is included in every device**. Adafruit and SparkFun are both acceptable manufacturers. Both batteries will be purchased locally in Israel. No purchases have been made.
 
-## Components and supplier links
+## Supplied prototype — 24 November 2026
+
+Elad supplied the prototype electronics, with **Adafruit TSL2591 STEMMA QT (1980)** replacing the planned VEML7700. Erez confirmed the two-socket/four-hole QT version. **Use one light sensor, not both.** The current v0.5 production shell fits TSL2591. [Comparison, mechanical changes and prototype checks](LIGHT-SENSOR.md).
+
+| Prototype substitution | Qty | Reference USD | Adafruit | Digi-Key | Mouser |
+| --- | ---: | ---: | --- | --- | --- |
+| TSL2591 light sensor; assembled STEMMA QT board; replaces 4162 | 1 from supplied stock | 6.95 | [1980](https://www.adafruit.com/product/1980) | [1528-1037-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/1980/4990786) | [485-1980](https://www.mouser.com/en/ProductDetail/Adafruit/1980?qs=GURawfaeGuBXNh1gLjQA3Q%3D%3D) |
+
+The original comparison and distributor import files below retain VEML7700 pending a class-wide decision. With TSL2591, the four-board reference subtotal would be **$104.80** instead of $102.80. No new order is needed for the supplied prototype. The CSV has a separate `quantity_in_tsl2591_prototype` column to avoid counting both alternatives.
+
+## Original class-order comparison and supplier links
 
 Each distributor link identifies the same manufacturer part, not a bare sensor or a substitute. Quantities are for one device except the shared cable assortment. The price column is a reference unit price; distributor-specific observations are in [bom.csv](bom.csv).
 
@@ -30,7 +40,7 @@ All five comparison items were listed in stock at Digi-Key and Mouser in the ret
 
 SparkFun's **KIT-15081** is the remembered assortment: ten cables of mixed lengths, including jumper-ended styles. It is not ten identical QT-to-QT leads. Use only the QT-to-QT leads in the student device. Digi-Key currently identifies this kit as manufacturer part **15081**, with ordering code **1568-15081-ND**; Mouser retains **KIT-15081**.
 
-Use one assortment to try the component arrangement. Then buy the selected lengths in bulk: **three cables per device plus approximately 10% spares**, rounded up. The [v0.4 enclosure](../enclosure/README.md) proposes **100 mm Feather→RTC, 50 mm RTC→VEML7700, and 100 mm VEML7700→SCD30**. Confirm plug clearance, bend radius and carrier-removal slack with the pilot hardware before freezing the lengths:
+Use one assortment to try the component arrangement. Then buy the selected lengths in bulk: **three cables per device plus approximately 10% spares**, rounded up. The [v0.5 enclosure](../enclosure/README.md) proposes **100 mm Feather→RTC, 50 mm RTC→light sensor, and 100 mm light sensor→SCD30**. Confirm plug clearance, bend radius and carrier-removal slack with the pilot hardware before freezing the lengths:
 
 | Cable option | Manufacturer link | Reference USD | Observation |
 | --- | --- | ---: | --- |
@@ -56,7 +66,7 @@ The DS3231 keeps calendar time when the main battery is disconnected. Its separa
 ```mermaid
 flowchart LR
     F[ESP32-S3 Reverse TFT Feather] ---|QT 100 mm trial| R[DS3231 RTC]
-    R ---|QT 50 mm trial| L[VEML7700]
+    R ---|QT 50 mm trial| L[TSL2591 prototype]
     L ---|QT 100 mm trial| C[SCD30]
     F ---|Factory SPI connection| D[Built-in colour display]
     B[Local protected 18650 pack] ---|Prewired JST-PH| F
@@ -69,11 +79,12 @@ Three QT cables connect the three external modules. A hub is unnecessary. QT cab
 | Device | I²C address | Source |
 | --- | --- | --- |
 | SCD30 | `0x61` | [Sensirion interface specification](https://sensirion.com/media/documents/D7CEEF4A/6165372F/Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf) |
-| VEML7700 | `0x10` | [Adafruit driver](https://github.com/adafruit/Adafruit_CircuitPython_VEML7700/blob/main/adafruit_veml7700.py) |
+| VEML7700 alternative | `0x10` | [Adafruit driver](https://github.com/adafruit/Adafruit_CircuitPython_VEML7700/blob/main/adafruit_veml7700.py) |
+| TSL2591 prototype | `0x29` primary; also `0x28` | [TSL2591 datasheet, p13](https://cdn-learn.adafruit.com/assets/assets/000/078/658/original/TSL2591_DS000338_6-00.pdf) |
 | Feather MAX17048 | `0x36` | [Reverse TFT Feather pinouts](https://learn.adafruit.com/esp32-s3-reverse-tft-feather/pinouts) |
 | DS3231 | `0x68` | [RTC guide](https://learn.adafruit.com/adafruit-ds3231-precision-rtc-breakout?view=all) |
 
-These addresses do not conflict. Purchase the assembled QT breakouts, including the current QT revision of the VEML7700. The TFT uses SPI and has no I²C address.
+These addresses do not conflict. Purchase the assembled QT breakouts, including the current QT revision of whichever light sensor is selected. TSL2591 requires its own library and gain/integration settings; it is not a software drop-in replacement. The TFT uses SPI and has no I²C address.
 
 **SCD30 integration:** Sensirion recommends I²C at 50 kHz or less and specifies clock stretching up to 150 ms. Validate the selected ESP32 core and sensor library with the entire chain. TFT updates do not use this bus. This is a documentation-based compatibility assessment, not a hardware test. [SCD30 specification](https://sensirion.com/media/documents/D7CEEF4A/6165372F/Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf)
 
@@ -90,6 +101,6 @@ The battery connects directly to the Feather, which supplies USB charging. There
 
 The [downloaded reference set](reference/README.md) includes the four exact PCB files, schematics, guides, sensor datasheets and available official STEP/STL models. The SCD30 PCB is **50.8 × 25.4 mm**; its official model extends from **2.934 mm below** the PCB bottom to **8.57 mm above**, about **11.50 mm overall**. The enclosure accounts for the underside pins; the older 8.8 mm product height alone is insufficient for clearance design.
 
-The [v0.4 enclosure](../enclosure/README.md) uses **two case parts and a removable Feather mounting frame**, an integrated top light aperture, direct access to the PCB buttons, USB-C and RESET access, a battery retained by zip ties, and a downward-facing SCD30 under a simple open-bottom skirt. The [mechanical shopping list](../enclosure/MECHANICAL-BOM.md) ([CSV](../enclosure/hardware.csv)) specifies eight M2×5 pan-head board screws, two M3×8 pan-head closure screws, two thin RTC washers and two battery ties, plus optional external mounting supplies. No nuts, separate feet, button plungers or switch are used. These mechanical items remain separate from distributor imports. The Feather screws onto its frame outside the housing and slides in through the bottom. [Thermal screening](../enclosure/thermal/README.md) flags possible warming despite the slotted carrier; physical fit and temperature performance require a pilot build.
+The [v0.5 enclosure](../enclosure/README.md) uses **two case parts and a removable Feather mounting frame**, an integrated top light aperture, direct access to the PCB buttons, USB-C and RESET access, a battery retained by zip ties, and a downward-facing SCD30 under a simple open-bottom skirt. The [mechanical shopping list](../enclosure/MECHANICAL-BOM.md) ([CSV](../enclosure/hardware.csv)) specifies eight M2×5 pan-head board screws, two M3×8 pan-head closure screws, two thin RTC washers and two battery ties, plus optional external mounting supplies. No nuts, separate feet, button plungers or switch are used. These mechanical items remain separate from distributor imports. The Feather screws onto its frame outside the housing and slides in through the bottom. [Thermal screening](../enclosure/thermal/README.md) flags possible warming despite the slotted carrier; physical fit and temperature performance require a pilot build.
 
 Before ordering for the class, assemble pilot hardware and check upload/recovery on macOS including Apple Silicon, Windows, and Linux; the complete sensor chain; hotspot operation while logging and downloading CSV; battery/USB transitions; charging and current draw; and enclosure fit. Runtime and laptop compatibility remain unmeasured. Pin the software versions that pass these checks.

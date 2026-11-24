@@ -1,4 +1,6 @@
-// Sensor Workshop v0.4 — millimetres. Two case parts + one Feather frame.
+// Sensor Workshop v0.5 — millimetres. Two case parts + one Feather frame.
+enclosure_version = "0.5";
+light_sensor = "tsl2591"; // Adafruit QT only: "tsl2591" or "veml7700"; rebuild all outputs after changing.
 case_width = 92;
 case_depth = 66;
 case_top = 58.4;

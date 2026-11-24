@@ -1,6 +1,6 @@
-# Printability review — v0.4
+# Printability review — v0.5
 
-The design keeps **three printed pieces** and uses their assembly layout to give each a flat printing face. The previous shell printed well in Erez’s PLA/X1 Carbon trial. The revised tie guides have been reviewed geometrically but have not yet been printed or sliced here. The **[production-stls/](../production-stls/)** folder contains exactly the three separate files to print, one of each per device. Import at **100% scale in millimetres** and keep the supplied orientations.
+The design keeps **three printed pieces** and uses their assembly layout to give each a flat printing face. The previous shell printed well in Erez’s PLA/X1 Carbon trial. The revised tie guides and TSL2591 light well have been reviewed geometrically but have not yet been printed or sliced here. The **[production-stls/](../production-stls/)** folder contains exactly the three separate files to print, one of each per device. Import at **100% scale in millimetres** and keep the supplied orientations.
 
 For the first test, **print the shell separately**, then print the **carrier and Feather frame together**. The shell has the openings and flare that may need support tuning; the smaller parts have straightforward flat printing faces. After the fit and settings are confirmed, all three can share a plate using normal layer-by-layer printing, with local support settings applied to the shell as needed.
 
@@ -9,6 +9,10 @@ For the first test, **print the shell separately**, then print the **carrier and
 | Shell | Exterior roof | Feet, slide guides, board bosses, light well and battery cradles grow from the roof/walls. The display window and wider light flare are local-support candidates. |
 | Carrier | Flat upper face | Plate, central sensor region and all four thermal bridges start on the bed. Bosses and pins grow vertically; no deliberate support is needed for this orientation. |
 | Feather frame | Flat rear face | Uprights, crossbar and tongues start on the bed. Mounting pads and locating pins grow vertically; the crossbar is not an elevated bridge. |
+
+## TSL2591 update — 24 November 2026
+
+The current shell is for the Adafruit TSL2591 QT board. The roof opening and well move 4.456 mm toward the front; the flare dimensions and roof-down orientation stay the same. Small clearance notches in the lower edge of the well and the edge of the boss beside the LED avoid neighbouring board components. They terminate toward the open underside and add no new bridge roof in the print orientation. Inspect and clean these notches before fitting the board. **Reprint only the shell**; reuse the two smaller parts. [Fit drawing](light-sensor-fit.pdf).
 
 ## Geometry refinements
 

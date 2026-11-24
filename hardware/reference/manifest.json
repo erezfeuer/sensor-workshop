@@ -80,6 +80,22 @@
     "retrieved_date": "2026-11-12"
   },
   {
+    "path": "vendor/datasheets/tsl2591-datasheet.pdf",
+    "url": "https://cdn-learn.adafruit.com/assets/assets/000/078/658/original/TSL2591_DS000338_6-00.pdf",
+    "purpose": "TSL2591 manufacturer reference",
+    "sha256": "d1872d10b200872148d4c7dfb79d9678b898a40f5b040f6083d33e88ea2b41b9",
+    "bytes": 838495,
+    "retrieved_date": "2026-11-24"
+  },
+  {
+    "path": "vendor/datasheets/tsl2591-guide.pdf",
+    "url": "https://cdn-learn.adafruit.com/downloads/pdf/adafruit-tsl2591.pdf",
+    "purpose": "TSL2591 manufacturer reference",
+    "sha256": "f3bd21a2dc375750c96b6f03aa951cad527ded07750e037d4e1b2747f6744565",
+    "bytes": 5261280,
+    "retrieved_date": "2026-11-24"
+  },
+  {
     "path": "vendor/datasheets/veml7700-datasheet.pdf",
     "url": "https://www.vishay.com/docs/84286/veml7700.pdf",
     "purpose": "manufacturer reference",
@@ -256,6 +272,42 @@
     "sha256": "9bc9e9d2dc4397cce6a5faca860b81eef1ebeb44ee420c6046cf278ea0981f53",
     "bytes": 390601,
     "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "vendor/tsl2591/README.md",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-TSL2591-Breakout-PCB/22be4c7b8d53155dacedc18f3373ba8dbf95dc23/README.md",
+    "upstream_commit": "22be4c7b8d53155dacedc18f3373ba8dbf95dc23",
+    "purpose": "tsl2591 official STEMMA QT PCB and attribution",
+    "sha256": "ce7918b7cd6ade15091f96ffbe0e91716a43f99bbff3362f89f2044b35b5cb92",
+    "bytes": 2188,
+    "retrieved_date": "2026-11-24"
+  },
+  {
+    "path": "vendor/tsl2591/board.brd",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-TSL2591-Breakout-PCB/22be4c7b8d53155dacedc18f3373ba8dbf95dc23/Adafruit%20TSL2591.brd",
+    "upstream_commit": "22be4c7b8d53155dacedc18f3373ba8dbf95dc23",
+    "purpose": "tsl2591 official STEMMA QT PCB and attribution",
+    "sha256": "901af5730a37a347b04a6eeafeb2bc920e42c9416b4d6039e4feb474906d81ff",
+    "bytes": 253443,
+    "retrieved_date": "2026-11-24"
+  },
+  {
+    "path": "vendor/tsl2591/license.txt",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-TSL2591-Breakout-PCB/22be4c7b8d53155dacedc18f3373ba8dbf95dc23/license.txt",
+    "upstream_commit": "22be4c7b8d53155dacedc18f3373ba8dbf95dc23",
+    "purpose": "tsl2591 official STEMMA QT PCB and attribution",
+    "sha256": "1f63e1f4676a433423b2c2ff1ccd9e80093f341f10b81f0ac0106342bc7bbe89",
+    "bytes": 22597,
+    "retrieved_date": "2026-11-24"
+  },
+  {
+    "path": "vendor/tsl2591/schematic.sch",
+    "url": "https://raw.githubusercontent.com/adafruit/Adafruit-TSL2591-Breakout-PCB/22be4c7b8d53155dacedc18f3373ba8dbf95dc23/Adafruit%20TSL2591.sch",
+    "upstream_commit": "22be4c7b8d53155dacedc18f3373ba8dbf95dc23",
+    "purpose": "tsl2591 official STEMMA QT PCB and attribution",
+    "sha256": "30350ca991df3c415fc84e9f3bef4bfab7f7add85e27b672f6081ad49f91f3bb",
+    "bytes": 384689,
+    "retrieved_date": "2026-11-24"
   },
   {
     "path": "vendor/veml7700/README.md",

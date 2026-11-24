@@ -109,7 +109,7 @@ def rasterize(meshes, title, subtitle, out, eye=(-1,-1,0.85)):
     draw.text((65,40),title,font=ImageFont.truetype(FONT,38),fill="#253f44")
     draw.text((66,96),subtitle,font=ImageFont.truetype(FONT,21),fill="#526568")
     draw.line((65,1125,1535,1125),fill="#c8d1cc",width=2)
-    draw.text((65,1145),"Sensor Workshop  |  v0.4  |  CAD prototype — physical fit and measurement tests pending",font=ImageFont.truetype(FONT,19),fill="#526568")
+    draw.text((65,1145),f"Sensor Workshop  |  v{PARAMS['enclosure_version']} · {PARAMS['light_sensor'].upper()} QT  |  CAD prototype — fit tests pending",font=ImageFont.truetype(FONT,19),fill="#526568")
     result.save(out)
     print("RENDER",out.name,flush=True)
 
@@ -148,7 +148,9 @@ def drawings(scene):
     section_plot(axes[1],scene,68.205,"SECTION B–B  ·  X = 68.205 mm")
     axes[0].annotate("18650 envelope\nØ20 × 72",xy=(50,41),xytext=(48,69),fontsize=9,arrowprops=dict(arrowstyle="->",lw=.8))
     axes[0].annotate("SCD30 faces down\nOpen below",xy=(30,14),xytext=(3,2),fontsize=8,arrowprops=dict(arrowstyle="->",lw=.8))
-    axes[0].annotate("Top light aperture",xy=(30.716,58.4),xytext=(0,68),fontsize=8,arrowprops=dict(arrowstyle="->",lw=.8))
+    boards=json.loads((CAD/"generated/boards.json").read_text())
+    optic_y=PARAMS['light_origin'][1]+boards[PARAMS['light_sensor']]['optic'][1]
+    axes[0].annotate("Top light aperture",xy=(optic_y,58.4),xytext=(0,68),fontsize=8,arrowprops=dict(arrowstyle="->",lw=.8))
     axes[1].annotate("RTC / CR1220",xy=(PARAMS["rtc_origin"][1]+12.7,51),xytext=(1,67),fontsize=8,arrowprops=dict(arrowstyle="->",lw=.8))
     fig.suptitle("True CAD cross-sections",fontsize=20,x=.055,ha="left")
     fig.text(.055,.055,"The cuts are taken from the exported solids. Parts outside each cut plane are not projected into it.\nPrinted plastic is pale grey/teal. Pack dimensions are a design envelope; local battery, connector and finger access require a pilot check.",fontsize=9,color="#526568")
@@ -159,8 +161,9 @@ def drawings(scene):
 
     boards=json.loads((CAD/"generated/boards.json").read_text())
     fig,axes=plt.subplots(2,2,figsize=(13.5,9))
-    names={"feather":"Adafruit 5691 — Reverse TFT Feather", "scd30":"Adafruit 4867 — SCD30", "veml7700":"Adafruit 4162 — VEML7700 QT", "rtc":"Adafruit 5188 — DS3231 QT"}
-    for ax,(key,b) in zip(axes.flat,boards.items()):
+    names={"feather":"Adafruit 5691 — Reverse TFT Feather", "scd30":"Adafruit 4867 — SCD30", "veml7700":"Adafruit 4162 — VEML7700 QT", "tsl2591":"Adafruit 1980 — TSL2591 QT", "rtc":"Adafruit 5188 — DS3231 QT"}
+    for ax,key in zip(axes.flat,('feather','scd30',PARAMS['light_sensor'],'rtc')):
+        b=boards[key]
         w,h=b["size"]
         ax.add_patch(plt.Rectangle((0,0),w,h,facecolor="#edf2ef",edgecolor="#355854",lw=1))
         for i,(x,y,d) in enumerate(b["holes"],1):
@@ -177,6 +180,43 @@ def drawings(scene):
     fig.subplots_adjust(left=.06,right=.82,bottom=.12,top=.88,wspace=.9,hspace=.55)
     fig.savefig(RENDERS/"mounting-drawings.png",dpi=170)
     fig.savefig(CAD/"mounting-drawings.pdf")
+    plt.close(fig)
+
+
+def light_sensor_drawing(scene):
+    """Board comparison and true roof section for the selected light sensor."""
+    boards=json.loads((CAD/'generated/boards.json').read_text())
+    board=boards[PARAMS['light_sensor']]
+    ox,oy=board['optic']
+    fig,axes=plt.subplots(1,2,figsize=(13.5,8))
+    ax=axes[0]
+    ax.add_patch(plt.Rectangle((0,0),*board['size'],fc='#e0ebe8',ec='#355854'))
+    for x,y,d in board['holes']:
+        ax.add_patch(plt.Circle((x,y),d/2,fc='white',ec='#355854'))
+    for c in board['component_envelopes']:
+        ax.add_patch(plt.Rectangle(c['xy_min'],*c['size'][:2],fc='#b5b7af',ec='#777b70',lw=.6))
+        ax.text(c['xy_min'][0],c['xy_min'][1]+c['size'][1]+.2,c['name'],fontsize=6)
+    for x in (2.667,22.733):
+        ax.add_patch(plt.Rectangle((x-2.3,8.89-3.1),4.6,6.2,fc='#f4efe0',ec='#9f967f'))
+    old=boards['veml7700']['optic']
+    ax.add_patch(plt.Rectangle((old[0]-6,old[1]-3),12,6,fill=False,ec='#ae785a',ls='--',lw=1.5,label='VEML7700 roof opening'))
+    ax.add_patch(plt.Rectangle((ox-6,oy-3),12,6,fill=False,ec='#176b79',lw=2,label='Selected roof opening'))
+    ax.plot(ox,oy,'+',color='#176b79',ms=12)
+    ax.annotate(f"{PARAMS['light_sensor'].upper()} optical centre\n({ox:g}, {oy:g}) mm",xy=(ox,oy),xytext=(11,-5),
+        fontsize=9,ha='center',arrowprops=dict(arrowstyle='->',lw=.8))
+    ax.set(xlim=(-2,28),ylim=(-7,21),aspect='equal',xlabel='PCB X (mm)',ylabel='PCB Y (mm)',title='Same mounting holes and QT sockets')
+    ax.legend(loc='upper center',fontsize=8);ax.grid(alpha=.15)
+    section_plot(axes[1],{k:scene[k] for k in ('shell','light')},PARAMS['light_origin'][0]+ox,'True section through optical centre')
+    axes[1].set(xlim=(17,37),ylim=(52,64))
+    axes[1].annotate('Flared roof opening',xy=(PARAMS['light_origin'][1]+oy,60.8),xytext=(18,63),
+        fontsize=9,arrowprops=dict(arrowstyle='->',lw=.8))
+    axes[1].annotate('Light well with component reliefs',xy=(PARAMS['light_origin'][1]+oy-3.4,57.7),xytext=(18,52.5),
+        fontsize=8,arrowprops=dict(arrowstyle='->',lw=.8))
+    fig.suptitle(f"Light-sensor fit · Adafruit {PARAMS['light_sensor'].upper()} QT · enclosure v{PARAMS['enclosure_version']}",fontsize=18,x=.055,ha='left')
+    fig.text(.055,.04,'Adafruit QT board only. Small-component boxes use Eagle pad/body bounds and a conservative 2 mm height.\nReliefs add 0.3 mm clearance; they are not extra printed parts. Verify the received board and light response on the pilot.',fontsize=9,color='#526568')
+    fig.subplots_adjust(left=.07,right=.95,bottom=.17,top=.87,wspace=.25)
+    fig.savefig(RENDERS/'light-sensor-fit.png',dpi=170)
+    fig.savefig(CAD/'light-sensor-fit.pdf')
     plt.close(fig)
 
 
@@ -249,7 +289,7 @@ def mounting_guide_drawing(scene):
 if __name__ == "__main__":
     RENDERS.mkdir(exist_ok=True)
     scene=load_scene()
-    variants=[("assembled","Post-print tie-guide revision · v0.4","95.2 × 69.2 × 60.8 mm including corner guides · three printed pieces"),
+    variants=[("assembled",f"{PARAMS['light_sensor'].upper()} QT prototype · v{PARAMS['enclosure_version']}","95.2 × 69.2 × 60.8 mm including corner guides · three printed pieces"),
               ("underside","Downward-facing sensor","Open underside · shallow skirt · one removable carrier plate"),
               ("open","Component layout with shell hidden","Top-mounted boards and tied battery · SCD30 on the bottom plate"),
               ("exploded","Simplified assembly","Two case parts + removable Feather frame · eight M2 board screws and two M3 closure screws"),
@@ -260,6 +300,7 @@ if __name__ == "__main__":
         eye=(-1,-1,-.85) if kind=="underside" else (-1,-1,.85)
         rasterize(variant(scene,kind),title,subtitle,RENDERS/(kind+".png"),eye=eye)
     drawings(scene)
+    light_sensor_drawing(scene)
     battery_tie_drawing(scene)
     mounting_guide_drawing(scene)
     from mounting import mounting_example

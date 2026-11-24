@@ -1,15 +1,18 @@
-# Enclosure v0.4 — accessible assembly
+# Enclosure v0.5 — Adafruit TSL2591 QT prototype
 
-This revision responds to the first physical print: **four corner grooves formed by raised shoulders** guide the external mounting tie, and **curved returns with rear eyelets** redirect both battery-tie tails toward the open underside. There are still **three printed pieces and ten screws**. Only the shell changes; the carrier, removable Feather frame and all screw-hole sizes are unchanged.
+This revision fits the **Adafruit TSL2591 STEMMA QT board supplied by Elad and confirmed by Erez**. The roof opening and internal light well move to its optical centre; lower-edge reliefs and a small locating-boss edge relief clear nearby components. **Reprint only the shell.** The carrier, removable Feather frame, cable routing and screw-hole sizes are unchanged. There are still **three printed pieces and ten screws**. [Sensor comparison and prototype checks](../hardware/LIGHT-SENSOR.md) · [Light-sensor fit drawing](light-sensor-fit.pdf).
+
+The four corner mounting grooves and curved battery-tie returns from v0.4 are retained.
 
 The sensor carrier remains a single part, with perimeter slots and four bridges around its central mounting region. A [thermal screening model](thermal/README.md) finds that heat below the enclosure remains a risk: the nominal 0.8 W shaded example gives about **1.9°C additional module warming**, with uncertain assumptions. This is not temperature validation; a measurement procedure is included.
 
-The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the overall envelope to **95.2 × 69.2 × 60.8 mm**. Its body footprint remains **35.5% smaller** than v0.1. Erez reports that the previous shell printed well in PLA on an X1 Carbon; screw fit has not yet been checked. The revised guides still need a physical feeding and retention trial.
+The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the overall envelope to **95.2 × 69.2 × 60.8 mm**. Its body footprint remains **35.5% smaller** than v0.1. Erez reports that the previous shell printed well in PLA on an X1 Carbon; screw fit has not yet been checked. The revised guides still need a physical feeding and retention trial. The TSL2591 fit and optical response also need checking on the supplied board.
 
 ## Open and compare
 
 - **[Interactive HTML model](model.html)** — one offline file with 30 component checkboxes (including three optional mounting-example items), an explosion slider, movable cutaways, an **Underside** camera, a **Remove / install Feather** movement mode, a **Tie access** view of the empty shell, a **Tie section** through the two-guide route, and a **Pole mount** example. “Look inside” hides the shell. Download the file and open it in a browser; GitHub's file page displays source.
 - [Nine-page design review](design-review.pdf), [measured cross-sections](sections.pdf), [mounting drawings](mounting-drawings.pdf), and [battery-tie access sections](battery-tie-access.pdf), and [corner-guide details](mounting-guide-details.pdf).
+- [TSL2591 board fit and roof cross-section](light-sensor-fit.pdf).
 - **[Mechanical shopping list — screw sizes, washers, zip ties and quantities](MECHANICAL-BOM.md)** ([CSV](hardware.csv)).
 - [Three STL files to print](../production-stls/), [OpenSCAD source](sensor-workshop.scad), [editable dimensions](parameters.scad).
 - [Previous v0.2 viewer](archive/v0.2/model.html), [v0.2 archive](archive/v0.2/README.md), and [thermal review PDF](thermal/thermal-review.pdf).
@@ -19,7 +22,7 @@ The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the o
 
 ![Accessible enclosure assembly](renders/assembled.png)
 
-| Per device | v0.2 | v0.4 |
+| Per device | v0.2 | v0.5 |
 | --- | ---: | ---: |
 | Printed pieces | 2 | **3: shell, carrier, Feather frame** |
 | Screws | 10 | **10** |
@@ -37,7 +40,7 @@ The light board and RTC attach to the roof, with screwdriver access straight thr
 
 All **eight board screws are M2×5**. The RTC also uses two thin washers. The Feather screws engage approximately 3.4 mm into the printed frame; pilot bores stop before its back face. All four-hole boards retain two screws and two locating pins. The two M3×8 carrier screws close the case and retain the Feather frame without additional locks or clips.
 
-The light sensor remains upward-facing behind a flared roof opening and opaque light well. The SCD30 mounts upside down below the carrier with **1.065 mm clearance** above its underside pins. Its sensing body is **11.43 mm above the table**, and the surrounding skirt ends at **8 mm above the table**. Air reaches it through the open bottom; there is no lower tray floor, separate roof, or double-wall vent cage.
+The TSL2591 remains upward-facing behind a flared roof opening and opaque light well. Its board has the same mounting and QT connector positions as the original VEML7700. The optical centre moves 4.456 mm toward the front. Clearance notches in the well allow 0.3 mm around conservative 2 mm-high ancillary-component envelopes extracted from the PCB layout. The SCD30 mounts upside down below the carrier with **1.065 mm clearance** above its underside pins. Its sensing body is **11.43 mm above the table**, and the surrounding skirt ends at **8 mm above the table**. Air reaches it through the open bottom; there is no lower tray floor, separate roof, or double-wall vent cage.
 
 The central carrier region shades the sensor from above, and the perimeter skirt reduces direct light from the sides. This is a simple shade, not a validated outdoor radiation shield. Low-angle/reflected sunlight, table heating and heat conducted from the electronics still need measurement. The 2 mm slots reduce the local plastic conduction path, while air/radiation and screw/wire coupling remain. See the [thermal assumptions, results and pilot procedure](thermal/README.md). Sensirion's guidance supports keeping the sensor below and away from heat sources and avoiding direct sunlight. [SCD30 design-in guide](https://sensirion.com/media/documents/84D49268/616536CB/Sensirion_CO2_Sensors_SCD30_Design-In_Guidelines_D1.pdf)
 
@@ -59,7 +62,7 @@ There is **no inline switch or extension**. The battery lead goes directly to th
 
 The RTC is rotated 90° so its QT sockets face front/rear, improving plug clearance and routing. The tentative chain remains:
 
-**Feather — 100 mm — RTC — 50 mm — VEML7700 — 100 mm — SCD30**
+**Feather — 100 mm — RTC — 50 mm — TSL2591 — 100 mm — SCD30**
 
 Use the assortment for the pilot, then freeze bulk lengths after checking real plug bodies and a service loop for lowering the carrier. The three smooth cable illustrations have approximately **95, 35 and 56 mm** centreline paths; the extra purchased length/slack is not all drawn. The Feather–RTC route now passes behind the right slide guide; its 100 mm trial lead is close to the illustrated path length, so also try 150 mm from the assortment if the real lead lacks relaxed slack. The lead to the SCD30 passes through a **7.5 × 9 mm** rounded carrier opening.
 
@@ -80,7 +83,7 @@ The [printability review](PRINTING.md) identifies the remaining bridge spans and
 
 The STL orientations are already set. Use light-coloured opaque PETG for the working prototype, or PLA for indoor fit trials. Start with a 0.4 mm nozzle, 0.2 mm layers, four perimeters, five top/bottom layers and 15–20% infill, then inspect the slicer. The shell has a **27 mm display-window bridge**, a 7 mm button-slot bridge, smaller vent/USB bridges and a flared optical aperture. Test bridging on the coupon; add local supports if the printer/material requires them. No large floor bridge is needed. [Prusa PETG](https://help.prusa3d.com/article/petg_2059), [PLA](https://help.prusa3d.com/article/pla_2062)
 
-The coupon checks all four received board patterns, the locating pins, M2 pilot diameters 1.6–1.9 mm, M3 pilots 2.4–2.7 mm, the 27 mm bridge, and the battery diameter. The current pilots are 1.8 and 2.6 mm; pre-thread them with gentle hand torque before class. The locating pins are 1.9 mm diameter and 1.2 mm tall. No heat-set inserts are used.
+The coupon checks all four received board patterns (TSL2591 and VEML7700 QT share a mounting pattern), the locating pins, M2 pilot diameters 1.6–1.9 mm, M3 pilots 2.4–2.7 mm, the 27 mm bridge, and the battery diameter. The current pilots are 1.8 and 2.6 mm; pre-thread them with gentle hand torque before class. The locating pins are 1.9 mm diameter and 1.2 mm tall. No heat-set inserts are used.
 
 1. Print/check the coupon and measure the local pack. Inspect all three parts in the slicer. Clean the slide rails, thermal slots, cable passage, tie eyelets and bridge edges. With the empty shell roof down, feed each tie tail through its front eyelet toward the rear. The curved return should turn the tip upward through the second eyelet. Leave enough length at both ends to reach around the battery, and move the ends aside while fitting the boards. Check that the carrier's four thermal bridges are sound; it is still one part, not a breakaway support.
 2. **On the table**, place the Feather on the frame's rear locating pins, screen facing out. Fit two M2×5 screws from the display face into the frame. Use a normal straight precision screwdriver; keep its tip off the glass. Do not overtighten the small printed pads.
@@ -102,7 +105,7 @@ Compare CO₂ response and temperature/RH with the housing fitted/removed, under
 
 ## Rebuild
 
-Use OpenSCAD 2021.01 or later and Python 3.12. From the repository root:
+Use OpenSCAD 2021.01 or later and Python 3.12. The tracked `light_sensor = "tsl2591"` setting selects the current prototype. To regenerate the original light-sensor layout, change it to `"veml7700"` in `parameters.scad` and run the full sequence; this replaces the production shell and viewer with that variant. From the repository root:
 
 ```sh
 python3 -m venv .venv-cad

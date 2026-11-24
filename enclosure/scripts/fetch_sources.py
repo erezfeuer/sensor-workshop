@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Download pinned vendor references. Existing manifest entries are immutable."""
 import concurrent.futures
+from datetime import datetime
 import hashlib
 import json
 from pathlib import Path
 from urllib.parse import quote
 from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[2]
 REF = ROOT / "hardware/reference"
@@ -24,6 +26,7 @@ def initial_manifest():
         "feather": ("Adafruit-ESP32-S3-Reverse-TFT-Feather-PCB", "Adafruit ESP32-S3 Reverse TFT Feather"),
         "scd30": ("Adafruit-SCD-30-PCB", "Adafruit SCD30"),
         "veml7700": ("Adafruit-VEML7700-PCB", "Adafruit VEML7700 STEMMA QT"),
+        "tsl2591": ("Adafruit-TSL2591-Breakout-PCB", "Adafruit TSL2591"),
         "rtc": ("Adafruit-DS3231-Precision-RTC-Breakout-PCB", "Adafruit DS3231 STEMMA QT"),
     }
     for key, (repo, stem) in boards.items():
@@ -35,6 +38,7 @@ def initial_manifest():
         "scd30-design-in.pdf": "https://sensirion.com/media/documents/84D49268/616536CB/Sensirion_CO2_Sensors_SCD30_Design-In_Guidelines_D1.pdf",
         "scd30-interface.pdf": "https://sensirion.com/media/documents/D7CEEF4A/6165372F/Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf",
         "veml7700-datasheet.pdf": "https://www.vishay.com/docs/84286/veml7700.pdf",
+        "tsl2591-datasheet.pdf": "https://cdn-learn.adafruit.com/assets/assets/000/078/658/original/TSL2591_DS000338_6-00.pdf",
         "ds3231-datasheet.pdf": "https://cdn-shop.adafruit.com/product-files/3081/DS3231.pdf",
         "esp32-s3-datasheet.pdf": "https://cdn-learn.adafruit.com/assets/assets/000/119/042/original/esp32-s3_datasheet_en.pdf",
         "18650-reference-pack.pdf": "https://cdn-shop.adafruit.com/product-files/1781/C2253_-_ICR18650_2200mAh_3.7V_with_PCM_20140728_APPROVED_8.18.pdf",
@@ -42,7 +46,7 @@ def initial_manifest():
     for name, url in pdfs.items():
         entries.append({"path": "vendor/datasheets/" + name, "url": url, "purpose": "manufacturer reference"})
     entries.append({"path": "vendor/datasheets/switch-3064-product.html", "url": "https://www.adafruit.com/product/3064", "purpose": "Manufacturer switch specification; body dimensions not published"})
-    for slug, name in [("esp32-s3-reverse-tft-feather", "feather"), ("adafruit-scd30", "scd30"), ("adafruit-veml7700", "veml7700"), ("adafruit-ds3231-precision-rtc-breakout", "rtc")]:
+    for slug, name in [("esp32-s3-reverse-tft-feather", "feather"), ("adafruit-scd30", "scd30"), ("adafruit-veml7700", "veml7700"), ("adafruit-tsl2591", "tsl2591"), ("adafruit-ds3231-precision-rtc-breakout", "rtc")]:
         entries.append({"path": f"vendor/datasheets/{name}-guide.pdf", "url": f"https://cdn-learn.adafruit.com/downloads/pdf/{slug}.pdf", "purpose": "Adafruit board guide"})
     return entries
 
@@ -61,7 +65,7 @@ def download(entry):
         raise ValueError(f"Upstream file changed: {entry['path']}; review before updating manifest")
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_bytes(data)
-    return {**entry, "sha256": digest, "bytes": len(data), "retrieved_date": "2026-11-12"}
+    return {**entry, "sha256": digest, "bytes": len(data), "retrieved_date": entry.get("retrieved_date", datetime.now(ZoneInfo("Asia/Jerusalem")).date().isoformat())}
 
 
 if __name__ == "__main__":
