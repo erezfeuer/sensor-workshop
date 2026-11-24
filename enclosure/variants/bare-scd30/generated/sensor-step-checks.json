@@ -1,0 +1,186 @@
+{
+  "status": "passed",
+  "source_step_sha256": "631817923aa10cb08566c3675760788406ec6e4b6507609176557cf0bce6c2fc",
+  "solid_count": 25,
+  "mesh": [
+    {
+      "part": 0,
+      "triangles": 12,
+      "volume_mm3": 13.778012
+    },
+    {
+      "part": 1,
+      "triangles": 1290,
+      "volume_mm3": 4.154337
+    },
+    {
+      "part": 2,
+      "triangles": 12,
+      "volume_mm3": 6.640204
+    },
+    {
+      "part": 3,
+      "triangles": 15206,
+      "volume_mm3": 818.180295
+    },
+    {
+      "part": 4,
+      "triangles": 3980,
+      "volume_mm3": 20.032105
+    },
+    {
+      "part": 5,
+      "triangles": 28,
+      "volume_mm3": 0.16625
+    },
+    {
+      "part": 6,
+      "triangles": 28,
+      "volume_mm3": 0.16625
+    },
+    {
+      "part": 7,
+      "triangles": 28,
+      "volume_mm3": 0.16625
+    },
+    {
+      "part": 8,
+      "triangles": 28,
+      "volume_mm3": 0.16625
+    },
+    {
+      "part": 9,
+      "triangles": 572,
+      "volume_mm3": 0.245875
+    },
+    {
+      "part": 10,
+      "triangles": 572,
+      "volume_mm3": 0.245875
+    },
+    {
+      "part": 11,
+      "triangles": 572,
+      "volume_mm3": 0.245875
+    },
+    {
+      "part": 12,
+      "triangles": 28,
+      "volume_mm3": 0.16625
+    },
+    {
+      "part": 13,
+      "triangles": 572,
+      "volume_mm3": 0.245875
+    },
+    {
+      "part": 14,
+      "triangles": 572,
+      "volume_mm3": 0.245875
+    },
+    {
+      "part": 15,
+      "triangles": 572,
+      "volume_mm3": 0.245875
+    },
+    {
+      "part": 16,
+      "triangles": 28,
+      "volume_mm3": 0.16625
+    },
+    {
+      "part": 17,
+      "triangles": 28,
+      "volume_mm3": 0.16625
+    },
+    {
+      "part": 18,
+      "triangles": 572,
+      "volume_mm3": 0.245875
+    },
+    {
+      "part": 19,
+      "triangles": 28,
+      "volume_mm3": 0.16625
+    },
+    {
+      "part": 20,
+      "triangles": 572,
+      "volume_mm3": 1.491905
+    },
+    {
+      "part": 21,
+      "triangles": 572,
+      "volume_mm3": 1.0173
+    },
+    {
+      "part": 22,
+      "triangles": 572,
+      "volume_mm3": 1.0173
+    },
+    {
+      "part": 23,
+      "triangles": 3012,
+      "volume_mm3": 708.9476
+    },
+    {
+      "part": 24,
+      "triangles": 25142,
+      "volume_mm3": 1081.969013
+    }
+  ],
+  "normalization": {
+    "x": "raw X + 16.05",
+    "y": "8.3 - raw Z",
+    "z": "raw Y - 1.55"
+  },
+  "clips": [
+    {
+      "location": [
+        33.6,
+        0,
+        180
+      ],
+      "minimum_clearance_to_non_pcb_solids_mm": 0.5204,
+      "pcb_capture_intersections_mm3": [
+        0.25575,
+        0.186
+      ],
+      "opening_checked_mm": 0.8,
+      "insertion_poses": 11
+    },
+    {
+      "location": [
+        0,
+        21,
+        90
+      ],
+      "minimum_clearance_to_non_pcb_solids_mm": 2.8501,
+      "pcb_capture_intersections_mm3": [
+        0.28051,
+        0.20401
+      ],
+      "opening_checked_mm": 0.8,
+      "insertion_poses": 11
+    },
+    {
+      "location": [
+        20,
+        23,
+        0
+      ],
+      "minimum_clearance_to_non_pcb_solids_mm": 2.525,
+      "pcb_capture_intersections_mm3": [
+        0.2805,
+        0.204
+      ],
+      "opening_checked_mm": 0.8,
+      "insertion_poses": 11
+    }
+  ],
+  "limitations": [
+    "Exact nominal STEP geometry; received board revision and print tolerances require a fit check.",
+    "Opening check translates a clip outwards; it does not simulate bending, force, strain or fatigue."
+  ],
+  "side_guide_minimum_sensor_clearance_mm": 0.25
+}

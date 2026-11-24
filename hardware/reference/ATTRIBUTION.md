@@ -14,4 +14,6 @@ The board-derived material retains the upstream **Creative Commons Attribution-S
 
 Official component STEP/STL files were obtained from [Adafruit CAD Parts](https://github.com/adafruit/Adafruit_CAD_Parts) and are cached as reference material, not redistributed in the tracked enclosure assets. Manufacturer datasheets and guides remain the works of their respective publishers: Adafruit, Sensirion, Vishay, ams, Espressif and Analog Devices/Maxim. They are downloaded to a local, Git-ignored reference cache; original download links are in the [reference index](README.md).
 
+The personal bare-SCD30 viewer and drawings use tessellated geometry from **Sensirion AG's [official SCD30 STEP model](https://sensirion.com/media/documents/E9438033/61653143/Sensirion_CO2_Sensors_SCD30_POD_STEP_File.zip)**. The model was rotated, translated, coloured and tessellated for assembly visualization and clearance checks. The original STEP is cached locally; its source and hash are recorded in the [personal variant references](../../enclosure/variants/bare-scd30/references.json). This manufacturer reference geometry is separate from the Adafruit-derived material described above.
+
 Support the original open hardware designers by purchasing their products. Preserve these notices with redistributed board-derived files.

@@ -30,5 +30,14 @@
     "sha256": "4c487bfb8b5770fce2ab67a3a0790aa2ee825c1309bb4ed65fab450dffe49409",
     "bytes": 1154736,
     "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "hardware/reference/vendor/scd30-bare/manufacturer.zip",
+    "url": "https://sensirion.com/media/documents/E9438033/61653143/Sensirion_CO2_Sensors_SCD30_POD_STEP_File.zip",
+    "sha256": "9588d5f8de1ff2dc36daa85ccea2edaa3bedf892538abee31ce00c2d16ac0182",
+    "step_member": "Sensirion_CO2_Sensors_SCD30_POD_STEP_File.step",
+    "step_sha256": "631817923aa10cb08566c3675760788406ec6e4b6507609176557cf0bce6c2fc",
+    "retrieved_date": "2026-11-24",
+    "purpose": "Official detailed module geometry; PCB edge support, both-side component clearance and viewer"
   }
 ]

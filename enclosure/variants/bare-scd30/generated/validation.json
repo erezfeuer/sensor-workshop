@@ -1,18 +1,8 @@
 {
   "status": "passed",
-  "variant": "0.6-personal-scd30-1",
+  "variant": "0.6-personal-scd30-2",
   "units": "mm",
   "print_parts": {
-    "03-feather-frame.stl": {
-      "watertight": true,
-      "bodies": 1,
-      "size_mm": [
-        54.9,
-        31.2,
-        11.8
-      ],
-      "sha256": "abd68959dd98a24cbb824b902a29ae35721560406537661ab30177bfda094798"
-    },
     "01-shell.stl": {
       "watertight": true,
       "bodies": 1,
@@ -29,9 +19,19 @@
       "size_mm": [
         86.6,
         60.6,
-        5.2
+        12.3
       ],
-      "sha256": "b3f3cd9d11d90c83c9b930d05218baab8335e722ee2e6e67f37eb2dea62fff52"
+      "sha256": "9e3f23560138e5436f14447cba18817a20da71c97923dbb81e757fa90f4b5056"
+    },
+    "03-feather-frame.stl": {
+      "watertight": true,
+      "bodies": 1,
+      "size_mm": [
+        54.9,
+        31.2,
+        11.8
+      ],
+      "sha256": "abd68959dd98a24cbb824b902a29ae35721560406537661ab30177bfda094798"
     }
   },
   "checks": [
@@ -66,1784 +66,902 @@
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
+      "a": "scd30-part-00",
       "b": "shell",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
+      "a": "scd30-part-00",
       "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
+      "a": "scd30-part-00",
       "b": "feather",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
+      "a": "scd30-part-00",
       "b": "light",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
+      "a": "scd30-part-00",
       "b": "rtc",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
+      "a": "scd30-part-00",
       "b": "battery",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-header",
+      "a": "scd30-part-01",
       "b": "shell",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-header",
+      "a": "scd30-part-01",
       "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-header",
+      "a": "scd30-part-01",
       "b": "feather",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-header",
+      "a": "scd30-part-01",
       "b": "light",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-header",
+      "a": "scd30-part-01",
       "b": "rtc",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-header",
+      "a": "scd30-part-01",
       "b": "battery",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-strain-tie",
+      "a": "scd30-part-02",
       "b": "shell",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-strain-tie",
+      "a": "scd30-part-02",
       "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-strain-tie",
+      "a": "scd30-part-02",
       "b": "feather",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-strain-tie",
+      "a": "scd30-part-02",
       "b": "light",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-strain-tie",
+      "a": "scd30-part-02",
       "b": "rtc",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-strain-tie",
+      "a": "scd30-part-02",
       "b": "battery",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-0",
+      "a": "scd30-part-03",
       "b": "shell",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-0",
+      "a": "scd30-part-03",
       "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-0",
+      "a": "scd30-part-03",
       "b": "feather",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-0",
+      "a": "scd30-part-03",
       "b": "light",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-0",
+      "a": "scd30-part-03",
       "b": "rtc",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-0",
+      "a": "scd30-part-03",
       "b": "battery",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-1",
+      "a": "scd30-part-04",
       "b": "shell",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-1",
+      "a": "scd30-part-04",
       "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-1",
+      "a": "scd30-part-04",
       "b": "feather",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-1",
+      "a": "scd30-part-04",
       "b": "light",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-1",
+      "a": "scd30-part-04",
       "b": "rtc",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-1",
+      "a": "scd30-part-04",
       "b": "battery",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-0",
+      "a": "scd30-part-05",
       "b": "shell",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-0",
+      "a": "scd30-part-05",
       "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-0",
+      "a": "scd30-part-05",
       "b": "feather",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-0",
+      "a": "scd30-part-05",
       "b": "light",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-0",
+      "a": "scd30-part-05",
       "b": "rtc",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-0",
+      "a": "scd30-part-05",
       "b": "battery",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-1",
+      "a": "scd30-part-06",
       "b": "shell",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-1",
+      "a": "scd30-part-06",
       "b": "feather_frame",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-1",
+      "a": "scd30-part-06",
       "b": "feather",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-1",
+      "a": "scd30-part-06",
       "b": "light",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-1",
+      "a": "scd30-part-06",
       "b": "rtc",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-screw-1",
+      "a": "scd30-part-06",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-07",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-07",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-07",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-07",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-07",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-07",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-08",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-08",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-08",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-08",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-08",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-08",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-09",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-09",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-09",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-09",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-09",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-09",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-10",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-10",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-10",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-10",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-10",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-10",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-11",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-11",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-11",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-11",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-11",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-11",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-12",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-12",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-12",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-12",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-12",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-12",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-13",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-13",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-13",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-13",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-13",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-13",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-14",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-14",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-14",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-14",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-14",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-14",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-15",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-15",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-15",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-15",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-15",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-15",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-16",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-16",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-16",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-16",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-16",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-16",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-17",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-17",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-17",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-17",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-17",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-17",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-18",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-18",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-18",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-18",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-18",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-18",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-19",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-19",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-19",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-19",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-19",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-19",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-20",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-20",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-20",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-20",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-20",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-20",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-21",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-21",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-21",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-21",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-21",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-21",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-22",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-22",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-22",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-22",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-22",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-22",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-23",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-23",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-23",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-23",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-23",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-23",
+      "b": "battery",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-24",
+      "b": "shell",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-24",
+      "b": "feather_frame",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-24",
+      "b": "feather",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-24",
+      "b": "light",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-24",
+      "b": "rtc",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "scd30-part-24",
       "b": "battery",
       "intersection_mm3": 0.0
     },
     {
       "a": "carrier",
-      "b": "scd30",
+      "b": "scd30-part-00",
       "intersection_mm3": 0.0
     },
     {
       "a": "carrier",
-      "b": "scd30-header",
+      "b": "scd30-part-01",
       "intersection_mm3": 0.0
     },
     {
       "a": "carrier",
-      "b": "scd30-strain-tie",
+      "b": "scd30-part-02",
       "intersection_mm3": 0.0
     },
     {
       "a": "carrier",
-      "b": "scd30-washer-0",
+      "b": "scd30-part-03",
       "intersection_mm3": 0.0
     },
     {
       "a": "carrier",
-      "b": "scd30-washer-1",
+      "b": "scd30-part-04",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
-      "b": "scd30-header",
+      "a": "carrier",
+      "b": "scd30-part-05",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
-      "b": "scd30-strain-tie",
+      "a": "carrier",
+      "b": "scd30-part-06",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
-      "b": "scd30-washer-0",
+      "a": "carrier",
+      "b": "scd30-part-07",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
-      "b": "scd30-washer-1",
+      "a": "carrier",
+      "b": "scd30-part-08",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
-      "b": "scd30-screw-0",
+      "a": "carrier",
+      "b": "scd30-part-09",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30",
-      "b": "scd30-screw-1",
+      "a": "carrier",
+      "b": "scd30-part-10",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-header",
-      "b": "scd30-strain-tie",
+      "a": "carrier",
+      "b": "scd30-part-11",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-header",
-      "b": "scd30-washer-0",
+      "a": "carrier",
+      "b": "scd30-part-12",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-header",
-      "b": "scd30-washer-1",
+      "a": "carrier",
+      "b": "scd30-part-13",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-header",
-      "b": "scd30-screw-0",
+      "a": "carrier",
+      "b": "scd30-part-14",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-header",
-      "b": "scd30-screw-1",
+      "a": "carrier",
+      "b": "scd30-part-15",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-strain-tie",
-      "b": "scd30-washer-0",
+      "a": "carrier",
+      "b": "scd30-part-16",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-strain-tie",
-      "b": "scd30-washer-1",
+      "a": "carrier",
+      "b": "scd30-part-17",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-strain-tie",
-      "b": "scd30-screw-0",
+      "a": "carrier",
+      "b": "scd30-part-18",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-strain-tie",
-      "b": "scd30-screw-1",
+      "a": "carrier",
+      "b": "scd30-part-19",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-0",
-      "b": "scd30-washer-1",
+      "a": "carrier",
+      "b": "scd30-part-20",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-0",
-      "b": "scd30-screw-0",
+      "a": "carrier",
+      "b": "scd30-part-21",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-0",
-      "b": "scd30-screw-1",
+      "a": "carrier",
+      "b": "scd30-part-22",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-1",
-      "b": "scd30-screw-0",
+      "a": "carrier",
+      "b": "scd30-part-23",
       "intersection_mm3": 0.0
     },
     {
-      "a": "scd30-washer-1",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "scd30-screw-0",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_plug0",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_2",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_3",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_1",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_0",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_3",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug0",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_plug1",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_2",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_0",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt1_1",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug1",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_qt2_plug0",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_1",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "cable_battery_lead_0",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_plug",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_0",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_1",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_2",
-      "b": "battery",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "carrier",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "scd30",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "scd30-header",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "scd30-strain-tie",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "scd30-washer-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "scd30-washer-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "scd30-screw-0",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "scd30-screw-1",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "shell",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "feather_frame",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "feather",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "light",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "rtc",
-      "intersection_mm3": 0.0
-    },
-    {
-      "a": "personal_wire_3",
-      "b": "battery",
+      "a": "carrier",
+      "b": "scd30-part-24",
       "intersection_mm3": 0.0
     }
   ],
   "limitations": [
-    "Nominal CAD checks, not print-fit, clamp-retention, solder-joint or thermal qualification.",
-    "Bare sensor uses a conservative envelope; header body and washer dimensions must be measured.",
-    "Wires show nominal routes; service slack and insulation are checked during assembly."
+    "Nominal CAD geometry, not print-fit, insertion-force, retention, fatigue or thermal qualification.",
+    "Original cable illustration retained unchanged; it does not specify the soldered lead geometry."
   ],
   "closure_interface_matches_workshop": true,
-  "intentional_contacts": "Screw threads in printed pilots; each pigtail wire at its own header-pin solder joint only.",
-  "header_capture": {
-    "nominal_vertical_play_mm": 0.36,
-    "side_clearance_mm": 0.2,
-    "washers_stop_downward_motion_mm3": [
-      0.375,
-      0.375
-    ],
-    "end_seat_width_mm": 0.57,
-    "xy_offsets_checked_mm": [
-      -0.2,
-      0.2
-    ],
-    "minimum_capture_overlap_mm3": 0.196
-  },
-  "qt_plug_feed": {
-    "poses": 25,
-    "oriented_plug_mm": [
-      5.4,
-      2,
-      3.8
-    ]
-  },
   "carrier_removal": {
     "poses": 81,
     "checks": 486,
     "travel_mm": 40
   },
-  "straight_screwdriver_access": true,
-  "sensor_to_desk_mm": 11.85,
-  "sensor_to_carrier_underside_mm": 4.45,
-  "sensor_to_washer_mm": 1.15,
-  "header_long_leg_protrusion_below_pcb_mm": 0.84,
-  "references_verified": 4
+  "snap_capture": {
+    "clips": 3,
+    "pcb_mm": 1.6,
+    "capture_gap_mm": 2.0,
+    "face_clearance_mm": 0.2,
+    "side_clearance_mm": 0.25,
+    "lip_overlap_mm": 0.4,
+    "additional_sensor_fasteners": 0,
+    "exact_step_report": "sensor-step-checks.json"
+  },
+  "sensor_to_desk_mm": 11.55,
+  "sensor_back_to_plate_mm": 5.45,
+  "references_verified": 5
 }
