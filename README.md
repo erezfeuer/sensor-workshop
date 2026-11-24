@@ -6,6 +6,8 @@ Students assemble the same battery-powered environmental monitor without solderi
 
 ## Files to print
 
+**Erez's bare-SCD30 prototype:** use **[prototype-stls/bare-scd30/](prototype-stls/bare-scd30/)** for your complete three-file set. It includes the TSL2591 shell, reinforced Feather frame and a separate carrier for the bare Sensirion module. [Personal assembly and wiring guide](enclosure/variants/bare-scd30/README.md) · [Personal interactive model](enclosure/variants/bare-scd30/model.html). The standard workshop files below still use the Adafruit QT SCD30 breakout.
+
 **[production-stls/](production-stls/)** contains exactly the three separate STL files for one device. Print **one of each**, at **100% scale in millimetres**, keeping the supplied orientations:
 
 | File | Bed-facing surface |

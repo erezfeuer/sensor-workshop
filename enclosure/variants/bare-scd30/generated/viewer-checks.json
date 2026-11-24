@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "variant": "0.6-personal-scd30-1",
+  "offline": true,
+  "selectable_components": 34,
+  "checks": [
+    "all visibility controls",
+    "explosion and header motion",
+    "pigtail hidden during explosion",
+    "all personal sensor attachments hidden for Feather removal",
+    "cut at header screw",
+    "existing tie and pole views",
+    "mobile width",
+    "no JavaScript/WebGL errors or network requests"
+  ],
+  "browser": "158.0.8127.37",
+  "limitations": [
+    "Chrome only",
+    "No physical fit implied"
+  ]
+}

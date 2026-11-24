@@ -12,6 +12,8 @@ The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the o
 
 ## Open and compare
 
+- **[Bare SCD30 personal variant](variants/bare-scd30/README.md)** — Erez's soldered prototype only; includes a separate full print folder, carrier, wiring guide and interactive model.
+
 - **[Interactive HTML model](model.html)** — one offline file with 30 component checkboxes (including three optional mounting-example items), an explosion slider, movable cutaways, an **Underside** camera, a **Remove / install Feather** movement mode, a **Tie access** view of the empty shell, a **Tie section** through the two-guide route, and a **Pole mount** example. “Look inside” hides the shell. Download the file and open it in a browser; GitHub's file page displays source.
 - [Nine-page design review](design-review.pdf), [measured cross-sections](sections.pdf), [mounting drawings](mounting-drawings.pdf), and [battery-tie access sections](battery-tie-access.pdf), and [corner-guide details](mounting-guide-details.pdf).
 - [TSL2591 board fit and roof cross-section](light-sensor-fit.pdf).

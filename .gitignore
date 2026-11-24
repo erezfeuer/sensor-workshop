@@ -2,6 +2,7 @@
 
 hardware/reference/vendor/
 enclosure/generated/scene/
+enclosure/variants/*/generated/scene/
 enclosure/generated/collision*.stl
 enclosure/**/*.log
 **/__pycache__/

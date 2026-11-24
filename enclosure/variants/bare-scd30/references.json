@@ -1,0 +1,34 @@
+[
+  {
+    "path": "hardware/reference/vendor/datasheets/scd30-assembly.pdf",
+    "url": "https://sensirion.com/media/documents/6E0DB3D9/616534F2/Sensirion_CO2_Sensors_SCD30_Assembly_Guideline.pdf",
+    "sha256": "338e24b533e000fb076616644a9b915fda6d6fc3b22b0f7fe724849bb7e1a186",
+    "bytes": 196884,
+    "retrieved_date": "2026-11-24",
+    "purpose": "Bare SCD30 mounting via contact pins only; soldering and standoff guidance"
+  },
+  {
+    "path": "hardware/reference/vendor/datasheets/scd30-datasheet.pdf",
+    "url": "https://sensirion.com/media/documents/4EAF6AF8/61652C3C/Sensirion_CO2_Sensors_SCD30_Datasheet.pdf",
+    "purpose": "manufacturer reference",
+    "sha256": "8c47d6e4ca180ec893d8f47e24e175d9e81df42a2d26c16a6e9770c48f962a22",
+    "bytes": 584579,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "hardware/reference/vendor/datasheets/scd30-design-in.pdf",
+    "url": "https://sensirion.com/media/documents/84D49268/616536CB/Sensirion_CO2_Sensors_SCD30_Design-In_Guidelines_D1.pdf",
+    "purpose": "manufacturer reference",
+    "sha256": "9d6dda4ac08843766c244c7e2a104680c25dfbdf151c447c24cf82356cb8532c",
+    "bytes": 331168,
+    "retrieved_date": "2026-11-12"
+  },
+  {
+    "path": "hardware/reference/vendor/datasheets/scd30-interface.pdf",
+    "url": "https://sensirion.com/media/documents/D7CEEF4A/6165372F/Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf",
+    "purpose": "manufacturer reference",
+    "sha256": "4c487bfb8b5770fce2ab67a3a0790aa2ee825c1309bb4ed65fab450dffe49409",
+    "bytes": 1154736,
+    "retrieved_date": "2026-11-12"
+  }
+]
