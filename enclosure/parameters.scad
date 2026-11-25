@@ -1,5 +1,5 @@
-// Sensor Workshop v0.7 — millimetres. Two case parts + one Feather frame.
-enclosure_version = "0.7";
+// Sensor Workshop v0.7.1 — millimetres. Two case parts + one Feather frame.
+enclosure_version = "0.7.1";
 light_sensor = "tsl2591"; // Adafruit QT only: "tsl2591" or "veml7700"; rebuild all outputs after changing.
 case_width = 92;
 case_depth = 66;
@@ -58,7 +58,7 @@ board_pin_indices = [1,2];
 board_screw_length = 5;
 // Reinforced Feather posts: short board-contact lands, broad roots and ribs.
 feather_contact_diameters = [4.3,3.2]; // Restore the physically fitted v0.5 PCB-contact footprints.
-feather_contact_length = 1.0; // Straight land; reinforcement starts BEHIND this land.
+feather_contact_length = 2.0; // Preserve the fitted v0.5 geometry through this entire front band.
 feather_root_diameter = 6.4;
 feather_root_y = 8.7;
 feather_root_span = 9;

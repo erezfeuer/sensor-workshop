@@ -1,6 +1,6 @@
 # Mechanical bill of materials — one device
 
-For enclosure **v0.7, reinforced Feather frame / Adafruit TSL2591 QT prototype**; fastener quantities also apply to the VEML7700 alternative. Buy these generic items locally or from a fastener supplier; they are separate from the Digi-Key/Mouser electronics orders. Quantities below are the installed quantities, before spares. [CSV shopping list](hardware.csv) · [Electronics and batteries](../hardware/BOM.md) · [Assembly instructions](README.md#print-set-and-assembly)
+For enclosure **v0.7.1, reinforced Feather frame / Adafruit TSL2591 QT prototype**; fastener quantities also apply to the VEML7700 alternative. Buy these generic items locally or from a fastener supplier; they are separate from the Digi-Key/Mouser electronics orders. Quantities below are the installed quantities, before spares. [CSV shopping list](hardware.csv) · [Electronics and batteries](../hardware/BOM.md) · [Assembly instructions](README.md#print-set-and-assembly)
 
 ## Required purchased hardware
 
@@ -30,6 +30,24 @@ The CAD uses **0.5 mm-thick RTC washers** when calculating screw engagement. Che
 | DS3231 RTC → shell roof | 2 × M2 × 5 mm | 2 × thin M2 flat washers |
 | SCD30 → bottom carrier, assembled outside the case | 2 × M2 × 5 mm | None |
 | Bottom carrier → shell | 2 × M3 × 8 mm | None |
+
+## Mounting-hole audit — 25 November 2026
+
+The [STL audit](generated/mounting-hole-checks.json) ([measurement table](generated/mounting-hole-checks.csv)) checks the released print files against the pinned manufacturer PCB files. It covers all **14 board mounting centres, 10 screw pilots, 6 locating pins, and the two closure passages in each carrier variant**. These are model dimensions, not measurements of a printed part.
+
+| Mount | Screw | Pilot diameter | Measured blind depth | Spare depth beyond screw tip |
+| --- | --- | ---: | ---: | ---: |
+| Feather | M2×5 | 1.8 mm | 6.00 mm | 2.60 mm |
+| TSL2591 / VEML7700 pattern | M2×5 | 1.8 mm | 4.40 mm | 1.00 mm |
+| RTC, with 0.5 mm washer | M2×5 | 1.8 mm | 5.70 mm | 2.80 mm |
+| Standard Adafruit SCD30 | M2×5 | 1.8 mm | 4.78 mm | 1.38 mm |
+| Case closure | M3×8 | 2.6 mm | 8.98 mm | 3.38 mm |
+
+Both carriers have **Ø3.4 mm through-holes** aligned with the shell pilots. The **Ø1.9 × 1.2 mm locating pins** fit their specified PCB holes, including the Feather's smaller Ø2.2 mm holes. All ten standard screw-head and straight-driver approaches are checked at their assembly stages. The personal bare SCD30 has no sensor mounting screws; its eight remaining screws use the same checked interfaces.
+
+The detailed board check found one more interference in v0.7: the RTC D1 LED touched one post edge. **v0.7.1 adds a local clearance notch to the shell**, leaving the hole centre and bore unchanged. The notch clears the manufacturer model and retains at least a 1.15 mm continuous wall around the pilot mouth in the checked section. The fuller root remains behind it. Use the updated `01-shell.stl` in either print folder. The Feather frame also restores its complete working v0.5 front interface, with reinforcement behind it. Both carriers retain their v0.7 geometry.
+
+The detailed Feather, RTC and standard SCD30 models are checked for mounting interference. TSL2591 uses PCB-derived component envelopes with conservative heights. Printed bore size, actual screw/thread dimensions and tightening force still need a physical fit check.
 
 ## Optional supplies
 

@@ -1,4 +1,4 @@
-// Sensor Workshop v0.7. Two case parts and a removable Feather frame.
+// Sensor Workshop v0.7.1. Two case parts and a removable Feather frame.
 // Board-derived geometry: Adafruit CC BY-SA 3.0; see reference/ATTRIBUTION.md.
 include <parameters.scad>
 include <generated/boards.scad>
@@ -79,21 +79,17 @@ module feather_frame() {
                         }
                     }
                 }
-                if(i==1 || i==2) translate([x,feather_origin[1]+pcb_thickness-locating_height,z]) rotate([-90,0,0]) {
-                    cylinder(h=.4,d1=1.3,d2=locating_pin);
-                    translate([0,0,.4]) cylinder(h=locating_height-.4+eps,d=locating_pin);
-                }
+                // Keep the physically fitted v0.5 locating pins exactly.
+                if(i==1 || i==2) translate([x,feather_origin[1]+pcb_thickness-locating_height,z]) y_cylinder(locating_height+eps,locating_pin);
             }
         }
         // Preserve clearance to the radio package and copper antenna face.
         // These are mechanical component envelopes, not an RF-performance claim.
         board_transform("feather") {
-            translate([28.1,3.3,pcb_thickness-eps]) cube([17.6,16.2,2.8+eps]);
-            translate([45.1,3.3,pcb_thickness-eps]) cube([6,16.2,.9+eps]);
-            // CHG and D3 LEDs: full STEP package bounds, plus 0.3 mm XY/Z.
-            // They were omitted from the simplified board and hit the v0.6 pads.
-            translate([.5,4.767,pcb_thickness-eps]) cube([2.556,1.388,1.0]);
-            translate([.373,16.832,pcb_thickness-eps]) cube([2.556,1.388,1.0]);
+            // Only trim added material BEHIND the original 2 mm front band.
+            // The original straight posts already clear the LEDs and antenna.
+            translate([28.1,3.3,pcb_thickness+feather_contact_length])
+                cube([17.6,16.2,2.8-feather_contact_length+eps]);
         }
         for(i=board_screw_indices) let(p=feather_holes[i])
             translate([feather_origin[0]+p[0],feather_origin[1]+pcb_thickness-eps,feather_origin[2]-p[1]]) y_cylinder(feather_pilot_depth+eps,m2_pilot);
@@ -258,6 +254,9 @@ module shell() {
         for(i=board_screw_indices) let(p=light_holes[i])
             translate([light_origin[0]+p[0],light_origin[1]+p[1],case_top-1]) cylinder(h=1.9,d=m2_pilot);
         for(p=rtc_holes) let(xy=rtc_xy(p)) translate([xy[0],xy[1],case_top-1]) cylinder(h=1.9,d=m2_pilot);
+        // DS3231 D1 LED beside the left mounting hole: detailed STEP bounds
+        // plus 0.3 mm. Relieve only the contact end; retain the full post root.
+        board_transform("rtc") translate([2.589,11.752,pcb_thickness-eps]) cube([2.188,1.388,1.0]);
     }
 }
 module thermal_slots() {
@@ -328,6 +327,8 @@ module rtc_model() {
         color("#303335") translate([7.5,2,pcb_thickness]) cube([10.4,7.5,2.93]);
         color("silver") translate([12.7,10.795,-3.2]) cylinder(h=3.2,d=13);
         color("ivory") for(x=[2.54,22.86]) qt_socket([x,8.89]);
+        // Include D1 in routine checks as well as the detailed STEP audit.
+        color("#d8b04a") translate([2.683,12.046,pcb_thickness]) cube([2,.8,.75]);
     }
 }
 module light_model() {

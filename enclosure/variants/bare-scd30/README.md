@@ -6,13 +6,13 @@ This one-off carrier holds the **bare 35 × 23 mm Sensirion SCD30** directly wit
 
 | Print one of each | Supplied print orientation |
 | --- | --- |
-| `01-shell.stl` | Exterior roof on the bed; feet point up. Current TSL2591 shell. |
+| `01-shell.stl` | Exterior roof on the bed; feet point up. Current TSL2591 shell, with v0.7.1 RTC LED clearance. |
 | `02-sensor-carrier-bare-scd30.stl` | Flat upper face on the bed; integral latches point up. Strengthened, closer-fitting latches. |
-| `03-feather-frame.stl` | Flat rear face on the bed; mounting pads point up. Corrected v0.7 frame: LED clearance and USB/SCREEN SIDE marks. |
+| `03-feather-frame.stl` | Flat rear face on the bed; mounting pads point up. v0.7.1 frame: original v0.5 front interface, reinforced roots and USB/SCREEN SIDE marks. |
 
 The shell and frame are exact copies of the workshop files. Use millimetres and 100% scale. For the carrier, start with a 0.4 mm nozzle, 0.2 mm layers and five wall loops. **PETG is preferred for the flexible latches**; treat PLA as a careful first-fit trial. The latch noses have short 0.77 mm inward projections and sloped entry faces; the back stops grow on ramps. No deliberate supports are intended, but actual print quality must be checked. See the [existing shell/frame guidance](../../PRINTING.md). No slicing has been performed here.
 
-**25 November revision:** reprint the carrier and Feather frame; reuse the shell. After the first clips proved flimsy and loose, their walls increased from **1.1 to 1.6 mm**, the two unobstructed clips widened to **4.2 and 6 mm**, and the retaining overlap increased from **0.4 to 0.65 mm**. The corner clip stays 3.4 mm wide to clear the optical body. Retaining noses are now 0.5 mm thick, and the vertical play halves from 0.4 to 0.2 mm. These changes need a new physical fit trial.
+**25 November revision:** the strengthened carrier is retained. The Feather frame now restores its full working v0.5 front interface, reinforced behind the first 2 mm. The subsequent v0.7.1 hole audit also updates the shell to clear the RTC LED, so use all three current files. After the first clips proved flimsy and loose, their walls increased from **1.1 to 1.6 mm**, the two unobstructed clips widened to **4.2 and 6 mm**, and the retaining overlap increased from **0.4 to 0.65 mm**. The corner clip stays 3.4 mm wide to clear the optical body. Retaining noses are now 0.5 mm thick, and the vertical play halves from 0.4 to 0.2 mm. These changes need a new physical fit trial.
 
 ## How it holds the module
 

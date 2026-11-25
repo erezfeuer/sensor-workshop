@@ -1,16 +1,16 @@
-# Feather mount — seating correction v0.7
+# Feather mount — restored working interface v0.7.1
 
-**Reprint [03-feather-frame.stl](../production-stls/03-feather-frame.stl).** The standard shell and carrier are unchanged. The personal bare-SCD30 set also has an updated snap carrier; use its [complete print folder](../prototype-stls/bare-scd30/). [Mounting drawing](feather-mounting.pdf) · [Interactive model](model.html)
+**Reprint [03-feather-frame.stl](../production-stls/03-feather-frame.stl).** This revision restores the complete v0.5 board-facing interface and reinforces it behind that interface. The full v0.7.1 hole audit also updates the shell to clear the RTC LED; use the current shell file. The standard carrier is unchanged. The personal bare-SCD30 set also has an updated snap carrier; use its [complete print folder](../prototype-stls/bare-scd30/). [Mounting drawing](feather-mounting.pdf) · [Interactive model](model.html)
 
-## What caused the clearance problem
+## Working interface restored exactly
 
-On 25 November 2026, Erez reported that the new frame did not align as the older one had, and that the UP marking was unclear. Direct measurements of the exported v0.5 and v0.6 STLs show **identical screw-hole and locating-pin centres**. However, checking Adafruit's detailed STEP model revealed that the enlarged v0.6 USB-end posts **overlapped the CHG and D3 LED packages**. The old posts clear those parts. This interference can stop the board seating flat; the earlier simplified board model omitted these LEDs.
+The **v0.5 print that previously fitted is the reference**. v0.7.1 restores its complete board-facing geometry: both original locating pins, all four cylindrical contact lands and both screw pilot mouths, through the first **2 mm behind the PCB**. A Boolean comparison of the actual exported STLs verifies that this entire interface matches the old solid, rather than checking only nominal coordinates.
 
-v0.7 restores the original **4.3 mm USB-end and 3.2 mm antenna-end contact diameters**, with a genuine **1 mm straight land** before the reinforcement widens. Local reliefs leave room around the LEDs, radio and antenna. The contact footprints fit inside the old v0.5 footprints. The **6.4 mm roots** and broad connections to the uprights remain, supporting the threaded section behind the narrow contact lands.
+All added reinforcement starts **behind that unchanged interface**. The posts expand into **6.4 mm roots** and broad connections to the uprights. The screw pilots stay **Ø1.8 mm**, with **6 mm blind depth** behind the original mouths. This keeps the previously fitted board interface while supporting the threaded portion and the post roots.
 
-All four mounting centres remain at their original positions. The locating pins retain their 1.9 mm bases and gain tapered entry tips. Screw pilots remain **Ø1.8 × 6 mm deep**, preserving the previously successful pilot diameter. No screw size or quantity changes.
+The detailed Adafruit model also identified LED interference from the enlarged v0.6 contact pads. The original contact lands clear these parts. All **186 manufacturer solids** are checked against the current frame, and added reinforcement is relieved around the radio package. The screw and pin centres independently match the old STL and manufacturer PCB holes.
 
-The lower crossbar reads **USB**, with an arrow pointing to the connector end, and **SCREEN SIDE**. Only the clear right half of the crossbar is taller and brought forward for readable lettering, preserving the battery-lead passage on the left and the original overall size and slide tongues.
+The lower crossbar carries a **USB arrow** and **SCREEN SIDE**. Its clear right half provides space for the labels; the left half retains the battery-lead passage. The original overall size and slide tongues are retained.
 
 ![Corrected frame and engraved orientation labels](renders/feather-frame.png)
 
@@ -35,11 +35,11 @@ Record the successful pilot fit without labelling these particular screws M2. Th
 | Mount | Boss / pilot diameter | Nominal radial wall | Support |
 | --- | --- | --- | --- |
 | TSL2591 / VEML7700 | 4.8 / 1.8 mm | 1.5 mm | 3.5 mm-tall boss directly rooted in the roof |
-| DS3231 RTC | 5.2 / 1.8 mm | 1.7 mm | 4.8 mm-tall boss directly rooted in the roof |
+| DS3231 RTC | 5.2 / 1.8 mm | 1.7 mm nominal; ≥1.15 mm checked at LED relief | 4.8 mm-tall boss directly rooted in the roof |
 | SCD30 | 4.8 / 1.8 mm | 1.5 mm | 4 mm-tall boss directly rooted in the carrier |
 | Case closure | 7.6 / 2.6 mm | 2.5 mm | Integrated shell-corner support |
 
-These mounts already have thicker walls and more direct support than the old Feather projections, so they are unchanged in this revision. The TSL2591 component relief affects a locating-pin boss rather than its screw bosses. Each mount still needs a real fastener trial; this audit is not a torque rating.
+These mounts have more direct support than the old Feather projections. The RTC post now has a local LED relief, checked against the full manufacturer model; its hole centre and depth remain unchanged. The TSL2591 component relief affects a locating-pin boss rather than its screw bosses. Each mount still needs a real fastener trial; this audit is not a torque rating.
 
 ## Print and repeat the removal trial
 

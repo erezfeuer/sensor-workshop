@@ -1,6 +1,8 @@
-# Enclosure v0.7 — corrected Feather seating / TSL2591 QT prototype
+# Enclosure v0.7.1 — mounting-hole audit / TSL2591 QT prototype
 
-The Feather frame keeps the old hole/pin centres and restores the original contact diameters, with clearance around both USB-end LED packages. These LEDs overlapped the enlarged v0.6 posts and were missing from the simplified model. Reinforced roots and Ø1.8 × 6 mm blind pilots remain. **USB ←** and **SCREEN SIDE** replace the UP mark. Reprint `03-feather-frame.stl`; the standard shell and carrier are unchanged. The personal bare-SCD30 variant also has a strengthened snap carrier. [Fit correction and orientation](FEATHER-MOUNT.md) · [Mounting drawing](feather-mounting.pdf).
+**v0.7.1 update:** the [full mounting-hole audit](generated/mounting-hole-checks.json) verifies all mounting centres, pilot depths, locating pins, closure passages and screw approaches. It also found a small RTC LED/post overlap. A local notch now clears that LED without moving the hole. **Use the updated `01-shell.stl`**, including in the personal print folder; the Feather frame also restores its complete working v0.5 front interface, with reinforcement behind it. Both carriers are retained. [Measured screw-depth table](MECHANICAL-BOM.md#mounting-hole-audit--25-november-2026).
+
+The Feather frame keeps the old hole/pin centres and restores the original contact diameters, with clearance around both USB-end LED packages. These LEDs overlapped the enlarged v0.6 posts and were missing from the simplified model. Reinforced roots and Ø1.8 × 6 mm blind pilots remain. **USB ←** and **SCREEN SIDE** replace the UP mark. v0.7.1 restores the complete first 2 mm of the working v0.5 frame and its original locating pins; it also updates the shell as noted above. The personal bare-SCD30 variant also has a strengthened snap carrier. [Fit correction and orientation](FEATHER-MOUNT.md) · [Mounting drawing](feather-mounting.pdf).
 
 The shell retains the **Adafruit TSL2591 STEMMA QT** fit introduced in v0.5: the roof opening and notched light well align with its optical centre. An older VEML7700 shell still needs replacing when changing to TSL2591. [Sensor comparison and prototype checks](../hardware/LIGHT-SENSOR.md) · [Light-sensor fit drawing](light-sensor-fit.pdf).
 
@@ -27,7 +29,7 @@ The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the o
 
 ![Accessible enclosure assembly](renders/assembled.png)
 
-| Per device | v0.2 | v0.7 |
+| Per device | v0.2 | v0.7.1 |
 | --- | ---: | ---: |
 | Printed pieces | 2 | **3: shell, carrier, Feather frame** |
 | Screws | 10 | **10** |
@@ -91,7 +93,7 @@ The STL orientations are already set. Use light-coloured opaque PETG for the wor
 The coupon checks all four received board patterns (TSL2591 and VEML7700 QT share a mounting pattern), the locating pins, M2 pilot diameters 1.6–1.9 mm, M3 pilots 2.4–2.7 mm, the 27 mm bridge, and the battery diameter. The current pilots are 1.8 and 2.6 mm; pre-thread them with gentle hand torque before class. The locating pins are 1.9 mm diameter and 1.2 mm tall. No heat-set inserts are used.
 
 1. Print/check the coupon and measure the local pack. Inspect all three parts in the slicer. Clean the slide rails, thermal slots, cable passage, tie eyelets and bridge edges. With the empty shell roof down, feed each tie tail through its front eyelet toward the rear. The curved return should turn the tip upward through the second eyelet. Leave enough length at both ends to reach around the battery, and move the ends aside while fitting the boards. Check that the carrier's four thermal bridges are sound; it is still one part, not a breakaway support.
-2. **On the table**, hold the frame with its engraved crossbar at the bottom and **SCREEN SIDE facing you**. Point the USB socket along the **USB arrow**, with **screen/buttons facing you**; the components face the frame. Seat it flat on both chamfered locating pins without force before fitting the two M2×5 screws from the display face. Keep the driver off the glass, support the frame near the screw and tighten only until seated. [Orientation drawing and removal trial](FEATHER-MOUNT.md).
+2. **On the table**, hold the frame with its engraved crossbar at the bottom and **SCREEN SIDE facing you**. Point the USB socket along the **USB arrow**, with **screen/buttons facing you**; the components face the frame. Seat it flat on both original locating pins without force before fitting the two M2×5 screws from the display face. Keep the driver off the glass, support the frame near the screw and tighten only until seated. [Orientation drawing and removal trial](FEATHER-MOUNT.md).
 3. With the shell roof down and bottom open, insert the CR1220 into the RTC. Install the RTC with two M2×5 screws and washers, then the light board with two M2×5 screws. Approach these four screws straight through the bottom. Fit the RTC–light lead.
 4. Slide the complete Feather/frame into its guides from the open bottom until it reaches the upper stops. The button and display faces point toward the front openings. Check the buttons, RESET and USB opening. Connect the Feather–RTC lead with the bottom still open. The frame remains loose in its guides until the carrier is fitted; keep it seated while handling the open device.
 5. With the ties already threaded, insert the battery from below with its lead toward the left. Bring the ends around the pack, close each tie with its head below the battery, secure gently, and route its lead to the Feather's downward-facing socket. Keep the lead above the small bottom frame crossbar and away from the closing edge. Confirm polarity before connecting.
@@ -123,6 +125,7 @@ python3 -m venv .venv-cad
 .venv-cad/bin/python enclosure/scripts/build_viewer.py
 .venv-cad/bin/python enclosure/scripts/validate.py
 .venv-cad/bin/python enclosure/scripts/check_feather_fit.py
+.venv-cad/bin/python enclosure/scripts/check_mounting_holes.py
 .venv-cad/bin/python enclosure/scripts/check_assembly.py
 .venv-cad/bin/python enclosure/thermal/model.py
 .venv-cad/bin/pip install -r enclosure/requirements-viewer-check.txt

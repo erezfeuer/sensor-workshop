@@ -1,0 +1,951 @@
+{
+  "status": "passed",
+  "version": "0.7.1",
+  "units": "mm",
+  "print_sha256": {
+    "shell": "b29fa569636cf0b5c864e35d9535690f76b2a753bbfb7220225b6004a3be7376",
+    "carrier": "a6f3046358a60a117af3f3cbcbe5bc5d9da3c87db58226534f8107aaa41c76d2",
+    "feather_frame": "c57d9aa3c9cd26922f79a32f86b4ca72d35f3df8300d60a2e1d9d9bb9149476e",
+    "personal_carrier": "2ee623f2f441ef5e76fb06b7edbdc2e45a4742a16f86bf90338ae0dadd683204"
+  },
+  "references": {
+    "feather": "af760d002fb4a645a7e40f48b2b1b82fc0b280c41e40fdbfc90ce77b189775ef",
+    "tsl2591": "901af5730a37a347b04a6eeafeb2bc920e42c9416b4d6039e4feb474906d81ff",
+    "rtc": "01c08bf96b77df0f2d026300c720540c41a7fdcb7ada94f49740bf9476c94a7d",
+    "scd30": "0b55346d46f6413a7a41913e75a0a980c3b62fff00667b5345b1194239c78bdc",
+    "veml7700": "f0532da9153b4f03c503f11ee45e7aed5bac59d63889db30cec4acafd13211f9",
+    "rtc_step": "3bf6b49cea0171cbd743afded56fe676264ffbb57b9ed16d59fd8c668fb2fe3a",
+    "scd30_step": "af9ecdaeca6308b0af9ff2a6576b6b43eed80058bf9e7006808b16511d446d3b"
+  },
+  "features": [
+    {
+      "id": "feather-1",
+      "part": "feather_frame",
+      "type": "screw pilot",
+      "assembly_center": [
+        8.54,
+        5.9,
+        54.46
+      ],
+      "diameter_mm": 1.8,
+      "pcb_hole_mm": 2.5,
+      "screw_under_head_mm": 5,
+      "stack_mm": 1.6,
+      "engagement_mm": 3.4,
+      "measured_depth_mm": 6.0,
+      "tip_clearance_mm": 2.6,
+      "solid_back_mm": 4.6,
+      "sections": [
+        {
+          "center_xy": [
+            8.54,
+            -54.46
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            8.54,
+            -54.46
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            8.54,
+            -54.46
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        }
+      ],
+      "conditional_5_5mm_under_head_tip_clearance_mm": 2.1
+    },
+    {
+      "id": "feather-2",
+      "part": "feather_frame",
+      "type": "locating pin",
+      "assembly_center": [
+        8.54,
+        5.9,
+        36.68
+      ],
+      "diameter_mm": 1.9,
+      "pcb_hole_mm": 2.5,
+      "height_mm": 1.2,
+      "diametral_clearance_mm": 0.6,
+      "section": {
+        "center_xy": [
+          8.54,
+          -36.68
+        ],
+        "diameter_xy": [
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "feather-3",
+      "part": "feather_frame",
+      "type": "locating pin",
+      "assembly_center": [
+        54.26,
+        5.9,
+        55.158500000000004
+      ],
+      "diameter_mm": 1.9,
+      "pcb_hole_mm": 2.2,
+      "height_mm": 1.2,
+      "diametral_clearance_mm": 0.3,
+      "section": {
+        "center_xy": [
+          54.26,
+          -55.1585
+        ],
+        "diameter_xy": [
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "feather-4",
+      "part": "feather_frame",
+      "type": "screw pilot",
+      "assembly_center": [
+        54.26,
+        5.9,
+        36.045
+      ],
+      "diameter_mm": 1.8,
+      "pcb_hole_mm": 2.2,
+      "screw_under_head_mm": 5,
+      "stack_mm": 1.6,
+      "engagement_mm": 3.4,
+      "measured_depth_mm": 6.0,
+      "tip_clearance_mm": 2.6,
+      "solid_back_mm": 4.6,
+      "sections": [
+        {
+          "center_xy": [
+            54.26,
+            -36.045
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            54.26,
+            -36.045
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            54.26,
+            -36.045
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        }
+      ],
+      "conditional_5_5mm_under_head_tip_clearance_mm": 2.1
+    },
+    {
+      "id": "light-1",
+      "part": "shell",
+      "type": "screw pilot",
+      "assembly_center": [
+        32.54,
+        19.54,
+        54.9
+      ],
+      "diameter_mm": 1.8,
+      "pcb_hole_mm": 2.5,
+      "screw_under_head_mm": 5,
+      "stack_mm": 1.6,
+      "engagement_mm": 3.4,
+      "measured_depth_mm": 4.4,
+      "tip_clearance_mm": 1.0,
+      "solid_back_mm": 1.5,
+      "sections": [
+        {
+          "center_xy": [
+            32.54,
+            19.54
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            32.54,
+            19.54
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            32.54,
+            19.54
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        }
+      ],
+      "conditional_5_5mm_under_head_tip_clearance_mm": 0.5
+    },
+    {
+      "id": "light-2",
+      "part": "shell",
+      "type": "locating pin",
+      "assembly_center": [
+        32.54,
+        32.24,
+        54.9
+      ],
+      "diameter_mm": 1.9,
+      "pcb_hole_mm": 2.5,
+      "height_mm": 1.2,
+      "diametral_clearance_mm": 0.6,
+      "section": {
+        "center_xy": [
+          32.54,
+          32.24
+        ],
+        "diameter_xy": [
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "light-3",
+      "part": "shell",
+      "type": "locating pin",
+      "assembly_center": [
+        52.86,
+        19.54,
+        54.9
+      ],
+      "diameter_mm": 1.9,
+      "pcb_hole_mm": 2.5,
+      "height_mm": 1.2,
+      "diametral_clearance_mm": 0.6,
+      "section": {
+        "center_xy": [
+          52.86,
+          19.54
+        ],
+        "diameter_xy": [
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "light-4",
+      "part": "shell",
+      "type": "screw pilot",
+      "assembly_center": [
+        52.86,
+        32.24,
+        54.9
+      ],
+      "diameter_mm": 1.8,
+      "pcb_hole_mm": 2.5,
+      "screw_under_head_mm": 5,
+      "stack_mm": 1.6,
+      "engagement_mm": 3.4,
+      "measured_depth_mm": 4.4,
+      "tip_clearance_mm": 1.0,
+      "solid_back_mm": 1.5,
+      "sections": [
+        {
+          "center_xy": [
+            52.86,
+            32.24
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            52.86,
+            32.24
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            52.86,
+            32.24
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        }
+      ],
+      "conditional_5_5mm_under_head_tip_clearance_mm": 0.5
+    },
+    {
+      "id": "rtc-1",
+      "part": "shell",
+      "type": "screw pilot",
+      "assembly_center": [
+        63.76,
+        13.04,
+        53.6
+      ],
+      "diameter_mm": 1.8,
+      "pcb_hole_mm": 3.0,
+      "screw_under_head_mm": 5,
+      "stack_mm": 2.1,
+      "engagement_mm": 2.9,
+      "measured_depth_mm": 5.7,
+      "tip_clearance_mm": 2.8,
+      "solid_back_mm": 1.5,
+      "sections": [
+        {
+          "center_xy": [
+            63.76,
+            13.04
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            63.76,
+            13.04
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            63.76,
+            13.04
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        }
+      ],
+      "conditional_5_5mm_under_head_tip_clearance_mm": 2.3,
+      "minimum_verified_mouth_wall_mm": 1.15
+    },
+    {
+      "id": "rtc-2",
+      "part": "shell",
+      "type": "screw pilot",
+      "assembly_center": [
+        63.76,
+        33.36,
+        53.6
+      ],
+      "diameter_mm": 1.8,
+      "pcb_hole_mm": 3.0,
+      "screw_under_head_mm": 5,
+      "stack_mm": 2.1,
+      "engagement_mm": 2.9,
+      "measured_depth_mm": 5.7,
+      "tip_clearance_mm": 2.8,
+      "solid_back_mm": 1.5,
+      "sections": [
+        {
+          "center_xy": [
+            63.76,
+            33.36
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            63.76,
+            33.36
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            63.76,
+            33.36
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        }
+      ],
+      "conditional_5_5mm_under_head_tip_clearance_mm": 2.3
+    },
+    {
+      "id": "scd30-1",
+      "part": "carrier",
+      "type": "screw pilot",
+      "assembly_center": [
+        23.54,
+        40.46,
+        20.0
+      ],
+      "diameter_mm": 1.8,
+      "pcb_hole_mm": 2.5,
+      "screw_under_head_mm": 5,
+      "stack_mm": 1.6,
+      "engagement_mm": 3.4,
+      "measured_depth_mm": 4.78,
+      "tip_clearance_mm": 1.38,
+      "solid_back_mm": 1.62,
+      "sections": [
+        {
+          "center_xy": [
+            23.54,
+            40.46
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            23.54,
+            40.46
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            23.54,
+            40.46
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        }
+      ],
+      "conditional_5_5mm_under_head_tip_clearance_mm": 0.88
+    },
+    {
+      "id": "scd30-2",
+      "part": "carrier",
+      "type": "locating pin",
+      "assembly_center": [
+        23.54,
+        20.14,
+        20.0
+      ],
+      "diameter_mm": 1.9,
+      "pcb_hole_mm": 2.5,
+      "height_mm": 1.2,
+      "diametral_clearance_mm": 0.6,
+      "section": {
+        "center_xy": [
+          23.54,
+          20.14
+        ],
+        "diameter_xy": [
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "scd30-3",
+      "part": "carrier",
+      "type": "locating pin",
+      "assembly_center": [
+        69.25999999999999,
+        40.46,
+        20.0
+      ],
+      "diameter_mm": 1.9,
+      "pcb_hole_mm": 2.5,
+      "height_mm": 1.2,
+      "diametral_clearance_mm": 0.6,
+      "section": {
+        "center_xy": [
+          69.26,
+          40.46
+        ],
+        "diameter_xy": [
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "scd30-4",
+      "part": "carrier",
+      "type": "screw pilot",
+      "assembly_center": [
+        69.25999999999999,
+        20.14,
+        20.0
+      ],
+      "diameter_mm": 1.8,
+      "pcb_hole_mm": 2.5,
+      "screw_under_head_mm": 5,
+      "stack_mm": 1.6,
+      "engagement_mm": 3.4,
+      "measured_depth_mm": 4.78,
+      "tip_clearance_mm": 1.38,
+      "solid_back_mm": 1.62,
+      "sections": [
+        {
+          "center_xy": [
+            69.26,
+            20.14
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            69.26,
+            20.14
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        },
+        {
+          "center_xy": [
+            69.26,
+            20.14
+          ],
+          "diameter_xy": [
+            1.8,
+            1.8
+          ]
+        }
+      ],
+      "conditional_5_5mm_under_head_tip_clearance_mm": 0.88
+    },
+    {
+      "id": "case-1",
+      "part": "shell",
+      "type": "screw pilot",
+      "assembly_center": [
+        86,
+        6,
+        26.4
+      ],
+      "diameter_mm": 2.6,
+      "pcb_hole_mm": null,
+      "screw_under_head_mm": 8,
+      "stack_mm": 2.4,
+      "engagement_mm": 5.6,
+      "measured_depth_mm": 8.98,
+      "tip_clearance_mm": 3.38,
+      "solid_back_mm": 25.42,
+      "sections": [
+        {
+          "center_xy": [
+            86.0,
+            6.0
+          ],
+          "diameter_xy": [
+            2.60001,
+            2.6
+          ]
+        },
+        {
+          "center_xy": [
+            86.0,
+            6.0
+          ],
+          "diameter_xy": [
+            2.60001,
+            2.6
+          ]
+        },
+        {
+          "center_xy": [
+            86.0,
+            6.0
+          ],
+          "diameter_xy": [
+            2.60001,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carrier-closure-1",
+      "part": "carrier",
+      "type": "through hole",
+      "assembly_center": [
+        86,
+        6,
+        24
+      ],
+      "diameter_mm": 3.4,
+      "sections": [
+        {
+          "center_xy": [
+            86.0,
+            6.0
+          ],
+          "diameter_xy": [
+            3.39999,
+            3.4
+          ]
+        },
+        {
+          "center_xy": [
+            86.0,
+            6.0
+          ],
+          "diameter_xy": [
+            3.39999,
+            3.4
+          ]
+        }
+      ],
+      "coaxial_with_shell_pilot": true,
+      "M3_diametral_clearance_mm": 0.4
+    },
+    {
+      "id": "personal_carrier-closure-1",
+      "part": "personal_carrier",
+      "type": "through hole",
+      "assembly_center": [
+        86,
+        6,
+        24
+      ],
+      "diameter_mm": 3.4,
+      "sections": [
+        {
+          "center_xy": [
+            86.0,
+            6.0
+          ],
+          "diameter_xy": [
+            3.39999,
+            3.4
+          ]
+        },
+        {
+          "center_xy": [
+            86.0,
+            6.0
+          ],
+          "diameter_xy": [
+            3.39999,
+            3.4
+          ]
+        }
+      ],
+      "coaxial_with_shell_pilot": true,
+      "M3_diametral_clearance_mm": 0.4
+    },
+    {
+      "id": "case-2",
+      "part": "shell",
+      "type": "screw pilot",
+      "assembly_center": [
+        6,
+        60,
+        26.4
+      ],
+      "diameter_mm": 2.6,
+      "pcb_hole_mm": null,
+      "screw_under_head_mm": 8,
+      "stack_mm": 2.4,
+      "engagement_mm": 5.6,
+      "measured_depth_mm": 8.98,
+      "tip_clearance_mm": 3.38,
+      "solid_back_mm": 25.42,
+      "sections": [
+        {
+          "center_xy": [
+            6.0,
+            60.0
+          ],
+          "diameter_xy": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "center_xy": [
+            6.0,
+            60.0
+          ],
+          "diameter_xy": [
+            2.6,
+            2.6
+          ]
+        },
+        {
+          "center_xy": [
+            6.0,
+            60.0
+          ],
+          "diameter_xy": [
+            2.6,
+            2.6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carrier-closure-2",
+      "part": "carrier",
+      "type": "through hole",
+      "assembly_center": [
+        6,
+        60,
+        24
+      ],
+      "diameter_mm": 3.4,
+      "sections": [
+        {
+          "center_xy": [
+            6.0,
+            60.0
+          ],
+          "diameter_xy": [
+            3.4,
+            3.4
+          ]
+        },
+        {
+          "center_xy": [
+            6.0,
+            60.0
+          ],
+          "diameter_xy": [
+            3.4,
+            3.4
+          ]
+        }
+      ],
+      "coaxial_with_shell_pilot": true,
+      "M3_diametral_clearance_mm": 0.4
+    },
+    {
+      "id": "personal_carrier-closure-2",
+      "part": "personal_carrier",
+      "type": "through hole",
+      "assembly_center": [
+        6,
+        60,
+        24
+      ],
+      "diameter_mm": 3.4,
+      "sections": [
+        {
+          "center_xy": [
+            6.0,
+            60.0
+          ],
+          "diameter_xy": [
+            3.4,
+            3.4
+          ]
+        },
+        {
+          "center_xy": [
+            6.0,
+            60.0
+          ],
+          "diameter_xy": [
+            3.4,
+            3.4
+          ]
+        }
+      ],
+      "coaxial_with_shell_pilot": true,
+      "M3_diametral_clearance_mm": 0.4
+    }
+  ],
+  "screw_access": [
+    {
+      "id": "feather-1",
+      "head_diameter_mm": 4.0,
+      "head_height_mm": 1.4,
+      "shaft_diameter_mm": 3,
+      "clear": true,
+      "stage": "Outside case"
+    },
+    {
+      "id": "feather-4",
+      "head_diameter_mm": 4.0,
+      "head_height_mm": 1.4,
+      "shaft_diameter_mm": 3,
+      "clear": true,
+      "stage": "Outside case"
+    },
+    {
+      "id": "light-1",
+      "head_diameter_mm": 4.0,
+      "head_height_mm": 1.4,
+      "shaft_diameter_mm": 3,
+      "clear": true,
+      "stage": "Battery and carrier absent"
+    },
+    {
+      "id": "light-4",
+      "head_diameter_mm": 4.0,
+      "head_height_mm": 1.4,
+      "shaft_diameter_mm": 3,
+      "clear": true,
+      "stage": "Battery and carrier absent"
+    },
+    {
+      "id": "rtc-1",
+      "head_diameter_mm": 4.0,
+      "head_height_mm": 1.4,
+      "shaft_diameter_mm": 3,
+      "clear": true,
+      "stage": "Battery and carrier absent"
+    },
+    {
+      "id": "rtc-2",
+      "head_diameter_mm": 4.0,
+      "head_height_mm": 1.4,
+      "shaft_diameter_mm": 3,
+      "clear": true,
+      "stage": "Battery and carrier absent"
+    },
+    {
+      "id": "scd30-1",
+      "head_diameter_mm": 4.0,
+      "head_height_mm": 1.4,
+      "shaft_diameter_mm": 3,
+      "clear": true,
+      "stage": "Outside case"
+    },
+    {
+      "id": "scd30-4",
+      "head_diameter_mm": 4.0,
+      "head_height_mm": 1.4,
+      "shaft_diameter_mm": 3,
+      "clear": true,
+      "stage": "Outside case"
+    },
+    {
+      "id": "case-1",
+      "head_diameter_mm": 6.0,
+      "head_height_mm": 2.1,
+      "shaft_diameter_mm": 4,
+      "clear": true,
+      "stage": "Assembled closure"
+    },
+    {
+      "id": "case-2",
+      "head_diameter_mm": 6.0,
+      "head_height_mm": 2.1,
+      "shaft_diameter_mm": 4,
+      "clear": true,
+      "stage": "Assembled closure"
+    }
+  ],
+  "limitations": [
+    "Nominal STL dimensions; printer shrinkage, bore undersizing and the actual screw thread still require physical fitting.",
+    "Screw heads use the existing nominal pan-head envelopes; actual purchased heads must fit within these envelopes.",
+    "No cutting, drilling, slicing or modification of the released print geometry was performed by this audit."
+  ],
+  "veml7700_same_hole_pattern": true,
+  "detailed_board_clearances": [
+    {
+      "board": "feather",
+      "solid_count": 186,
+      "frame_clear": true,
+      "existing_report": "feather-fit-checks.json",
+      "current_print_hash_matches": true
+    },
+    {
+      "board": "rtc",
+      "solid_count": 31,
+      "mount_and_heads_clear": true,
+      "exact_step_bounding_boxes_used_for_open_tessellations": []
+    },
+    {
+      "board": "scd30",
+      "solid_count": 33,
+      "mount_and_heads_clear": true,
+      "exact_step_bounding_boxes_used_for_open_tessellations": [
+        23,
+        31
+      ]
+    }
+  ],
+  "v07_rtc_led_interferences_removed": [
+    {
+      "solid": 12,
+      "previous_intersection_mm3": 0.017414,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "solid": 13,
+      "previous_intersection_mm3": 0.010376,
+      "new_intersection_mm3": 0.0
+    }
+  ],
+  "light_board_clearance": "TSL2591 uses the existing Eagle-derived pad/body envelopes with conservative component heights; no detailed STEP is cached.",
+  "counts": {
+    "board_mounting_centres": 14,
+    "case_fastening_axes": 2,
+    "screw_pilots": 10,
+    "locating_pins": 6,
+    "through_holes_across_both_carriers": 4,
+    "screw_head_and_driver_checks": 10,
+    "personal_variant_screws": 8,
+    "standard_variant_screws": 10
+  },
+  "personal_bare_scd30": "Sensor snaps in; its factory PCB holes are not screw mounts. Both carrier closure holes are audited above."
+}

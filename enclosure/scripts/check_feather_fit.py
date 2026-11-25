@@ -8,6 +8,7 @@ import hashlib
 import io
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -62,7 +63,8 @@ def centres(mesh,z,diameter):
         if np.allclose((hi-lo)[:2],diameter,atol=.002):found.append(((lo+hi)/2)[:2])
     return np.array(sorted(found,key=lambda x:x[0]))
 
-report={'status':'passed','version':'0.7','source_sha256':REF['sha256'],
+version=json.loads(re.search(r'enclosure_version\s*=\s*(.*?);',(CAD/'parameters.scad').read_text()).group(1))
+report={'status':'passed','version':version,'source_sha256':REF['sha256'],
     'fitted_v05_stl_sha256':old_hash,'rejected_v06_stl_sha256':previous_hash,
     'current_stl_sha256':hashlib.sha256((CAD/'stl/feather_frame.stl').read_bytes()).hexdigest(),
     'axes':'print XY = assembly XZ','locations':{},'component_checks':[],
@@ -82,9 +84,20 @@ b=trimesh.boolean.intersection([new,slab],engine='manifold')
 assert .9*a.volume<b.volume<=a.volume+.001
 assert abs(trimesh.boolean.intersection([a,b],engine='manifold').volume-b.volume)<.001
 report['board_contact_footprints_within_v05']=True
+# Preserve the complete working interface: both pins, four cylindrical lands
+# and pilot mouths, through 2 mm behind the PCB. Compare actual STL solids.
+band=trimesh.creation.box([100,80,3.6]);band.apply_translation([35,45,10.4001])
+old_band=trimesh.boolean.intersection([old,band],engine='manifold')
+new_band=trimesh.boolean.intersection([new,band],engine='manifold')
+common=trimesh.boolean.intersection([old_band,new_band],engine='manifold')
+assert abs(old_band.volume-new_band.volume)<.001
+assert abs(common.volume-old_band.volume)<.001
+report['complete_front_interface_matches_v05']={'depth_behind_pcb_mm':2,
+    'includes':['both original locating pins','all four original contact lands','both screw pilot mouths'],
+    'symmetric_difference_mm3':round(old_band.volume+new_band.volume-2*common.volume,7)}
 # Invert print transform and apply manufacturer-board transform independently.
 t=np.array([[1,0,0,0],[0,0,-1,16.5],[0,1,0,0],[0,0,0,1.]])
-frames={key:mesh.copy() for key,mesh in [('v05',old),('v06',previous),('v07',new)]}
+frames={key:mesh.copy() for key,mesh in [('v05',old),('v06',previous),('current',new)]}
 for frame in frames.values():frame.apply_transform(t)
 vendor_transform=np.array([[1,0,0,6],[0,0,1,4.3],[0,-1,0,57],[0,0,0,1.]])
 regressions=[]
@@ -97,9 +110,9 @@ for p in sorted(CACHE.glob('*.stl')):
         if not (np.any(mesh.bounds[1]<frame.bounds[0]) or np.any(frame.bounds[1]<mesh.bounds[0])):
             result=trimesh.boolean.intersection([mesh,frame],engine='manifold');v=abs(float(result.volume))
         volumes[key]=round(v,7)
-    assert volumes['v07']<.0001,('Detailed board component collision',p.stem,volumes)
+    assert volumes['current']<.0001,('Detailed board component collision',p.stem,volumes)
     if volumes['v06']>=.0001:regressions.append({'vendor_solid':int(p.stem),'intersection_mm3':volumes})
-    report['component_checks'].append({'vendor_solid':int(p.stem),'new_intersection_mm3':volumes['v07']})
+    report['component_checks'].append({'vendor_solid':int(p.stem),'new_intersection_mm3':volumes['current']})
 assert len(regressions)==6,regressions
 assert all(r['intersection_mm3']['v05']<.0001 for r in regressions)
 report['v06_led_interferences_removed']=regressions

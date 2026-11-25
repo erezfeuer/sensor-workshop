@@ -1,0 +1,21 @@
+id,part,type,diameter_mm,pcb_hole_mm,measured_depth_mm,engagement_mm,tip_clearance_mm,solid_back_mm,height_mm,diametral_clearance_mm
+feather-1,feather_frame,screw pilot,1.8,2.5,6.0,3.4,2.6,4.6,,
+feather-2,feather_frame,locating pin,1.9,2.5,,,,,1.2,0.6
+feather-3,feather_frame,locating pin,1.9,2.2,,,,,1.2,0.3
+feather-4,feather_frame,screw pilot,1.8,2.2,6.0,3.4,2.6,4.6,,
+light-1,shell,screw pilot,1.8,2.5,4.4,3.4,1.0,1.5,,
+light-2,shell,locating pin,1.9,2.5,,,,,1.2,0.6
+light-3,shell,locating pin,1.9,2.5,,,,,1.2,0.6
+light-4,shell,screw pilot,1.8,2.5,4.4,3.4,1.0,1.5,,
+rtc-1,shell,screw pilot,1.8,3.0,5.7,2.9,2.8,1.5,,
+rtc-2,shell,screw pilot,1.8,3.0,5.7,2.9,2.8,1.5,,
+scd30-1,carrier,screw pilot,1.8,2.5,4.78,3.4,1.38,1.62,,
+scd30-2,carrier,locating pin,1.9,2.5,,,,,1.2,0.6
+scd30-3,carrier,locating pin,1.9,2.5,,,,,1.2,0.6
+scd30-4,carrier,screw pilot,1.8,2.5,4.78,3.4,1.38,1.62,,
+case-1,shell,screw pilot,2.6,,8.98,5.6,3.38,25.42,,
+carrier-closure-1,carrier,through hole,3.4,,,,,,,
+personal_carrier-closure-1,personal_carrier,through hole,3.4,,,,,,,
+case-2,shell,screw pilot,2.6,,8.98,5.6,3.38,25.42,,
+carrier-closure-2,carrier,through hole,3.4,,,,,,,
+personal_carrier-closure-2,personal_carrier,through hole,3.4,,,,,,,

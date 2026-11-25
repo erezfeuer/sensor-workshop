@@ -1,5 +1,5 @@
 {
-  "version": "0.7",
+  "version": "0.7.1",
   "light_sensor": "tsl2591",
   "status": "passed",
   "units": "mm",
@@ -12,8 +12,8 @@
         69.2,
         60.8
       ],
-      "solid_volume_mm3": 57420.74,
-      "sha256": "6f5eb0a2d40e5909301e8ee95a7b153bd35888a0b430790250457b62406c469c"
+      "solid_volume_mm3": 57420.26,
+      "sha256": "b29fa569636cf0b5c864e35d9535690f76b2a753bbfb7220225b6004a3be7376"
     },
     "carrier": {
       "watertight": true,
@@ -34,8 +34,8 @@
         31.2,
         11.8
       ],
-      "solid_volume_mm3": 3270.8,
-      "sha256": "decc80302444b254e5da6ca0a9843ed046210229797d7aa54d45877e8bca0d97"
+      "solid_volume_mm3": 3234.73,
+      "sha256": "c57d9aa3c9cd26922f79a32f86b4ca72d35f3df8300d60a2e1d9d9bb9149476e"
     },
     "coupon": {
       "watertight": true,
@@ -90,23 +90,23 @@
     "pilot_diameter_mm": 1.8,
     "pilot_depth_mm": 6,
     "root_diameter_mm": 6.4,
-    "contact_land_length_mm": 1.0,
+    "contact_land_length_mm": 2.0,
     "back_material_mm": 4.6,
     "assumed_5_5mm_under_head_screw_tip_clearance_mm": 2.1,
     "sections": [
       {
         "hole_index": 0,
-        "depth_from_pcb_back_mm": 2,
-        "plastic_section_mm2": 20.78,
+        "depth_from_pcb_back_mm": 3.5,
+        "plastic_section_mm2": 33.73,
         "v05_nominal_section_mm2": 11.98,
-        "area_ratio": 1.74
+        "area_ratio": 2.82
       },
       {
         "hole_index": 3,
-        "depth_from_pcb_back_mm": 2,
-        "plastic_section_mm2": 16.87,
+        "depth_from_pcb_back_mm": 3.5,
+        "plastic_section_mm2": 35.11,
         "v05_nominal_section_mm2": 5.5,
-        "area_ratio": 3.07
+        "area_ratio": 6.39
       }
     ],
     "removal_strength_tested": false

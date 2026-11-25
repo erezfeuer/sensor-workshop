@@ -1,10 +1,10 @@
 {
   "status": "passed",
-  "version": "0.7",
+  "version": "0.7.1",
   "source_sha256": "e112dae4bd06b1cbfb3ff11d49df02f8e4a21ad6c886cbfccaeb7c8a9b5626b1",
   "fitted_v05_stl_sha256": "01126572127a528b9ad63513a91e6e53deeef018afef16ae239a5081f259c9de",
   "rejected_v06_stl_sha256": "abd68959dd98a24cbb824b902a29ae35721560406537661ab30177bfda094798",
-  "current_stl_sha256": "decc80302444b254e5da6ca0a9843ed046210229797d7aa54d45877e8bca0d97",
+  "current_stl_sha256": "c57d9aa3c9cd26922f79a32f86b4ca72d35f3df8300d60a2e1d9d9bb9149476e",
   "axes": "print XY = assembly XZ",
   "locations": {
     "screw_pilots": {
@@ -31,7 +31,7 @@
           55.1585
         ]
       ],
-      "maximum_change_from_v05_mm": 1.9073486328125e-06
+      "maximum_change_from_v05_mm": 0.0
     }
   },
   "component_checks": [
@@ -785,13 +785,22 @@
     "Clearance tests use tessellated STEP solids at 0.08 mm linear deflection."
   ],
   "board_contact_footprints_within_v05": true,
+  "complete_front_interface_matches_v05": {
+    "depth_behind_pcb_mm": 2,
+    "includes": [
+      "both original locating pins",
+      "all four original contact lands",
+      "both screw pilot mouths"
+    ],
+    "symmetric_difference_mm3": 0.0
+  },
   "v06_led_interferences_removed": [
     {
       "vendor_solid": 19,
       "intersection_mm3": {
         "v05": 0.0,
         "v06": 0.0003294,
-        "v07": 0.0
+        "current": 0.0
       }
     },
     {
@@ -799,7 +808,7 @@
       "intersection_mm3": {
         "v05": 0.0,
         "v06": 0.0135551,
-        "v07": 0.0
+        "current": 0.0
       }
     },
     {
@@ -807,7 +816,7 @@
       "intersection_mm3": {
         "v05": 0.0,
         "v06": 0.0286591,
-        "v07": 0.0
+        "current": 0.0
       }
     },
     {
@@ -815,7 +824,7 @@
       "intersection_mm3": {
         "v05": 0.0,
         "v06": 0.0007768,
-        "v07": 0.0
+        "current": 0.0
       }
     },
     {
@@ -823,7 +832,7 @@
       "intersection_mm3": {
         "v05": 0.0,
         "v06": 0.0374745,
-        "v07": 0.0
+        "current": 0.0
       }
     },
     {
@@ -831,7 +840,7 @@
       "intersection_mm3": {
         "v05": 0.0,
         "v06": 0.0587242,
-        "v07": 0.0
+        "current": 0.0
       }
     }
   ],

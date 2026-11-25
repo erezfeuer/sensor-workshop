@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "variant": "0.7-personal-scd30-3",
+  "variant": "0.7.1-personal-scd30-3",
   "units": "mm",
   "print_parts": {
     "01-shell.stl": {
@@ -11,7 +11,7 @@
         69.2,
         60.8
       ],
-      "sha256": "6f5eb0a2d40e5909301e8ee95a7b153bd35888a0b430790250457b62406c469c"
+      "sha256": "b29fa569636cf0b5c864e35d9535690f76b2a753bbfb7220225b6004a3be7376"
     },
     "02-sensor-carrier-bare-scd30.stl": {
       "watertight": true,
@@ -31,7 +31,7 @@
         31.2,
         11.8
       ],
-      "sha256": "decc80302444b254e5da6ca0a9843ed046210229797d7aa54d45877e8bca0d97"
+      "sha256": "c57d9aa3c9cd26922f79a32f86b4ca72d35f3df8300d60a2e1d9d9bb9149476e"
     }
   },
   "checks": [

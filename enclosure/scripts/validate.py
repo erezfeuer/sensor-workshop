@@ -84,13 +84,13 @@ for i in p['board_screw_indices']:
     cap=trimesh.creation.box(extents=[1,.2,1]);cap.apply_translation(center+[0,p['feather_pilot_depth']+.12,0])
     solid=trimesh.boolean.intersection([cap,meshes['feather_frame']],engine='manifold')
     assert abs(solid.volume-cap.volume)<.001,('Blind pilot lacks end material',i)
-    slab=trimesh.creation.box(extents=[9,.02,9]);slab.apply_translation(center+[0,2,0])
+    slab=trimesh.creation.box(extents=[9,.02,9]);slab.apply_translation(center+[0,3.5,0])
     section=trimesh.boolean.intersection([slab,meshes['feather_frame']],engine='manifold')
     area=float(section.volume)/.02
     old_diameter=4.3 if i<2 else 3.2
     old_area=np.pi*(old_diameter**2-p['m2_pilot']**2)/4
     assert area>old_area*1.5,('Insufficient reinforcement at threaded section',i,area,old_area)
-    report['feather_mounts']['sections'].append({'hole_index':i,'depth_from_pcb_back_mm':2,
+    report['feather_mounts']['sections'].append({'hole_index':i,'depth_from_pcb_back_mm':3.5,
         'plastic_section_mm2':round(area,2),'v05_nominal_section_mm2':round(old_area,2),
         'area_ratio':round(area/old_area,2)})
 # A vertical pencil of light over the whole TSL2591 array must reach the sky.
