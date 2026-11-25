@@ -1,4 +1,4 @@
-# Printability review — v0.6
+# Printability review — v0.7
 
 The design keeps **three printed pieces** and uses their assembly layout to give each a flat printing face. The previous shell printed well in Erez’s PLA/X1 Carbon trial. The revised tie guides and TSL2591 light well have been reviewed geometrically but have not yet been printed or sliced here. The **[production-stls/](../production-stls/)** folder contains exactly the three separate files to print, one of each per device. Import at **100% scale in millimetres** and keep the supplied orientations.
 
@@ -10,9 +10,9 @@ For the first test, **print the shell separately**, then print the **carrier and
 | Carrier | Flat upper face | Plate, central sensor region and all four thermal bridges start on the bed. Bosses and pins grow vertically; no deliberate support is needed for this orientation. |
 | Feather frame | Flat rear face | Uprights, crossbar and tongues start on the bed. Broad post roots taper toward the pads and pins as layers rise; the engraved arrow opens upward. No new support is intended. |
 
-## Feather reinforcement — 24 November 2026
+## Feather reinforcement and seating — 24–25 November 2026
 
-Erez's screws fitted the previous pilots, but one post broke when he removed a wrongly oriented board. **From v0.5, reprint only [03-feather-frame.stl](../production-stls/03-feather-frame.stl).** The shell and carrier are unchanged. Four posts now widen into nominal Ø6.4 mm roots and broad connections to the uprights, with local relief for the Feather components. Pilot diameters stay Ø1.8 mm; the two blind screw holes are 6 mm deep. The UP arrow is recessed, so it needs no separate part.
+Erez's screws fitted the previous pilots, but one post broke when he removed a wrongly oriented board. **From v0.5 or v0.6, reprint only [03-feather-frame.stl](../production-stls/03-feather-frame.stl).** The shell and carrier are unchanged. Four posts now widen into nominal Ø6.4 mm roots and broad connections to the uprights, with local relief for the Feather components. Pilot diameters stay Ø1.8 mm; the two blind screw holes are 6 mm deep. The contact pads are back to the v0.5 diameters, with additional LED clearances. The recessed USB arrow and SCREEN SIDE labels sit on the 3.8 mm-tall right half of the crossbar. The left half keeps the original battery-lead clearance. No separate label parts are needed.
 
 Keep the supplied flat-rear-face-down orientation. Start with **five perimeters, 0.2 mm layers and a 0.4 mm nozzle** for this small frame; retain five top/bottom layers. This puts more solid plastic around the screw bores. The tapered supports narrow as the print grows; component reliefs open toward the top. No slicing has been done here. Inspect the first print and repeat gentle fitting/removal before printing a batch. [Mounting guide, measured section and test limits](FEATHER-MOUNT.md).
 

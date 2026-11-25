@@ -1,26 +1,28 @@
-# Feather mount — reinforced v0.6
+# Feather mount — seating correction v0.7
 
-**Reprint only [03-feather-frame.stl](../production-stls/03-feather-frame.stl) when upgrading from v0.5.** The shell and sensor carrier are unchanged. The frame still slides into the existing rails and uses two screws plus two locating pins. [Mounting drawing and true CAD section](feather-mounting.pdf) · [Interactive model](model.html)
+**Reprint [03-feather-frame.stl](../production-stls/03-feather-frame.stl).** The standard shell and carrier are unchanged. The personal bare-SCD30 set also has an updated snap carrier; use its [complete print folder](../prototype-stls/bare-scd30/). [Mounting drawing](feather-mounting.pdf) · [Interactive model](model.html)
 
-## What changed after the assembly trial
+## What caused the clearance problem
 
-On 24 November 2026, Erez reported that the Feather screws fitted, but a printed post broke while unscrewing a board mounted the wrong way round. The previous antenna-end posts were only **3.2 mm across around a 1.8 mm pilot**: a nominal radial wall of **0.7 mm**. They also projected 5.4 mm ahead of the supporting upright. This was a weak geometry for repeated handling; the exact fracture location and removal torque were not measured.
+On 25 November 2026, Erez reported that the new frame did not align as the older one had, and that the UP marking was unclear. Direct measurements of the exported v0.5 and v0.6 STLs show **identical screw-hole and locating-pin centres**. However, checking Adafruit's detailed STEP model revealed that the enlarged v0.6 USB-end posts **overlapped the CHG and D3 LED packages**. The old posts clear those parts. This interference can stop the board seating flat; the earlier simplified board model omitted these LEDs.
 
-The four posts now taper into **6.4 mm nominal roots**, joined to a **9 mm-tall region of each upright**. The contact faces are 5.2 mm across at the USB end and 4.4 mm at the antenna end before trimming. The original rail/stop envelope clips the roots, and local relief keeps plastic clear of the radio package and antenna face. The small contact lip beside the antenna remains locally thin; the reinforcement adds material behind it and around the threaded section. These reliefs are mechanical clearances, not a verified RF keep-out.
+v0.7 restores the original **4.3 mm USB-end and 3.2 mm antenna-end contact diameters**, with a genuine **1 mm straight land** before the reinforcement widens. Local reliefs leave room around the LEDs, radio and antenna. The contact footprints fit inside the old v0.5 footprints. The **6.4 mm roots** and broad connections to the uprights remain, supporting the threaded section behind the narrow contact lands.
 
-The screw pilots remain **Ø1.8 mm**, preserving the fit Erez tried. Their blind depth increases from **4.3 to 6 mm**, leaving **4.6 mm of solid material behind the hole**. A nominal M2×5 screw through the 1.6 mm PCB still has **3.4 mm engagement**. Extra hole depth reduces the chance of bottoming out; it is not a reason to force a longer screw into any of the other mounts.
+All four mounting centres remain at their original positions. The locating pins retain their 1.9 mm bases and gain tapered entry tips. Screw pilots remain **Ø1.8 × 6 mm deep**, preserving the previously successful pilot diameter. No screw size or quantity changes.
 
-At a section 2 mm behind the PCB, CAD measures about **25.4 mm²** of plastic around the USB-end screw and **24.0 mm²** around the antenna-end screw, versus approximately 12.0 and 5.5 mm² in the old straight posts. Those are geometry comparisons, **not measured strength multipliers**. The frame also has an engraved UP arrow, away from the screw roots.
+The lower crossbar reads **USB**, with an arrow pointing to the connector end, and **SCREEN SIDE**. Only the clear right half of the crossbar is taller and brought forward for readable lettering, preserving the battery-lead passage on the left and the original overall size and slide tongues.
 
-![Reinforced frame with mounting faces visible](renders/feather-frame.png)
+![Corrected frame and engraved orientation labels](renders/feather-frame.png)
 
 ## Correct orientation before tightening
 
-1. Work with the frame **outside the shell**. Hold its mounting faces toward you, with the engraved **UP arrow pointing up**. The connecting crossbar is at the bottom.
-2. Hold the Feather with **USB on the left, screen and three buttons facing you**. The components and connectors on the back face the frame.
-3. Lower it onto both locating pins without force. Confirm that all four mounting pads contact the PCB and that the board clears the frame. Do not use screws to pull a misaligned board onto its pins.
-4. Fit the two screws from the display face using a straight precision screwdriver. Support the nearby upright and tighten gently until the PCB is seated. Avoid loading the glass.
-5. Slide the complete frame up through the open bottom of the shell. The carrier retains it. For removal, unplug the battery and Feather lead, withdraw the complete frame, then remove the screws on the table while supporting the upright.
+1. Work with the frame **outside the shell**. Face the engraved crossbar towards you, with that crossbar at the bottom.
+2. Point the Feather's **USB socket in the engraved arrow's direction**. The **screen and three buttons face you**, on the side marked SCREEN SIDE; the rear components face the mounting pads.
+3. Seat both locating pins gently. Confirm that the PCB sits flat against the pads and both screw holes line up before inserting screws. Do not use the screws to pull the board into place.
+4. Fit the two screws from the display face with a straight precision screwdriver. Support the nearby upright and tighten gently until seated, keeping the driver off the glass.
+5. Slide the complete frame into the shell from its open bottom. For removal, unplug both leads, withdraw the frame, then unscrew the board on the table while supporting the posts.
+
+The [detailed fit check](generated/feather-fit-checks.json) independently compares STL hole/pin centres to the fitted v0.5 frame and to the manufacturer's PCB holes. All **186 STEP solids** clear the corrected frame; the six component-solid overlaps belonging to the two LEDs in v0.6 are removed. The two LEDs are also included in the routine simplified model now. These are nominal geometric checks; the revised print still needs a seating and removal trial.
 
 ## What the measured screw tells us
 
@@ -41,8 +43,8 @@ These mounts already have thicker walls and more direct support than the old Fea
 
 ## Print and repeat the removal trial
 
-Keep the STL's **flat rear face on the bed**. Start with a 0.4 mm nozzle, 0.2 mm layers, **five perimeters** and five top/bottom layers. The broad roots print first and narrow toward the PCB; the orientation mark and component reliefs open upward. No new support is intended, and no slicing has been performed here. PLA remains suitable for the indoor fit trial.
+Keep the STL's **flat rear face on the bed**. Start with a 0.4 mm nozzle, 0.2 mm layers, **five perimeters** and five top/bottom layers. The broad roots print first and narrow toward the PCB; USB/SCREEN SIDE lettering and component reliefs open upward. No new support is intended, and no slicing has been performed here. PLA remains suitable for the indoor fit trial.
 
 After cooling, fit the board correctly, snug the screws by hand, then gently remove and refit them a few times while supporting the frame near each screw. Inspect for cracks, whitening, loose threads or separation between layers, and confirm that the frame still slides freely. Stop if a screw bottoms out before the board seats. Keep the two remaining locating pins intact.
 
-The CAD checks cover watertight solids, deeper blind bores, increased material in the threaded section, clearances and the full frame insertion path. **Repeated-removal durability remains untested until this print trial.**
+The CAD checks cover watertight solids, blind bores, reinforced threaded sections, every detailed manufacturer component, old/new hole and pin centres, contact footprints and the full frame insertion path. **Repeated-removal durability remains untested until this print trial.**

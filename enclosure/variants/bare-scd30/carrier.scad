@@ -13,24 +13,25 @@ module yz_prism(points,w) {
     multmatrix([[0,0,1,-w/2],[1,0,0,0],[0,1,0,0],[0,0,0,1]])
         linear_extrude(w) polygon(points);
 }
-module edge_snap() {
+module edge_snap(w) {
     g=snap_side_gap; t=snap_wall; o=snap_overlap;
     // Long spring leaf, with an outward root gusset and a sloped insertion nose.
-    yz_prism([[g,root_z-eps],[g+t+.7,root_z-eps],
-        [g+t+.7,root_z+.3],[g+t,root_z+1.3],
-        [g+t,snap_tip_z],[g,snap_tip_z],[-o,2.05],
-        [-o,bare_pcb_thickness+snap_face_gap],[g,bare_pcb_thickness+snap_face_gap]],snap_width);
+    yz_prism([[g,root_z-eps],[g+t+snap_root_extra,root_z-eps],
+        [g+t+snap_root_extra,root_z+.3],[g+t,root_z+1.3],
+        [g+t,snap_tip_z],[g,snap_tip_z],[-o,bare_pcb_thickness+snap_face_gap+snap_nose_thickness],
+        [-o,bare_pcb_thickness+snap_face_gap],[g,bare_pcb_thickness+snap_face_gap]],w);
     // Back stop: a short, gradually widening pad. The PCB sits loosely between
-    // this stop and the nose, with 0.2 mm clearance at each face; no preload.
+    // this stop and the nose, with 0.1 mm clearance at each face; no preload.
     yz_prism([[g,root_z-eps],[g+t,root_z-eps],[g+t,-snap_face_gap],
-        [-.55,-snap_face_gap],[-.55,-.65],[g,-1.45]],snap_width);
+        [-.55,-snap_face_gap],[-.55,-.65],[g,-1.45]],w);
 }
 module sensor_frame() {
     translate(bare_origin) rotate([180,0,0]) children();
 }
 module snap_features() {
     sensor_frame() {
-        for(p=snap_locations) translate([p[0],p[1],0]) rotate([0,0,p[2]]) edge_snap();
+        for(i=[0:len(snap_locations)-1]) let(p=snap_locations[i])
+            translate([p[0],p[1],0]) rotate([0,0,p[2]]) edge_snap(snap_widths[i]);
         // Fourth edge is only a lateral stop. It does not overlap either PCB face.
         translate([bare_size[0]+snap_side_gap,guide_y-1.5,root_z-eps])
             cube([2,3,bare_pcb_thickness+snap_face_gap-root_z+eps]);

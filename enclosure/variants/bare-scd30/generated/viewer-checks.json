@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "variant": "0.6-personal-scd30-2",
+  "variant": "0.7-personal-scd30-3",
   "offline": true,
   "selectable_components": 28,
   "checks": [

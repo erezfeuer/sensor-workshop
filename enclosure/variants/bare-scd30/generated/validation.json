@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "variant": "0.6-personal-scd30-2",
+  "variant": "0.7-personal-scd30-3",
   "units": "mm",
   "print_parts": {
     "01-shell.stl": {
@@ -19,9 +19,9 @@
       "size_mm": [
         86.6,
         60.6,
-        12.3
+        12.6
       ],
-      "sha256": "9e3f23560138e5436f14447cba18817a20da71c97923dbb81e757fa90f4b5056"
+      "sha256": "2ee623f2f441ef5e76fb06b7edbdc2e45a4742a16f86bf90338ae0dadd683204"
     },
     "03-feather-frame.stl": {
       "watertight": true,
@@ -31,7 +31,7 @@
         31.2,
         11.8
       ],
-      "sha256": "abd68959dd98a24cbb824b902a29ae35721560406537661ab30177bfda094798"
+      "sha256": "decc80302444b254e5da6ca0a9843ed046210229797d7aa54d45877e8bca0d97"
     }
   },
   "checks": [
@@ -954,10 +954,16 @@
   "snap_capture": {
     "clips": 3,
     "pcb_mm": 1.6,
-    "capture_gap_mm": 2.0,
-    "face_clearance_mm": 0.2,
-    "side_clearance_mm": 0.25,
-    "lip_overlap_mm": 0.4,
+    "capture_gap_mm": 1.8,
+    "clip_widths_mm": [
+      3.4,
+      4.2,
+      6.0
+    ],
+    "clip_wall_mm": 1.6,
+    "face_clearance_mm": 0.1,
+    "side_clearance_mm": 0.12,
+    "lip_overlap_mm": 0.65,
     "additional_sensor_fasteners": 0,
     "exact_step_report": "sensor-step-checks.json"
   },

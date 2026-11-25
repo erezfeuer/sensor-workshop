@@ -47,22 +47,23 @@ for i,b in enumerate(solids):
     mesh.write(str(mesh_folder/f'part-{i:02}.stl'))
     info.append({'part':i,'triangles':mesh.CountFacets,'volume_mm3':round(b.Volume,6)})
 
-def prism(points):
-    w=P['snap_width']
+def prism(points,w):
     poly=[App.Vector(-w/2,y,z) for y,z in points]
     return Part.Face(Part.makePolygon(poly+[poly[0]])).extrude(App.Vector(w,0,0))
 
 g=P['snap_side_gap'];t=P['snap_wall'];o=P['snap_overlap']
 f=P['snap_face_gap'];h=P['bare_pcb_thickness'];r=P['bare_origin'][2]-P['carrier_z']
-leaf=prism([(g,r-.02),(g+t+.7,r-.02),(g+t+.7,r+.3),(g+t,r+1.3),
-    (g+t,P['snap_tip_z']),(g,P['snap_tip_z']),(-o,2.05),(-o,h+f),(g,h+f)])
-pad=prism([(g,r-.02),(g+t,r-.02),(g+t,-f),(-.55,-f),(-.55,-.65),(g,-1.45)])
-snap=leaf.fuse(pad)
 clips=[]
-for x,y,angle in P['snap_locations']:
+for (x,y,angle),w in zip(P['snap_locations'],P['snap_widths']):
+    root=P['snap_root_extra']
+    leaf=prism([(g,r-.02),(g+t+root,r-.02),(g+t+root,r+.3),(g+t,r+1.3),
+        (g+t,P['snap_tip_z']),(g,P['snap_tip_z']),(-o,h+f+P['snap_nose_thickness']),(-o,h+f),(g,h+f)],w)
+    pad=prism([(g,r-.02),(g+t,r-.02),(g+t,-f),(-.55,-f),(-.55,-.65),(g,-1.45)],w)
+    snap=leaf.fuse(pad)
     c=snap.copy();c.rotate(App.Vector(),App.Vector(0,0,1),angle);c.translate(App.Vector(x,y,0));clips.append(c)
 guide=Part.makeBox(2,3,h+f-r+.02,App.Vector(35+g,P['guide_y']-1.5,r-.02))
 report={'status':'passed','source_step_sha256':ref['step_sha256'],'solid_count':25,'mesh':info,
+    'parameters_sha256':hashlib.sha256((HERE/'parameters.scad').read_bytes()).hexdigest(),
     'normalization':{'x':'raw X + 16.05','y':'8.3 - raw Z','z':'raw Y - 1.55'},
     'clips':[],'limitations':['Exact nominal STEP geometry; received board revision and print tolerances require a fit check.',
         'Opening check translates a clip outwards; it does not simulate bending, force, strain or fatigue.']}
@@ -87,14 +88,16 @@ for i,c in enumerate(clips+[guide]):
             moving=b.copy();moving.translate(App.Vector(0,0,dz))
             assert c.common(moving).Volume<.00001,('Insertion hits component',i,j,dz)
     angle=math.radians(P['snap_locations'][i][2])
-    opened=c.copy();opened.translate(App.Vector(-math.sin(angle)*.8,math.cos(angle)*.8,0))
+    opening=P['snap_opening']
+    opened=c.copy();opened.translate(App.Vector(-math.sin(angle)*opening,math.cos(angle)*opening,0))
     for dz in (0,.4,.8,1.2,1.6,2,2.5,3,4,6,10):
         for j,b in enumerate(solids):
             moving=b.copy();moving.translate(App.Vector(0,0,dz))
             assert opened.common(moving).Volume<.00001,('Open-clip path blocked',i,j,dz)
     report['clips'].append({'location':P['snap_locations'][i],
         'minimum_clearance_to_non_pcb_solids_mm':round(min(distances),4),
-        'pcb_capture_intersections_mm3':captures,'opening_checked_mm':.8,
+        'width_mm':P['snap_widths'][i],'wall_mm':t,
+        'pcb_capture_intersections_mm3':captures,'opening_checked_mm':opening,
         'insertion_poses':11})
 report['side_guide_minimum_sensor_clearance_mm']=round(min(guide.distToShape(b)[0] for b in solids),4)
 (HERE/'generated/sensor-step-checks.json').write_text(json.dumps(report,indent=2)+'\n')

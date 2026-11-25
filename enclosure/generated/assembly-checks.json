@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "version": "0.6",
+  "version": "0.7",
   "light_sensor": "tsl2591",
   "sampled_path": {
     "axis": "+Z into shell",

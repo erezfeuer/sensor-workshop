@@ -129,6 +129,7 @@
       "volume_mm3": 1081.969013
     }
   ],
+  "parameters_sha256": "1726e6ef69fbd0d8b04de935016f1dc0e03223528ab6499f7bb0a8540d651ff9",
   "normalization": {
     "x": "raw X + 16.05",
     "y": "8.3 - raw Z",
@@ -141,12 +142,14 @@
         0,
         180
       ],
-      "minimum_clearance_to_non_pcb_solids_mm": 0.5204,
+      "minimum_clearance_to_non_pcb_solids_mm": 0.4148,
+      "width_mm": 3.4,
+      "wall_mm": 1.6,
       "pcb_capture_intersections_mm3": [
-        0.25575,
-        0.186
+        0.42625,
+        0.49879
       ],
-      "opening_checked_mm": 0.8,
+      "opening_checked_mm": 0.85,
       "insertion_poses": 11
     },
     {
@@ -155,12 +158,14 @@
         21,
         90
       ],
-      "minimum_clearance_to_non_pcb_solids_mm": 2.8501,
+      "minimum_clearance_to_non_pcb_solids_mm": 2.6063,
+      "width_mm": 4.2,
+      "wall_mm": 1.6,
       "pcb_capture_intersections_mm3": [
-        0.28051,
-        0.20401
+        0.56377,
+        0.66626
       ],
-      "opening_checked_mm": 0.8,
+      "opening_checked_mm": 0.85,
       "insertion_poses": 11
     },
     {
@@ -170,11 +175,13 @@
         0
       ],
       "minimum_clearance_to_non_pcb_solids_mm": 2.525,
+      "width_mm": 6.0,
+      "wall_mm": 1.6,
       "pcb_capture_intersections_mm3": [
-        0.2805,
-        0.204
+        0.82501,
+        0.975
       ],
-      "opening_checked_mm": 0.8,
+      "opening_checked_mm": 0.85,
       "insertion_poses": 11
     }
   ],
@@ -182,5 +189,5 @@
     "Exact nominal STEP geometry; received board revision and print tolerances require a fit check.",
     "Opening check translates a clip outwards; it does not simulate bending, force, strain or fatigue."
   ],
-  "side_guide_minimum_sensor_clearance_mm": 0.25
+  "side_guide_minimum_sensor_clearance_mm": 0.12
 }

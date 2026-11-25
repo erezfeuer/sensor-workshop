@@ -97,12 +97,15 @@ def validate(scene):
         candidate=moving.copy();candidate.apply_translation([0,0,dz])
         for name in fixed:assert overlap(candidate,scene[name])<.001,('Carrier removal',dz,name)
     report['carrier_removal']={'poses':81,'checks':486,'travel_mm':40}
-    report['snap_capture']={'clips':3,'pcb_mm':P['bare_pcb_thickness'],'capture_gap_mm':2.,
+    report['snap_capture']={'clips':3,'pcb_mm':P['bare_pcb_thickness'],
+        'capture_gap_mm':P['bare_pcb_thickness']+2*P['snap_face_gap'],
+        'clip_widths_mm':P['snap_widths'],'clip_wall_mm':P['snap_wall'],
         'face_clearance_mm':P['snap_face_gap'],'side_clearance_mm':P['snap_side_gap'],
         'lip_overlap_mm':P['snap_overlap'],'additional_sensor_fasteners':0,
         'exact_step_report':'sensor-step-checks.json'}
     exact=json.loads((HERE/'generated/sensor-step-checks.json').read_text())
     assert exact['status']=='passed' and len(exact['clips'])==3
+    assert exact['parameters_sha256']==hashlib.sha256((HERE/'parameters.scad').read_bytes()).hexdigest()
     report['sensor_to_desk_mm']=round(float(scene['scd30'].bounds[0,2]),3)
     report['sensor_back_to_plate_mm']=round(P['carrier_z']-scene['scd30'].bounds[1,2],3)
     report['references_verified']=0
@@ -128,7 +131,7 @@ def viewer(scene):
     for i,item in enumerate(parts):
         if item['id']=='carrier':
             parts[i]=pack({**item,'label':'Personal carrier · snap-in SCD30',
-                'note':'Three integral edge latches capture the bare PCB. No sensor screws, header clamp or separate clips. Print flat upper face down.'},scene['carrier'])
+                'note':'Strengthened edge latches: 1.6 mm walls, wider clear-edge clips and 0.65 mm retaining lips. A 1.8 mm capture gap reduces play. Print flat upper face down.'},scene['carrier'])
         elif item['id']=='scd30':
             parts[i]=pack({**item,'label':'Bare Sensirion SCD30 · detailed model','color':sensor_color(23),
                 'note':'Official Sensirion STEP geometry, including components on both PCB sides. The three latches engage clear PCB edges; the optical body stays free.'},scene['scd30-part-23'])
@@ -185,11 +188,11 @@ def drawing(scene):
     section(axes[1],scene,49)
     axes[1].set(xlim=(16.4,21),ylim=(13.5,19),title='Latch detail · same section')
     axes[1].annotate('Insertion ramp',xy=(18.75,14.1),xytext=(19.3,13.7),fontsize=9,arrowprops=dict(arrowstyle='->'))
-    axes[1].annotate('0.2 mm face clearance',xy=(19.3,15.3),xytext=(19.3,14.7),fontsize=9,arrowprops=dict(arrowstyle='->'))
+    axes[1].annotate('0.1 mm face clearance',xy=(19.3,15.35),xytext=(19.3,14.7),fontsize=9,arrowprops=dict(arrowstyle='->'))
     axes[1].annotate('Back stop',xy=(19.4,17.3),xytext=(19.6,18.3),fontsize=9,arrowprops=dict(arrowstyle='->'))
     fig.suptitle('Bare SCD30 · integral snap holder',fontsize=19,x=.05,ha='left')
     fig.text(.05,.06,'Official Sensirion STEP geometry includes components on both PCB sides. Three clear PCB edges carry the module; the optical body stays free.\n'
-        '1.6 mm PCB in a 2.0 mm capture gap. Press at the supported PCB edges, never on the chamber; ease latches outward to release.\n'
+        '1.6 mm PCB in a 1.8 mm capture gap; thicker 1.6 mm latch walls. Press at supported PCB edges; ease latches outward to release.\n'
         'Print upper face down, latches upward. PETG preferred for flexible latches. Nominal geometry checked; printed fit and retention remain untested.',fontsize=9,color='#526568')
     fig.subplots_adjust(left=.07,right=.97,top=.85,bottom=.2,wspace=.28)
     fig.savefig(HERE/'renders/mounting.png',dpi=170);fig.savefig(HERE/'mounting.pdf');plt.close(fig)

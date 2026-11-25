@@ -7,14 +7,16 @@ This one-off carrier holds the **bare 35 × 23 mm Sensirion SCD30** directly wit
 | Print one of each | Supplied print orientation |
 | --- | --- |
 | `01-shell.stl` | Exterior roof on the bed; feet point up. Current TSL2591 shell. |
-| `02-sensor-carrier-bare-scd30.stl` | Flat upper face on the bed; integral latches point up. **This is the changed part.** |
-| `03-feather-frame.stl` | Flat rear face on the bed; mounting pads point up. Reinforced v0.6 frame. |
+| `02-sensor-carrier-bare-scd30.stl` | Flat upper face on the bed; integral latches point up. Strengthened, closer-fitting latches. |
+| `03-feather-frame.stl` | Flat rear face on the bed; mounting pads point up. Corrected v0.7 frame: LED clearance and USB/SCREEN SIDE marks. |
 
-The shell and frame are exact copies of the workshop files. Use millimetres and 100% scale. For the carrier, start with a 0.4 mm nozzle, 0.2 mm layers and five wall loops. **PETG is preferred for the flexible latches**; treat PLA as a careful first-fit trial. The latch noses have short 0.65 mm inward projections and sloped entry faces; the back stops grow on ramps. No deliberate supports are intended, but actual print quality must be checked. See the [existing shell/frame guidance](../../PRINTING.md). No slicing has been performed here.
+The shell and frame are exact copies of the workshop files. Use millimetres and 100% scale. For the carrier, start with a 0.4 mm nozzle, 0.2 mm layers and five wall loops. **PETG is preferred for the flexible latches**; treat PLA as a careful first-fit trial. The latch noses have short 0.77 mm inward projections and sloped entry faces; the back stops grow on ramps. No deliberate supports are intended, but actual print quality must be checked. See the [existing shell/frame guidance](../../PRINTING.md). No slicing has been performed here.
+
+**25 November revision:** reprint the carrier and Feather frame; reuse the shell. After the first clips proved flimsy and loose, their walls increased from **1.1 to 1.6 mm**, the two unobstructed clips widened to **4.2 and 6 mm**, and the retaining overlap increased from **0.4 to 0.65 mm**. The corner clip stays 3.4 mm wide to clear the optical body. Retaining noses are now 0.5 mm thick, and the vertical play halves from 0.4 to 0.2 mm. These changes need a new physical fit trial.
 
 ## How it holds the module
 
-The holder was laid out against **Sensirion's detailed STEP model**, including the optical chamber and components on **both PCB sides**. Three clear PCB edges sit between small back stops and sloped retaining noses. A plain stop on the fourth edge limits sideways movement. The nominal **1.6 mm PCB sits in a 2.0 mm capture gap**, leaving 0.2 mm at each face, with 0.25 mm side clearance. The optical body is not a contact surface.
+The holder was laid out against **Sensirion's detailed STEP model**, including the optical chamber and components on **both PCB sides**. Three clear PCB edges sit between small back stops and sloped retaining noses. A plain stop on the fourth edge limits sideways movement. The nominal **1.6 mm PCB sits in a 1.8 mm capture gap**, leaving 0.1 mm at each face, with 0.12 mm side clearance. The optical body is not a contact surface.
 
 The PCB back plane is 7 mm below the carrier plate. The model's tallest rear component leaves approximately **5.45 mm of air space** to the plate; the chamber's lowest point is approximately **11.54 mm above the desk**. The existing thermal slots, closure holes, mating rim and cable opening are retained.
 

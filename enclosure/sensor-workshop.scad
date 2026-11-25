@@ -1,4 +1,4 @@
-// Sensor Workshop v0.6. Two case parts and a removable Feather frame.
+// Sensor Workshop v0.7. Two case parts and a removable Feather frame.
 // Board-derived geometry: Adafruit CC BY-SA 3.0; see reference/ATTRIBUTION.md.
 include <parameters.scad>
 include <generated/boards.scad>
@@ -59,14 +59,18 @@ module feather_frame() {
             translate([4,12.5,26.6]) cube([2.1,4,23]);
             translate([57,12.5,26.6]) cube([1.9,4,23]);
             translate([5.9,13.5,26.6]) cube([51.2,3,2]);
+            // Label land only on the clear right half; keep the original wire
+            // clearance above the left half of the crossbar.
+            translate([24,11.3,26.6]) cube([33.1,5.2,3.8]);
             for(i=[0:3]) let(p=feather_holes[i],x=feather_origin[0]+p[0],z=feather_origin[2]-p[1]) {
                 // Wider tapered posts merge into broad roots on each upright.
                 // Clip to the original rail/stop envelope so the frame still slides.
                 intersection() {
                     translate([5.9,feather_origin[1]+pcb_thickness,26.6]) cube([51.2,16.5-feather_origin[1]-pcb_thickness,31.2]);
                     union() {
+                        translate([x,feather_origin[1]+pcb_thickness,z]) y_cylinder(feather_contact_length+eps,feather_contact_diameters[i<2?0:1]);
                         hull() {
-                            translate([x,feather_origin[1]+pcb_thickness,z]) y_cylinder(feather_contact_length,feather_contact_diameters[i<2?0:1]);
+                            translate([x,feather_origin[1]+pcb_thickness+feather_contact_length,z]) y_cylinder(eps,feather_contact_diameters[i<2?0:1]);
                             translate([x,feather_root_y,z]) y_cylinder(eps,feather_root_diameter);
                         }
                         hull() {
@@ -75,7 +79,10 @@ module feather_frame() {
                         }
                     }
                 }
-                if(i==1 || i==2) translate([x,feather_origin[1]+pcb_thickness-locating_height,z]) y_cylinder(locating_height+eps,locating_pin);
+                if(i==1 || i==2) translate([x,feather_origin[1]+pcb_thickness-locating_height,z]) rotate([-90,0,0]) {
+                    cylinder(h=.4,d1=1.3,d2=locating_pin);
+                    translate([0,0,.4]) cylinder(h=locating_height-.4+eps,d=locating_pin);
+                }
             }
         }
         // Preserve clearance to the radio package and copper antenna face.
@@ -83,15 +90,20 @@ module feather_frame() {
         board_transform("feather") {
             translate([28.1,3.3,pcb_thickness-eps]) cube([17.6,16.2,2.8+eps]);
             translate([45.1,3.3,pcb_thickness-eps]) cube([6,16.2,.9+eps]);
+            // CHG and D3 LEDs: full STEP package bounds, plus 0.3 mm XY/Z.
+            // They were omitted from the simplified board and hit the v0.6 pads.
+            translate([.5,4.767,pcb_thickness-eps]) cube([2.556,1.388,1.0]);
+            translate([.373,16.832,pcb_thickness-eps]) cube([2.556,1.388,1.0]);
         }
         for(i=board_screw_indices) let(p=feather_holes[i])
             translate([feather_origin[0]+p[0],feather_origin[1]+pcb_thickness-eps,feather_origin[2]-p[1]]) y_cylinder(feather_pilot_depth+eps,m2_pilot);
-        // Recessed orientation mark on the front of the right upright.
-        // It is away from the screw roots and opens upward in print orientation.
-        translate([54.55,11.8,42]) rotate([90,0,0]) linear_extrude(.6)
-            text("UP",size=2.6,halign="center",valign="bottom",font="Liberation Sans:style=Bold");
-        translate([54.55,11.8,46]) rotate([90,0,0]) linear_extrude(.6)
-            polygon([[-.5,0],[.5,0],[.5,2.7],[1.6,2.7],[0,4.5],[-1.6,2.7],[-.5,2.7]]);
+        // Read from the board/display side, with the crossbar at the bottom.
+        translate([29.3,11.8,27.4]) rotate([90,0,0]) linear_extrude(.6)
+            text("USB",size=2.2,font="Liberation Sans:style=Bold");
+        translate([37,11.8,27.4]) rotate([90,0,0]) linear_extrude(.6)
+            text("SCREEN SIDE",size=2.1,font="Liberation Sans:style=Bold");
+        translate([26.7,11.8,28.55]) rotate([90,0,0]) linear_extrude(.6)
+            polygon([[-2.2,0],[-.3,1.1],[-.3,.4],[2,.4],[2,-.4],[-.3,-.4],[-.3,-1.1]]);
     }
 }
 module feather_guides() {
@@ -293,6 +305,9 @@ module feather_model() {
         color("#efcc73") translate([45.4,3.6,pcb_thickness]) cube([5.4,15.6,0.6]);
         color("ivory") qt_socket([23.622,11.43]);
         color("ivory") translate([6.8,14.8,pcb_thickness]) cube([8,7.5,4.77]);
+        // Include the USB-end LEDs in routine clearance checks, not only STEP review.
+        for(p=[[1.778,5.461],[1.651,17.526]]) color("#d8b04a")
+            translate([p[0]-1,p[1]-.4,pcb_thickness]) cube([2,.8,.75]);
         for(p=concat(feather_buttons,[feather_reset])) color("#b2b8b8")
             translate([p[0]-2.3,p[1]-1.4,-1.9]) cube([4.6,2.8,1.9]);
     }

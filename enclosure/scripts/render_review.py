@@ -187,13 +187,13 @@ def feather_mount_drawing(scene):
     """Orientation reference and a true section through the antenna-end screw."""
     rasterize({'feather_frame':scene['feather_frame']},
         f"Reinforced Feather frame · v{PARAMS['enclosure_version']}",
-        'Board-contact faces toward you · UP arrow toward the roof · USB end on the left',
+        'Read the crossbar: USB arrow points left · SCREEN SIDE faces you',
         RENDERS/'feather-frame.png',eye=(-.4,-1,.6))
     fig,axes=plt.subplots(1,2,figsize=(13.5,8.8),gridspec_kw={'width_ratios':[1.1,1]})
     axes[0].imshow(np.asarray(Image.open(RENDERS/'feather-frame.png'))[145:1110,110:1510])
     axes[0].axis('off')
     axes[0].set_title('Mounting faces toward you · crossbar at the bottom',loc='left',fontsize=11,pad=12)
-    axes[0].text(.5,-.06,'UP arrow up. USB left. Screen and buttons face you.\nSeat both locating pins before fitting the two screws.',
+    axes[0].text(.5,-.06,'USB follows the engraved arrow. SCREEN SIDE faces you.\nSeat both chamfered locating pins before fitting the two screws.',
         transform=axes[0].transAxes,ha='center',va='top',fontsize=10,color='#334c50')
     boards=json.loads((CAD/'generated/boards.json').read_text())
     hole=boards['feather']['holes'][3]
@@ -217,8 +217,8 @@ def feather_mount_drawing(scene):
         arrowprops=dict(arrowstyle='->',lw=.8))
     ax.legend(loc='lower center',bbox_to_anchor=(.5,-.26),frameon=False,fontsize=8)
     fig.suptitle(f"Feather frame v{PARAMS['enclosure_version']} — reinforcement and orientation",fontsize=19,x=.05,ha='left')
-    fig.text(.05,.065,'Reprint only 03-feather-frame.stl from v0.5. Flat rear face on the bed; start with five perimeters at 0.4 mm nozzle / 0.2 mm layers.\n'
-        'Component reliefs trim the contact faces; nominal Ø6.4 mm roots are clipped to the original rail envelope.\n'
+    fig.text(.05,.065,'Reprint 03-feather-frame.stl from v0.5 or v0.6. Flat rear face on the bed; start with five perimeters at 0.4 mm nozzle / 0.2 mm layers.\n'
+        'Old hole centres and contact diameters retained; LED reliefs and Ø6.4 mm roots keep the board clear and support the screws.\n'
         'The section shows actual CAD geometry, not a strength simulation. Gentle repeated fitting/removal still needs a physical trial.',
         fontsize=9,color='#526568')
     fig.subplots_adjust(left=.04,right=.97,top=.85,bottom=.23,wspace=.2)

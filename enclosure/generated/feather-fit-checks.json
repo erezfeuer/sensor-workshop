@@ -1,0 +1,839 @@
+{
+  "status": "passed",
+  "version": "0.7",
+  "source_sha256": "e112dae4bd06b1cbfb3ff11d49df02f8e4a21ad6c886cbfccaeb7c8a9b5626b1",
+  "fitted_v05_stl_sha256": "01126572127a528b9ad63513a91e6e53deeef018afef16ae239a5081f259c9de",
+  "rejected_v06_stl_sha256": "abd68959dd98a24cbb824b902a29ae35721560406537661ab30177bfda094798",
+  "current_stl_sha256": "decc80302444b254e5da6ca0a9843ed046210229797d7aa54d45877e8bca0d97",
+  "axes": "print XY = assembly XZ",
+  "locations": {
+    "screw_pilots": {
+      "xy_mm": [
+        [
+          8.54,
+          54.46
+        ],
+        [
+          54.26,
+          36.045
+        ]
+      ],
+      "maximum_change_from_v05_mm": 0.0
+    },
+    "locating_pins": {
+      "xy_mm": [
+        [
+          8.54,
+          36.68
+        ],
+        [
+          54.26,
+          55.1585
+        ]
+      ],
+      "maximum_change_from_v05_mm": 1.9073486328125e-06
+    }
+  },
+  "component_checks": [
+    {
+      "vendor_solid": 0,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 1,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 2,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 3,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 4,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 5,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 6,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 7,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 8,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 9,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 10,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 11,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 12,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 13,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 14,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 15,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 16,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 17,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 18,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 19,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 20,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 21,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 22,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 23,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 24,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 25,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 26,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 27,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 28,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 29,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 30,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 31,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 32,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 33,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 34,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 35,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 36,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 37,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 38,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 39,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 40,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 41,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 42,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 43,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 44,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 45,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 46,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 47,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 48,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 49,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 50,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 51,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 52,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 53,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 54,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 55,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 56,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 57,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 58,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 59,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 60,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 61,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 62,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 63,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 64,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 65,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 66,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 67,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 68,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 69,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 70,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 71,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 72,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 73,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 74,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 75,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 76,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 77,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 78,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 79,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 80,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 81,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 82,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 83,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 84,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 85,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 86,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 87,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 88,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 89,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 90,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 91,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 92,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 93,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 94,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 95,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 96,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 97,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 98,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 99,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 100,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 101,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 102,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 103,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 104,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 105,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 106,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 107,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 108,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 109,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 110,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 111,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 112,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 113,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 114,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 115,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 116,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 117,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 118,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 119,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 120,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 121,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 122,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 123,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 124,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 125,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 126,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 127,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 128,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 129,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 130,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 131,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 132,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 133,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 134,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 135,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 136,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 137,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 138,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 139,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 140,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 141,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 142,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 143,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 144,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 145,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 146,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 147,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 148,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 149,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 150,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 151,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 152,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 153,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 154,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 155,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 156,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 157,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 158,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 159,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 160,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 161,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 162,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 163,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 164,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 165,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 166,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 167,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 168,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 169,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 170,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 171,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 172,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 173,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 174,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 175,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 176,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 177,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 178,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 179,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 180,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 181,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 182,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 183,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 184,
+      "new_intersection_mm3": 0.0
+    },
+    {
+      "vendor_solid": 185,
+      "new_intersection_mm3": 0.0
+    }
+  ],
+  "limitations": [
+    "Nominal manufacturer geometry and STL checks, not print distortion, seating force or screw-torque qualification.",
+    "Clearance tests use tessellated STEP solids at 0.08 mm linear deflection."
+  ],
+  "board_contact_footprints_within_v05": true,
+  "v06_led_interferences_removed": [
+    {
+      "vendor_solid": 19,
+      "intersection_mm3": {
+        "v05": 0.0,
+        "v06": 0.0003294,
+        "v07": 0.0
+      }
+    },
+    {
+      "vendor_solid": 21,
+      "intersection_mm3": {
+        "v05": 0.0,
+        "v06": 0.0135551,
+        "v07": 0.0
+      }
+    },
+    {
+      "vendor_solid": 22,
+      "intersection_mm3": {
+        "v05": 0.0,
+        "v06": 0.0286591,
+        "v07": 0.0
+      }
+    },
+    {
+      "vendor_solid": 25,
+      "intersection_mm3": {
+        "v05": 0.0,
+        "v06": 0.0007768,
+        "v07": 0.0
+      }
+    },
+    {
+      "vendor_solid": 26,
+      "intersection_mm3": {
+        "v05": 0.0,
+        "v06": 0.0374745,
+        "v07": 0.0
+      }
+    },
+    {
+      "vendor_solid": 27,
+      "intersection_mm3": {
+        "v05": 0.0,
+        "v06": 0.0587242,
+        "v07": 0.0
+      }
+    }
+  ],
+  "vendor_solid_count": 186
+}

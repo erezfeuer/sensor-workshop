@@ -1,6 +1,6 @@
-# Enclosure v0.6 — reinforced Feather mount / TSL2591 QT prototype
+# Enclosure v0.7 — corrected Feather seating / TSL2591 QT prototype
 
-This revision reinforces the **removable Feather frame** after a printed post broke during unscrewing. The posts taper into wider roots tied into the uprights; the Ø1.8 mm pilots are retained and deepened to 6 mm. An engraved **UP** arrow helps orient the board before fitting screws. **From v0.5, reprint only `03-feather-frame.stl`.** The shell, carrier, cable routing and other pilot diameters are unchanged. There are still **three printed pieces and ten screws**. [Reinforcement, screw-fit feedback and orientation guide](FEATHER-MOUNT.md) · [Measured mounting drawing](feather-mounting.pdf).
+The Feather frame keeps the old hole/pin centres and restores the original contact diameters, with clearance around both USB-end LED packages. These LEDs overlapped the enlarged v0.6 posts and were missing from the simplified model. Reinforced roots and Ø1.8 × 6 mm blind pilots remain. **USB ←** and **SCREEN SIDE** replace the UP mark. Reprint `03-feather-frame.stl`; the standard shell and carrier are unchanged. The personal bare-SCD30 variant also has a strengthened snap carrier. [Fit correction and orientation](FEATHER-MOUNT.md) · [Mounting drawing](feather-mounting.pdf).
 
 The shell retains the **Adafruit TSL2591 STEMMA QT** fit introduced in v0.5: the roof opening and notched light well align with its optical centre. An older VEML7700 shell still needs replacing when changing to TSL2591. [Sensor comparison and prototype checks](../hardware/LIGHT-SENSOR.md) · [Light-sensor fit drawing](light-sensor-fit.pdf).
 
@@ -27,7 +27,7 @@ The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the o
 
 ![Accessible enclosure assembly](renders/assembled.png)
 
-| Per device | v0.2 | v0.6 |
+| Per device | v0.2 | v0.7 |
 | --- | ---: | ---: |
 | Printed pieces | 2 | **3: shell, carrier, Feather frame** |
 | Screws | 10 | **10** |
@@ -91,7 +91,7 @@ The STL orientations are already set. Use light-coloured opaque PETG for the wor
 The coupon checks all four received board patterns (TSL2591 and VEML7700 QT share a mounting pattern), the locating pins, M2 pilot diameters 1.6–1.9 mm, M3 pilots 2.4–2.7 mm, the 27 mm bridge, and the battery diameter. The current pilots are 1.8 and 2.6 mm; pre-thread them with gentle hand torque before class. The locating pins are 1.9 mm diameter and 1.2 mm tall. No heat-set inserts are used.
 
 1. Print/check the coupon and measure the local pack. Inspect all three parts in the slicer. Clean the slide rails, thermal slots, cable passage, tie eyelets and bridge edges. With the empty shell roof down, feed each tie tail through its front eyelet toward the rear. The curved return should turn the tip upward through the second eyelet. Leave enough length at both ends to reach around the battery, and move the ends aside while fitting the boards. Check that the carrier's four thermal bridges are sound; it is still one part, not a breakaway support.
-2. **On the table**, hold the frame with its mounting faces toward you and engraved **UP arrow pointing up**. Place the Feather with **USB on the left and screen/buttons facing you**; the components face the frame. Seat it on both locating pins without force before fitting the two M2×5 screws from the display face. Keep the driver off the glass, support the frame near the screw and tighten only until seated. [Orientation drawing and removal trial](FEATHER-MOUNT.md).
+2. **On the table**, hold the frame with its engraved crossbar at the bottom and **SCREEN SIDE facing you**. Point the USB socket along the **USB arrow**, with **screen/buttons facing you**; the components face the frame. Seat it flat on both chamfered locating pins without force before fitting the two M2×5 screws from the display face. Keep the driver off the glass, support the frame near the screw and tighten only until seated. [Orientation drawing and removal trial](FEATHER-MOUNT.md).
 3. With the shell roof down and bottom open, insert the CR1220 into the RTC. Install the RTC with two M2×5 screws and washers, then the light board with two M2×5 screws. Approach these four screws straight through the bottom. Fit the RTC–light lead.
 4. Slide the complete Feather/frame into its guides from the open bottom until it reaches the upper stops. The button and display faces point toward the front openings. Check the buttons, RESET and USB opening. Connect the Feather–RTC lead with the bottom still open. The frame remains loose in its guides until the carrier is fitted; keep it seated while handling the open device.
 5. With the ties already threaded, insert the battery from below with its lead toward the left. Bring the ends around the pack, close each tie with its head below the battery, secure gently, and route its lead to the Feather's downward-facing socket. Keep the lead above the small bottom frame crossbar and away from the closing edge. Confirm polarity before connecting.
@@ -106,11 +106,11 @@ Check physical finger and screwdriver access, real connector envelopes, received
 
 Compare CO₂ response and temperature/RH with the housing fitted/removed, under Wi-Fi activity, charging and display on/off. Then compare controlled sunlight/shade transitions against a shaded reference thermometer. Check light readings with the shell fitted/removed and with display/LEDs on/off; the optical well changes angular response. Adjust the mechanical layout based on measurements rather than assuming the skirt eliminates thermal bias.
 
-[Validation results](generated/validation.json) check all three print solids and the shared coupon, source hashes, nominal gaps, screw engagement and Boolean intersections of the simplified mechanical/electronic/plug/cable envelopes and optional mounting route. [Browser checks](generated/viewer-checks.json) exercise all 30 visibility controls, explosion, Feather withdrawal, the empty-shell tie-access, battery-tie section and pole-mount views, cutaways, views and mobile layout offline. [Assembly checks](generated/assembly-checks.json) sample the Feather/frame/screws at 161 poses along an 80 mm vertical path, the carrier and battery at 81 poses each, eight straight screwdriver shafts, and nominal curved feed paths and tail-access envelopes for both battery ties. These nominal-envelope checks do not establish manufacturing tolerances, physical fit or sensor accuracy. The official vendor STLs are reference models; their open surfaces are not used as a collision proof.
+[Validation results](generated/validation.json) check all three print solids and the shared coupon, source hashes, nominal gaps, screw engagement and Boolean intersections of the simplified mechanical/electronic/plug/cable envelopes and optional mounting route. [Browser checks](generated/viewer-checks.json) exercise all 30 visibility controls, explosion, Feather withdrawal, the empty-shell tie-access, battery-tie section and pole-mount views, cutaways, views and mobile layout offline. [Assembly checks](generated/assembly-checks.json) sample the Feather/frame/screws at 161 poses along an 80 mm vertical path, the carrier and battery at 81 poses each, eight straight screwdriver shafts, and nominal curved feed paths and tail-access envelopes for both battery ties. These nominal-envelope checks do not establish manufacturing tolerances, physical fit or sensor accuracy. The [detailed Feather fit check](generated/feather-fit-checks.json) additionally tests 186 closed meshes generated from the official STEP, compares hole/pin centres against the old fitted STL, and verifies removal of the v0.6 LED interference. The original vendor STLs have open surfaces and are not used as collision solids.
 
 ## Rebuild
 
-Use OpenSCAD 2021.01 or later and Python 3.12. The tracked `light_sensor = "tsl2591"` setting selects the current prototype. To regenerate the original light-sensor layout, change it to `"veml7700"` in `parameters.scad` and run the full sequence; this replaces the production shell and viewer with that variant. From the repository root:
+Use OpenSCAD 2021.01 or later and Python 3.12. The detailed Feather fit check also needs FreeCAD Python; set `FREECAD_PYTHON` if it is not installed at the default macOS path. The tracked `light_sensor = "tsl2591"` setting selects the current prototype. To regenerate the original light-sensor layout, change it to `"veml7700"` in `parameters.scad` and run the full sequence; this replaces the production shell and viewer with that variant. From the repository root:
 
 ```sh
 python3 -m venv .venv-cad
@@ -122,6 +122,7 @@ python3 -m venv .venv-cad
 .venv-cad/bin/python enclosure/scripts/render_review.py
 .venv-cad/bin/python enclosure/scripts/build_viewer.py
 .venv-cad/bin/python enclosure/scripts/validate.py
+.venv-cad/bin/python enclosure/scripts/check_feather_fit.py
 .venv-cad/bin/python enclosure/scripts/check_assembly.py
 .venv-cad/bin/python enclosure/thermal/model.py
 .venv-cad/bin/pip install -r enclosure/requirements-viewer-check.txt
