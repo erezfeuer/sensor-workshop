@@ -26,7 +26,7 @@ Each distributor link identifies the same manufacturer part, not a bare sensor o
 | DS3231 Precision RTC; STEMMA QT breakout | 1 | 13.95 | [5188](https://www.adafruit.com/product/5188) | [1528-5188-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5188/15189155) | [485-5188](https://www.mouser.com/en/ProductDetail/Adafruit/5188?qs=TCDPyi3sCW0TSTr1Xi7pUg%3D%3D) |
 | [SparkFun Qwiic Cable Kit, KIT-15081](https://www.sparkfun.com/sparkfun-qwiic-cable-kit.html), 10 assorted cables for prototyping | 1 shared kit | 12.95 | Exact kit not found | [1568-15081-ND](https://www.digikey.com/en/products/detail/sparkfun-electronics/15081/9770723) | [474-KIT-15081](https://www.mouser.com/en/ProductDetail/SparkFun/KIT-15081?qs=0lSvoLzn4L8uNN%252B5TDrwLw%3D%3D) |
 | Final QT-to-QT cables; trial lengths 100 + 50 + 100 mm | 3/device | TBD | See cable options below | Bulk order after pilot fit | Bulk order after pilot fit |
-| Protected prewired 1S 18650 battery, approximately 2,200 mAh; Ø20 × 72 mm design envelope | 1 | TBD | Local purchase in Israel | Local purchase in Israel | Local purchase in Israel |
+| Protected prewired 1S 18650 battery, 3,500 mAh prototype cell; Ø20 × 72 mm design envelope | 1 | TBD | Local purchase in Israel | Local purchase in Israel | Local purchase in Israel |
 | CR1220, 3 V, non-rechargeable RTC backup coin cell | 1 | TBD | Local purchase in Israel | Local purchase in Israel | Local purchase in Israel |
 | [Printed enclosure and mechanical hardware](../enclosure/MECHANICAL-BOM.md) | 1 set | TBD | Local fabrication / fastener supplier | Local fabrication / fastener supplier | Local fabrication / fastener supplier |
 
@@ -92,7 +92,7 @@ Use the **Adafruit Feather ESP32-S3 Reverse TFT** board definition. The shared d
 
 ## Local batteries and enclosure inputs
 
-- Main pack: protected, prewired **1S 18650 Li-ion**, approximately **2,200 mAh**, **3.7 V nominal / 4.2 V full charge**, with a pre-attached **JST-PH 2-pin, 2.0 mm-pitch** plug matching the Feather's polarity. Connector shape alone does not establish polarity. The enclosure reserves **Ø20 × 72 mm** for the wrapped pack, based on the [Adafruit 1781 reference pack](https://www.adafruit.com/product/1781); the actual battery is purchased locally in Israel.
+- Main pack: protected, prewired **1S 18650 Li-ion**, **3,500 mAh for the supplied prototype**, **3.7 V nominal / 4.2 V full charge**, with a pre-attached **JST-PH 2-pin, 2.0 mm-pitch** plug matching the Feather's polarity. Connector shape alone does not establish polarity. The enclosure reserves **Ø20 × 72 mm** for the wrapped pack, based on the [Adafruit 1781 reference pack](https://www.adafruit.com/product/1781); the actual battery is purchased locally in Israel. Erez confirmed 3,500 mAh for the prototype on 2026-11-26; the 2,200 mAh reference pack establishes the existing mechanical envelope only. Check the actual wrapped pack dimensions; capacity alone does not establish fit.
 - Request pack capabilities of at least **1 A continuous discharge** and **500 mA charging** for margin. These are procurement requirements, not measured consumption or a claim about the Feather's charging current.
 - RTC cell: one **CR1220, 3 V, non-rechargeable** per device, bought locally in Israel.
 - Measure the chosen pack's dimensions, lead length, protection-board projection and connector orientation against the CAD envelope before the final print. Use an assembled pack rather than a bare cell needing soldered tabs or a student-wired holder.

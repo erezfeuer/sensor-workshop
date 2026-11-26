@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-26",
+  "firmware_version": "0.1.0",
+  "tested_on": "macOS, local PlatformIO and headless Google Chrome",
+  "platformio_core": "6.2.0",
+  "platform": "espressif32@6.8.1",
+  "arduino_core": "2.0.17",
+  "hardware_flashed": false,
+  "hardware_validated": false,
+  "build": {
+    "builds": {
+      "feather": {
+        "binary_bytes": 912768,
+        "sha256": "306d4ea7b2df9a4023cea1de3412ef16679fb5269c76c60cfca02fcd596295a3",
+        "static_ram_bytes": 46904,
+        "application_usage_bytes": 912253
+      },
+      "feather-debug": {
+        "binary_bytes": 903904,
+        "sha256": "ad1d25dc562c9a67ffee240b6b8077d3470d6166af7a2558b3acec272a0f918b",
+        "static_ram_bytes": 46756,
+        "application_usage_bytes": 903437
+      }
+    },
+    "flash_bytes": 4194304,
+    "log_partition_bytes": 1441792,
+    "embedded_html_bytes": 43707,
+    "embedded_gzip_bytes": 12182,
+    "checks": [
+      "Nonoverlapping 4 MB flash map",
+      "TinyUF2 upload address preserved",
+      "Both application images fit",
+      "Compiled partition tables match source",
+      "Embedded dashboard matches production HTML exactly",
+      "No demo fixture in firmware"
+    ],
+    "hardware_accessed": false
+  },
+  "native_tests": {
+    "passed": 10,
+    "scope": "CRC vectors; float decode; record integrity; settings; monotonic scheduling; UTC bounds; calibration wait; runtime/duty model; tail recovery policy"
+  },
+  "python_decoder_tests": {
+    "passed": 5,
+    "scope": "CSV schema; unset clock/events; all 1..63-byte torn tails; byte corruption; repeated sequence"
+  },
+  "dashboard": {
+    "passed": [
+      "Live dashboard and history require no external requests",
+      "Calculator agrees with native model; scenarios do not change device settings",
+      "Settings save carries channel mask, revision and per-device token",
+      "Conflicting settings are shown; edited values survive background polling",
+      "Cadence change acknowledgement and calibration warning",
+      "Start/pause and explicit phone clock sync",
+      "CSV download control produces a file (simulated contents)",
+      "Calibration needs ready state, valid reference and explicit confirmation",
+      "Erase requires paused logging and exact confirmation",
+      "Missing/saturated values remain blank; clock changes use record-order plot",
+      "Connection loss explains how to reconnect and recovers",
+      "Opening the dashboard sets an unset RTC from browser time",
+      "All four tabs fit a 390-pixel phone without horizontal scrolling",
+      "No JavaScript exceptions across interaction and recovery scenarios"
+    ],
+    "hardware": false
+  },
+  "offline_preview": {
+    "passed": true,
+    "scheme": "file://",
+    "simulated_data_banner": true
+  },
+  "pending": "All assembled-device acceptance checks in HARDWARE-CHECKS.md; electrical current and runtime are not measured."
+}

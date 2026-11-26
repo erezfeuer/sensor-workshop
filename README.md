@@ -20,6 +20,12 @@ Students assemble the same battery-powered environmental monitor without solderi
 
 For the first test, print the shell separately and the two smaller parts together. Once fit and settings are confirmed, all three can share a plate. See [printing guidance](enclosure/PRINTING.md) for support placement. The optional shared [fit coupon](enclosure/stl/coupon.stl) is outside the production folder. The CAD export script refreshes the three production files on every full export.
 
+## Firmware
+
+**[PlatformIO project](firmware/README.md)** · **[Interactive dashboard preview](firmware/preview.html)** (download/open the HTML; simulated readings)
+
+The first firmware provides internal-flash logging, a temporary Wi-Fi hotspot with a QR code, phone-to-RTC clock setting, plots and CSV downloads, guided CO₂ calibration, and button-controlled TFT/deep sleep. The prototype's 3,500 mAh cell is the default in its editable battery/storage calculator. The initial estimate is about **4.9 days** at one-minute logging with the SCD30 at a two-second cadence; power and storage assumptions are [documented here](firmware/docs/POWER.md). This is an unmeasured estimate. The project has passed software checks and builds; it has **not yet been flashed or validated on hardware**.
+
 ## Hardware planning
 
 - [Proposed bill of materials and compatibility notes](hardware/BOM.md)
@@ -37,4 +43,4 @@ The **v0.8 OpenSCAD enclosure** adds an open battery-lead notch to the reinforce
 
 A [reproducible thermal screening model](enclosure/thermal/README.md) includes conduction, warm air, radiation and sensor self-heating. Slots around the sensor mounting region reduce one heat path, but the estimate still flags potentially significant warming. Physical measurements are needed before treating temperature readings as ambient. [Thermal review PDF](enclosure/thermal/thermal-review.pdf).
 
-Erez has printed and assembled the v0.7.1 set, reporting that almost everything fitted. The battery lead could be trapped at the frame/cover seam; v0.8 addresses that crossing. The new notch has passed geometric checks and still needs a physical fit trial. Firmware and teaching materials are still to be developed.
+Erez has printed and assembled the v0.7.1 set, reporting that almost everything fitted. The battery lead could be trapped at the frame/cover seam; v0.8 addresses that crossing. The new notch has passed geometric checks and still needs a physical fit trial. The first firmware is implemented and compiled; flashing and assembled-device checks are next. Teaching materials remain to be developed.

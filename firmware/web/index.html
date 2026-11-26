@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="light" name="color-scheme"/>
+  <title>
+   Sensor Workshop
+  </title>
+  <style>
+   :root {
+  --ink: #163a3b;
+  --muted: #607778;
+  --bg: #f4f6f1;
+  --card: #fff;
+  --line: #dce5dc;
+  --green: #176b59;
+  --soft: #e5f3eb;
+  --amber: #925c12;
+  --red: #aa3e32;
+  font: 15px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--bg)
+}
+
+* {
+  box-sizing: border-box
+}
+
+body {
+  margin: 0
+}
+
+button,
+input,
+select {
+  font: inherit
+}
+
+button,
+a.button {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: white;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600
+}
+
+button.primary {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff
+}
+
+button.danger {
+  color: var(--red)
+}
+
+button:disabled {
+  opacity: .45;
+  cursor: not-allowed
+}
+
+button:hover:not(:disabled),
+a.button:hover {
+  filter: brightness(.96)
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #e4b955;
+  outline-offset: 3px
+}
+
+input,
+select {
+  width: 100%;
+  border: 1px solid #bdcec3;
+  border-radius: 9px;
+  padding: 10px;
+  background: white;
+  color: var(--ink)
+}
+
+input[type=checkbox] {
+  width: 19px;
+  height: 19px;
+  accent-color: var(--green);
+  flex-shrink: 0
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 5px
+}
+
+.check {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  color: var(--ink);
+  font-size: 14px;
+  margin: 10px 0
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--muted)
+}
+
+header {
+  border-bottom: 1px solid var(--line);
+  background: #fff
+}
+
+header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  gap: 16px
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: auto;
+  padding: 0 24px
+}
+
+.brand {
+  font-size: 21px;
+  letter-spacing: -.6px;
+  font-weight: 700
+}
+
+.brand small {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted)
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  border-radius: 30px;
+  font-size: 12px;
+  padding: 6px 11px;
+  white-space: nowrap
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green)
+}
+
+nav {
+  display: flex;
+  gap: 5px;
+  padding: 20px 0;
+  flex-wrap: wrap
+}
+
+nav button {
+  border: 0;
+  background: transparent;
+  font-weight: 500
+}
+
+nav button[aria-selected=true] {
+  background: var(--ink);
+  color: white
+}
+
+.page[hidden] {
+  display: none
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin: 8px 0 22px
+}
+
+h1 {
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  margin: 0 0 8px
+}
+
+h2 {
+  font-size: 19px;
+  letter-spacing: -.4px;
+  margin: 0 0 16px
+}
+
+h3 {
+  font-size: 14px;
+  margin: 20px 0 8px
+}
+
+p {
+  margin: 8px 0 16px
+}
+
+.sub {
+  color: var(--muted);
+  margin: 0
+}
+
+.actions {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  flex-wrap: wrap
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px
+}
+
+.metric {
+  font-size: 31px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.8px;
+  font-weight: 600;
+  margin: 7px 0 3px
+}
+
+.unit {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 0;
+  font-weight: 400
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted)
+}
+
+.metric-card:first-child {
+  background: var(--soft);
+  border-color: #c7dfd0
+}
+
+.full {
+  margin-top: 16px
+}
+
+.charthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap
+}
+
+.charthead select {
+  width: auto
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 260px;
+  touch-action: pan-y
+}
+
+.chart-caption {
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 20px
+}
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px
+}
+
+.field {
+  margin-bottom: 14px
+}
+
+.statusline {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 12px;
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted)
+}
+
+.banner {
+  background: #fff1d5;
+  color: #725015;
+  border: 1px solid #ecd9a8;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 0 0 16px
+}
+
+.banner:empty {
+  display: none
+}
+
+.error {
+  background: #fff0ed;
+  color: var(--red);
+  border-color: #efc7bf
+}
+
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(620px, 90vw);
+  background: #163a3b;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 7px 25px #0002;
+  z-index: 20
+}
+
+#toast[hidden] {
+  display: none
+}
+
+details {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line)
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600
+}
+
+progress {
+  width: 100%;
+  height: 12px;
+  accent-color: var(--green)
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px
+}
+
+td,
+th {
+  text-align: left;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line)
+}
+
+td:last-child {
+  text-align: right;
+  font-variant-numeric: tabular-nums
+}
+
+footer {
+  margin: 28px 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px
+}
+
+.step {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--green);
+  font-weight: 600
+}
+
+.smallinput {
+  max-width: 170px
+}
+
+.quiet {
+  color: var(--muted)
+}
+
+a {
+  color: var(--green)
+}
+
+.storagebar {
+  height: 8px;
+  border-radius: 10px;
+  background: #e5ebe4;
+  overflow: hidden;
+  margin: 14px 0
+}
+
+.storagebar span {
+  display: block;
+  height: 100%;
+  background: var(--green);
+  width: 0
+}
+
+.range {
+  font-size: 13px;
+  color: var(--muted)
+}
+
+@media(max-width:760px) {
+  .wrap {
+    padding: 0 16px
+  }
+
+  header .wrap {
+    padding: 16px
+  }
+
+  .hero {
+    align-items: flex-start;
+    flex-direction: column
+  }
+
+  h1 {
+    font-size: 26px
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .two {
+    grid-template-columns: 1fr
+  }
+
+  .card {
+    padding: 16px
+  }
+
+  .metric {
+    font-size: 28px
+  }
+
+  .fields {
+    gap: 12px
+  }
+
+  nav {
+    gap: 2px
+  }
+
+  nav button {
+    padding: 9px 11px;
+    font-size: 13px
+  }
+
+  canvas {
+    height: 220px
+  }
+
+  .statusline {
+    flex-direction: column;
+    gap: 5px
+  }
+
+  .header-session {
+    display: none
+  }
+}
+  </style>
+ </head>
+ <body>
+  <header>
+   <div class="wrap">
+    <div class="brand">
+     Sensor Workshop
+     <small>
+      Your observations, in the field.
+     </small>
+    </div>
+    <div class="actions">
+     <span class="hint header-session" id="wifiTimer">
+      Connecting…
+     </span>
+     <span class="pill" id="connection">
+      <span class="dot">
+      </span>
+      <span id="connectionText">
+       Connecting
+      </span>
+     </span>
+    </div>
+   </div>
+  </header>
+  <main class="wrap">
+   <nav aria-label="Dashboard">
+    <button aria-selected="true" data-tab="live">
+     Live &amp; data
+    </button>
+    <button aria-selected="false" data-tab="settings">
+     Settings
+    </button>
+    <button aria-selected="false" data-tab="runtime">
+     Run time &amp; storage
+    </button>
+    <button aria-selected="false" data-tab="calibration">
+     Calibration
+    </button>
+   </nav>
+   <div class="banner error" id="connectionError" role="status">
+   </div>
+   <div class="banner" id="quality" role="status">
+   </div>
+   <section class="page" id="live">
+    <div class="hero">
+     <div>
+      <h1 id="deviceName">
+       Workshop logger
+      </h1>
+      <p class="sub" id="logSummary">
+       Waiting for your device…
+      </p>
+     </div>
+     <div class="actions">
+      <button class="primary" disabled="" id="toggleLog">
+       Start logging
+      </button>
+      <a class="button" download="sensor-workshop.csv" href="/api/download">
+       Download CSV ↓
+      </a>
+     </div>
+    </div>
+    <div class="grid">
+     <article class="card metric-card">
+      <div class="eyebrow">
+       Carbon dioxide
+      </div>
+      <div class="metric">
+       <span id="co2">
+        —
+       </span>
+       <span class="unit">
+        ppm
+       </span>
+      </div>
+      <div class="hint" id="co2Age">
+       Waiting for sensor
+      </div>
+     </article>
+     <article class="card metric-card">
+      <div class="eyebrow">
+       Temperature
+      </div>
+      <div class="metric">
+       <span id="temperature">
+        —
+       </span>
+       <span class="unit">
+        °C
+       </span>
+      </div>
+      <div class="hint">
+       SCD30 · inside this enclosure
+      </div>
+     </article>
+     <article class="card metric-card">
+      <div class="eyebrow">
+       Relative humidity
+      </div>
+      <div class="metric">
+       <span id="humidity">
+        —
+       </span>
+       <span class="unit">
+        %
+       </span>
+      </div>
+      <div class="hint">
+       SCD30
+      </div>
+     </article>
+     <article class="card metric-card">
+      <div class="eyebrow">
+       Ambient light
+      </div>
+      <div class="metric">
+       <span id="lux">
+        —
+       </span>
+       <span class="unit">
+        lux
+       </span>
+      </div>
+      <div class="hint" id="lightSensor">
+       Light sensor
+      </div>
+     </article>
+    </div>
+    <article class="card full">
+     <div class="charthead">
+      <div>
+       <h2 style="margin:0">
+        Your recorded observations
+       </h2>
+       <span class="hint" id="historySummary">
+        No records yet
+       </span>
+      </div>
+      <div class="actions">
+       <select aria-label="Plot measurement" id="chartChannel">
+        <option value="co2">
+         CO₂ · ppm
+        </option>
+        <option value="temperature">
+         Temperature · °C
+        </option>
+        <option value="humidity">
+         Humidity · %
+        </option>
+        <option value="lux">
+         Light · lux
+        </option>
+        <option value="percent">
+         Battery · %
+        </option>
+       </select>
+       <button id="refreshHistory">
+        Refresh plot
+       </button>
+      </div>
+     </div>
+     <canvas aria-label="Recorded measurement plot" id="chart" role="img">
+     </canvas>
+     <div class="chart-caption" id="chartCaption">
+      Start logging to build a history.
+     </div>
+     <div class="statusline">
+      <span id="clockSummary">
+       Clock: waiting
+      </span>
+      <span id="batterySummary">
+       Battery: waiting
+      </span>
+      <button id="syncClock">
+       Set time from this phone
+      </button>
+     </div>
+    </article>
+    <article class="card full">
+     <div class="charthead">
+      <div>
+       <strong>
+        Wi‑Fi is temporary.
+       </strong>
+       <div class="hint">
+        Logging continues after the hotspot switches off. Press D1 to reconnect.
+       </div>
+      </div>
+      <button id="extendWifi">
+       Keep Wi‑Fi open
+      </button>
+     </div>
+    </article>
+   </section>
+   <section class="page" hidden="" id="settings">
+    <div class="hero">
+     <div>
+      <h1>
+       Make it your logger
+      </h1>
+      <p class="sub">
+       Choose the observations and rhythm of your experiment.
+      </p>
+     </div>
+     <button id="reloadSettings">
+      Reload settings
+     </button>
+    </div>
+    <form id="settingsForm">
+     <div class="two">
+      <article class="card">
+       <h2>
+        Recording
+       </h2>
+       <div class="field">
+        <label for="name">
+         Device name
+        </label>
+        <input id="name" maxlength="24" required="" value="Workshop logger"/>
+       </div>
+       <div class="fields">
+        <div class="field">
+         <label for="interval">
+          Save a record every (seconds)
+         </label>
+         <input id="interval" max="86400" min="5" required="" step="1" type="number" value="60"/>
+        </div>
+        <div class="field">
+         <label for="batteryCapacity">
+          Battery capacity (mAh)
+         </label>
+         <input id="batteryCapacity" max="20000" min="100" required="" step="1" type="number" value="3500"/>
+        </div>
+       </div>
+       <h3>
+        Save these measurements
+       </h3>
+       <div class="fields" id="channels">
+        <div>
+         <label class="check">
+          <input checked="" type="checkbox" value="1"/>
+          CO₂
+         </label>
+         <label class="check">
+          <input checked="" type="checkbox" value="2"/>
+          Temperature
+         </label>
+         <label class="check">
+          <input checked="" type="checkbox" value="4"/>
+          Humidity
+         </label>
+        </div>
+        <div>
+         <label class="check">
+          <input checked="" type="checkbox" value="8"/>
+          Light
+         </label>
+         <label class="check">
+          <input checked="" type="checkbox" value="16"/>
+          Battery
+         </label>
+        </div>
+       </div>
+       <p class="hint">
+        Live readings remain available for all sensors. Unselected measurements are blank in the log. Each record keeps the same storage size.
+       </p>
+      </article>
+      <article class="card">
+       <h2>
+        Screen &amp; connection
+       </h2>
+       <div class="field">
+        <label for="screenSeconds">
+         Screen sleeps after (seconds)
+        </label>
+        <input id="screenSeconds" max="300" min="10" required="" type="number" value="45"/>
+       </div>
+       <div class="field">
+        <label for="wifiMinutes">
+         Hotspot session (minutes)
+        </label>
+        <input id="wifiMinutes" max="60" min="2" required="" type="number" value="10"/>
+       </div>
+       <p class="hint">
+        D0 changes the screen. D1 opens the phone connection. D2 starts or pauses logging. Any button wakes the device; D1 also opens Wi‑Fi. Hold D0 to sleep.
+       </p>
+       <details>
+        <summary>
+         CO₂ sensor settings
+        </summary>
+        <p class="hint">
+         The sensor keeps measuring between log records. A slower cadence saves power but changes its response and self-heating.
+        </p>
+        <div class="field">
+         <label for="sensorInterval">
+          CO₂ measurement cadence
+         </label>
+         <select id="sensorInterval">
+          <option value="2">
+           2 seconds · standard
+          </option>
+          5 seconds
+          <option value="15">
+           15 seconds
+          </option>
+          <option value="30">
+           30 seconds
+          </option>
+          <option value="60">
+           60 seconds
+          </option>
+         </select>
+        </div>
+        <label class="check">
+         <input id="cadenceAck" type="checkbox"/>
+         If changing cadence, I will recalibrate CO₂ and review the temperature offset.
+        </label>
+        <div class="fields">
+         <div class="field">
+          <label for="tempOffset">
+           Temperature offset to subtract (°C)
+          </label>
+          <input id="tempOffset" max="20" min="0" required="" step="0.01" type="number" value="0"/>
+         </div>
+         <div class="field">
+          <label for="altitude">
+           Site altitude (m)
+          </label>
+          <input id="altitude" max="3000" min="0" required="" step="1" type="number" value="0"/>
+         </div>
+        </div>
+        <p class="hint">
+         For the temperature offset, allow ten minutes to settle in the assembled case, then subtract a trusted reference temperature from the sensor reading.
+        </p>
+        <label class="check">
+         <input id="asc" type="checkbox"/>
+         Automatic CO₂ self-calibration (ASC)
+        </label>
+        <label class="check">
+         <input id="ascAck" type="checkbox"/>
+         If enabling ASC, this continuously powered sensor will see fresh air for at least one hour each day.
+        </label>
+        <p class="hint">
+         ASC is off by default. Leave it off for a greenhouse or any experiment without regular fresh-air exposure. Pausing into deep sleep removes sensor power.
+        </p>
+       </details>
+      </article>
+     </div>
+     <div class="actions full">
+      <button class="primary" id="saveSettings" type="submit">
+       Save settings
+      </button>
+      <span class="hint" id="settingsFeedback" role="status">
+      </span>
+     </div>
+    </form>
+   </section>
+   <section class="page" hidden="" id="runtime">
+    <div class="hero">
+     <div>
+      <h1>
+       Plan the experiment
+      </h1>
+      <p class="sub">
+       A battery estimate and a storage budget, side by side.
+      </p>
+     </div>
+     <span class="pill">
+      Power estimate · not measured
+     </span>
+    </div>
+    <div class="grid">
+     <article class="card">
+      <div class="eyebrow">
+       From a full battery
+      </div>
+      <div class="metric" id="fullRuntime">
+       —
+      </div>
+      <div class="range" id="runtimeRange">
+       Assumption range
+      </div>
+     </article>
+     <article class="card">
+      <div class="eyebrow">
+       From current charge
+      </div>
+      <div class="metric" id="remainingRuntime">
+       —
+      </div>
+      <div class="hint">
+       Uses the onboard fuel gauge
+      </div>
+     </article>
+     <article class="card">
+      <div class="eyebrow">
+       Storage remaining
+      </div>
+      <div class="metric" id="storageRuntime">
+       —
+      </div>
+      <div class="hint" id="remainingRows">
+       — records
+      </div>
+     </article>
+     <article class="card">
+      <div class="eyebrow">
+       Likely first limit
+      </div>
+      <div class="metric" id="firstLimit">
+       —
+      </div>
+      <div class="hint">
+       Compared with a full battery
+      </div>
+     </article>
+    </div>
+    <div class="two full">
+     <article class="card">
+      <h2>
+       Try a scenario
+      </h2>
+      <p class="hint">
+       This calculator does not change the logger settings.
+      </p>
+      <div class="fields">
+       <div class="field">
+        <label for="modelCapacity">
+         Battery capacity (mAh)
+        </label>
+        <input id="modelCapacity" max="20000" min="100" type="number" value="3500"/>
+       </div>
+       <div class="field">
+        <label for="modelInterval">
+         Log interval (seconds)
+        </label>
+        <input id="modelInterval" max="86400" min="5" type="number" value="60"/>
+       </div>
+       <div class="field">
+        <label for="modelCadence">
+         CO₂ cadence (seconds)
+        </label>
+        <select id="modelCadence">
+         <option>
+          2
+         </option>
+         <option>
+          5
+         </option>
+         <option>
+          15
+         </option>
+         <option>
+          30
+         </option>
+         <option>
+          60
+         </option>
+        </select>
+       </div>
+       <div class="field">
+        <label for="modelWifi">
+         Wi‑Fi use (minutes/day)
+        </label>
+        <input id="modelWifi" max="1440" min="0" type="number" value="10"/>
+       </div>
+       <div class="field">
+        <label for="modelScreen">
+         Screen-only use (minutes/day)
+        </label>
+        <input id="modelScreen" max="1440" min="0" type="number" value="10"/>
+       </div>
+       <div class="field">
+        <label for="modelUsable">
+         Usable battery capacity (%)
+        </label>
+        <input id="modelUsable" max="100" min="1" type="number" value="80"/>
+       </div>
+      </div>
+      <details>
+       <summary>
+        Power assumptions · editable after profiling
+       </summary>
+       <p class="hint">
+        The following are engineering allowances for this first firmware. Replace them with measurements from your profiler.
+       </p>
+       <div class="fields">
+        <div class="field">
+         <label for="modelWake">
+          CPU awake per record (seconds)
+         </label>
+         <input id="modelWake" max="60" min="0.1" step="0.1" type="number" value="1.2"/>
+        </div>
+        <div class="field">
+         <label for="modelCpu">
+          CPU awake, radio off (mA)
+         </label>
+         <input id="modelCpu" max="500" min="1" step="1" type="number" value="45"/>
+        </div>
+        <div class="field">
+         <label for="modelWifiMa">
+          Board with Wi‑Fi + display (mA)
+         </label>
+         <input id="modelWifiMa" max="500" min="1" type="number" value="160"/>
+        </div>
+        <div class="field">
+         <label for="modelScreenMa">
+          Display/backlight extra (mA)
+         </label>
+         <input id="modelScreenMa" max="100" min="0" type="number" value="25"/>
+        </div>
+        <div class="field">
+         <label for="modelExtras">
+          Breakout LEDs/regulators (mA)
+         </label>
+         <input id="modelExtras" max="30" min="0" step="0.1" type="number" value="2"/>
+        </div>
+        <div class="field">
+         <label for="modelSleep">
+          Sleeping Feather allowance (mA)
+         </label>
+         <input id="modelSleep" max="10" min="0.01" step="0.01" type="number" value="0.1"/>
+        </div>
+       </div>
+      </details>
+     </article>
+     <article class="card">
+      <h2>
+       Where the energy goes
+      </h2>
+      <table>
+       <tbody>
+        <tr>
+         <td>
+          CO₂ sensor, continuously powered
+         </td>
+         <td id="powerSensor">
+          —
+         </td>
+        </tr>
+        <tr>
+         <td>
+          Board, wakeups, display &amp; Wi‑Fi
+         </td>
+         <td id="powerBoard">
+          —
+         </td>
+        </tr>
+        <tr>
+         <td>
+          RTC, sleeping light/display, breakouts
+         </td>
+         <td id="powerOther">
+          —
+         </td>
+        </tr>
+        <tr>
+         <th>
+          Estimated average battery current
+         </th>
+         <td id="powerTotal">
+          —
+         </td>
+        </tr>
+       </tbody>
+      </table>
+      <p class="hint">
+       Assumes battery operation, without USB charging. The range uses 0.7×–1.5× estimated current; it is a sensitivity range, not a measured confidence interval. Battery ageing, temperature, regulator dropout, Wi‑Fi traffic and board LEDs can change the result.
+      </p>
+      <details>
+       <summary>
+        Source figures and model
+       </summary>
+       <p class="hint">
+        Sensirion specifies 19 mA at a 2-second cadence and gives 5.6 mA at 30 seconds in its low-power example. Between 2–60 seconds this calculator uses the approximation 4.643 + 28.714 / cadence mA. Changing the sensor cadence requires recalibration.
+       </p>
+       <p class="hint">
+        The default sleeping-board allowance is 0.1 mA. The RTC contributes 0.2 mA while the main rail is on; its coin cell takes over when that rail is off. Light-sensor sleep and display sleep allowances add 0.024 mA. Breakout and active-board figures are provisional budgets, not measurements of this assembled device.
+       </p>
+       <p class="hint">
+        <a href="https://sensirion.com/media/documents/0FEA2450/61652EF9/Sensirion_CO2_Sensors_SCD30_Low_Power_Mode.pdf" rel="noreferrer" target="_blank">
+         Sensirion low-power note
+        </a>
+        ·
+        <a href="https://learn.adafruit.com/esp32-s3-reverse-tft-feather/power-management" rel="noreferrer" target="_blank">
+         Feather power guide
+        </a>
+        · Sources need internet to open.
+       </p>
+      </details>
+     </article>
+    </div>
+    <article class="card full">
+     <h2>
+      Saved data stays yours
+     </h2>
+     <div id="storageInfo">
+      Waiting for storage
+     </div>
+     <div class="storagebar">
+      <span id="storageUsed">
+      </span>
+     </div>
+     <p class="hint">
+      Storage estimate uses actual free space, 64 bytes per record and a 32 KiB reserve. Settings, clock and calibration events also use records. The logger stops adding records when full; it does not overwrite old observations. Deselecting measurements leaves blank columns and does not shrink records.
+     </p>
+     <div class="actions">
+      <a class="button" download="" href="/api/download">
+       Download CSV ↓
+      </a>
+      <a class="button" download="" href="/api/download/raw">
+       Raw recovery file
+      </a>
+     </div>
+     <details>
+      <summary>
+       Erase the recorded data
+      </summary>
+      <p class="hint">
+       Download what you need first, then pause logging. This erases the log only; settings and RTC remain.
+      </p>
+      <label for="eraseConfirm">
+       Type ERASE to confirm
+      </label>
+      <div class="actions">
+       <input autocomplete="off" class="smallinput" id="eraseConfirm" placeholder="ERASE"/>
+       <button class="danger" disabled="" id="eraseData">
+        Erase data
+       </button>
+      </div>
+     </details>
+    </article>
+   </section>
+   <section class="page" hidden="" id="calibration">
+    <div class="hero">
+     <div>
+      <h1>
+       Calibrate with a reference
+      </h1>
+      <p class="sub">
+       A guided process. Nothing is applied automatically.
+      </p>
+     </div>
+    </div>
+    <div class="two">
+     <article class="card">
+      <div class="step">
+       01 · Prepare
+      </div>
+      <h2>
+       Use air with a known CO₂ value
+      </h2>
+      <p>
+       Place the device beside a trusted reference, in stable, well-mixed air. Keep your breath away from both sensors.
+      </p>
+      <p class="hint">
+       Do not assume that any room—or any outdoor location—is exactly 400 ppm. Forced calibration changes the sensor’s stored correction.
+      </p>
+      <div class="field">
+       <label for="referencePpm">
+        Known reference concentration (ppm)
+       </label>
+       <input id="referencePpm" max="2000" min="400" placeholder="400–2000" step="1" type="number"/>
+      </div>
+      <label class="check">
+       <input id="referenceAck" type="checkbox"/>
+       I know the reference concentration and the air is stable.
+      </label>
+     </article>
+     <article class="card">
+      <div class="step">
+       02 · Stabilise, then apply
+      </div>
+      <h2 id="calTitle">
+       Allow six minutes
+      </h2>
+      <p class="hint">
+       The sensor stays at the selected cadence. Wi‑Fi remains available during stabilisation. Finish within ten minutes after the countdown; closing Wi‑Fi cancels the procedure. A sensor interruption restarts the countdown; the session ends after 20 minutes at most.
+      </p>
+      <progress aria-label="Calibration stabilisation" id="calProgress" max="360" value="0">
+      </progress>
+      <p id="calStatus" role="status">
+       Start when the device is beside the reference.
+      </p>
+      <div class="actions">
+       <button class="primary" id="calStart">
+        Start stabilisation
+       </button>
+       <button hidden="" id="calCancel">
+        Cancel
+       </button>
+       <button class="primary" disabled="" id="calApply">
+        Apply calibration
+       </button>
+      </div>
+      <p class="hint" id="calCurrent">
+       Current CO₂: —
+      </p>
+     </article>
+    </div>
+   </section>
+   <footer>
+    <span id="firmwareVersion">
+     Sensor Workshop
+    </span>
+    · Local connection, no cloud. CSV timestamps are UTC; this page shows your phone’s local time. Missing or invalid readings stay blank.
+   </footer>
+  </main>
+  <div aria-live="polite" hidden="" id="toast" role="status">
+  </div>
+  <noscript>
+   This dashboard needs JavaScript. You can still download the CSV from /api/download.
+  </noscript>
+  <script>
+   'use strict';
+const $ = id => document.getElementById(id);
+let state = null,
+  points = [],
+  formRevision = 0,
+  initialised = false,
+  clockAttempted = false,
+  toastTimer, pollTask = null;
+
+function toast(message, error = false) {
+  $('toast').textContent = message;
+  $('toast').style.background = error ? '#8d392d' : '#163a3b';
+  $('toast').hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => $('toast').hidden = true, 6500);
+}
+async function request(path, data) {
+  const controller = new AbortController(),
+    timer = setTimeout(() => controller.abort(), 10000);
+  try {
+    const response = await fetch(path, {
+      method: data === undefined ? 'GET' : 'POST',
+      cache: 'no-store',
+      signal: controller.signal,
+      headers: data === undefined ? {} : {
+        'Content-Type': 'application/json',
+        'X-Workshop-Token': state?.token || ''
+      },
+      body: data === undefined ? undefined : JSON.stringify(data)
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.message ||
+      'The device could not complete that request.');
+    return result;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+const finite = v => typeof v === 'number' && Number.isFinite(v);
+const fmt = (v, d = 0) => finite(v) ? v.toLocaleString(undefined, {
+  maximumFractionDigits: d,
+  minimumFractionDigits: d
+}) : '—';
+
+function hours(h) {
+  if (!finite(h)) return '—';
+  return h >= 48 ? fmt(h / 24, 1) + ' days' : fmt(h, 1) + ' h';
+}
+
+function fillSettings() {
+  if (!state) return;
+  const s = state.settings;
+  formRevision = s.revision;
+  $('name').value = s.name;
+  $('interval').value = s.interval_s;
+  $('batteryCapacity').value = s.battery_mah;
+  $('screenSeconds').value = s.screen_seconds;
+  $('wifiMinutes').value = s.wifi_minutes;
+  $('sensorInterval').value = s.sensor_interval_s;
+  $('tempOffset').value = s.temperature_offset_centi / 100;
+  $('altitude').value = s.altitude_m;
+  $('asc').checked = s.asc;
+  $('ascAck').checked = false;
+  $('cadenceAck').checked = false;
+  document.querySelectorAll('#channels input').forEach(c => c.checked = !!(s.channels & Number(c
+    .value)));
+  $('settingsFeedback').textContent = '';
+}
+
+function render(s) {
+  state = s;
+  $('deviceName').textContent = s.name;
+  document.title = s.name + ' · Sensor Workshop';
+  $('connectionText').textContent = 'Connected';
+  $('connectionError').textContent = '';
+  $('wifiTimer').textContent = 'Wi-Fi ' + Math.ceil(s.wifi.seconds_left / 60) + ' min left';
+  $('toggleLog').disabled = !!s.calibration.active;
+  $('toggleLog').textContent = s.logging ? 'Pause logging' : 'Start logging';
+  $('logSummary').textContent = (s.logging ? 'Logging every ' + s.settings.interval_s + ' seconds' :
+    'Logging paused') + ' · ' + s.storage.records.toLocaleString() + ' records';
+  ['co2', 'temperature', 'humidity', 'lux'].forEach(k => $(k).textContent = fmt(s.live[k], k ===
+    'temperature' ? 1 : 0));
+  $('lightSensor').textContent = s.live.light_saturated ? 'Saturated — reduce light' : s
+    .light_sensor;
+  $('co2Age').textContent = finite(s.live.co2) ? 'Sample age ≤ ' + s.live.co2_age_bound_s + 's' :
+    'Waiting for a fresh reading';
+  $('batterySummary').textContent = 'Battery ' + fmt(s.live.percent) + '% · ' + fmt(s.live.volts,
+    2) + ' V';
+  $('clockSummary').textContent = s.utc ? new Date(s.utc * 1000).toLocaleString() + ' · ' + s
+    .clock_source : 'Clock not set — records have uptime only';
+  $('firmwareVersion').textContent = 'Sensor Workshop · firmware ' + s.version;
+  const notices = [];
+  if (!s.storage.healthy || s.storage.full) notices.push(s.storage.error ||
+    'Storage needs attention.');
+  if (!s.utc) notices.push('Set the clock from this phone before your experiment.');
+  if (s.sensor === 'missing') notices.push('CO₂ sensor not found.');
+  else if (s.warming) notices.push('CO₂ is warming up; early records are marked.');
+  if (s.calibration_due) notices.push(
+    'Sensor cadence changed: review CO₂ calibration and temperature offset.');
+  $('quality').textContent = notices.join(' ');
+  if (!initialised) {
+    fillSettings();
+    $('modelCapacity').value = s.settings.battery_mah;
+    $('modelInterval').value = s.settings.interval_s;
+    $('modelCadence').value = s.settings.sensor_interval_s;
+    initialised = true;
+  }
+  $('storageInfo').textContent = s.storage.mounted ? fmt((s.storage.total_bytes - s.storage
+      .free_bytes) / 1024) + ' of ' + fmt(s.storage.total_bytes / 1024) + ' KiB used · ' + s.storage
+    .records + ' records' : 'Storage is not mounted. Existing contents have been preserved.';
+  $('storageUsed').style.width = (s.storage.total_bytes ? 100 * (1 - s.storage.free_bytes / s
+    .storage.total_bytes) : 0) + '%';
+  const cal = s.calibration;
+  $('calStart').disabled = cal.active || s.sensor === 'missing';
+  $('calCancel').hidden = !cal.active;
+  $('calApply').disabled = !cal.ready || !$('referenceAck').checked || !$('referencePpm')
+    .checkValidity() || !$('referencePpm').value;
+  $('calProgress').value = cal.active ? Math.max(0, 360 - cal.seconds_left) : 0;
+  $('calTitle').textContent = cal.ready ? 'Ready to apply' : cal.active ? 'Stabilising…' :
+    'Allow six minutes';
+  $('calStatus').textContent = cal.active ? (cal.ready ?
+    'Confirm the known reference, then apply.' : Math.floor(cal.seconds_left / 60) + ' min ' + cal
+    .seconds_left % 60 + ' sec remaining') : 'Start when the device is beside the reference.';
+  $('calCurrent').textContent = 'Current CO₂: ' + fmt(s.live.co2) + ' ppm';
+  updateErase();
+  calculate();
+}
+
+function poll() {
+  if (pollTask) return pollTask;
+  pollTask = (async () => {
+    try {
+      const s = await request('/api/status');
+      render(s);
+      if (!clockAttempted) {
+        clockAttempted = true;
+        const epoch = Math.floor(Date.now() / 1000);
+        if (!s.utc || Math.abs(s.utc - epoch) > 2) {
+          const r = await request('/api/clock', {
+            utc: epoch
+          });
+          toast(r.message);
+        }
+      }
+    } catch (e) {
+      $('connectionText').textContent = 'Disconnected';
+      $('connectionError').textContent =
+        'Connection paused. If the hotspot timed out, press D1, rejoin its Wi-Fi and reload. ' +
+        e.message;
+    } finally {
+      pollTask = null;
+    }
+  })();
+  return pollTask;
+}
+async function refreshState() {
+  if (pollTask) await pollTask;
+  return poll();
+}
+async function act(path, data) {
+  try {
+    const r = await request(path, data);
+    toast(r.message);
+    await refreshState();
+    return true;
+  } catch (e) {
+    toast(e.message, true);
+    return false;
+  }
+}
+document.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => {
+  document.querySelectorAll('[data-tab]').forEach(n => n.setAttribute('aria-selected', String(
+    n === b)));
+  document.querySelectorAll('.page').forEach(p => p.hidden = p.id !== b.dataset.tab);
+  if (b.dataset.tab === 'live') drawChart();
+});
+$('toggleLog').onclick = () => state && act('/api/logging', {
+  enabled: !state.logging
+});
+$('syncClock').onclick = () => act('/api/clock', {
+  utc: Math.floor(Date.now() / 1000)
+});
+$('extendWifi').onclick = () => act('/api/wifi/extend', {});
+$('reloadSettings').onclick = fillSettings;
+$('settingsForm').onsubmit = async e => {
+  e.preventDefault();
+  const channels = [...document.querySelectorAll('#channels input:checked')].reduce((m, c) =>
+    m | Number(c.value), 0);
+  if (!channels) {
+    toast('Select at least one measurement.', true);
+    return;
+  }
+  const data = {
+    expected_revision: formRevision,
+    name: $('name').value,
+    interval_s: Number($('interval').value),
+    sensor_interval_s: Number($('sensorInterval').value),
+    screen_seconds: Number($('screenSeconds').value),
+    wifi_minutes: Number($('wifiMinutes').value),
+    channels,
+    temperature_offset_centi: Math.round(Number($('tempOffset').value) * 100),
+    altitude_m: Number($('altitude').value),
+    battery_mah: Number($('batteryCapacity').value),
+    asc: $('asc').checked,
+    asc_acknowledged: $('ascAck').checked,
+    cadence_acknowledged: $('cadenceAck').checked
+  };
+  $('saveSettings').disabled = true;
+  try {
+    const r = await request('/api/settings', data);
+    toast(r.message);
+    await refreshState();
+    fillSettings();
+    $('settingsFeedback').textContent = 'Saved to device.';
+  } catch (e) {
+    $('settingsFeedback').textContent = e.message;
+    toast(e.message, true);
+  } finally {
+    $('saveSettings').disabled = false;
+  }
+};
+$('calStart').onclick = () => act('/api/calibration/start', {});
+$('calCancel').onclick = () => act('/api/calibration/cancel', {});
+$('calApply').onclick = () => act('/api/calibration/apply', {
+  reference_ppm: Number($('referencePpm').value),
+  confirmed: $('referenceAck').checked
+});
+['referenceAck', 'referencePpm'].forEach(id => $(id).oninput = () => state && render(state));
+
+function updateErase() {
+  $('eraseData').disabled = !state || state.logging || state.calibration.active || $('eraseConfirm')
+    .value !== 'ERASE';
+}
+$('eraseConfirm').oninput = updateErase;
+$('eraseData').onclick = async () => {
+  if (await act('/api/storage/erase', {
+      confirmation: $('eraseConfirm').value
+    })) {
+    $('eraseConfirm').value = '';
+    points = [];
+    updateErase();
+    drawChart();
+  }
+};
+async function history() {
+  try {
+    const h = await request('/api/history');
+    points = h.points;
+    $('historySummary').textContent = points.length + ' plotted points from ' + h.total_records +
+      ' records' + (h.stride > 1 ? ' · downsampled; CSV contains every record' : '');
+    drawChart();
+  } catch (e) {
+    toast(e.message, true);
+  }
+}
+$('refreshHistory').onclick = history;
+$('chartChannel').onchange = drawChart;
+let chartLayout = null;
+
+function drawChart() {
+  const c = $('chart'),
+    rect = c.getBoundingClientRect();
+  if (!rect.width) return;
+  const scale = devicePixelRatio || 1;
+  c.width = Math.round(rect.width * scale);
+  c.height = Math.round(rect.height * scale);
+  const g = c.getContext('2d');
+  g.scale(scale, scale);
+  const w = rect.width,
+    h = rect.height,
+    L = 52,
+    R = 16,
+    T = 22,
+    B = 36,
+    channel = $('chartChannel').value;
+  g.clearRect(0, 0, w, h);
+  const valid = points.filter(p => finite(p[channel]));
+  chartLayout = null;
+  if (!valid.length) {
+    g.fillStyle = '#607778';
+    g.font = '14px system-ui';
+    g.textAlign = 'center';
+    g.fillText('No recorded values for this measurement yet.', w / 2, h / 2);
+    $('chartCaption').textContent = 'Start logging to build a history.';
+    return;
+  }
+  const timed = points.every((p, i) => p.utc > 0 && (!i || p.utc >= points[i - 1].utc));
+  const xval = p => timed ? p.utc : p.sequence;
+  let lo = Math.min(...valid.map(p => p[channel])),
+    hi = Math.max(...valid.map(p => p[channel]));
+  const pad = Math.max((hi - lo) * .12, 1);
+  lo -= pad;
+  hi += pad;
+  const xmin = Math.min(...points.map(xval)),
+    xmax = Math.max(...points.map(xval));
+  const X = p => L + (xval(p) - xmin) / Math.max(1, xmax - xmin) * (w - L - R),
+    Y = v => h - B - (v - lo) / (hi - lo) * (h - T - B);
+  g.font = '11px system-ui';
+  g.strokeStyle = '#e5ebe4';
+  g.fillStyle = '#607778';
+  for (let i = 0; i <= 4; i++) {
+    let v = lo + (hi - lo) * i / 4,
+      y = Y(v);
+    g.beginPath();
+    g.moveTo(L, y);
+    g.lineTo(w - R, y);
+    g.stroke();
+    g.textAlign = 'right';
+    g.fillText(fmt(v, hi - lo < 10 ? 1 : 0), L - 8, y + 4);
+  }
+  g.strokeStyle = '#176b59';
+  g.lineWidth = 2;
+  g.beginPath();
+  let pen = false;
+  for (const p of points) {
+    if (!finite(p[channel])) {
+      pen = false;
+      continue;
+    }
+    if (!pen) {
+      g.moveTo(X(p), Y(p[channel]));
+      pen = true;
+    } else g.lineTo(X(p), Y(p[channel]));
+  }
+  g.stroke();
+  g.fillStyle = '#176b59';
+  for (const p of valid) {
+    g.beginPath();
+    g.arc(X(p), Y(p[channel]), 2, 0, Math.PI * 2);
+    g.fill();
+  }
+  g.fillStyle = '#607778';
+  g.textAlign = 'left';
+  const label = p => timed ? new Date(p.utc * 1000).toLocaleString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  }) : 'Record ' + p.sequence;
+  g.fillText(label(points[0]), L, h - 10);
+  g.textAlign = 'right';
+  g.fillText(label(points.at(-1)), w - R, h - 10);
+  $('chartCaption').textContent = (timed ? 'Phone local time' :
+      'Record order — some timestamps are unset or moved backwards') +
+    ' · hover or tap for values. Gaps are missing data.';
+  chartLayout = {
+    X,
+    valid,
+    channel,
+    label
+  };
+}
+$('chart').onpointermove = e => {
+  if (!chartLayout) return;
+  const x = e.clientX - $('chart').getBoundingClientRect().left;
+  const p = chartLayout.valid.reduce((a, b) => Math.abs(chartLayout.X(a) - x) < Math.abs(
+    chartLayout.X(b) - x) ? a : b);
+  $('chartCaption').textContent = (p.utc ? new Date(p.utc * 1000).toLocaleString() : 'Session ' +
+      p.session + ' · uptime ' + p.uptime_s + 's') + ' · ' + fmt(p[chartLayout.channel], 2) +
+    ' · record ' + p.sequence + (p.flags ? ' · quality flags ' + p.flags : '');
+};
+addEventListener('resize', drawChart);
+
+function powerModel(p, free) {
+  const interval = Math.max(5, p.interval),
+    cadence = Math.max(2, Math.min(60, p.cadence)),
+    sensor = 4.642857142857 + 28.714285714286 / cadence,
+    wifi = Math.max(0, Math.min(1, p.wifi / 1440)),
+    screen = Math.max(0, Math.min(1 - wifi, p.screen / 1440)),
+    wake = (1 - wifi - screen) * Math.max(0, Math.min(1, p.wake / interval)),
+    idle = Math.max(0, 1 - wifi - screen - wake),
+    board = idle * p.sleepMa + wake * p.cpuMa + screen * (p.cpuMa + p.screenMa) + wifi * p.wifiMa,
+    other = p.extras + .2 + .004 + .02,
+    ma = sensor + board + other,
+    capacity = p.capacity * Math.max(0, Math.min(1, p.usable / 100)),
+    hours = capacity / ma,
+    records = Math.floor(Math.max(0, free - 32768) / 64);
+  return {
+    sensor,
+    board,
+    other,
+    ma,
+    hours,
+    low: hours / 1.5,
+    high: hours / .7,
+    records,
+    storageHours: records * interval / 3600
+  };
+}
+
+function calculate() {
+  if (!state) return;
+  const map = {
+      capacity: 'modelCapacity',
+      interval: 'modelInterval',
+      cadence: 'modelCadence',
+      wifi: 'modelWifi',
+      screen: 'modelScreen',
+      usable: 'modelUsable',
+      wake: 'modelWake',
+      cpuMa: 'modelCpu',
+      wifiMa: 'modelWifiMa',
+      screenMa: 'modelScreenMa',
+      extras: 'modelExtras',
+      sleepMa: 'modelSleep'
+    },
+    p = {};
+  for (const [key, id] of Object.entries(map)) {
+    if (!$(id).checkValidity() || $(id).value === '') return;
+    p[key] = Number($(id).value);
+  }
+  const e = powerModel(p, state.storage.free_bytes);
+  $('fullRuntime').textContent = hours(e.hours);
+  $('runtimeRange').textContent = hours(e.low) + ' – ' + hours(e.high);
+  const remaining = finite(state.live.percent) ? e.hours * state.live.percent / 100 : NaN;
+  $('remainingRuntime').textContent = hours(remaining);
+  $('storageRuntime').textContent = hours(e.storageHours);
+  $('remainingRows').textContent = e.records.toLocaleString() + ' more records (budget)';
+  $('firstLimit').textContent = e.storageHours < e.hours ? 'Storage' : 'Battery';
+  $('powerSensor').textContent = fmt(e.sensor, 2) + ' mA';
+  $('powerBoard').textContent = fmt(e.board, 2) + ' mA';
+  $('powerOther').textContent = fmt(e.other, 2) + ' mA';
+  $('powerTotal').textContent = fmt(e.ma, 2) + ' mA';
+}
+document.querySelectorAll('#runtime input,#runtime select').forEach(e => {
+  if (e.id !== 'eraseConfirm') e.addEventListener('input', calculate);
+});
+window.SensorWorkshop = {
+  render,
+  powerModel,
+  drawChart,
+  getState: () => state
+};
+poll().then(history);
+setInterval(poll, 2000);
+  </script>
+ </body>
+</html>
