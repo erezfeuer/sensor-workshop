@@ -305,7 +305,7 @@ void App::buttons() {
         activeUntil = now() + uint64_t(settings.screenSeconds) * 1000;
       } else if (k.armed && !k.held) {
         if (i == 0) {
-          page = (page + 1) % 3;
+          page = (page + 1) % ScreenPageCount;
           draw(true);
         }
         if (i == 1) {

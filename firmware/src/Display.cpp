@@ -8,6 +8,9 @@ namespace {
 constexpr uint16_t BG = 0x0843, FG = 0xef7d, MUTED = 0x8d34, ACCENT = 0x5df2, WARN = 0xfcc0;
 constexpr uint16_t Width = 240, Height = 135;
 constexpr size_t FrameBytes = Width * Height * sizeof(uint16_t);
+constexpr const char *PageTitles[] = {"CO2", "ENVIRONMENT", "LOGGER", "BATTERY / STORAGE"};
+static_assert(sizeof(PageTitles) / sizeof(PageTitles[0]) == App::ScreenPageCount,
+              "Page titles and button navigation must agree");
 // Allocate only when the screen is used; timer-only wakes need no frame buffers.
 GFXcanvas16 *canvas = nullptr;
 uint16_t *shown = nullptr;
@@ -68,6 +71,26 @@ String duration(double hours) {
     return String(hours / 24, 1) + " d";
   return String(hours, 0) + " h";
 }
+String intervalLabel(uint32_t seconds) {
+  if (seconds % 3600 == 0)
+    return String(seconds / 3600) + " h";
+  if (seconds % 60 == 0)
+    return String(seconds / 60) + " min";
+  return String(seconds) + " s";
+}
+String channelLabel(uint16_t channels) {
+  String result;
+  const uint16_t bits[] = {CO2, Temperature, Humidity, Light, Battery};
+  const char *names[] = {"CO2", "Temp", "RH", "Light", "Battery"};
+  for (size_t i = 0; i < sizeof(bits) / sizeof(bits[0]); ++i) {
+    if (!(channels & bits[i]))
+      continue;
+    if (result.length())
+      result += ' ';
+    result += names[i];
+  }
+  return result;
+}
 } // namespace
 void App::startScreen() {
   if (screen)
@@ -105,7 +128,8 @@ void App::draw(bool force) {
   auto &frame = *canvas;
   frame.fillScreen(BG);
   if (!wifi) {
-    text(frame, 7, 5, String(settings.name).substring(0, 24), 1, ACCENT);
+    text(frame, 7, 5, PageTitles[page], 1, ACCENT);
+    text(frame, 175, 5, String(page + 1) + "/" + String(ScreenPageCount), 1, MUTED);
     String battery =
         sensors.reading.batteryValid ? String(sensors.reading.percent, 0) + "%" : "--%";
     text(frame, 205, 5, battery, 1, MUTED);
@@ -141,30 +165,58 @@ void App::draw(bool force) {
             : "WiFi: " + String(wifiUntil > now() ? (wifiUntil - now()) / 60000 : 0) + " min";
     text(frame, 124, 103, remaining, 1, WARN);
   } else if (page == 0) {
-    text(frame, 8, 25, "CO2", 1, MUTED);
-    text(frame, 8, 40, fresh() ? val(sensors.reading.co2) : "--", 4);
-    text(frame, 154, 60, "ppm", 1, MUTED);
-    text(frame, 8, 80,
-         (fresh() ? val(sensors.reading.temperature, 1) : "--") + " C   " +
-             (fresh() ? val(sensors.reading.humidity, 0) : "--") + "% RH",
-         1);
+    text(frame, 8, 33, fresh() ? val(sensors.reading.co2) : "--", 4);
+    text(frame, 154, 53, "ppm", 1, MUTED);
+    String loggingState = !storage.healthy ? "Storage error"
+                          : storage.full   ? "Storage full"
+                          : settings.logging ? "Every " + intervalLabel(settings.intervalS)
+                                             : "Logging paused";
+    text(frame, 8, 79, loggingState, 2, settings.logging ? ACCENT : MUTED);
     String state = !storage.healthy          ? "Storage needs attention"
                    : storage.full            ? "Storage full"
                    : !utc()                  ? "Set clock: D1 phone"
+                   : !sensors.scd            ? "CO2 sensor unavailable"
+                   : !fresh()                ? "Waiting for CO2 reading"
                    : warming()               ? "CO2 warming up"
                    : settings.calibrationDue ? "Review CO2 calibration"
-                   : settings.logging        ? "Logging every " + String(settings.intervalS) + "s"
-                                             : "Paused - D2 to start";
-    text(frame, 8, 99, state, 1, (!utc() || warming() || storage.full) ? WARN : ACCENT);
+                                             : "D0: temperature, RH and light";
+    text(frame, 8, 109, state, 1, (!utc() || warming() || storage.full) ? WARN : ACCENT);
   } else if (page == 1) {
-    text(frame, 8, 27, "LIGHT", 1, MUTED);
-    text(frame, 8, 42, sensors.reading.lightValid ? val(sensors.reading.lux) : "--", 3);
-    text(frame, 170, 57, "lux", 1, MUTED);
-    text(frame, 8, 77, sensors.lightName(), 1, ACCENT);
-    text(frame, 8, 94,
-         sensors.reading.saturated ? "Light sensor saturated"
-                                   : "Battery " + val(sensors.reading.volts, 2) + " V",
-         1, MUTED);
+    text(frame, 8, 25, "TEMPERATURE C", 1, MUTED);
+    text(frame, 132, 25, "HUMIDITY %", 1, MUTED);
+    text(frame, 8, 40, fresh() ? val(sensors.reading.temperature, 1) : "--", 3);
+    text(frame, 132, 40, fresh() ? val(sensors.reading.humidity, 0) : "--", 3);
+    frame.drawFastVLine(119, 25, 39, 0x22c7);
+    frame.drawFastHLine(8, 72, 224, 0x22c7);
+    text(frame, 8, 88, "LIGHT lux", 1, MUTED);
+    String lux = !sensors.reading.lightValid ? "--"
+                 : sensors.reading.lux >= 100000 ? val(sensors.reading.lux / 1000, 0) + "k"
+                 : val(sensors.reading.lux, sensors.reading.lux < 10 ? 1 : 0);
+    text(frame, 232 - int(lux.length()) * 18, 80, lux, 3);
+    if (sensors.reading.saturated)
+      text(frame, 8, 109, "Light sensor saturated", 1, WARN);
+    else if (!fresh())
+      text(frame, 8, 109, "Temperature / RH unavailable", 1, WARN);
+    else if (!sensors.reading.lightValid)
+      text(frame, 8, 109, "Light reading unavailable", 1, WARN);
+  } else if (page == 2) {
+    String state = !storage.healthy ? "STORAGE ERROR"
+                   : storage.full  ? "STORAGE FULL"
+                   : settings.logging ? "LOGGING" : "PAUSED";
+    text(frame, 8, 25, state, 1, (!storage.healthy || storage.full) ? WARN : ACCENT);
+    text(frame, 8, 41, "Every " + intervalLabel(settings.intervalS), 2);
+    String next = settings.logging ? "Check storage" : "D2: start logging";
+    if (settings.logging && storage.healthy && !storage.full) {
+      // Use the logger's monotonic deadline, so phone/RTC clock changes cannot
+      // move the countdown. Round up: 1 ms remaining is still one second.
+      uint64_t ms = now();
+      next = retained.nextLogMs > ms
+                 ? "Next in " + String(uint32_t((retained.nextLogMs - ms + 999) / 1000)) + " s"
+                 : "Reading now...";
+    }
+    text(frame, 8, 66, next, 2, settings.logging ? ACCENT : MUTED);
+    text(frame, 8, 92, "Save: " + channelLabel(settings.channels), 1);
+    text(frame, 8, 109, "CO2 measures every " + intervalLabel(settings.sensorIntervalS), 1, MUTED);
   } else {
     PowerInputs p;
     p.capacityMah = settings.batteryMah;
@@ -187,14 +239,15 @@ void App::draw(bool force) {
       text(frame, 8, 79, clock, 1);
     } else
       text(frame, 8, 79, "Set clock from phone", 1, WARN);
-    text(frame, 8, 97, "Hold D0: sleep | D2: wake", 1, MUTED);
+    text(frame, 8, 97, "Battery " + (sensors.reading.batteryValid ? val(sensors.reading.volts, 2) : "--") + " V", 1, MUTED);
+    text(frame, 8, 109, "Hold D0: sleep", 1, MUTED);
   }
   if (noticeUntil > now() && !wifi) {
-    frame.fillRect(0, 94, 240, 17, BG);
-    text(frame, 7, 98, notice.substring(0, 37), 1, WARN);
+    frame.fillRect(0, 106, 240, 14, BG);
+    text(frame, 7, 109, notice.substring(0, 37), 1, WARN);
   }
   frame.fillRect(0, 121, 240, 14, 0x1246);
-  text(frame, 6, 125, "D0 View", 1);
+  text(frame, 6, 125, "D0 Next", 1);
   text(frame, 84, 125, wifi ? "D1 Done" : "D1 Phone", 1);
   text(frame, 166, 125, settings.logging ? "D2 Pause" : "D2 Start", 1);
   renderUs = micros() - started;
@@ -204,6 +257,9 @@ void App::draw(bool force) {
 
 void App::displayStatus(JsonObject d) const {
   d["on"] = screen;
+  d["page"] = page;
+  d["page_count"] = ScreenPageCount;
+  d["view"] = wifi ? "PHONE" : PageTitles[page];
   d["buffered"] = canvas && canvas->getBuffer();
   d["differential"] = shown != nullptr;
   d["buffer_bytes"] = (canvas ? FrameBytes : 0) + (shown ? FrameBytes : 0);

@@ -1,7 +1,7 @@
 {
   "date": "2026-11-26",
-  "firmware_version": "0.1.2",
-  "tested_on": "macOS, local PlatformIO and headless Google Chrome",
+  "firmware_version": "0.1.3",
+  "tested_on": "macOS, local PlatformIO, assembled Feather via USB; earlier browser tests in headless Google Chrome",
   "platformio_core": "6.2.0",
   "platform": "espressif32@6.8.1",
   "arduino_core": "2.0.17",
@@ -10,12 +10,12 @@
   "build": {
     "builds": {
       "feather": {
-        "binary_bytes": 919040,
-        "sha256": "69110929794852552a7993e4a76e728082f727989f3b734d6cc1839f91d07953"
+        "binary_bytes": 921568,
+        "sha256": "aab573a0ffca7ebd9f37c60baff365c45aa66879e716a772b44da1baa89651c0"
       },
       "feather-debug": {
-        "binary_bytes": 910144,
-        "sha256": "e54a116e6dd9ab653aecb4909b099f4bf667d7900fc82203358ad81edbb43f13"
+        "binary_bytes": 912672,
+        "sha256": "93bd47548dd2b8ea6b2a2476bfc96b4114233be4980d954e5735a54601e7122b"
       }
     },
     "flash_bytes": 4194304,
@@ -36,7 +36,7 @@
   "native_tests": {
     "passed": 10,
     "scope": "CRC vectors; float decode; record integrity; settings; monotonic scheduling; UTC bounds; calibration wait; runtime/duty model; tail recovery policy",
-    "note": "Recorded on v0.1.0; portable core unchanged in v0.1.1."
+    "note": "Recorded on v0.1.0; portable core unchanged through v0.1.3."
   },
   "python_decoder_tests": {
     "passed": 5,
@@ -82,10 +82,11 @@
     "iterations": 30,
     "scope": "Browser status rendering and synchronous layout; simulated API, no ESP32 network timing"
   },
-  "hardware_validation_scope": "Initial logger bench checks passed on v0.1.1; buffered TFT diagnostics passed on v0.1.2; full physical acceptance remains incomplete.",
+  "hardware_validation_scope": "Initial logger bench checks passed on v0.1.1; buffered TFT diagnostics and user visual confirmation passed on v0.1.2; four-view v0.1.3 build/upload and targeted USB diagnostics passed, with visual confirmation pending; full physical acceptance remains incomplete.",
   "hardware_report": "hardware-validation.json",
   "hardware_reports": [
     "hardware-validation.json",
-    "display-validation.json"
+    "display-validation.json",
+    "views-validation.json"
   ]
 }

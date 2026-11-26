@@ -17,6 +17,7 @@ struct Retained {
 extern Retained retained;
 class App {
 public:
+  static constexpr uint8_t ScreenPageCount = 4;
   logger::Settings settings;
   Preferences prefs;
   Sensors sensors;

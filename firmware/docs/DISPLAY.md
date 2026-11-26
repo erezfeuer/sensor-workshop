@@ -1,4 +1,23 @@
-# TFT refresh — v0.1.2
+# TFT views and refresh
+
+## Four views — v0.1.3
+
+Press **D0 Next** to cycle through these views. D1 opens/closes the phone hotspot, and D2 starts/pauses logging. While the hotspot is open, its QR screen takes precedence; press **D1 Done** to return to the readings.
+
+| View | Contents |
+| --- | --- |
+| CO2 | Large ppm value, recording interval/state, and sensor/clock warnings |
+| Environment | Temperature and humidity side by side, with light below; all three values use the larger 3× font |
+| Logger | Logging state; interval and countdown in 2× text; selected channels, separate CO₂ measurement cadence |
+| Battery / Storage | Record count, free flash, estimated storage/runtime, UTC clock, and battery voltage |
+
+`Next in … s` counts down to the next **saved observation**, not every continuous SCD30 conversion. It reads `retained.nextLogMs`, the same monotonic deadline used by the logger. Remaining milliseconds round up to seconds; when due but still waiting for a light conversion, the view says `Reading now...`. Phone/RTC clock adjustments do not move this deadline. The next interval appears after the logger advances its schedule. Paused logging shows `D2: start logging`, and unhealthy/full storage suppresses the countdown. No scheduler, sensor cadence, sleep timeout or stored setting changes are needed for these views.
+
+The screen continues to compose once per second while awake, with immediate redraws on button actions. Toasts temporarily replace only the bottom information line. View titles and `1/4`–`4/4` identify each page; the battery percentage remains in the header. USB `j` and `/api/status` now include `display.page` (zero based), `display.page_count` and `display.view` (`PHONE` while the QR screen is open).
+
+Both PlatformIO environments built and passed binary/partition/dashboard checks. Normal `feather` was uploaded with flash hash verification. USB reported v0.1.3, four views, buffered partial updates, live SCD30/TSL2591 readings, a valid RTC, and healthy storage. Recording remained enabled at the existing 60-second interval, and the saved settings revision was unchanged. [Targeted update checks](views-validation.json). All live channels were present; the post-reset sensor-error counter stayed at 1 throughout observation. Confirmation of the new views and countdown on the physical display remains pending. The initial logger and v0.1.2 refresh results below remain historical checks, rather than repeated full acceptance tests.
+
+## Buffered refresh — v0.1.2
 
 The once-per-second blink came from `tft.fillScreen(BG)` followed by many individual text and shape writes. The panel displayed that intermediate blank image before the new content arrived.
 
