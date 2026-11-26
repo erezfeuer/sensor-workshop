@@ -16,6 +16,6 @@ The normal `feather` firmware was uploaded with PlatformIO and its flash hash ve
 - Composition happens off-screen: sampled reading composition took approximately 11–48 ms; QR composition peaked at 61 ms on first generation and settled around 17 ms.
 - With the hotspot running, diagnostics reported about 275 KB free heap and 1.95 MB free PSRAM. Live sensor values, RTC and the journal remained healthy; the existing startup sensor-error count did not increase during this check.
 
-[Recorded diagnostics and build hashes](display-validation.json). The user has been asked to confirm the visible result; software timings alone cannot establish the absence of perceived flicker or tearing.
+[Recorded diagnostics and build hashes](display-validation.json). **Visual check passed:** on 26 November 2026, Erez confirmed, “Yes, it looks steady now.” This confirms the reported once-per-second blink is resolved on the assembled prototype; it is not an instrumented LCD scanout measurement.
 
 To inspect refresh behaviour over USB, send `j` and read the `display` object. `last_pixels_sent: 0` means the last composed image matched the displayed one. `frames_skipped` counts such updates; `max_present_us` includes the initial full image. These diagnostics do not change the logging configuration.

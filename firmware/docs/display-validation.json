@@ -1,7 +1,7 @@
 {
   "date": "2026-11-26",
   "firmware_version": "0.1.2",
-  "status": "hardware_diagnostics_passed",
+  "status": "hardware_diagnostics_and_user_visual_check_passed",
   "scope": "TFT buffering and partial refresh; initial logger acceptance remains in hardware-validation.json",
   "installed_environment": "feather",
   "flash_hash_verified": true,
@@ -23,7 +23,7 @@
   "records_after": 59,
   "all_samples_buffered": true,
   "sensor_error_counter_unchanged": true,
-  "user_visual_confirmation": "pending",
+  "user_visual_confirmation": "Erez confirmed on 2026-11-26: Yes, it looks steady now",
   "measurements": [
     {
       "phase": "readings",
