@@ -34,6 +34,7 @@ html = (ROOT / 'web/index.html').read_bytes()
 header = (ROOT / 'include/web_asset.h').read_text()
 compressed = bytes(int(n) for n in re.findall(r'\d+', header.split('{', 1)[1]))
 assert gzip.decompress(compressed) == html
+assert len(compressed) <= 16 * 1024, 'Dashboard exceeds its 16 KiB compressed size budget'
 assert b'DemoDevice' not in html and b'SIMULATED DATA' not in html
 assert 'src="http' not in html.decode() and 'src=\'http' not in html.decode()
 assert 'INTERACTIVE PREVIEW' in (ROOT / 'preview.html').read_text()
@@ -56,7 +57,8 @@ result = {'builds': builds, 'flash_bytes': end, 'log_partition_bytes': partition
           'embedded_html_bytes': len(html), 'embedded_gzip_bytes': len(compressed),
           'checks': ['Nonoverlapping 4 MB flash map', 'TinyUF2 upload address preserved',
                      'Both application images fit', 'Compiled partition tables match source',
-                     'Embedded dashboard matches production HTML exactly', 'No demo fixture in firmware'],
+                     'Embedded dashboard matches production HTML exactly', 'No demo fixture in firmware',
+                     'Dashboard fits 16 KiB compressed size budget'],
           'hardware_accessed': False}
 out = ROOT / 'tests/artifacts/build-results.json'
 out.parent.mkdir(exist_ok=True)

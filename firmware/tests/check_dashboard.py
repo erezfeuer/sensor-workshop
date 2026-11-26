@@ -27,6 +27,15 @@ def passed(name):
     checks.append(name)
     print('PASS', name, flush=True)
 
+def advance(page, milliseconds):
+    # Response.json() reads a native stream outside Playwright's virtual clock.
+    # Yield between small steps so response completion can schedule the next poll.
+    while milliseconds:
+        step = min(100, milliseconds)
+        page.clock.run_for(step)
+        page.evaluate('undefined')
+        milliseconds -= step
+
 try:
     with sync_playwright() as pw:
         chrome = Path('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome')
@@ -75,7 +84,7 @@ try:
         page.evaluate('DemoDevice.state.settings.revision++')
         page.locator('#saveSettings').click()
         expect(page.locator('#settingsFeedback')).to_contain_text('Settings changed')
-        page.wait_for_timeout(2100)
+        page.wait_for_function('SensorWorkshop.getState().settings.revision === DemoDevice.state.settings.revision')
         page.locator('#reloadSettings').click()
         expect(page.locator('#name')).to_have_value('Test plot')
         passed('Conflicting settings are shown; edited values survive background polling')
@@ -173,16 +182,110 @@ try:
         passed('Opening the dashboard sets an unset RTC from browser time')
         clockpage.close()
 
-        mobile = browser.new_page(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True, locale='en-US')
+        mobile = browser.new_page(viewport={'width': 390, 'height': 844}, device_scale_factor=3,
+                                  is_mobile=True, has_touch=True, locale='en-US')
         mobile.on('pageerror', lambda error: errors.append(str(error)))
         mobile.add_init_script(path=str(ROOT / 'tests/mock_device.js'))
         mobile.goto(url)
         expect(mobile.locator('#co2')).to_have_text('637')
+        assert mobile.evaluate('chart.width <= Math.ceil(chart.getBoundingClientRect().width * 2)')
         for tab in ['live', 'settings', 'runtime', 'calibration']:
             mobile.locator(f'[data-tab="{tab}"]').click()
             assert mobile.evaluate('document.documentElement.scrollWidth <= innerWidth'), f'Horizontal overflow in {tab}'
             mobile.screenshot(path=str(ARTIFACTS / f'mobile-{tab}.png'), full_page=True)
         passed('All four tabs fit a 390-pixel phone without horizontal scrolling')
+        passed('Chart bitmap stays at most 2x on a 3x-density phone')
+
+        # Virtual time exercises traffic policy without long real-time waits.
+        traffic = browser.new_page()
+        traffic.on('pageerror', lambda error: errors.append(str(error)))
+        traffic.clock.install()
+        traffic.add_init_script(path=str(ROOT / 'tests/mock_device.js'))
+        traffic.goto(url)
+        expect(traffic.locator('#co2')).to_have_text('637')
+        traffic.evaluate('''() => {
+          window.statusAttempts=[];
+          const original=window.fetch;
+          window.fetch=(path,options)=>{
+            if(path==='/api/status') statusAttempts.push(Date.now());
+            return original(path,options);
+          };
+        }''')
+        advance(traffic, 6100)
+        assert len(traffic.evaluate('statusAttempts')) == 3
+        traffic.locator('[data-tab="settings"]').click()
+        count = len(traffic.evaluate('statusAttempts'))
+        advance(traffic, 4800)
+        assert len(traffic.evaluate('statusAttempts')) == count
+        advance(traffic, 300)
+        assert len(traffic.evaluate('statusAttempts')) == count + 1
+        passed('Live view polls at 2 seconds; settings at 5 seconds')
+
+        traffic.evaluate('''() => {
+          window.testHidden=true;
+          Object.defineProperty(document,'hidden',{configurable:true,get:()=>testHidden});
+          document.dispatchEvent(new Event('visibilitychange'));
+        }''')
+        count = len(traffic.evaluate('statusAttempts'))
+        advance(traffic, 30000)
+        assert len(traffic.evaluate('statusAttempts')) == count
+        traffic.evaluate('testHidden=false;document.dispatchEvent(new Event("visibilitychange"))')
+        assert len(traffic.evaluate('statusAttempts')) == count + 1
+        passed('Hidden page stops polling; returning refreshes immediately')
+
+        traffic.locator('[data-tab="live"]').click()
+        traffic.evaluate('DemoDevice.fail=true;statusAttempts=[]')
+        advance(traffic, 32000)
+        attempts = traffic.evaluate('statusAttempts')
+        assert len(attempts) == 5, attempts
+        gaps = [b-a for a,b in zip(attempts,attempts[1:])]
+        assert all(abs(gap-expected)<200 for gap,expected in zip(gaps,[2000,4000,8000,15000])), gaps
+        expect(traffic.locator('#connection')).to_have_attribute('data-online', 'false')
+        traffic.evaluate('DemoDevice.fail=false')
+        advance(traffic, 15000)
+        expect(traffic.locator('#connectionText')).to_have_text('Connected')
+        passed('Failed requests back off to 15 seconds and recover')
+        traffic.close()
+
+        slow = browser.new_page()
+        slow.clock.install()
+        slow.add_init_script((ROOT / 'tests/mock_device.js').read_text() + '''
+          window.pendingStatus=0;window.peakStatus=0;
+          const originalFetch=window.fetch;
+          window.fetch=async(path,options)=>{
+            if(path!=='/api/status') return originalFetch(path,options);
+            peakStatus=Math.max(peakStatus,++pendingStatus);
+            try {await new Promise(resolve=>setTimeout(resolve,3000));return await originalFetch(path,options);}
+            finally {pendingStatus--;}
+          };
+        ''')
+        slow.goto(url)
+        advance(slow, 9000)
+        expect(slow.locator('#co2')).to_have_text('637')
+        assert slow.evaluate('peakStatus') == 1
+        assert slow.evaluate("DemoDevice.calls.filter(c=>c.path==='/api/status').length") == 2
+        passed('A slow device never accumulates overlapping status requests')
+        slow.close()
+
+        mobile.locator('[data-tab="live"]').click()
+        cdp = mobile.context.new_cdp_session(mobile)
+        cdp.send('Emulation.setCPUThrottlingRate', {'rate': 6})
+        timings = mobile.evaluate('''() => {
+          const samples=[];
+          for(let i=0;i<30;i++) {
+            const begin=performance.now();
+            SensorWorkshop.render(DemoDevice.state);
+            document.body.getBoundingClientRect();
+            samples.push(performance.now()-begin);
+          }
+          samples.sort((a,b)=>a-b);
+          return {median_ms:samples[15],p95_ms:samples[28],cpu_slowdown:6,iterations:30,
+            scope:'Browser status rendering and synchronous layout; simulated API, no ESP32 network timing'};
+        }''')
+        cdp.send('Emulation.setCPUThrottlingRate', {'rate': 1})
+        assert timings['p95_ms'] < 100, timings
+        (ARTIFACTS / 'dashboard-performance.json').write_text(json.dumps(timings, indent=2) + '\n')
+        passed('Status render/layout p95 below 100 ms with 6x browser CPU slowdown')
         assert not errors, errors
         passed('No JavaScript exceptions across interaction and recovery scenarios')
         browser.close()

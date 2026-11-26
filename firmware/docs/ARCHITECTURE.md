@@ -108,6 +108,8 @@ The decoder never modifies the input or overwrites an existing output. It stops 
 
 The AP runs at `192.168.4.1`, has a device-specific SSID/password and allows up to three clients. It is not connected to an upstream Wi-Fi network. DNS directs captive-portal discovery to the local page. No cloud, station credentials or firmware update route is present.
 
+The page is served as one gzip-compressed asset, limited to 16 KiB at build time. Rendering and plotting run in the phone browser. Polling waits for each request to finish before scheduling another: two seconds for Live/Calibration (or any active calibration), five seconds for the other views, no recurring requests while hidden. Connection failures use 2/4/8/15-second retry delays; a visibility change to foreground triggers an immediate refresh. History is fetched on opening or explicit refresh, not on every status poll. Resize redraws are coalesced with `requestAnimationFrame`, and the canvas pixel ratio is capped at 2. Cached number formatters avoid rebuilding them for each sensor value; the runtime calculator updates only while its view is visible.
+
 Every POST requires JSON and the per-boot `X-Workshop-Token` returned by `/api/status`. There are no cross-origin access headers. The Wi-Fi password is persisted in NVS and displayed on the device; the dashboard is HTTP on this local WPA2 network. Request bodies are limited to 2 KiB in the handler.
 
 | Method/path | Contract |
