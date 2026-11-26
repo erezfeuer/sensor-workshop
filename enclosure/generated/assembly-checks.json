@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "version": "0.7.1",
+  "version": "0.8",
   "light_sensor": "tsl2591",
   "sampled_path": {
     "axis": "+Z into shell",
@@ -154,7 +154,7 @@
   "limitations": [
     "Sampled nominal rigid-motion check, not a continuous clearance proof.",
     "Print tolerance, flex, omitted small components, real screw heads, hands and driver handles need a physical pilot.",
-    "Both Feather leads must be unplugged before withdrawal; cable deformation is not simulated.",
+    "The rigid full-travel check omits both Feather leads. The battery lead can lift out of the open notch; actual connected travel depends on available slack.",
     "SCD30 is screwed to its carrier outside the housing.",
     "The curved battery-tie route is prescribed; tip bending, friction and feeding reliability require a physical trial."
   ]

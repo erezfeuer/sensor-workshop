@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "variant": "0.7.1-personal-scd30-3",
+  "variant": "0.8-personal-scd30-3",
   "offline": true,
   "selectable_components": 28,
   "checks": [
@@ -12,6 +12,7 @@
     "sensor hidden for Feather removal",
     "cut through snap",
     "existing tie and pole views",
+    "battery cable close-up",
     "mobile width",
     "no JavaScript/WebGL errors or network requests"
   ],

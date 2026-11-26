@@ -1,4 +1,4 @@
-// Sensor Workshop v0.7.1. Two case parts and a removable Feather frame.
+// Sensor Workshop v0.8. Two case parts and a removable Feather frame.
 // Board-derived geometry: Adafruit CC BY-SA 3.0; see reference/ATTRIBUTION.md.
 include <parameters.scad>
 include <generated/boards.scad>
@@ -49,6 +49,17 @@ module boss(xy,z0,z1,d=4.8,pilot=m2_pilot) {
         if(pilot>0) translate([0,0,-eps]) cylinder(h=z1-z0+2*eps,d=pilot);
     }
 }
+module battery_cable_notch() {
+    // Open toward the carrier: no eye or threading, and generous upper fillets.
+    x0=feather_cable_notch_x[0]; x1=feather_cable_notch_x[1];
+    z1=feather_cable_notch_top; r=feather_cable_notch_radius;
+    y0=feather_cable_bridge_y[0]-eps;
+    depth=feather_cable_bridge_y[1]-feather_cable_bridge_y[0]+2*eps;
+    z0=carrier_z-4;
+    translate([x0,y0,z0]) cube([x1-x0,depth,z1-r-z0]);
+    translate([x0+r,y0,z0]) cube([x1-x0-2*r,depth,z1-z0]);
+    for(x=[x0+r,x1-r]) translate([x,y0,z1-r]) y_cylinder(depth,2*r);
+}
 module feather_frame() {
     // Screw the PCB to this frame OUTSIDE the shell, from its display side.
     // The complete frame slides upward through the open bottom. No side tools.
@@ -59,8 +70,13 @@ module feather_frame() {
             translate([4,12.5,26.6]) cube([2.1,4,23]);
             translate([57,12.5,26.6]) cube([1.9,4,23]);
             translate([5.9,13.5,26.6]) cube([51.2,3,2]);
-            // Label land only on the clear right half; keep the original wire
-            // clearance above the left half of the crossbar.
+            // Raise the left brace toward the Feather. The wide opening below
+            // it lets the connected lead lift out, without trapping it in a loop.
+            translate([feather_cable_notch_x[0]-2,feather_cable_bridge_y[0],26.6])
+                cube([feather_cable_notch_x[1]-feather_cable_notch_x[0]+4,
+                    feather_cable_bridge_y[1]-feather_cable_bridge_y[0],
+                    feather_cable_notch_top+feather_cable_bridge_height-26.6]);
+            // Keep the USB arrow and screen orientation on the right-hand land.
             translate([24,11.3,26.6]) cube([33.1,5.2,3.8]);
             for(i=[0:3]) let(p=feather_holes[i],x=feather_origin[0]+p[0],z=feather_origin[2]-p[1]) {
                 // Wider tapered posts merge into broad roots on each upright.
@@ -83,6 +99,7 @@ module feather_frame() {
                 if(i==1 || i==2) translate([x,feather_origin[1]+pcb_thickness-locating_height,z]) y_cylinder(locating_height+eps,locating_pin);
             }
         }
+        battery_cable_notch();
         // Preserve clearance to the radio package and copper antenna face.
         // These are mechanical component envelopes, not an RF-performance claim.
         board_transform("feather") {

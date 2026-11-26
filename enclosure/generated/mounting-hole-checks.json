@@ -1,11 +1,11 @@
 {
   "status": "passed",
-  "version": "0.7.1",
+  "version": "0.8",
   "units": "mm",
   "print_sha256": {
     "shell": "b29fa569636cf0b5c864e35d9535690f76b2a753bbfb7220225b6004a3be7376",
     "carrier": "a6f3046358a60a117af3f3cbcbe5bc5d9da3c87db58226534f8107aaa41c76d2",
-    "feather_frame": "c57d9aa3c9cd26922f79a32f86b4ca72d35f3df8300d60a2e1d9d9bb9149476e",
+    "feather_frame": "2787ca7c826bca24b95d3f36f0104eb90bd93740b56814cae363378b9660aeda",
     "personal_carrier": "2ee623f2f441ef5e76fb06b7edbdc2e45a4742a16f86bf90338ae0dadd683204"
   },
   "references": {

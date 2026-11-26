@@ -143,7 +143,7 @@ for e in json.loads((ROOT/'hardware/reference/manifest.json').read_text()):
 with pymupdf.open(CAD/'design-review.pdf') as pdf:
     assert len(pdf)==9
     report['review_pdf_pages']=len(pdf)
-report['limitations']=['Earlier shell printed well in PLA; unidentified screws fitted v0.5. v0.7 removes v0.6 LED interference and retains original mounting centres. Revised seating and removal durability need a physical trial.',
+report['limitations']=['Erez reports that almost everything in v0.7.1 assembled well. v0.8 adds an open battery-lead notch while retaining the fitted mounting interface. The new notch and repeated-removal durability still need a physical trial.',
     'Simplified PCB/connector envelopes omit some small components and manufacturing tolerances.',
     'Cable curves are illustrative; trial lead lengths include unmodelled slack.',
     'Threads intentionally engage printed pilot walls; fasteners are not a collision-free fit claim.',

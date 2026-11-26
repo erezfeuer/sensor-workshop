@@ -1,10 +1,10 @@
 {
   "status": "passed",
-  "version": "0.7.1",
+  "version": "0.8",
   "source_sha256": "e112dae4bd06b1cbfb3ff11d49df02f8e4a21ad6c886cbfccaeb7c8a9b5626b1",
   "fitted_v05_stl_sha256": "01126572127a528b9ad63513a91e6e53deeef018afef16ae239a5081f259c9de",
   "rejected_v06_stl_sha256": "abd68959dd98a24cbb824b902a29ae35721560406537661ab30177bfda094798",
-  "current_stl_sha256": "c57d9aa3c9cd26922f79a32f86b4ca72d35f3df8300d60a2e1d9d9bb9149476e",
+  "current_stl_sha256": "2787ca7c826bca24b95d3f36f0104eb90bd93740b56814cae363378b9660aeda",
   "axes": "print XY = assembly XZ",
   "locations": {
     "screw_pilots": {

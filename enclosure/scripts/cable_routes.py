@@ -60,9 +60,10 @@ def routes():
             [26.567,25.89,56.4],[22,25.89,56.4],[15.5,28,51],
             [14.5,34,44],[17,37,35],[17,34,27],[17,33,22],[14,34.11,16.9],[17.567,34.11,16.9]],
             plugs=[([3.8,5.4,2],[28.467,25.89,56.4]),([3.8,5.4,2],[19.467,34.11,16.9])]),
-        dict(id='battery_lead',label='Battery lead · direct to Feather',length=None,spread=[0,1,0],points=[
-            [9.95,50,41],[8.5,50,41],[8.5,41,38],[11,32,34],
-            [16.795,22,30],[16.795,13,29],[16.795,8.3,29],[16.795,8.3,30.896]],
+        dict(id='battery_lead',label='Battery lead · open frame notch',length=None,spread=[0,1,0],points=[
+            [9.8,50,41],[7.5,50,41],[7.5,41,38],[10,32,34],
+            [16.795,23,31],[16.795,19,29],[16.795,15,28.9],
+            [16.795,12,28.7],[16.795,9.2,28.9],[16.795,8.3,30.896]],
             plugs=[([6.4,3.2,3.8],[16.795,8.3,32.796])])
     ]
 
@@ -77,17 +78,18 @@ def build():
         # Parallel wire offsets twist gradually between the two plug orientations.
         first=np.asarray(route['spread'],float)
         last=np.array([1,0,0]) if route['id'] in ['qt1','battery_lead'] else np.array([0,1,0]) if route['id']=='qt2' else first
-        offsets=np.linspace(-.95,.95,len(colors))
+        spacing=.95 if route['id'].startswith('qt') else 1.1
+        offsets=np.linspace(-spacing,spacing,len(colors))
         parent=route['id']
         for i,(color,off) in enumerate(zip(colors,offsets)):
             blend=np.linspace(0,1,len(path))[:,None]
             pts=path+off*((1-blend)*first+blend*last)
-            mesh=tube(pts,.28 if route['id'].startswith('qt') else .4)
+            mesh=tube(pts,.28 if route['id'].startswith('qt') else 1.0)
             key='cable_'+parent+('_'+str(i))
             (scene/(key+'.stl')).write_bytes(trimesh.exchange.stl.export_stl(mesh))
             entries.append(dict(mesh=key,id=parent if i==0 else key,parent=None if i==0 else parent,
                 label=route['label'],color=color,cable=True,
-                note='Smooth routing illustration; '+(str(route['length'])+' mm trial lead. ' if route['length'] else 'Local prewired pack. ')+'Check bend radius and slack on the pilot.'))
+                note='Smooth routing illustration; '+(str(route['length'])+' mm trial lead. ' if route['length'] else 'Lay the connected lead in the open frame notch; no threading or unplugging is needed to release it from the frame. Two 2 mm OD wires are illustrated. Leave slack above the carrier. ')+'Check bend radius and slack on the pilot.'))
             # Low-overhead OpenSCAD polyhedron; no thousands of Boolean hull operations.
             scad.append('color("'+color+'") polyhedron(points='+json.dumps(np.round(mesh.vertices,4).tolist(),separators=(',',':'))+',faces='+json.dumps(mesh.faces.tolist(),separators=(',',':'))+',convexity=4);')
         for i,(size,center) in enumerate(route['plugs']):

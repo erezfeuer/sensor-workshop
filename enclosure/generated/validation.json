@@ -1,5 +1,5 @@
 {
-  "version": "0.7.1",
+  "version": "0.8",
   "light_sensor": "tsl2591",
   "status": "passed",
   "units": "mm",
@@ -34,8 +34,8 @@
         31.2,
         11.8
       ],
-      "solid_volume_mm3": 3234.73,
-      "sha256": "c57d9aa3c9cd26922f79a32f86b4ca72d35f3df8300d60a2e1d9d9bb9149476e"
+      "solid_volume_mm3": 3338.66,
+      "sha256": "2787ca7c826bca24b95d3f36f0104eb90bd93740b56814cae363378b9660aeda"
     },
     "coupon": {
       "watertight": true,

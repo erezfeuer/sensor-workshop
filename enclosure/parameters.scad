@@ -1,5 +1,5 @@
-// Sensor Workshop v0.7.1 — millimetres. Two case parts + one Feather frame.
-enclosure_version = "0.7.1";
+// Sensor Workshop v0.8 — millimetres. Two case parts + one Feather frame.
+enclosure_version = "0.8";
 light_sensor = "tsl2591"; // Adafruit QT only: "tsl2591" or "veml7700"; rebuild all outputs after changing.
 case_width = 92;
 case_depth = 66;
@@ -63,6 +63,13 @@ feather_root_diameter = 6.4;
 feather_root_y = 8.7;
 feather_root_span = 9;
 feather_pilot_depth = 6;
+
+// Open-bottom battery-lead notch. The plugged-in lead lifts out freely.
+feather_cable_notch_x = [11,24];
+feather_cable_notch_top = 30.5;
+feather_cable_notch_radius = 1;
+feather_cable_bridge_height = 3;
+feather_cable_bridge_y = [12.5,16.5];
 
 // Central carrier region stays attached by four broad, short printed bridges.
 // Thermal model reads the same dimensions; no separate sensor-box parts.

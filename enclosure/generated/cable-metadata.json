@@ -165,25 +165,25 @@
     "mesh": "cable_battery_lead_0",
     "id": "battery_lead",
     "parent": null,
-    "label": "Battery lead \u00b7 direct to Feather",
+    "label": "Battery lead \u00b7 open frame notch",
     "color": "#c55349",
     "cable": true,
-    "note": "Smooth routing illustration; Local prewired pack. Check bend radius and slack on the pilot."
+    "note": "Smooth routing illustration; Lay the connected lead in the open frame notch; no threading or unplugging is needed to release it from the frame. Two 2 mm OD wires are illustrated. Leave slack above the carrier. Check bend radius and slack on the pilot."
   },
   {
     "mesh": "cable_battery_lead_1",
     "id": "cable_battery_lead_1",
     "parent": "battery_lead",
-    "label": "Battery lead \u00b7 direct to Feather",
+    "label": "Battery lead \u00b7 open frame notch",
     "color": "#30383b",
     "cable": true,
-    "note": "Smooth routing illustration; Local prewired pack. Check bend radius and slack on the pilot."
+    "note": "Smooth routing illustration; Lay the connected lead in the open frame notch; no threading or unplugging is needed to release it from the frame. Two 2 mm OD wires are illustrated. Leave slack above the carrier. Check bend radius and slack on the pilot."
   },
   {
     "mesh": "cable_battery_lead_plug0",
     "id": "cable_battery_lead_plug0",
     "parent": "battery_lead",
-    "label": "Battery lead \u00b7 direct to Feather",
+    "label": "Battery lead \u00b7 open frame notch",
     "color": "#ece8d9",
     "cable": true,
     "note": "Nominal connector plug envelope."

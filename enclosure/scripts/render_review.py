@@ -217,7 +217,7 @@ def feather_mount_drawing(scene):
         arrowprops=dict(arrowstyle='->',lw=.8))
     ax.legend(loc='lower center',bbox_to_anchor=(.5,-.26),frameon=False,fontsize=8)
     fig.suptitle(f"Feather frame v{PARAMS['enclosure_version']} — reinforcement and orientation",fontsize=19,x=.05,ha='left')
-    fig.text(.05,.065,'Reprint 03-feather-frame.stl from v0.5 or v0.6. Flat rear face on the bed; start with five perimeters at 0.4 mm nozzle / 0.2 mm layers.\n'
+    fig.text(.05,.065,'v0.8 adds the wide open battery-lead notch. Reprint only 03-feather-frame.stl from v0.7.1; flat rear face on the bed.\n'
         'The complete first 2 mm and both locating pins match the fitted v0.5 STL; Ø6.4 mm reinforcement starts behind this interface.\n'
         'The section shows actual CAD geometry, not a strength simulation. Gentle repeated fitting/removal still needs a physical trial.',
         fontsize=9,color='#526568')
@@ -330,6 +330,60 @@ def mounting_guide_drawing(scene):
     plt.close(fig)
 
 
+def battery_lead_drawing(scene):
+    """Actual open-notch sections and thicker wire placement."""
+    from cable_routes import routes, smooth
+    fig,axes=plt.subplots(1,2,figsize=(13.5,8.8))
+    x0,x1=PARAMS['feather_cable_notch_x']
+    cx=(x0+x1)/2;cy=sum(PARAMS['feather_cable_bridge_y'])/2
+    cz=PARAMS['feather_cable_notch_top'];w=x1-x0;h=cz-26.4
+    ax=axes[0]
+    section=scene['feather_frame'].section(plane_normal=[0,1,0],plane_origin=[0,cy,0])
+    polys=[pts[:,[0,2]] for pts in section.discrete if len(pts)>3]
+    polys.sort(key=lambda poly:abs(np.sum(poly[:,0]*np.roll(poly[:,1],1)-poly[:,1]*np.roll(poly[:,0],1))),reverse=True)
+    previous=[]
+    for poly in polys:
+        depth=sum(PlotPath(old).contains_point(poly[0]) for old in previous)
+        ax.fill(poly[:,0],poly[:,1],color='white' if depth%2 else COLORS['feather_frame'],edgecolor='#334c50',lw=.8)
+        previous.append(poly)
+    for x,color in [(15.695,'#bc5546'),(17.895,'#30383b')]:
+        ax.add_patch(plt.Circle((x,28.9),1,facecolor=color,edgecolor='#334c50'))
+    ax.annotate('Two 2 mm OD wires',xy=(17,28.9),xytext=(17.5,25),ha='center',fontsize=9,
+        arrowprops=dict(arrowstyle='->',lw=.8))
+    ax.annotate('',xy=(x0,cz+1.4),xytext=(x1,cz+1.4),arrowprops=dict(arrowstyle='<->',lw=.9))
+    ax.text(cx,cz+1.8,'13 mm notch',ha='center',fontsize=9)
+    ax.annotate('',xy=(27,26.4),xytext=(27,cz),arrowprops=dict(arrowstyle='<->',lw=.9))
+    ax.text(27.3,(26.4+cz)/2,'4.1 mm',rotation=90,va='center',fontsize=9)
+    ax.axhline(26.4,color=COLORS['carrier'],lw=2)
+    ax.text(8.5,26.7,'Cover top',fontsize=9,color=COLORS['carrier'])
+    ax.set(xlim=(8,29),ylim=(23.5,38),xlabel='X (mm)',ylabel='Z above desk (mm)')
+    ax.set_title('Across the open notch · Y = 14.5 mm\nLead lifts out through the open lower edge',loc='left',fontsize=12)
+    ax.set_aspect('equal');ax.grid(alpha=.12);ax.set_axisbelow(True)
+    ax=axes[1]
+    section_plot(ax,{k:scene[k] for k in ('feather_frame','feather','carrier')},16.795,
+                 'Along the lead · X = 16.795 mm',dimensions=False)
+    route=next(r for r in routes() if r['id']=='battery_lead')
+    pts=smooth(route['points'])
+    ax.plot(pts[:,1],pts[:,2],color='#bc5546',lw=2,label='Wire centreline projection')
+    size,center=route['plugs'][0]
+    ax.add_patch(plt.Rectangle((center[1]-size[1]/2,center[2]-size[2]/2),size[1],size[2],facecolor='#ece8d9',edgecolor='#334c50'))
+    ax.annotate('PH socket',xy=(8.2,38),xytext=(5.2,40.5),fontsize=9,arrowprops=dict(arrowstyle='->',lw=.8))
+    ax.annotate('Raised 3 × 4 mm brace',xy=(14.5,32),xytext=(20.5,37),ha='center',fontsize=9,arrowprops=dict(arrowstyle='->',lw=.8))
+    ax.annotate('From battery bay',xy=(21,30),xytext=(23,34),ha='center',fontsize=9,arrowprops=dict(arrowstyle='->',lw=.8))
+    ax.set(xlim=(3,28),ylim=(23,42))
+    ax.legend(loc='upper center',bbox_to_anchor=(.5,-.15),frameon=False,fontsize=8)
+    fig.suptitle(f"Open battery-lead notch · v{PARAMS['enclosure_version']}",x=.055,ha='left',fontsize=19)
+    fig.text(.055,.055,'Lay the connected lead in the wide notch above the cover. It lifts out freely with the carrier removed; no plug threading.\n'
+        'Opening: 13 mm wide, 4.1 mm above the cover, 1 mm upper fillets. Raised bridge: 3 mm high × 4 mm deep.\n'
+        'The new material stays 0.64 mm below the lower header-row reserve. Original screw holes, pins and mounting faces are retained.\n'
+        'Flat rear face on the bed: the bridge is in the bed plane. Viewer wires are 2 mm OD; clearance checks use 2.4 mm OD.',
+        fontsize=9,color='#526568')
+    fig.subplots_adjust(left=.065,right=.97,top=.85,bottom=.23,wspace=.28)
+    fig.savefig(RENDERS/'battery-lead-notch.png',dpi=170)
+    fig.savefig(CAD/'battery-lead-notch.pdf')
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     RENDERS.mkdir(exist_ok=True)
     scene=load_scene()
@@ -345,6 +399,7 @@ if __name__ == "__main__":
         rasterize(variant(scene,kind),title,subtitle,RENDERS/(kind+".png"),eye=eye)
     drawings(scene)
     feather_mount_drawing(scene)
+    battery_lead_drawing(scene)
     light_sensor_drawing(scene)
     battery_tie_drawing(scene)
     mounting_guide_drawing(scene)

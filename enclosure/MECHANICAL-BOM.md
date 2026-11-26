@@ -1,6 +1,6 @@
 # Mechanical bill of materials — one device
 
-For enclosure **v0.7.1, reinforced Feather frame / Adafruit TSL2591 QT prototype**; fastener quantities also apply to the VEML7700 alternative. Buy these generic items locally or from a fastener supplier; they are separate from the Digi-Key/Mouser electronics orders. Quantities below are the installed quantities, before spares. [CSV shopping list](hardware.csv) · [Electronics and batteries](../hardware/BOM.md) · [Assembly instructions](README.md#print-set-and-assembly)
+For enclosure **v0.8, open battery-lead notch / reinforced Feather frame / Adafruit TSL2591 QT prototype**; fastener quantities also apply to the VEML7700 alternative. Buy these generic items locally or from a fastener supplier; they are separate from the Digi-Key/Mouser electronics orders. Quantities below are the installed quantities, before spares. [CSV shopping list](hardware.csv) · [Electronics and batteries](../hardware/BOM.md) · [Assembly instructions](README.md#print-set-and-assembly)
 
 ## Required purchased hardware
 

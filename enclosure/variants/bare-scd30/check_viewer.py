@@ -23,7 +23,7 @@ with sync_playwright() as p:
     page.on('request',lambda r:requests.append(r.url))
     page.goto((HERE/'model.html').as_uri());page.wait_for_selector('canvas[data-rendered="true"]')
     state=page.evaluate('sensorWorkshop.state()')
-    assert state['version']=='0.7.1-personal-scd30-3'
+    assert state['version']=='0.8-personal-scd30-3'
     assert len(state['components'])==28
     assert sum(c['group']=='Printed enclosure' for c in state['components'])==3
     assert page.locator('#error').is_hidden() and state['glError']==0
@@ -49,6 +49,11 @@ with sync_playwright() as p:
     assert page.evaluate('sensorWorkshop.state().cutPosition')==49
     page.locator('#reset').click();page.locator('#tie-access').click();page.locator('#tie-section').click();page.locator('#pole-mount').click()
     assert page.locator('#error').is_hidden()
+    page.locator('#cable-notch').click()
+    state=page.evaluate('sensorWorkshop.state()')
+    assert {c['id'] for c in state['components'] if c['visible']}=={'feather_frame','feather','battery_lead','carrier'}
+    assert state['explosion']==0 and state['cut']=='none' and state['halfHeight']==15
+    page.screenshot(path=str(HERE/'renders/viewer-battery-cable.png'))
     page.locator('#reset').click();page.set_viewport_size({'width':390,'height':844})
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     assert page.evaluate('sensorWorkshop.state().glError')==0
@@ -57,7 +62,7 @@ with sync_playwright() as p:
     report={'status':'passed','variant':state['version'],'offline':True,'selectable_components':28,
         'checks':['all visibility controls','explosion and sensor motion','25 vendor solids grouped under the sensor',
             'original cable geometry retained and hidden during explosion','obsolete clamp hardware absent',
-            'sensor hidden for Feather removal','cut through snap','existing tie and pole views',
+            'sensor hidden for Feather removal','cut through snap','existing tie and pole views','battery cable close-up',
             'mobile width','no JavaScript/WebGL errors or network requests'],
         'browser':browser.version,'limitations':['Chrome only','No physical fit implied']}
     (HERE/'generated/viewer-checks.json').write_text(json.dumps(report,indent=2)+'\n')

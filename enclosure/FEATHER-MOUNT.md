@@ -1,6 +1,6 @@
-# Feather mount — restored working interface v0.7.1
+# Feather mount — open battery-lead notch v0.8
 
-**Reprint [03-feather-frame.stl](../production-stls/03-feather-frame.stl).** This revision restores the complete v0.5 board-facing interface and reinforces it behind that interface. The full v0.7.1 hole audit also updates the shell to clear the RTC LED; use the current shell file. The standard carrier is unchanged. The personal bare-SCD30 set also has an updated snap carrier; use its [complete print folder](../prototype-stls/bare-scd30/). [Mounting drawing](feather-mounting.pdf) · [Interactive model](model.html)
+**Reprint only [03-feather-frame.stl](../production-stls/03-feather-frame.stl) from v0.7.1.** The raised left brace leaves a wide, open notch above the closing cover. The connected battery lead lifts out without unplugging its PH connector. [Assembly and sections](BATTERY-LEAD.md). The shell and both carriers are unchanged; the personal set has the same updated frame in its [print folder](../prototype-stls/bare-scd30/). [Mounting drawing](feather-mounting.pdf) · [Interactive model](model.html).
 
 ## Working interface restored exactly
 
@@ -10,7 +10,7 @@ All added reinforcement starts **behind that unchanged interface**. The posts ex
 
 The detailed Adafruit model also identified LED interference from the enlarged v0.6 contact pads. The original contact lands clear these parts. All **186 manufacturer solids** are checked against the current frame, and added reinforcement is relieved around the radio package. The screw and pin centres independently match the old STL and manufacturer PCB holes.
 
-The lower crossbar carries a **USB arrow** and **SCREEN SIDE**. Its clear right half provides space for the labels; the left half retains the battery-lead passage. The original overall size and slide tongues are retained.
+The lower crossbar carries a **USB arrow** and **SCREEN SIDE**. Its clear right half provides space for the labels; the left half is raised above an open battery-lead notch. The original overall size and slide tongues are retained.
 
 ![Corrected frame and engraved orientation labels](renders/feather-frame.png)
 
@@ -20,7 +20,7 @@ The lower crossbar carries a **USB arrow** and **SCREEN SIDE**. Its clear right 
 2. Point the Feather's **USB socket in the engraved arrow's direction**. The **screen and three buttons face you**, on the side marked SCREEN SIDE; the rear components face the mounting pads.
 3. Seat both locating pins gently. Confirm that the PCB sits flat against the pads and both screw holes line up before inserting screws. Do not use the screws to pull the board into place.
 4. Fit the two screws from the display face with a straight precision screwdriver. Support the nearby upright and tighten gently until seated, keeping the driver off the glass.
-5. Slide the complete frame into the shell from its open bottom. For removal, unplug both leads, withdraw the frame, then unscrew the board on the table while supporting the posts.
+5. Slide the complete frame into the shell from its open bottom. For removal, lift the battery lead out of the open notch and disconnect the QT lead if needed. Support the connected battery while bringing the frame out for screw access; available lead slack limits movement. Unscrew on the table while supporting the posts.
 
 The [detailed fit check](generated/feather-fit-checks.json) independently compares STL hole/pin centres to the fitted v0.5 frame and to the manufacturer's PCB holes. All **186 STEP solids** clear the corrected frame; the six component-solid overlaps belonging to the two LEDs in v0.6 are removed. The two LEDs are also included in the routine simplified model now. These are nominal geometric checks; the revised print still needs a seating and removal trial.
 

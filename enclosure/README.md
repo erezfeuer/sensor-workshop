@@ -1,8 +1,8 @@
-# Enclosure v0.7.1 — mounting-hole audit / TSL2591 QT prototype
+# Enclosure v0.8 — open battery-lead notch / TSL2591 QT prototype
 
-**v0.7.1 update:** the [full mounting-hole audit](generated/mounting-hole-checks.json) verifies all mounting centres, pilot depths, locating pins, closure passages and screw approaches. It also found a small RTC LED/post overlap. A local notch now clears that LED without moving the hole. **Use the updated `01-shell.stl`**, including in the personal print folder; the Feather frame also restores its complete working v0.5 front interface, with reinforcement behind it. Both carriers are retained. [Measured screw-depth table](MECHANICAL-BOM.md#mounting-hole-audit--25-november-2026).
+**v0.8 update: reprint only `03-feather-frame.stl` from v0.7.1.** The left brace is raised to leave an open **13 mm-wide notch**, with **4.1 mm clearance above the carrier**. Lay the connected battery lead in it; it can lift out freely when the carrier is off. No threading or PH disconnection is needed to release it from the bracket. The shell and both carriers are byte-for-byte unchanged. [Assembly and measured sections](BATTERY-LEAD.md).
 
-The Feather frame keeps the old hole/pin centres and restores the original contact diameters, with clearance around both USB-end LED packages. These LEDs overlapped the enlarged v0.6 posts and were missing from the simplified model. Reinforced roots and Ø1.8 × 6 mm blind pilots remain. **USB ←** and **SCREEN SIDE** replace the UP mark. v0.7.1 restores the complete first 2 mm of the working v0.5 frame and its original locating pins; it also updates the shell as noted above. The personal bare-SCD30 variant also has a strengthened snap carrier. [Fit correction and orientation](FEATHER-MOUNT.md) · [Mounting drawing](feather-mounting.pdf).
+The Feather frame retains the fitted v0.5 board-facing geometry through the first 2 mm: original holes, pins and contact lands. Reinforced roots, Ø1.8 × 6 mm blind pilots, **USB ←** and **SCREEN SIDE** labels remain. The shell retains its RTC LED clearance, and the personal bare-SCD30 carrier retains its strengthened latches. [Feather fit and orientation](FEATHER-MOUNT.md) · [Hole and screw-depth audit](MECHANICAL-BOM.md#mounting-hole-audit--25-november-2026).
 
 The shell retains the **Adafruit TSL2591 STEMMA QT** fit introduced in v0.5: the roof opening and notched light well align with its optical centre. An older VEML7700 shell still needs replacing when changing to TSL2591. [Sensor comparison and prototype checks](../hardware/LIGHT-SENSOR.md) · [Light-sensor fit drawing](light-sensor-fit.pdf).
 
@@ -16,7 +16,7 @@ The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the o
 
 - **[Bare SCD30 personal variant](variants/bare-scd30/README.md)** — Erez's soldered prototype only; includes a separate full print folder, snap-in carrier, assembly guide and interactive model.
 
-- **[Interactive HTML model](model.html)** — one offline file with 30 component checkboxes (including three optional mounting-example items), an explosion slider, movable cutaways, an **Underside** camera, a **Remove / install Feather** movement mode, a **Tie access** view of the empty shell, a **Tie section** through the two-guide route, and a **Pole mount** example. “Look inside” hides the shell. Download the file and open it in a browser; GitHub's file page displays source.
+- **[Interactive HTML model](model.html)** — one offline file with 30 component checkboxes (including three optional mounting-example items), an explosion slider, movable cutaways, an **Underside** camera, a **Remove / install Feather** movement mode, a **Tie access** view of the empty shell, a **Tie section** through the two-guide route, a **Pole mount** example, and a **Battery cable** close-up of the new notch. “Look inside” hides the shell. Download the file and open it in a browser; GitHub's file page displays source.
 - [Nine-page design review](design-review.pdf), [measured cross-sections](sections.pdf), [mounting drawings](mounting-drawings.pdf), and [battery-tie access sections](battery-tie-access.pdf), and [corner-guide details](mounting-guide-details.pdf).
 - [TSL2591 board fit and roof cross-section](light-sensor-fit.pdf).
 - [Reinforced Feather mount and orientation](FEATHER-MOUNT.md), with [CAD section and assembly drawing](feather-mounting.pdf).
@@ -29,7 +29,7 @@ The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the o
 
 ![Accessible enclosure assembly](renders/assembled.png)
 
-| Per device | v0.2 | v0.7.1 |
+| Per device | v0.2 | v0.8 |
 | --- | ---: | ---: |
 | Printed pieces | 2 | **3: shell, carrier, Feather frame** |
 | Screws | 10 | **10** |
@@ -65,7 +65,7 @@ Two **2.5 mm nylon zip ties**, approximately 150 mm long, pass through **5 mm fr
 
 Thread both ties in the empty shell before fitting boards or battery. Keep enough length at both ends to place the pack between them, then close each tie with its head below the pack. Tighten only enough to retain the pack; thin soft padding may improve grip. The physical trial showed that the previous open channel let the tail run into the roof/rear corner despite nominal clearance. The new return is intended to redirect it; actual tip feeding, friction and clamping still need a print trial. Check axial sliding and lead pull. Battery replacement requires cutting the ties.
 
-There is **no inline switch or extension**. The battery lead goes directly to the Feather, removing the previous 508 mm coil. Target roughly 70–100 mm of prewired battery lead and check it in the pilot. Full power disconnection requires unplugging the battery through the opened carrier; software sleep remains a firmware option.
+The connected battery lead sits in the frame’s wide, open notch above the closing carrier. [Placement and removal](BATTERY-LEAD.md). There is **no inline switch or extension**. The battery lead goes directly to the Feather, removing the previous 508 mm coil. Target roughly 70–100 mm of prewired battery lead and check it in the pilot. Full power disconnection requires unplugging the battery through the opened carrier; software sleep remains a firmware option.
 
 The RTC is rotated 90° so its QT sockets face front/rear, improving plug clearance and routing. The tentative chain remains:
 
@@ -96,11 +96,11 @@ The coupon checks all four received board patterns (TSL2591 and VEML7700 QT shar
 2. **On the table**, hold the frame with its engraved crossbar at the bottom and **SCREEN SIDE facing you**. Point the USB socket along the **USB arrow**, with **screen/buttons facing you**; the components face the frame. Seat it flat on both original locating pins without force before fitting the two M2×5 screws from the display face. Keep the driver off the glass, support the frame near the screw and tighten only until seated. [Orientation drawing and removal trial](FEATHER-MOUNT.md).
 3. With the shell roof down and bottom open, insert the CR1220 into the RTC. Install the RTC with two M2×5 screws and washers, then the light board with two M2×5 screws. Approach these four screws straight through the bottom. Fit the RTC–light lead.
 4. Slide the complete Feather/frame into its guides from the open bottom until it reaches the upper stops. The button and display faces point toward the front openings. Check the buttons, RESET and USB opening. Connect the Feather–RTC lead with the bottom still open. The frame remains loose in its guides until the carrier is fitted; keep it seated while handling the open device.
-5. With the ties already threaded, insert the battery from below with its lead toward the left. Bring the ends around the pack, close each tie with its head below the battery, secure gently, and route its lead to the Feather's downward-facing socket. Keep the lead above the small bottom frame crossbar and away from the closing edge. Confirm polarity before connecting.
+5. With the ties already threaded, insert the battery from below with its lead toward the left. Bring the ends around the pack, close each tie with its head below the battery, secure gently, and connect the PH plug after confirming polarity. Lay the connected lead in the wide, open frame notch. Leave a relaxed bend at the socket and spare lead above the carrier. There is no closed loop to thread; see [the close-up and sections](BATTERY-LEAD.md).
 6. **Outside the housing**, screw the SCD30 onto the carrier with its body away from the plate, using two M2×5 screws and the two locating pins. Plug in its QT lead and feed it through the carrier opening to the light board. Leave a service loop so the carrier can be lowered.
 7. Move loose wires and tie heads clear of the rails and closing rim. Raise the carrier straight through the open skirt onto its shoulder and fit the two M3×8 screws from below. This captures the Feather frame. Check sensing, programming/recovery, charging and the hotspot.
 
-To remove the Feather, lower the carrier with its SCD30, unplug the battery and Feather QT lead, then slide the board/frame straight down. Its two mounting screws are removed only after it is outside the housing. The HTML movement mode hides the carrier/SCD30 and unplugged leads, and moves the Feather, frame and two screws as one unit. The general exploded view is an inspection illustration rather than an assembly sequence.
+To remove the Feather, lower the carrier with its SCD30 and lift the battery lead out of the open notch. Disconnect the Feather QT lead if needed for access, then bring the board/frame down while supporting the battery and leaving its PH lead connected. Available lead slack determines how far the parts can move; keep the socket free of tension. Remove the mounting screws only with the frame outside the shell. The HTML movement mode hides cables and the carrier/SCD30; its full withdrawal is a rigid inspection animation, not a claim about available wire slack.
 
 ## Pilot checks and validation
 
@@ -125,6 +125,7 @@ python3 -m venv .venv-cad
 .venv-cad/bin/python enclosure/scripts/build_viewer.py
 .venv-cad/bin/python enclosure/scripts/validate.py
 .venv-cad/bin/python enclosure/scripts/check_feather_fit.py
+.venv-cad/bin/python enclosure/scripts/check_battery_lead.py
 .venv-cad/bin/python enclosure/scripts/check_mounting_holes.py
 .venv-cad/bin/python enclosure/scripts/check_assembly.py
 .venv-cad/bin/python enclosure/thermal/model.py

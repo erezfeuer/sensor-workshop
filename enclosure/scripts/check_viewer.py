@@ -95,6 +95,12 @@ with sync_playwright() as p:
     assert all(x['visible'] for x in state['components'])
     assert state['explosion']==0 and state['cut']=='none'
     page.screenshot(path=str(CAD/'renders/viewer-pole-mount.png'))
+    page.locator('#cable-notch').click()
+    state=page.evaluate('sensorWorkshop.state()')
+    assert {x['id'] for x in state['components'] if x['visible']}=={'feather_frame','feather','battery_lead','carrier'}
+    assert state['explosion']==0 and state['cut']=='none' and state['halfHeight']==15
+    assert 'no PH disconnection' in page.locator('#info').inner_text()
+    page.screenshot(path=str(CAD/'renders/viewer-battery-cable.png'))
     page.locator('#reset').click()
     assert all(x['visible']==x['defaultVisible'] for x in page.evaluate('sensorWorkshop.state().components'))
     canvas=page.locator('#model').bounding_box()
@@ -112,7 +118,7 @@ with sync_playwright() as p:
     assert not errors,errors
     assert not any(u.startswith(('http:','https:')) for u in requests),requests
     report=dict(status='passed',version=params['enclosure_version'],light_sensor=params['light_sensor'],browser=browser.version,offline=True,selectable_components=30,
-                checks=['three printed components; obsolete parts absent','all 30 visibility toggles','explosion 0/64/100 percent and transforms','Feather insertion mode: paired movement, carrier hidden, other parts stationary, reset','empty-shell tie-access preset and reset','battery tie section at X=23 with battery and one tie','pole mounting example, optional parts initially hidden, reset restores defaults','cut controls','hide/show all','look inside','orbit and zoom','mobile layout','no external network requests','no JavaScript/WebGL errors'],
+                checks=['three printed components; obsolete parts absent','all 30 visibility toggles','explosion 0/64/100 percent and transforms','Feather insertion mode: paired movement, carrier hidden, other parts stationary, reset','empty-shell tie-access preset and reset','battery tie section at X=23 with battery and one tie','pole mounting example, optional parts initially hidden, reset restores defaults','battery cable close-up with open cable notch and carrier','cut controls','hide/show all','look inside','orbit and zoom','mobile layout','no external network requests','no JavaScript/WebGL errors'],
                 limitations=['Chrome only; Safari and Firefox not exercised','hardware fit is not a browser test'])
     (CAD/'generated/viewer-checks.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))

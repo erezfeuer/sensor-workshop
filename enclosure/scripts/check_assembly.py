@@ -113,7 +113,7 @@ for i in p['board_screw_indices']:
     report['screwdriver_checks'].append({'screw':f'feather-{i}','shaft_diameter_mm':3,'shaft_length_mm':100,'approach':'from display face, frame and board outside case'})
 report['limitations']=['Sampled nominal rigid-motion check, not a continuous clearance proof.',
     'Print tolerance, flex, omitted small components, real screw heads, hands and driver handles need a physical pilot.',
-    'Both Feather leads must be unplugged before withdrawal; cable deformation is not simulated.',
+    'The rigid full-travel check omits both Feather leads. The battery lead can lift out of the open notch; actual connected travel depends on available slack.',
     'SCD30 is screwed to its carrier outside the housing.',
     'The curved battery-tie route is prescribed; tip bending, friction and feeding reliability require a physical trial.']
 (CAD/'generated/assembly-checks.json').write_text(json.dumps(report,indent=2)+'\n')

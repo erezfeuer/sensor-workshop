@@ -1,5 +1,5 @@
 // Personal prototype only. Dimensions in mm; standard workshop CAD is unchanged.
-variant_version = "0.7.1-personal-scd30-3";
+variant_version = "0.8-personal-scd30-3";
 bare_origin = [29,42,17]; // PCB back plane; optical chamber faces down.
 bare_size = [35,23];
 bare_pcb_thickness = 1.6;

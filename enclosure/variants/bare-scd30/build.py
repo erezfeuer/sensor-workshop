@@ -63,7 +63,7 @@ def load_scene():
 def validate(scene):
     report={'status':'passed','variant':P['variant_version'],'units':'mm','print_parts':{},'checks':[],
         'limitations':['Nominal CAD geometry, not print-fit, insertion-force, retention, fatigue or thermal qualification.',
-            'Original cable illustration retained unchanged; it does not specify the soldered lead geometry.']}
+            'Original light-to-SCD30 cable illustration retained unchanged; it does not specify the soldered lead geometry.']}
     expected={'01-shell.stl','02-sensor-carrier-bare-scd30.stl','03-feather-frame.stl'}
     assert {p.name for p in PRINT.iterdir()}==expected
     for name in sorted(expected):

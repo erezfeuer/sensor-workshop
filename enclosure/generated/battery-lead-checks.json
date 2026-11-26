@@ -1,0 +1,216 @@
+{
+  "status": "passed",
+  "version": "0.8",
+  "frame_sha256": "2787ca7c826bca24b95d3f36f0104eb90bd93740b56814cae363378b9660aeda",
+  "notch_width_mm": 13,
+  "notch_clear_height_above_cover_mm": 4.1,
+  "bridge_height_depth_mm": [
+    3,
+    4.0
+  ],
+  "upper_fillet_radius_mm": 1,
+  "open_toward_carrier": true,
+  "free_wire_release_checks": 275,
+  "release_gauge_xz_mm": [
+    5.2,
+    2.4
+  ],
+  "release_center_x_range_mm": [
+    15,
+    20
+  ],
+  "old_crossbar_blocked_release": true,
+  "header_keepouts": {
+    "count": 28,
+    "square_width_mm": 2.54,
+    "depth_behind_pcb_mm": 12,
+    "new_material_only": true,
+    "minimum_vertical_gap_mm": 0.64,
+    "pads": [
+      [
+        "JP1",
+        "1",
+        50.45,
+        55.73
+      ],
+      [
+        "JP1",
+        "2",
+        47.91,
+        55.73
+      ],
+      [
+        "JP1",
+        "3",
+        45.37,
+        55.73
+      ],
+      [
+        "JP1",
+        "4",
+        42.83,
+        55.73
+      ],
+      [
+        "JP1",
+        "5",
+        40.29,
+        55.73
+      ],
+      [
+        "JP1",
+        "6",
+        37.75,
+        55.73
+      ],
+      [
+        "JP1",
+        "7",
+        35.21,
+        55.73
+      ],
+      [
+        "JP1",
+        "8",
+        32.67,
+        55.73
+      ],
+      [
+        "JP1",
+        "9",
+        30.13,
+        55.73
+      ],
+      [
+        "JP1",
+        "10",
+        27.59,
+        55.73
+      ],
+      [
+        "JP1",
+        "11",
+        25.05,
+        55.73
+      ],
+      [
+        "JP1",
+        "12",
+        22.51,
+        55.73
+      ],
+      [
+        "JP1",
+        "13",
+        19.97,
+        55.73
+      ],
+      [
+        "JP1",
+        "14",
+        17.43,
+        55.73
+      ],
+      [
+        "JP1",
+        "15",
+        14.89,
+        55.73
+      ],
+      [
+        "JP1",
+        "16",
+        12.35,
+        55.73
+      ],
+      [
+        "JP3",
+        "1",
+        22.51,
+        35.41
+      ],
+      [
+        "JP3",
+        "2",
+        25.05,
+        35.41
+      ],
+      [
+        "JP3",
+        "3",
+        27.59,
+        35.41
+      ],
+      [
+        "JP3",
+        "4",
+        30.13,
+        35.41
+      ],
+      [
+        "JP3",
+        "5",
+        32.67,
+        35.41
+      ],
+      [
+        "JP3",
+        "6",
+        35.21,
+        35.41
+      ],
+      [
+        "JP3",
+        "7",
+        37.75,
+        35.41
+      ],
+      [
+        "JP3",
+        "8",
+        40.29,
+        35.41
+      ],
+      [
+        "JP3",
+        "9",
+        42.83,
+        35.41
+      ],
+      [
+        "JP3",
+        "10",
+        45.37,
+        35.41
+      ],
+      [
+        "JP3",
+        "11",
+        47.91,
+        35.41
+      ],
+      [
+        "JP3",
+        "12",
+        50.45,
+        35.41
+      ]
+    ]
+  },
+  "illustrated_wire_od_mm": 2,
+  "checked_wire_od_mm": 2.4,
+  "checked_wire_center_spacing_mm": 2.6,
+  "wire_obstacle_checks": 384,
+  "carrier_closure_poses": 81,
+  "unchanged_prints_from_48812bc": {
+    "production-stls/01-shell.stl": "b29fa569636cf0b5c864e35d9535690f76b2a753bbfb7220225b6004a3be7376",
+    "production-stls/02-sensor-carrier.stl": "a6f3046358a60a117af3f3cbcbe5bc5d9da3c87db58226534f8107aaa41c76d2",
+    "prototype-stls/bare-scd30/01-shell.stl": "b29fa569636cf0b5c864e35d9535690f76b2a753bbfb7220225b6004a3be7376",
+    "prototype-stls/bare-scd30/02-sensor-carrier-bare-scd30.stl": "2ee623f2f441ef5e76fb06b7edbdc2e45a4742a16f86bf90338ae0dadd683204"
+  },
+  "limitations": [
+    "Nominal sampled geometry, not a simulation of flexible wires, handling or print tolerances.",
+    "The new brace clears header-column envelopes; this does not qualify every possible header or attached accessory.",
+    "The notch is deliberately open. Lay the lead in it with relaxed slack before closing."
+  ]
+}

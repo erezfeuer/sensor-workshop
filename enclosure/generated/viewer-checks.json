@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "version": "0.7.1",
+  "version": "0.8",
   "light_sensor": "tsl2591",
   "browser": "158.0.8127.37",
   "offline": true,
@@ -13,6 +13,7 @@
     "empty-shell tie-access preset and reset",
     "battery tie section at X=23 with battery and one tie",
     "pole mounting example, optional parts initially hidden, reset restores defaults",
+    "battery cable close-up with open cable notch and carrier",
     "cut controls",
     "hide/show all",
     "look inside",
