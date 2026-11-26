@@ -1,6 +1,6 @@
-# Open battery-lead notch — v0.8
+# Open battery-lead notch — v0.8.1 (notch unchanged from v0.8)
 
-**Reprint only [03-feather-frame.stl](../prototype-stls/bare-scd30/03-feather-frame.stl) if you have v0.7.1.** Both print folders contain this same frame. The shell and both sensor carriers are byte-for-byte unchanged. The Feather's mounting holes, locating pins, reinforced posts and sliding interfaces retain their fitted geometry.
+**Reprint only [03-feather-frame.stl](../prototype-stls/bare-scd30/03-feather-frame.stl) if you have v0.8 or v0.7.1.** Both print folders contain this same frame. The shell and both sensor carriers are byte-for-byte unchanged. The Feather's mounting holes, locating pins, PCB seat plane and sliding interfaces retain their fitted geometry. v0.8.1 additionally widens both screw collars; see [mount details](FEATHER-MOUNT.md).
 
 The left section of the lower crossbar is raised towards the Feather, leaving a **13 mm-wide, open-bottom notch** between the upright and the USB-arrow land. The clear height above the closed carrier is **4.1 mm**. The raised bridge is **3 mm high × 4 mm deep**, with **1 mm internal corner radii** where it joins its supports.
 

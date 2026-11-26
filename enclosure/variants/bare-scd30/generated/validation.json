@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "variant": "0.8-personal-scd30-3",
+  "variant": "0.8.1-personal-scd30-3",
   "units": "mm",
   "print_parts": {
     "01-shell.stl": {
@@ -31,7 +31,7 @@
         31.2,
         11.8
       ],
-      "sha256": "2787ca7c826bca24b95d3f36f0104eb90bd93740b56814cae363378b9660aeda"
+      "sha256": "4ac1c350ae334668a5cae34e36317238a15ef15d5f452fdb3ed4ad28b9b86be7"
     }
   },
   "checks": [

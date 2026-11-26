@@ -1,4 +1,4 @@
-// Sensor Workshop v0.8. Two case parts and a removable Feather frame.
+// Sensor Workshop v0.8.1. Two case parts and a removable Feather frame.
 // Board-derived geometry: Adafruit CC BY-SA 3.0; see reference/ATTRIBUTION.md.
 include <parameters.scad>
 include <generated/boards.scad>
@@ -60,6 +60,41 @@ module battery_cable_notch() {
     translate([x0+r,y0,z0]) cube([x1-x0-2*r,depth,z1-z0]);
     for(x=[x0+r,x1-r]) translate([x,y0,z1-r]) y_cylinder(depth,2*r);
 }
+module feather_screw_collar(i) {
+    // Add strength at the screw mouth, not just behind a long, thin neck.
+    // Clear the actual LED and radio-module envelopes from Adafruit's STEP.
+    p=feather_holes[i]; x=feather_origin[0]+p[0]; z=feather_origin[2]-p[1];
+    c=feather_component_clearance;
+    difference() {
+        intersection() {
+            translate([5.9,feather_origin[1]+pcb_thickness,26.6])
+                cube([51.2,16.5-feather_origin[1]-pcb_thickness,31.2]);
+            union() {
+                translate([x,feather_origin[1]+pcb_thickness,z])
+                    y_cylinder(feather_contact_length+eps,feather_screw_collar_diameter);
+                hull() {
+                    translate([x,feather_origin[1]+pcb_thickness+feather_contact_length,z])
+                        y_cylinder(eps,feather_screw_collar_diameter);
+                    translate([x,feather_root_y,z]) y_cylinder(eps,feather_root_diameter);
+                }
+            }
+        }
+        board_transform("feather") {
+            // USB-end LED: all four solids, plus 0.2 mm clearance.
+            translate([.9779-c,5.0673-c,pcb_thickness-eps])
+                cube([2.5781-.9779+2*c,5.8547-5.0673+2*c,2.2787+c-pcb_thickness+eps]);
+            // Radio-module PCB overhang: local shallow relief, not a thin
+            // cylindrical neck over the entire first 2 mm of the screw post.
+            translate([30.6215-c,3.7271-c,pcb_thickness-eps])
+                cube([20+2*c,19.1271-3.7271+2*c,2.47+c-pcb_thickness+eps]);
+            // End header positions (Eagle JP1/16 and JP3/12): reserve each
+            // 2.54 mm housing column plus 0.15 mm clearance for future pins.
+            for(pad=[[6.35,1.27],[44.45,21.59]])
+                translate([pad[0]-1.42,pad[1]-1.42,pcb_thickness-eps])
+                    cube([2.84,2.84,12+eps]);
+        }
+    }
+}
 module feather_frame() {
     // Screw the PCB to this frame OUTSIDE the shell, from its display side.
     // The complete frame slides upward through the open bottom. No side tools.
@@ -98,6 +133,7 @@ module feather_frame() {
                 // Keep the physically fitted v0.5 locating pins exactly.
                 if(i==1 || i==2) translate([x,feather_origin[1]+pcb_thickness-locating_height,z]) y_cylinder(locating_height+eps,locating_pin);
             }
+            for(i=board_screw_indices) feather_screw_collar(i);
         }
         battery_cable_notch();
         // Preserve clearance to the radio package and copper antenna face.

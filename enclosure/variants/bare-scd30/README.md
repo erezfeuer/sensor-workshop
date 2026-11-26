@@ -8,11 +8,11 @@ This one-off carrier holds the **bare 35 × 23 mm Sensirion SCD30** directly wit
 | --- | --- |
 | `01-shell.stl` | Exterior roof on the bed; feet point up. Current TSL2591 shell, with v0.7.1 RTC LED clearance. |
 | `02-sensor-carrier-bare-scd30.stl` | Flat upper face on the bed; integral latches point up. Strengthened, closer-fitting latches. |
-| `03-feather-frame.stl` | Flat rear face on the bed; mounting pads point up. v0.8 frame with open battery-lead notch: original v0.5 front interface, reinforced roots and USB/SCREEN SIDE marks. |
+| `03-feather-frame.stl` | Flat rear face on the bed; mounting pads point up. v0.8.1 frame: reinforced screw collars, fitted v0.5 holes/pins/seat plane, open battery-lead notch and USB/SCREEN SIDE marks. |
 
 The shell and frame are exact copies of the workshop files. Use millimetres and 100% scale. For the carrier, start with a 0.4 mm nozzle, 0.2 mm layers and five wall loops. **PETG is preferred for the flexible latches**; treat PLA as a careful first-fit trial. The latch noses have short 0.77 mm inward projections and sloped entry faces; the back stops grow on ramps. No deliberate supports are intended, but actual print quality must be checked. See the [existing shell/frame guidance](../../PRINTING.md). No slicing has been performed here.
 
-**26 November revision, v0.8:** reprint only `03-feather-frame.stl` from v0.7.1. The raised brace leaves a wide open notch above the carrier; the lead lifts out without PH disconnection. [Battery-lead instructions and sections](../../BATTERY-LEAD.md). The shell and strengthened snap carrier are unchanged. The carrier retains 1.6 mm latch walls, 3.4 / 4.2 / 6 mm clip widths, 0.65 mm retaining overlap and a 1.8 mm capture gap for the 1.6 mm PCB.
+**26 November revision, v0.8.1:** reprint only `03-feather-frame.stl` from v0.8. Both screw collars gain component-relieved reinforcement at the PCB face. [Before/after sections](../../feather-collars.pdf). The raised brace leaves a wide open notch above the carrier; the lead lifts out without PH disconnection. [Battery-lead instructions and sections](../../BATTERY-LEAD.md). The shell and strengthened snap carrier are unchanged. The carrier retains 1.6 mm latch walls, 3.4 / 4.2 / 6 mm clip widths, 0.65 mm retaining overlap and a 1.8 mm capture gap for the 1.6 mm PCB.
 
 ## How it holds the module
 

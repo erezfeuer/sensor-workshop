@@ -23,7 +23,8 @@ with sync_playwright() as p:
     page.on('request',lambda r:requests.append(r.url))
     page.goto((HERE/'model.html').as_uri());page.wait_for_selector('canvas[data-rendered="true"]')
     state=page.evaluate('sensorWorkshop.state()')
-    assert state['version']=='0.8-personal-scd30-3'
+    expected=json.loads(re.search(r'variant_version\s*=\s*(.*?);',(HERE/'parameters.scad').read_text())[1])
+    assert state['version']==expected
     assert len(state['components'])==28
     assert sum(c['group']=='Printed enclosure' for c in state['components'])==3
     assert page.locator('#error').is_hidden() and state['glError']==0

@@ -3,10 +3,12 @@
 
 No OpenGL is required. Geometry comes from OpenSCAD's exported solids.
 """
+import io
 import json
 import os
 import re
 import tempfile
+import subprocess
 from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
@@ -217,14 +219,40 @@ def feather_mount_drawing(scene):
         arrowprops=dict(arrowstyle='->',lw=.8))
     ax.legend(loc='lower center',bbox_to_anchor=(.5,-.26),frameon=False,fontsize=8)
     fig.suptitle(f"Feather frame v{PARAMS['enclosure_version']} — reinforcement and orientation",fontsize=19,x=.05,ha='left')
-    fig.text(.05,.065,'v0.8 adds the wide open battery-lead notch. Reprint only 03-feather-frame.stl from v0.7.1; flat rear face on the bed.\n'
-        'The complete first 2 mm and both locating pins match the fitted v0.5 STL; Ø6.4 mm reinforcement starts behind this interface.\n'
+    fig.text(.05,.065,'v0.8.1 reinforces both screw collars. Reprint only 03-feather-frame.stl from v0.8; flat rear face on the bed.\n'
+        'Hole centres, locating pins and PCB seat plane match the fitted v0.5 STL; wider collars have local component reliefs.\n'
         'The section shows actual CAD geometry, not a strength simulation. Gentle repeated fitting/removal still needs a physical trial.',
         fontsize=9,color='#526568')
     fig.subplots_adjust(left=.04,right=.97,top=.85,bottom=.23,wspace=.2)
     fig.savefig(RENDERS/'feather-mounting.png',dpi=170)
     fig.savefig(CAD/'feather-mounting.pdf')
     plt.close(fig)
+
+
+def feather_collar_drawing():
+    """Actual STL sections expose the former thin neck at each screw mouth."""
+    report=json.loads((CAD/'generated/feather-fit-checks.json').read_text())
+    left,right=report['screw_collar_sections']
+    old=trimesh.load_mesh(io.BytesIO(subprocess.check_output(
+        ['git','show','96883e0:enclosure/stl/feather_frame.stl'],cwd=ROOT)),file_type='stl')
+    current=trimesh.load_mesh(CAD/'stl/feather_frame.stl')
+    fig,axes=plt.subplots(1,2,figsize=(11,6.6))
+    for ax,xy,title in zip(axes,([8.54,54.46],[54.26,36.045]),('USB-end screw','Radio-end screw')):
+        for mesh,color,style,label in ((current,'#287a77','-',f"v{PARAMS['enclosure_version']}"),(old,'#b45640','--','v0.8')):
+            section=mesh.section(plane_normal=[0,0,1],plane_origin=[0,0,10.1])
+            for j,poly in enumerate(section.discrete):
+                ax.plot(poly[:,0]-xy[0],poly[:,1]-xy[1],color=color,linestyle=style,lw=2,label=label if j==0 else None)
+        ax.set(xlim=(-3.7,3.7),ylim=(-3.7,3.7),aspect='equal',xlabel='X from screw centre (mm)',ylabel='Z from screw centre (mm)',title=title)
+        ax.grid(alpha=.2);ax.legend(loc='upper right',fontsize=9)
+        ax.plot(0,0,'+',color='#263b3b')
+    fig.suptitle(f"Feather v{PARAMS['enclosure_version']} — both collars at 0.5 mm behind the PCB",fontsize=16)
+    fig.text(.07,.06,'Nominal collar Ø5.2 mm; pilot Ø1.8 mm and all centres unchanged. Flat reliefs clear adjacent board components.\n'
+        f"Minimum section over 0.1–1.9 mm depth: USB end {left['minimum_plastic_section_mm2']:.2f} mm² (was {left['v08_minimum_plastic_section_mm2']:.2f}); "
+        f"radio end {right['minimum_plastic_section_mm2']:.2f} mm² (was {right['v08_minimum_plastic_section_mm2']:.2f}).\n"
+        'These are sections through exported solids, not a torque rating. Existing v0.8 material is retained everywhere.',fontsize=9,color='#526568')
+    fig.subplots_adjust(left=.07,right=.97,top=.86,bottom=.24,wspace=.3)
+    fig.savefig(RENDERS/'feather-collars.png',dpi=170)
+    fig.savefig(CAD/'feather-collars.pdf');plt.close(fig)
 
 
 def light_sensor_drawing(scene):
@@ -399,6 +427,7 @@ if __name__ == "__main__":
         rasterize(variant(scene,kind),title,subtitle,RENDERS/(kind+".png"),eye=eye)
     drawings(scene)
     feather_mount_drawing(scene)
+    feather_collar_drawing()
     battery_lead_drawing(scene)
     light_sensor_drawing(scene)
     battery_tie_drawing(scene)

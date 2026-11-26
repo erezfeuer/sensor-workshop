@@ -1,8 +1,8 @@
-# Enclosure v0.8 — open battery-lead notch / TSL2591 QT prototype
+# Enclosure v0.8.1 — reinforced screw collars / TSL2591 QT prototype
 
-**v0.8 update: reprint only `03-feather-frame.stl` from v0.7.1.** The left brace is raised to leave an open **13 mm-wide notch**, with **4.1 mm clearance above the carrier**. Lay the connected battery lead in it; it can lift out freely when the carrier is off. No threading or PH disconnection is needed to release it from the bracket. The shell and both carriers are byte-for-byte unchanged. [Assembly and measured sections](BATTERY-LEAD.md).
+**v0.8.1 update: reprint only `03-feather-frame.stl` from v0.8.** Both screw collars gain material at the PCB-facing end, relieved around adjacent components. [Before/after sections](feather-collars.pdf). The left brace is raised to leave an open **13 mm-wide notch**, with **4.1 mm clearance above the carrier**. Lay the connected battery lead in it; it can lift out freely when the carrier is off. No threading or PH disconnection is needed to release it from the bracket. The shell and both carriers are byte-for-byte unchanged. [Assembly and measured sections](BATTERY-LEAD.md).
 
-The Feather frame retains the fitted v0.5 board-facing geometry through the first 2 mm: original holes, pins and contact lands. Reinforced roots, Ø1.8 × 6 mm blind pilots, **USB ←** and **SCREEN SIDE** labels remain. The shell retains its RTC LED clearance, and the personal bare-SCD30 carrier retains its strengthened latches. [Feather fit and orientation](FEATHER-MOUNT.md) · [Hole and screw-depth audit](MECHANICAL-BOM.md#mounting-hole-audit--25-november-2026).
+The Feather frame retains the fitted v0.5 hole/pin centres and PCB seat plane. The former thin screw necks are widened to nominal Ø5.2 mm collars with local component reliefs; the original locating pins are unchanged. Reinforced roots, Ø1.8 × 6 mm blind pilots, **USB ←** and **SCREEN SIDE** labels remain. The shell retains its RTC LED clearance, and the personal bare-SCD30 carrier retains its strengthened latches. [Feather fit and orientation](FEATHER-MOUNT.md) · [Hole and screw-depth audit](MECHANICAL-BOM.md#mounting-hole-audit--25-november-2026).
 
 The shell retains the **Adafruit TSL2591 STEMMA QT** fit introduced in v0.5: the roof opening and notched light well align with its optical centre. An older VEML7700 shell still needs replacing when changing to TSL2591. [Sensor comparison and prototype checks](../hardware/LIGHT-SENSOR.md) · [Light-sensor fit drawing](light-sensor-fit.pdf).
 
@@ -29,7 +29,7 @@ The main body remains **92 × 66 × 60.8 mm**; the corner shoulders extend the o
 
 ![Accessible enclosure assembly](renders/assembled.png)
 
-| Per device | v0.2 | v0.8 |
+| Per device | v0.2 | v0.8.1 |
 | --- | ---: | ---: |
 | Printed pieces | 2 | **3: shell, carrier, Feather frame** |
 | Screws | 10 | **10** |
@@ -121,10 +121,10 @@ python3 -m venv .venv-cad
 .venv-cad/bin/python enclosure/scripts/extract_boards.py
 .venv-cad/bin/python enclosure/scripts/cable_routes.py
 .venv-cad/bin/python enclosure/scripts/export_parts.py
+.venv-cad/bin/python enclosure/scripts/check_feather_fit.py
 .venv-cad/bin/python enclosure/scripts/render_review.py
 .venv-cad/bin/python enclosure/scripts/build_viewer.py
 .venv-cad/bin/python enclosure/scripts/validate.py
-.venv-cad/bin/python enclosure/scripts/check_feather_fit.py
 .venv-cad/bin/python enclosure/scripts/check_battery_lead.py
 .venv-cad/bin/python enclosure/scripts/check_mounting_holes.py
 .venv-cad/bin/python enclosure/scripts/check_assembly.py

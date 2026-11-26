@@ -93,6 +93,14 @@ for i in p['board_screw_indices']:
     report['feather_mounts']['sections'].append({'hole_index':i,'depth_from_pcb_back_mm':3.5,
         'plastic_section_mm2':round(area,2),'v05_nominal_section_mm2':round(old_area,2),
         'area_ratio':round(area/old_area,2)})
+# Root thickness alone missed the thin neck next to the PCB. Require the
+# independent historical/vendor audit of both collars to match this exact STL.
+fit=json.loads((CAD/'generated/feather-fit-checks.json').read_text())
+assert fit['current_stl_sha256']==report['print_parts']['feather_frame']['sha256']
+assert fit['version']==p['enclosure_version'] and fit['pins_and_board_seat_plane_unchanged']
+assert {s['hole_index'] for s in fit['screw_collar_sections']}==set(p['board_screw_indices'])
+assert all(s['minimum_plastic_section_mm2']>=15.5 and s['sample_count']>=19 for s in fit['screw_collar_sections'])
+report['feather_mounts']['front_collar_sections']=fit['screw_collar_sections']
 # A vertical pencil of light over the whole TSL2591 array must reach the sky.
 # This catches a misplaced window even if the short sensor package fits below it.
 ox,oy=np.array(p['light_origin'][:2])+light['optic']
@@ -143,7 +151,7 @@ for e in json.loads((ROOT/'hardware/reference/manifest.json').read_text()):
 with pymupdf.open(CAD/'design-review.pdf') as pdf:
     assert len(pdf)==9
     report['review_pdf_pages']=len(pdf)
-report['limitations']=['Erez reports that almost everything in v0.7.1 assembled well. v0.8 adds an open battery-lead notch while retaining the fitted mounting interface. The new notch and repeated-removal durability still need a physical trial.',
+report['limitations']=['v0.8.1 reinforces both board-facing screw collars while retaining fitted hole/pin centres, the PCB seat plane and v0.8 cable notch. Seating and repeated-removal durability require a physical trial.',
     'Simplified PCB/connector envelopes omit some small components and manufacturing tolerances.',
     'Cable curves are illustrative; trial lead lengths include unmodelled slack.',
     'Threads intentionally engage printed pilot walls; fasteners are not a collision-free fit claim.',

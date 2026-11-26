@@ -1,14 +1,21 @@
-# Feather mount — open battery-lead notch v0.8
+# Feather mount — reinforced screw collars v0.8.1
 
-**Reprint only [03-feather-frame.stl](../production-stls/03-feather-frame.stl) from v0.7.1.** The raised left brace leaves a wide, open notch above the closing cover. The connected battery lead lifts out without unplugging its PH connector. [Assembly and sections](BATTERY-LEAD.md). The shell and both carriers are unchanged; the personal set has the same updated frame in its [print folder](../prototype-stls/bare-scd30/). [Mounting drawing](feather-mounting.pdf) · [Interactive model](model.html).
+**Reprint only [03-feather-frame.stl](../production-stls/03-feather-frame.stl) from v0.8.** Both screw collars are reinforced at the PCB-facing end. The raised left brace leaves a wide, open notch above the closing cover. The connected battery lead lifts out without unplugging its PH connector. [Assembly and sections](BATTERY-LEAD.md). The shell and both carriers are unchanged; the personal set has the same updated frame in its [print folder](../prototype-stls/bare-scd30/). [Mounting drawing](feather-mounting.pdf) · [Interactive model](model.html).
 
-## Working interface restored exactly
+## What was wrong, and what changed
 
-The **v0.5 print that previously fitted is the reference**. v0.7.1 restores its complete board-facing geometry: both original locating pins, all four cylindrical contact lands and both screw pilot mouths, through the first **2 mm behind the PCB**. A Boolean comparison of the actual exported STLs verifies that this entire interface matches the old solid, rather than checking only nominal coordinates.
+Restoring the old board fit in v0.7.1 also restored its entire first 2 mm of plastic behind the PCB. That left the radio-end screw on a **Ø3.2 mm neck around a Ø1.8 mm pilot: just 0.7 mm nominal radial wall**. The wider root behind it did not fix that neck. The old validation checked reinforcement 3.5 mm behind the PCB and froze the complete front interface, so it missed this weakness. The v0.8 battery notch did not remove post material.
 
-All added reinforcement starts **behind that unchanged interface**. The posts expand into **6.4 mm roots** and broad connections to the uprights. The screw pilots stay **Ø1.8 mm**, with **6 mm blind depth** behind the original mouths. This keeps the previously fitted board interface while supporting the threaded portion and the post roots.
+**v0.8.1 adds nominal Ø5.2 mm collars at both screw mouths**, tapering into the existing Ø6.4 mm roots. Local shallow reliefs clear the USB-end LED and radio-module PCB; the end header positions also retain room for future pins. The radio-side relief still needs a thin local edge at the board face, but the remaining collar is broad rather than a long, thin circular stem. The change adds about 43.89 mm³ and removes none of the v0.8 frame's material.
 
-The detailed Adafruit model also identified LED interference from the enlarged v0.6 contact pads. The original contact lands clear these parts. All **186 manufacturer solids** are checked against the current frame, and added reinforcement is relieved around the radio package. The screw and pin centres independently match the old STL and manufacturer PCB holes.
+The fitted **hole centres, locating pins, PCB seat plane, Ø1.8 mm pilots and 6 mm blind depth are unchanged**. The new collars clear all **186 manufacturer solids**, and their added material clears conservative component bounding boxes by at least 0.15 mm. Checks at 19 depths between 0.1 and 1.9 mm behind each screw mouth now require a minimum plastic section; the old frame fails this regression check.
+
+| Screw collar | Previous minimum section | New minimum section |
+| --- | ---: | ---: |
+| USB end | 11.94 mm² | 18.20 mm² |
+| Radio end | 5.48 mm² | 15.64 mm² |
+
+Sections are measured inside a 2.6 mm radius of each screw axis. These are geometric areas, **not a measured strength or torque rating**. [Before/after cross-sections](feather-collars.pdf).
 
 The lower crossbar carries a **USB arrow** and **SCREEN SIDE**. Its clear right half provides space for the labels; the left half is raised above an open battery-lead notch. The original overall size and slide tongues are retained.
 
@@ -47,4 +54,4 @@ Keep the STL's **flat rear face on the bed**. Start with a 0.4 mm nozzle, 0.2 mm
 
 After cooling, fit the board correctly, snug the screws by hand, then gently remove and refit them a few times while supporting the frame near each screw. Inspect for cracks, whitening, loose threads or separation between layers, and confirm that the frame still slides freely. Stop if a screw bottoms out before the board seats. Keep the two remaining locating pins intact.
 
-The CAD checks cover watertight solids, blind bores, reinforced threaded sections, every detailed manufacturer component, old/new hole and pin centres, contact footprints and the full frame insertion path. **Repeated-removal durability remains untested until this print trial.**
+The CAD checks cover watertight solids, blind bores, reinforced threaded sections, every detailed manufacturer component, old/new hole and pin centres, PCB seat plane, front-collar sections and the full frame insertion path. **Repeated-removal durability remains untested until this print trial.**

@@ -1,10 +1,10 @@
 {
   "status": "passed",
-  "version": "0.8",
+  "version": "0.8.1",
   "source_sha256": "e112dae4bd06b1cbfb3ff11d49df02f8e4a21ad6c886cbfccaeb7c8a9b5626b1",
   "fitted_v05_stl_sha256": "01126572127a528b9ad63513a91e6e53deeef018afef16ae239a5081f259c9de",
   "rejected_v06_stl_sha256": "abd68959dd98a24cbb824b902a29ae35721560406537661ab30177bfda094798",
-  "current_stl_sha256": "2787ca7c826bca24b95d3f36f0104eb90bd93740b56814cae363378b9660aeda",
+  "current_stl_sha256": "4ac1c350ae334668a5cae34e36317238a15ef15d5f452fdb3ed4ad28b9b86be7",
   "axes": "print XY = assembly XZ",
   "locations": {
     "screw_pilots": {
@@ -784,16 +784,40 @@
     "Nominal manufacturer geometry and STL checks, not print distortion, seating force or screw-torque qualification.",
     "Clearance tests use tessellated STEP solids at 0.08 mm linear deflection."
   ],
-  "board_contact_footprints_within_v05": true,
-  "complete_front_interface_matches_v05": {
-    "depth_behind_pcb_mm": 2,
-    "includes": [
-      "both original locating pins",
-      "all four original contact lands",
-      "both screw pilot mouths"
-    ],
-    "symmetric_difference_mm3": 0.0
+  "pins_and_board_seat_plane_unchanged": true,
+  "v08_material_preserved": {
+    "source_sha256": "2787ca7c826bca24b95d3f36f0104eb90bd93740b56814cae363378b9660aeda",
+    "removed_mm3": 0.0,
+    "added_mm3": 43.8895
   },
+  "screw_collar_sections": [
+    {
+      "hole_index": 0,
+      "sample_count": 19,
+      "depth_range_from_pcb_back_mm": [
+        0.1,
+        1.9
+      ],
+      "measurement_radius_mm": 2.6,
+      "minimum_required_plastic_section_mm2": 15.5,
+      "minimum_plastic_section_mm2": 18.196,
+      "v08_minimum_plastic_section_mm2": 11.943,
+      "minimum_area_ratio": 1.524
+    },
+    {
+      "hole_index": 3,
+      "sample_count": 19,
+      "depth_range_from_pcb_back_mm": [
+        0.1,
+        1.9
+      ],
+      "measurement_radius_mm": 2.6,
+      "minimum_required_plastic_section_mm2": 15.5,
+      "minimum_plastic_section_mm2": 15.641,
+      "v08_minimum_plastic_section_mm2": 5.482,
+      "minimum_area_ratio": 2.853
+    }
+  ],
   "v06_led_interferences_removed": [
     {
       "vendor_solid": 19,
@@ -844,5 +868,6 @@
       }
     }
   ],
-  "vendor_solid_count": 186
+  "vendor_solid_count": 186,
+  "new_collar_component_box_clearance_mm": 0.15
 }

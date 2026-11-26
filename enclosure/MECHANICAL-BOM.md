@@ -1,6 +1,6 @@
 # Mechanical bill of materials — one device
 
-For enclosure **v0.8, open battery-lead notch / reinforced Feather frame / Adafruit TSL2591 QT prototype**; fastener quantities also apply to the VEML7700 alternative. Buy these generic items locally or from a fastener supplier; they are separate from the Digi-Key/Mouser electronics orders. Quantities below are the installed quantities, before spares. [CSV shopping list](hardware.csv) · [Electronics and batteries](../hardware/BOM.md) · [Assembly instructions](README.md#print-set-and-assembly)
+For enclosure **v0.8.1, open battery-lead notch / reinforced Feather frame / Adafruit TSL2591 QT prototype**; fastener quantities also apply to the VEML7700 alternative. Buy these generic items locally or from a fastener supplier; they are separate from the Digi-Key/Mouser electronics orders. Quantities below are the installed quantities, before spares. [CSV shopping list](hardware.csv) · [Electronics and batteries](../hardware/BOM.md) · [Assembly instructions](README.md#print-set-and-assembly)
 
 ## Required purchased hardware
 
@@ -45,7 +45,7 @@ The [STL audit](generated/mounting-hole-checks.json) ([measurement table](genera
 
 Both carriers have **Ø3.4 mm through-holes** aligned with the shell pilots. The **Ø1.9 × 1.2 mm locating pins** fit their specified PCB holes, including the Feather's smaller Ø2.2 mm holes. All ten standard screw-head and straight-driver approaches are checked at their assembly stages. The personal bare SCD30 has no sensor mounting screws; its eight remaining screws use the same checked interfaces.
 
-The detailed board check found one more interference in v0.7: the RTC D1 LED touched one post edge. **v0.7.1 adds a local clearance notch to the shell**, leaving the hole centre and bore unchanged. The notch clears the manufacturer model and retains at least a 1.15 mm continuous wall around the pilot mouth in the checked section. The fuller root remains behind it. Use the updated `01-shell.stl` in either print folder. The Feather frame also restores its complete working v0.5 front interface, with reinforcement behind it. Both carriers retain their v0.7 geometry.
+The detailed board check found one more interference in v0.7: the RTC D1 LED touched one post edge. **v0.7.1 adds a local clearance notch to the shell**, leaving the hole centre and bore unchanged. The notch clears the manufacturer model and retains at least a 1.15 mm continuous wall around the pilot mouth in the checked section. The fuller root remains behind it. Use the updated `01-shell.stl` in either print folder. v0.7.1 also restored the complete v0.5 front interface. That left a thin neck at each Feather screw, so **v0.8.1 widens both screw collars with component reliefs**, retaining the fitted hole/pin centres and seat plane. Fastener sizes and quantities are unchanged. Both carriers retain their v0.7 geometry.
 
 The detailed Feather, RTC and standard SCD30 models are checked for mounting interference. TSL2591 uses PCB-derived component envelopes with conservative heights. Printed bore size, actual screw/thread dimensions and tightening force still need a physical fit check.
 

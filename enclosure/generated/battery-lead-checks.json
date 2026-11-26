@@ -1,7 +1,7 @@
 {
   "status": "passed",
-  "version": "0.8",
-  "frame_sha256": "2787ca7c826bca24b95d3f36f0104eb90bd93740b56814cae363378b9660aeda",
+  "version": "0.8.1",
+  "frame_sha256": "4ac1c350ae334668a5cae34e36317238a15ef15d5f452fdb3ed4ad28b9b86be7",
   "notch_width_mm": 13,
   "notch_clear_height_above_cover_mm": 4.1,
   "bridge_height_depth_mm": [
