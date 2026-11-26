@@ -387,8 +387,19 @@ void App::loop() {
   logIfDue();
   if (Serial.available()) {
     char c = Serial.read();
-    if (c == 'w')
+    if (c == 'w') {
       startWifi();
+      if (wifi)
+        Serial.printf("Wi-Fi: %s | password: %s | http://192.168.4.1/\n", ssid.c_str(),
+                      password.c_str());
+    }
+    if (c == 'j') {
+      DynamicJsonDocument d(4096);
+      statusJson(d);
+      d.remove("token"); // Diagnostics do not need the HTTP write token.
+      serializeJson(d, Serial);
+      Serial.println();
+    }
     if (c == '?')
       Serial.printf("RTC=%s SCD30=%s light=%s records=%lu free=%lu errors=%lu\n",
                     rtcValid ? "ok" : "unset", sensors.scd ? "ok" : "missing", sensors.lightName(),

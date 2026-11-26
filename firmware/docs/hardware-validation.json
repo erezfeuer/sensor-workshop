@@ -1,0 +1,373 @@
+{
+  "date": "2026-11-26",
+  "firmware_version": "0.1.1",
+  "scope": "Initial bench acceptance on one assembled prototype; not full qualification",
+  "hardware": {
+    "board": "Adafruit ESP32-S3 Reverse TFT Feather 5691",
+    "chip_revision": "v0.2",
+    "flash_bytes": 4194304,
+    "co2": "Bare Sensirion SCD30, soldered QT lead",
+    "light": "Adafruit TSL2591 QT",
+    "rtc": "DS3231",
+    "fuel_gauge": "MAX17048",
+    "battery_nominal_mah": 3500,
+    "host": "macOS"
+  },
+  "flashing": {
+    "tool": "PlatformIO 6.2.0 / esptool 4.5.1",
+    "environments_verified": [
+      "feather-debug",
+      "feather"
+    ],
+    "installed_environment": "feather",
+    "flash_hash_checks_passed": true,
+    "original_flash_backed_up": true,
+    "backup_sha256": "54e405f011094cef073f8ca2ccf58e5852bfa2be48b7226c7c66b67d3281c1da",
+    "log_region_was_blank": true,
+    "builds": {
+      "feather": {
+        "binary_bytes": 914912,
+        "sha256": "2b69ad5533a2061a01c2a5b3e44fa1f4bfba7da1ceb4545ced12fab5932d6a78"
+      },
+      "feather-debug": {
+        "binary_bytes": 906048,
+        "sha256": "fd91740c1211bfaf75ab4d42a4e1548a1d14569bf94af2f7975b907a6e93b300"
+      }
+    }
+  },
+  "source_files_sha256": {
+    "platformio.ini": "1a1395bdd1e135abda96db6e8c4fd52b5103934095c14250166b3987ce24b66a",
+    "partitions.csv": "bebb8bf467e4e63129ec5cf5743a6c89f6ce6de83a12d56c9281fa7339a59dc6",
+    "src/Display.cpp": "b713fc22f7878dde5b6ad04983792f7e04380b2bf8d9f8547a242dfb79c90e7d",
+    "src/Sensors.cpp": "cc4fec49398506aea03850099fc062c7293ff1ee66c94873e554f0d8feb6c2f1",
+    "src/Storage.cpp": "307ee545883e3b53f3ab19eb2a545829b79d8d4cf70c82d399983a3582bfcc8b",
+    "src/Web.cpp": "fbc600e7e72444099f51159cd194f0f541971b4e736438f053db45c9c907954d",
+    "src/main.cpp": "cfda3300eb181bd4260d907772976bacb2870e2d6140e4af5fbdee7799696763",
+    "include/App.h": "e175f4a106544f0f43db186dfe97fbbce6cd3702827e11c1e02c58ebfaa34fa0",
+    "include/Sensors.h": "b4d4ce770ea9e9448f97f8fbebab1cb8cd7d6fda0df7383bc7c929e368350f0f",
+    "include/Storage.h": "590d9f46e9e4c5cba58f1ad69be8bdfea3bc72f3580b5ca54ed2575d3bbf830c",
+    "lib/LoggerCore/src/LoggerCore.cpp": "b80cb88ee4b4e39de14b4cf8561ba2e616060b31e897871cd41a0a4ce79f98e9",
+    "lib/LoggerCore/src/LoggerCore.h": "754f9e09e6e4ff29922a6a3ddc4045b991aacad45661895342eeb150e9db38ba"
+  },
+  "sensor_observations": {
+    "bench_final": {
+      "co2": 426.9462891,
+      "temperature": 25.92660522,
+      "humidity": 42.01049805,
+      "lux": 34.52776337,
+      "volts": 3.223750114,
+      "percent": 0,
+      "light_saturated": false,
+      "co2_age_bound_s": 2
+    },
+    "after_production_upload": {
+      "co2": 451.1620789,
+      "temperature": 25.93995667,
+      "humidity": 41.71295166,
+      "lux": 40.13595581,
+      "volts": 3.232500076,
+      "percent": 0,
+      "light_saturated": false,
+      "co2_age_bound_s": 2
+    },
+    "all_six_values_received": true,
+    "bench_error_counter_start": 1,
+    "bench_error_counter_end": 1,
+    "note": "One startup sensor error was recorded; the counter did not increase during the HTTP test. Readings are not calibrated accuracy checks."
+  },
+  "web": {
+    "status": "passed",
+    "request_count": 28,
+    "requests": [
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 526.6,
+        "bytes": 1186
+      },
+      {
+        "path": "/",
+        "status": 200,
+        "ms": 117.4,
+        "bytes": 12609
+      },
+      {
+        "path": "/api/logging",
+        "status": 403,
+        "ms": 154.0,
+        "bytes": 70
+      },
+      {
+        "path": "/api/clock",
+        "status": 200,
+        "ms": 138.3,
+        "bytes": 48
+      },
+      {
+        "path": "/api/settings",
+        "status": 200,
+        "ms": 120.5,
+        "bytes": 39
+      },
+      {
+        "path": "/api/settings",
+        "status": 409,
+        "ms": 59.8,
+        "bytes": 100
+      },
+      {
+        "path": "/api/calibration/apply",
+        "status": 409,
+        "ms": 119.7,
+        "bytes": 72
+      },
+      {
+        "path": "/api/calibration/start",
+        "status": 200,
+        "ms": 256.5,
+        "bytes": 88
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 275.8,
+        "bytes": 1192
+      },
+      {
+        "path": "/api/calibration/cancel",
+        "status": 200,
+        "ms": 36.4,
+        "bytes": 69
+      },
+      {
+        "path": "/api/logging",
+        "status": 200,
+        "ms": 473.8,
+        "bytes": 39
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 190.7,
+        "bytes": 1189
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 117.1,
+        "bytes": 1189
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 128.5,
+        "bytes": 1191
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 143.4,
+        "bytes": 1191
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 144.2,
+        "bytes": 1192
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 49.2,
+        "bytes": 1192
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 82.1,
+        "bytes": 1199
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 44.9,
+        "bytes": 1198
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 275.8,
+        "bytes": 1198
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 170.1,
+        "bytes": 1200
+      },
+      {
+        "path": "/api/logging",
+        "status": 200,
+        "ms": 430.5,
+        "bytes": 38
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 145.6,
+        "bytes": 1201
+      },
+      {
+        "path": "/api/settings",
+        "status": 200,
+        "ms": 110.9,
+        "bytes": 39
+      },
+      {
+        "path": "/api/history",
+        "status": 200,
+        "ms": 111.7,
+        "bytes": 909
+      },
+      {
+        "path": "/api/download",
+        "status": 200,
+        "ms": 213.0,
+        "bytes": 1166
+      },
+      {
+        "path": "/api/download/raw",
+        "status": 200,
+        "ms": 104.9,
+        "bytes": 832
+      },
+      {
+        "path": "/api/status",
+        "status": 200,
+        "ms": 378.7,
+        "bytes": 1203
+      }
+    ],
+    "browser": {
+      "errors": [],
+      "external_requests": 0,
+      "mobile_tabs_checked": 4,
+      "csv_download": true
+    },
+    "gzip_bytes": 12609,
+    "served_html_matches_source": true,
+    "clock_set_to_host_utc": true,
+    "settings_stale_revision_rejected": true,
+    "write_without_token_rejected": true,
+    "calibration_started_then_cancelled": true,
+    "calibration_correction_applied": false,
+    "host_network_restored": true
+  },
+  "bench_log": {
+    "records": 13,
+    "samples": 5,
+    "requested_interval_s": 5,
+    "stored_integer_uptime_gaps_s": [
+      4,
+      5,
+      5,
+      5
+    ],
+    "note": "Immediate first sample and integer-second timestamps; subsequent samples are 5 seconds apart.",
+    "csv_raw_identical_after_decode": true,
+    "all_record_crcs_valid": true,
+    "raw_sha256": "cf26b383b4a505659e179b650ad721bfb6426d4c8f8b731cf3bbbb69eff8a604",
+    "calibration_unchanged": true
+  },
+  "upload_preservation": {
+    "rtc_ready": true,
+    "same_settings": true,
+    "records_before": 13,
+    "records_after": 15,
+    "journal_healthy": true
+  },
+  "display": {
+    "user_report": "After a restart it showed",
+    "orientation_explicitly_confirmed": false,
+    "physical_buttons_verified": false
+  },
+  "pending": [
+    "All three physical buttons and their wake sources",
+    "RTC coin-cell retention with both USB and main battery physically disconnected",
+    "Sleep-current, rail continuity and full discharge measurements",
+    "Calibration accuracy, thermal offset and comparison against references",
+    "Sensor-disconnection fault checks, destructive storage recovery and long endurance",
+    "iOS/Android captive portal and QR scanning; other computer platforms"
+  ],
+  "sleep": {
+    "status": "passed",
+    "distinct_usb_reconnections_with_deep_sleep_reset": 3,
+    "wake_uptimes_s": [
+      231,
+      236,
+      241
+    ],
+    "session_retained": true,
+    "rtc_ready_all_wakes": true,
+    "valid_co2_all_wakes": true,
+    "warming_flag_stayed_off": true,
+    "i2c_errors_at_observed_wakes": [
+      0,
+      0,
+      0
+    ],
+    "limitation": "Software wake and logging observed over USB; external rail voltage/current was not measured."
+  },
+  "final_handoff": {
+    "environment": "feather",
+    "logging": false,
+    "settings": {
+      "name": "Workshop logger",
+      "interval_s": 60,
+      "sensor_interval_s": 2,
+      "screen_seconds": 45,
+      "wifi_minutes": 10,
+      "channels": 31,
+      "asc": false,
+      "temperature_offset_centi": 0,
+      "altitude_m": 0,
+      "battery_mah": 3500,
+      "revision": 9
+    },
+    "rtc": "ready",
+    "hotspot_open": true,
+    "hotspot_minutes": 10,
+    "live": {
+      "co2": 449.2672424,
+      "temperature": 26.50606537,
+      "humidity": 41.49017334,
+      "lux": 50.48343658,
+      "volts": 3.262500048,
+      "percent": 0.00390625,
+      "light_saturated": false,
+      "co2_age_bound_s": 2
+    },
+    "storage": {
+      "mounted": true,
+      "healthy": true,
+      "full": false,
+      "records": 57,
+      "sequence": 57,
+      "free_bytes": 1429504,
+      "total_bytes": 1441792,
+      "record_bytes": 64,
+      "reserve_bytes": 32768,
+      "recovered_bytes": 0,
+      "error": ""
+    },
+    "test_records_left_on_device": true
+  },
+  "final_log": {
+    "records": 57,
+    "samples": 41,
+    "all_record_crcs_valid": true,
+    "csv_raw_identical_after_decode": true,
+    "original_bench_prefix_retained_byte_for_byte": true,
+    "raw_sha256": "20287a91b6b8652daf64e50c4d38dc1dbe368a1ab18171890a5af520c629e49a"
+  }
+}

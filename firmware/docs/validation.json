@@ -1,25 +1,21 @@
 {
   "date": "2026-11-26",
-  "firmware_version": "0.1.0",
+  "firmware_version": "0.1.1",
   "tested_on": "macOS, local PlatformIO and headless Google Chrome",
   "platformio_core": "6.2.0",
   "platform": "espressif32@6.8.1",
   "arduino_core": "2.0.17",
-  "hardware_flashed": false,
+  "hardware_flashed": true,
   "hardware_validated": false,
   "build": {
     "builds": {
       "feather": {
-        "binary_bytes": 913200,
-        "sha256": "7e6c888ace58de0f989822c8eb3e22499e768bdca57b5d5aaffdc3156fee1d8a",
-        "static_ram_bytes": 46904,
-        "application_usage_bytes": 912685
+        "binary_bytes": 914912,
+        "sha256": "2b69ad5533a2061a01c2a5b3e44fa1f4bfba7da1ceb4545ced12fab5932d6a78"
       },
       "feather-debug": {
-        "binary_bytes": 904336,
-        "sha256": "c2c16cf0efaa93215a82a5383a10f86a8e5bf3faeb40292eaec9d3f4ee8030db",
-        "static_ram_bytes": 46756,
-        "application_usage_bytes": 903869
+        "binary_bytes": 906048,
+        "sha256": "fd91740c1211bfaf75ab4d42a4e1548a1d14569bf94af2f7975b907a6e93b300"
       }
     },
     "flash_bytes": 4194304,
@@ -39,11 +35,13 @@
   },
   "native_tests": {
     "passed": 10,
-    "scope": "CRC vectors; float decode; record integrity; settings; monotonic scheduling; UTC bounds; calibration wait; runtime/duty model; tail recovery policy"
+    "scope": "CRC vectors; float decode; record integrity; settings; monotonic scheduling; UTC bounds; calibration wait; runtime/duty model; tail recovery policy",
+    "note": "Recorded on v0.1.0; portable core unchanged in v0.1.1."
   },
   "python_decoder_tests": {
     "passed": 5,
-    "scope": "CSV schema; unset clock/events; all 1..63-byte torn tails; byte corruption; repeated sequence"
+    "scope": "CSV schema; unset clock/events; all 1..63-byte torn tails; byte corruption; repeated sequence",
+    "note": "Recorded on v0.1.0; decoder unchanged, additionally checked against 57 actual device records in v0.1.1."
   },
   "dashboard": {
     "passed": [
@@ -68,19 +66,22 @@
       "Status render/layout p95 below 100 ms with 6x browser CPU slowdown",
       "No JavaScript exceptions across interaction and recovery scenarios"
     ],
-    "hardware": false
+    "hardware": false,
+    "note": "Simulated checks recorded on v0.1.0; production HTML unchanged. Actual-device browser checks are in hardware-validation.json."
   },
   "offline_preview": {
     "passed": true,
     "scheme": "file://",
     "simulated_data_banner": true
   },
-  "pending": "All assembled-device acceptance checks in HARDWARE-CHECKS.md; electrical current and runtime are not measured.",
+  "pending": "Remaining physical acceptance checks in HARDWARE-CHECKS.md: buttons, power/current, battery discharge, reference calibration, recovery and endurance.",
   "browser_performance": {
     "median_ms": 1.7999999523162842,
     "p95_ms": 3.799999952316284,
     "cpu_slowdown": 6,
     "iterations": 30,
     "scope": "Browser status rendering and synchronous layout; simulated API, no ESP32 network timing"
-  }
+  },
+  "hardware_validation_scope": "Initial prototype bench checks passed; full acceptance is incomplete.",
+  "hardware_report": "hardware-validation.json"
 }
