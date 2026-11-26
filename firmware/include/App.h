@@ -55,6 +55,7 @@ public:
   void serviceWeb();
   void draw(bool force = false);
   void startScreen();
+  void displayStatus(JsonObject doc) const;
   void statusJson(JsonDocument &doc);
 
 private:

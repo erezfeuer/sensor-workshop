@@ -1,0 +1,222 @@
+{
+  "date": "2026-11-26",
+  "firmware_version": "0.1.2",
+  "status": "hardware_diagnostics_passed",
+  "scope": "TFT buffering and partial refresh; initial logger acceptance remains in hardware-validation.json",
+  "installed_environment": "feather",
+  "flash_hash_verified": true,
+  "builds": {
+    "feather": {
+      "binary_bytes": 919040,
+      "sha256": "69110929794852552a7993e4a76e728082f727989f3b734d6cc1839f91d07953"
+    },
+    "feather-debug": {
+      "binary_bytes": 910144,
+      "sha256": "e54a116e6dd9ab653aecb4909b099f4bf667d7900fc82203358ad81edbb43f13"
+    }
+  },
+  "previous_version": "0.1.1",
+  "settings_preserved": true,
+  "rtc_ready": true,
+  "journal_healthy": true,
+  "records_before": 57,
+  "records_after": 59,
+  "all_samples_buffered": true,
+  "sensor_error_counter_unchanged": true,
+  "user_visual_confirmation": "pending",
+  "measurements": [
+    {
+      "phase": "readings",
+      "samples": 10,
+      "first_display": {
+        "on": true,
+        "buffered": true,
+        "differential": true,
+        "buffer_bytes": 129600,
+        "frames_sent": 35,
+        "frames_skipped": 10,
+        "last_pixels_sent": 1680,
+        "last_render_us": 48125,
+        "last_present_us": 7758,
+        "max_render_us": 48239,
+        "max_present_us": 36536,
+        "free_heap_bytes": 318416,
+        "free_psram_bytes": 1965471
+      },
+      "last_display": {
+        "on": true,
+        "buffered": true,
+        "differential": true,
+        "buffer_bytes": 129600,
+        "frames_sent": 40,
+        "frames_skipped": 14,
+        "last_pixels_sent": 0,
+        "last_render_us": 10972,
+        "last_present_us": 6076,
+        "max_render_us": 48239,
+        "max_present_us": 36536,
+        "free_heap_bytes": 318416,
+        "free_psram_bytes": 1965471
+      },
+      "samples_of_pixels_and_timing": [
+        {
+          "pixels": 1680,
+          "render_us": 48125,
+          "present_us": 7758
+        },
+        {
+          "pixels": 1680,
+          "render_us": 48125,
+          "present_us": 7758
+        },
+        {
+          "pixels": 1680,
+          "render_us": 48096,
+          "present_us": 7760
+        },
+        {
+          "pixels": 13440,
+          "render_us": 10954,
+          "present_us": 18340
+        },
+        {
+          "pixels": 0,
+          "render_us": 11029,
+          "present_us": 6076
+        },
+        {
+          "pixels": 0,
+          "render_us": 10955,
+          "present_us": 6075
+        },
+        {
+          "pixels": 8400,
+          "render_us": 10975,
+          "present_us": 14087
+        },
+        {
+          "pixels": 0,
+          "render_us": 10967,
+          "present_us": 6075
+        },
+        {
+          "pixels": 8400,
+          "render_us": 10962,
+          "present_us": 14112
+        },
+        {
+          "pixels": 0,
+          "render_us": 10972,
+          "present_us": 6076
+        }
+      ]
+    },
+    {
+      "phase": "hotspot",
+      "samples": 12,
+      "first_display": {
+        "on": true,
+        "buffered": true,
+        "differential": true,
+        "buffer_bytes": 129600,
+        "frames_sent": 42,
+        "frames_skipped": 14,
+        "last_pixels_sent": 28560,
+        "last_render_us": 61077,
+        "last_present_us": 33584,
+        "max_render_us": 61077,
+        "max_present_us": 36536,
+        "free_heap_bytes": 275616,
+        "free_psram_bytes": 1950911
+      },
+      "last_display": {
+        "on": true,
+        "buffered": true,
+        "differential": true,
+        "buffer_bytes": 129600,
+        "frames_sent": 42,
+        "frames_skipped": 24,
+        "last_pixels_sent": 0,
+        "last_render_us": 16644,
+        "last_present_us": 6084,
+        "max_render_us": 61077,
+        "max_present_us": 36536,
+        "free_heap_bytes": 275616,
+        "free_psram_bytes": 1950911
+      },
+      "samples_of_pixels_and_timing": [
+        {
+          "pixels": 28560,
+          "render_us": 61077,
+          "present_us": 33584
+        },
+        {
+          "pixels": 28560,
+          "render_us": 61077,
+          "present_us": 33584
+        },
+        {
+          "pixels": 0,
+          "render_us": 16993,
+          "present_us": 6123
+        },
+        {
+          "pixels": 0,
+          "render_us": 16644,
+          "present_us": 6085
+        },
+        {
+          "pixels": 0,
+          "render_us": 16640,
+          "present_us": 6083
+        },
+        {
+          "pixels": 0,
+          "render_us": 16640,
+          "present_us": 6083
+        },
+        {
+          "pixels": 0,
+          "render_us": 16740,
+          "present_us": 6083
+        },
+        {
+          "pixels": 0,
+          "render_us": 16635,
+          "present_us": 6085
+        },
+        {
+          "pixels": 0,
+          "render_us": 16645,
+          "present_us": 6085
+        },
+        {
+          "pixels": 0,
+          "render_us": 16639,
+          "present_us": 6084
+        },
+        {
+          "pixels": 0,
+          "render_us": 16645,
+          "present_us": 6085
+        },
+        {
+          "pixels": 0,
+          "render_us": 16644,
+          "present_us": 6084
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Software refresh timings; no optical flicker/tearing measurement",
+    "Allocation-failure fallback was inspected but not forced on hardware",
+    "No new power/current, endurance or sensor-calibration qualification"
+  ],
+  "source_files_sha256": {
+    "platformio.ini": "3aa188b123c95f705fe68ef1ca6196e0d144d74e013a362a9b744fda330d7197",
+    "include/App.h": "1303fae6f8ec02fb4261221ec7098a4ace6c132c6cdb3c2b443a131207ee1a46",
+    "src/Display.cpp": "90c9e1ab6f7f144316bb75840dfc22c0a04e22214a9833ee035e3761acace652",
+    "src/Web.cpp": "66db03913158fdf8f916297c265eadaa7dc5d37e74649d3b489b9fe636d51a4f"
+  }
+}

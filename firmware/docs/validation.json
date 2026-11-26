@@ -1,6 +1,6 @@
 {
   "date": "2026-11-26",
-  "firmware_version": "0.1.1",
+  "firmware_version": "0.1.2",
   "tested_on": "macOS, local PlatformIO and headless Google Chrome",
   "platformio_core": "6.2.0",
   "platform": "espressif32@6.8.1",
@@ -10,12 +10,12 @@
   "build": {
     "builds": {
       "feather": {
-        "binary_bytes": 914912,
-        "sha256": "2b69ad5533a2061a01c2a5b3e44fa1f4bfba7da1ceb4545ced12fab5932d6a78"
+        "binary_bytes": 919040,
+        "sha256": "69110929794852552a7993e4a76e728082f727989f3b734d6cc1839f91d07953"
       },
       "feather-debug": {
-        "binary_bytes": 906048,
-        "sha256": "fd91740c1211bfaf75ab4d42a4e1548a1d14569bf94af2f7975b907a6e93b300"
+        "binary_bytes": 910144,
+        "sha256": "e54a116e6dd9ab653aecb4909b099f4bf667d7900fc82203358ad81edbb43f13"
       }
     },
     "flash_bytes": 4194304,
@@ -82,6 +82,10 @@
     "iterations": 30,
     "scope": "Browser status rendering and synchronous layout; simulated API, no ESP32 network timing"
   },
-  "hardware_validation_scope": "Initial prototype bench checks passed; full acceptance is incomplete.",
-  "hardware_report": "hardware-validation.json"
+  "hardware_validation_scope": "Initial logger bench checks passed on v0.1.1; buffered TFT diagnostics passed on v0.1.2; full physical acceptance remains incomplete.",
+  "hardware_report": "hardware-validation.json",
+  "hardware_reports": [
+    "hardware-validation.json",
+    "display-validation.json"
+  ]
 }

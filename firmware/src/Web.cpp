@@ -45,6 +45,7 @@ void App::statusJson(JsonDocument &d) {
   d["light_sensor"] = sensors.lightName();
   d["sensor_errors"] = sensors.errors;
   d["reset_reason"] = resetReason;
+  displayStatus(d.createNestedObject("display"));
   auto live = d.createNestedObject("live");
   auto &r = sensors.reading;
   number(live, "co2", r.co2, fresh());

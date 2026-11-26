@@ -2,7 +2,7 @@
 
 A PlatformIO logger for the **Adafruit ESP32-S3 Reverse TFT Feather (5691)**, SCD30, TSL2591 and DS3231. It records to internal flash, sleeps between observations, and serves a complete phone dashboard over a temporary Wi-Fi hotspot. The original VEML7700 light-sensor option is also detected automatically.
 
-**Status: v0.1.1, flashed and bench-checked on Erez's assembled bare-SCD30 / TSL2591 prototype.** Real sensors, clock setting, logging, dashboard and downloads passed the initial checks; this is not full hardware qualification. [Measured results](docs/hardware-validation.json) · [Remaining acceptance checks](docs/HARDWARE-CHECKS.md). The battery capacity defaults to Erez's **3,500 mAh, 3.7 V cell**.
+**Status: v0.1.2, flashed on Erez's assembled bare-SCD30 / TSL2591 prototype.** This update removes the TFT's erase-and-redraw blink using buffered, partial updates. [Display change and measurements](docs/DISPLAY.md). Real sensors, clock setting, logging, dashboard and downloads passed the initial v0.1.1 checks; this is not full hardware qualification. [Initial hardware results](docs/hardware-validation.json) · [Remaining acceptance checks](docs/HARDWARE-CHECKS.md). The battery capacity defaults to Erez's **3,500 mAh, 3.7 V cell**.
 
 **[Open the interactive preview](preview.html)** by downloading/opening the HTML in a browser. Its measurements and device controls are simulated and clearly labelled; its calculator uses the production model. It runs without an internet connection. The actual firmware serves [web/index.html](web/index.html), with no simulator, CDN, external fonts or chart library.
 
